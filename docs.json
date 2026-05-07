@@ -73,6 +73,12 @@
           "integrations/connectors/crm",
           "integrations/webhooks/configure"
         ]
+      },
+      {
+        "group": "Data warehouse integrations",
+        "pages": [
+          "untitled-page"
+        ]
       }
     ]
   },
