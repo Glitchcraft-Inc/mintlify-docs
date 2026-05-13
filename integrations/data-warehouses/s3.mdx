@@ -1,0 +1,118 @@
+---
+title: "Amazon S3"
+sidebarTitle: "Amazon S3"
+description: "Connect Amazon S3 to Actioneer as a read-only data source."
+---
+
+# Linking Amazon S3 as a Source
+
+This guide walks through connecting an S3 bucket to Actioneer. The setup creates a dedicated IAM user with a read-only policy scoped to your specific bucket.
+
+| | |
+| :--- | :--- |
+| **Prerequisites** | AWS account with an S3 bucket, Actioneer account |
+| **Access granted** | `ListBucket` and `GetObject` on specified bucket |
+| **Estimated time** | 15–20 minutes |
+
+<Info>
+  Actioneer cannot upload, overwrite, delete, or modify any files or bucket settings.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Note your S3 bucket name and region">
+    Two values are needed from the AWS Console.
+
+    1. Sign in at [console.aws.amazon.com](https://console.aws.amazon.com) and open the **S3** service.
+    2. Locate your bucket in the list. Copy the exact **Bucket Name** — it is case-sensitive.
+    3. Click the bucket name. The **AWS Region** is shown at the top of the overview page (e.g., `us-east-1`).
+
+    | Value | Location | Example |
+    | :--- | :--- | :--- |
+    | **Bucket Name** | S3 bucket list | `my-company-data` |
+    | **AWS Region** | Bucket overview page | `us-east-1` |
+  </Step>
+
+  <Step title="Create a read-only IAM policy">
+    This policy grants Actioneer permission to list and read objects in your bucket. Nothing else.
+
+    1. In the AWS Console, open **IAM** → **Policies** → **Create policy**.
+    2. Click the **JSON** tab and paste the following. Replace `YOUR-BUCKET-NAME` with the bucket name from Step 1.
+
+    ```json expandable
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": ["s3:ListBucket"],
+          "Resource": "arn:aws:s3:::YOUR-BUCKET-NAME"
+        },
+        {
+          "Effect": "Allow",
+          "Action": ["s3:GetObject"],
+          "Resource": "arn:aws:s3:::YOUR-BUCKET-NAME/*"
+        }
+      ]
+    }
+    ```
+
+    3. Click **Next**, name the policy `ActioneerS3ReadOnly`, and click **Create policy**.
+
+    The JSON above grants two permissions: one to browse the list of files in your bucket, and another to read their contents. Neither allows writing, deleting, or modifying anything.
+
+    <Tip>
+      If you only want Actioneer to access a specific folder (e.g., `reports/2025/`), replace the `/*` at the end of the second resource line with `/your-folder/*`. This limits access to that folder and everything inside it.
+    </Tip>
+  </Step>
+
+  <Step title="Create a dedicated IAM user and generate access keys">
+    A dedicated user keeps Actioneer's credentials separate from personal accounts and makes it straightforward to revoke access later.
+
+    1. In IAM, click **Users** → **Create user**.
+    2. Name it `actioneer-readonly`. Leave console access unchecked — this user only needs programmatic access.
+    3. Click **Next**, select **Attach policies directly**, search for `ActioneerS3ReadOnly`, select it, and click **Create user**.
+    4. Click the new user's name → **Security credentials** tab → **Create access key**.
+    5. Select **Application running outside AWS**, click **Next**, then **Create access key**.
+    6. Copy both the **Access Key ID** and the **Secret Access Key**.
+
+    <Warning>
+      AWS displays the Secret Access Key exactly once. If you close the page without copying it, you will need to delete the key and create a new one. Store both values in a password manager.
+    </Warning>
+  </Step>
+
+  <Step title="Connect Amazon S3 in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Amazon S3** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Connection Name** | A descriptive label, e.g. `Analytics Bucket` |
+    | **Bucket Name** | From Step 1 (e.g., `my-data-bucket`) |
+    | **AWS Region** | From Step 1 (e.g., `us-east-1`) |
+    | **AWS Access Key ID** | From Step 3 (starts with `AKIA`) |
+    | **AWS Secret Access Key** | From Step 3 |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can Actioneer modify files in my S3 bucket?">
+    No. The IAM policy grants only `ListBucket` and `GetObject`. Actioneer cannot upload, overwrite, delete, rename, or modify any files or bucket settings.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect AWS credentials?">
+    Your Secret Access Key is encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. It is never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>
