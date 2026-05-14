@@ -41,6 +41,13 @@
     },
     "groups": [
       {
+        "group": "About Us",
+        "icon": "info",
+        "pages": [
+          "about"
+        ]
+      },
+      {
         "group": "Integrations",
         "icon": "plug",
         "pages": [
@@ -51,8 +58,8 @@
               "integrations/data-warehouses",
               "integrations/data-warehouses/amazon-redshift",
               "integrations/data-warehouses/s3",
-              "integrations/data-warehouses/databricks",
               "integrations/data-warehouses/google-big-query",
+              "integrations/data-warehouses/databricks",
               "integrations/data-warehouses/snowflake"
             ]
           },
@@ -66,13 +73,6 @@
               "integrations/bi-tools/power-bi"
             ]
           }
-        ]
-      },
-      {
-        "group": "About",
-        "icon": "info",
-        "pages": [
-          "about"
         ]
       }
     ]
