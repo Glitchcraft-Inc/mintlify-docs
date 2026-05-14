@@ -44,7 +44,31 @@
         "group": "About Us",
         "icon": "info",
         "pages": [
-          "about"
+          "about",
+          {
+            "group": "How It Works",
+            "icon": "workflow",
+            "pages": [
+              "about/how-it-works"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "icon": "layers",
+            "pages": [
+              "about/core-concepts",
+              "about/core-concepts/chat",
+              "about/core-concepts/metrics",
+              "about/core-concepts/boards",
+              "about/core-concepts/playbooks",
+              "about/core-concepts/segments",
+              "about/core-concepts/campaigns",
+              "about/core-concepts/funnels",
+              "about/core-concepts/retention",
+              "about/core-concepts/knowledge"
+            ]
+          },
+          "about/getting-started"
         ]
       },
       {

@@ -1,0 +1,66 @@
+---
+title: "Metrics"
+sidebarTitle: "Metrics"
+icon: "gauge"
+description: "Centrally defined, governed metrics that ground every answer Actioneer gives."
+---
+
+# Metrics
+
+Metrics in Actioneer are centrally defined, governed business measures. They ensure that when someone asks about "conversion" or "retention," the answer reflects what those terms actually mean at your company — not a generic assumption.
+
+---
+
+## Why centralised metrics matter
+
+In most organisations, the same metric is defined differently across tools. Retention in the BI dashboard might use a 7-day window. Retention in the CDP might use 30 days. The analyst's ad-hoc query might use yet another definition. This leads to conflicting numbers, eroded trust, and time wasted reconciling reports.
+
+Actioneer solves this by maintaining a single, authoritative set of metric definitions that every feature on the platform uses — Chat, Boards, Playbooks, Funnels, and Segments all reference the same source of truth.
+
+---
+
+## How metrics are defined
+
+Metrics are configured during onboarding and refined over time. Each metric includes:
+
+| Component | Description |
+| :--- | :--- |
+| **Name** | A human-readable label, e.g. "D7 Retention" or "First Investment Conversion" |
+| **Definition** | The precise business logic — what counts, what does not, and over what time window |
+| **SQL mapping** | The underlying query that computes the metric from your warehouse tables |
+| **Dimensions** | The breakdowns the metric supports — by city, channel, platform, cohort, etc. |
+| **Owner** | The team or individual responsible for the definition |
+
+<Info>
+  Metric definitions are version-controlled. When a definition changes, Actioneer tracks the update so historical comparisons remain valid.
+</Info>
+
+---
+
+## Using metrics across the platform
+
+Once defined, metrics are available everywhere:
+
+- **Chat** — Ask a question referencing a metric by name. Actioneer uses the defined logic, not an LLM guess.
+- **Boards** — Add a metric card to a Board. It always computes using the governed definition.
+- **Playbooks** — Reference metrics in automated workflows. The same definition runs on every execution.
+- **Funnels** — Conversion steps can reference metric-defined thresholds.
+- **Alerts** — Monitor a metric and trigger a notification when it crosses a boundary.
+
+---
+
+## Metric governance
+
+Metric definitions are managed at the organisation level. Changes to a definition are tracked and auditable:
+
+- All updates are logged with a timestamp and the user who made the change.
+- Historical metric values computed under a previous definition are preserved — they are not retroactively recalculated unless explicitly requested.
+- Conflicting or duplicate definitions are flagged during setup.
+
+<Tip>
+  During onboarding, Actioneer's team runs a discovery process to map your existing metric definitions from BI tools, spreadsheets, and documentation. This ensures the platform starts with accurate, team-validated definitions from day one.
+</Tip>
+
+<Card title="Next: Boards" icon="layout-dashboard" horizontal href="/about/core-concepts/boards">
+  Learn how to organise metrics, charts, and findings into persistent Boards.
+</Card>

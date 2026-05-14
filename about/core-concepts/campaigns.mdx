@@ -1,0 +1,67 @@
+---
+title: "Campaigns"
+sidebarTitle: "Campaigns"
+icon: "send"
+description: "Push insights into action by connecting Segments to your CLM and messaging tools."
+---
+
+# Campaigns
+
+Campaigns in Actioneer connect the analysis layer to the action layer. When you identify a cohort worth reaching — through Chat, Funnels, Retention, or Segments — Campaigns let you push that audience to your CLM or messaging platform without leaving Actioneer.
+
+---
+
+## How Campaigns work
+
+A Campaign takes a Segment (or a dynamically defined cohort) and pushes it to an external tool for messaging — push notifications, emails, WhatsApp, or in-app messages.
+
+<Steps>
+  <Step title="Define the audience">
+    Select an existing Segment or build one on the fly. The audience can be based on any combination of properties, behaviours, and event sequences.
+  </Step>
+  <Step title="Choose the destination">
+    Select the CLM or messaging platform to push the audience to — CleverTap, MoEngage, WebEngage, Braze, or others.
+  </Step>
+  <Step title="Push">
+    Actioneer sends the Segment to the destination tool. From there, your messaging platform handles the delivery — notifications, emails, or in-app nudges.
+  </Step>
+</Steps>
+
+---
+
+## What Campaigns are and are not
+
+| Campaigns do | Campaigns do not |
+| :--- | :--- |
+| Push audience lists to external CLM tools | Compose or send messages directly |
+| Enable cohort-to-campaign workflows in minutes | Replace your existing messaging platform |
+| Connect insight to action without tool-switching | Manage notification templates or delivery schedules |
+
+<Info>
+  Actioneer handles audience definition and push. Message composition, A/B testing of creatives, and delivery scheduling remain in your CLM tool — where those features are purpose-built.
+</Info>
+
+---
+
+## Campaign triggers
+
+Campaigns can be initiated in several ways:
+
+- **Manual** — Build a Segment, select a destination, and push. One-time execution.
+- **From a Playbook** — A Playbook identifies an anomaly, builds a Segment from the affected users, and pushes it to your CLM as part of the automated workflow.
+- **From a Scout alert** — When a Scout detects a KPI anomaly, it can trigger a pre-configured Campaign response — e.g. a re-engagement push to users in a specific drop-off cohort.
+
+---
+
+## Use cases
+
+| Scenario | How it works |
+| :--- | :--- |
+| **Cart recovery** | Identify users who added items but did not complete purchase in the last 24 hours. Push the Segment to your CLM for a nudge. |
+| **Re-engagement** | Find KYC-complete users with zero investment and 30+ days of dormancy. Push to a winback campaign. |
+| **Cross-sell** | Surface users with high activity in one product category but zero engagement in another. Target them for a cross-sell flow. |
+| **Regional response** | Detect a retention drop in a specific city or region. Build a targeted Segment and push a localised campaign. |
+
+<Card title="Next: Funnels" icon="git-branch" horizontal href="/about/core-concepts/funnels">
+  Learn how to track step-by-step conversion with Funnels.
+</Card>

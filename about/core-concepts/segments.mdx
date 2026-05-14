@@ -1,0 +1,66 @@
+---
+title: "Segments"
+sidebarTitle: "Segments"
+icon: "users"
+description: "Define audience groups based on user properties, behaviours, and event sequences."
+---
+
+# Segments
+
+Segments are audience groups defined by a combination of user properties, behavioural patterns, and event sequences. They are the bridge between analysis and action — once you identify a cohort worth targeting, you save it as a Segment and push it to your CLM or ad platform.
+
+---
+
+## How Segments work
+
+A Segment is a rule-based definition that evaluates against your user data. When a Segment is refreshed, Actioneer runs the underlying queries against your warehouse and returns the list of users who match.
+
+| Rule type | Example |
+| :--- | :--- |
+| **Property filter** | Country is India, platform is iOS, LTV above ₹10,000 |
+| **Behavioural** | Completed event "add_to_cart" at least 3 times in the last 7 days |
+| **Sequential** | Did "view_product" then "add_to_cart" then abandoned — in that order, within 24 hours |
+| **Metric threshold** | Retention score above 0.6, dormancy period exceeding 30 days |
+
+Rules can be combined with AND/OR logic to build precise audience definitions.
+
+---
+
+## Creating a Segment
+
+Segments can be created from multiple starting points:
+
+- **From Chat** — Ask a question like "How many users completed KYC but never invested?" and save the result as a Segment.
+- **From Funnels** — Identify users who dropped off at a specific step and save them as a Segment.
+- **From Retention** — Save a retention cohort (e.g. users who retained at Day 7 but churned by Day 30) as a targetable audience.
+- **From the Segments page** — Define rules manually using a builder interface.
+
+<Info>
+  Segments are defined using SQL under the hood. Actioneer generates the query from the rules you specify — you do not need to write SQL yourself.
+</Info>
+
+---
+
+## Segment refresh
+
+Segments are refreshed on a daily cadence by default. Each refresh re-evaluates the rules against the latest data in your warehouse and updates the membership list.
+
+| Refresh type | Availability |
+| :--- | :--- |
+| **Daily batch** | Default. Segment membership is recalculated once per day. |
+| **On-demand** | Trigger a manual refresh at any time from the Segments page. |
+
+---
+
+## Acting on Segments
+
+A Segment on its own is an audience list. The value comes from what you do with it:
+
+- **Push to CLM** — Send the Segment to CleverTap, MoEngage, WebEngage, or Braze for campaign targeting.
+- **Use in Campaigns** — Reference a Segment directly when building a Campaign in Actioneer.
+- **Compare in Funnels** — Overlay two Segments on a Funnel to compare conversion rates.
+- **Monitor over time** — Track how Segment size changes day over day to detect shifts in user behaviour.
+
+<Card title="Next: Campaigns" icon="send" horizontal href="/about/core-concepts/campaigns">
+  Learn how to push Segments and insights into action through Campaigns.
+</Card>

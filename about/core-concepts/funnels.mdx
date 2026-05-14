@@ -1,0 +1,74 @@
+---
+title: "Funnels"
+sidebarTitle: "Funnels"
+icon: "git-branch"
+description: "Track step-by-step conversion and identify where users drop off."
+---
+
+# Funnels
+
+Funnels in Actioneer track user progression through a defined sequence of events — from first touch to conversion, or any multi-step flow your product involves. They surface where users drop off, how long each step takes, and how different Segments compare.
+
+---
+
+## How Funnels work
+
+A Funnel is a sequence of up to 10 steps, each defined by a user event. Actioneer evaluates your warehouse data to determine how many users completed each step and where they fell off.
+
+| Component | Description |
+| :--- | :--- |
+| **Steps** | Ordered sequence of events, e.g. App Open → Sign Up → KYC → First Investment |
+| **Conversion rate** | Percentage of users who progressed from one step to the next |
+| **Drop-off** | Users who completed step N but did not reach step N+1 |
+| **Time between steps** | Median, mean, and P95 duration between consecutive steps |
+
+---
+
+## Creating a Funnel
+
+Funnels can be created from Chat or from the Funnels page:
+
+- **From Chat** — Ask "Show me the funnel from app download to first investment" and Actioneer builds it.
+- **From the Funnels page** — Define steps manually by selecting events from your schema.
+
+Each step can include property filters to narrow the scope — e.g. "Sign Up" where platform is Android, or "Purchase" where amount exceeds ₹500.
+
+---
+
+## Funnel analysis
+
+Once a Funnel is defined, Actioneer provides several views:
+
+<AccordionGroup>
+  <Accordion title="Step-by-step conversion">
+    See the raw count and percentage at each step. Identify the single biggest drop-off point in the flow.
+  </Accordion>
+  <Accordion title="Time-to-convert">
+    Understand how long it takes users to move between steps. Median and P95 times help distinguish healthy progression from stalled users.
+  </Accordion>
+  <Accordion title="Segment comparison">
+    Overlay two or more Segments on the same Funnel. Compare conversion rates between Android vs iOS users, paid vs organic, or any other dimension.
+  </Accordion>
+  <Accordion title="Drop-off diagnosis">
+    For users who dropped at a specific step, see what events they performed after the drop — across sessions. This helps identify whether they abandoned entirely or took an alternative path.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Acting on Funnel insights
+
+Funnels are not just for observation. When you spot a problem, you can act on it immediately:
+
+- **Save drop-off users as a Segment** — Target the users who fell off at a specific step for re-engagement.
+- **Pin to a Board** — Add the Funnel chart to a Board for ongoing monitoring.
+- **Set an alert** — Monitor a specific step's conversion rate and get notified when it drops below a threshold.
+- **Build a Campaign** — Push the drop-off Segment to your CLM and trigger a nudge.
+
+<Info>
+  Funnels support up to 10 steps. For longer flows, break them into sub-funnels — e.g. "Onboarding" and "First Transaction" as separate Funnels — and analyse them independently.
+</Info>
+
+<Card title="Next: Retention" icon="refresh-cw" horizontal href="/about/core-concepts/retention">
+  Learn how to track cohort-based retention and identify churn patterns.
+</Card>
