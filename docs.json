@@ -1,19 +1,25 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
+  "theme": "quill",
   "name": "Actioneer Docs",
   "description": "Connect your data warehouses and BI tools to Actioneer.",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#22C55E",
+    "light": "#4ADE80",
+    "dark": "#16A34A"
+  },
+  "font": {
+    "headings": {
+      "family": "Inter",
+      "weight": 500
+    },
+    "body": {
+      "family": "Inter"
+    }
   },
   "favicon": "/favicon.ico",
   "icons": {
     "library": "lucide"
-  },
-  "styling": {
-    "eyebrows": "breadcrumbs"
   },
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
@@ -33,30 +39,33 @@
         }
       ]
     },
-    "directory": "card",
     "groups": [
       {
-        "group": "Data Warehouse Integrations",
-        "icon": "database",
-        "expanded": true,
+        "group": "Integrations",
+        "icon": "plug",
         "pages": [
-          "integrations/data-warehouses",
-          "integrations/data-warehouses/amazon-redshift",
-          "integrations/data-warehouses/s3",
-          "integrations/data-warehouses/databricks",
-          "integrations/data-warehouses/google-big-query",
-          "integrations/data-warehouses/snowflake"
-        ]
-      },
-      {
-        "group": "BI Tool Integrations",
-        "icon": "chart-bar",
-        "expanded": true,
-        "pages": [
-          "integrations/bi-tools",
-          "integrations/bi-tools/amplitude",
-          "integrations/bi-tools/mixpanel",
-          "integrations/bi-tools/power-bi"
+          {
+            "group": "Data Warehouses",
+            "icon": "database",
+            "pages": [
+              "integrations/data-warehouses",
+              "integrations/data-warehouses/amazon-redshift",
+              "integrations/data-warehouses/s3",
+              "integrations/data-warehouses/databricks",
+              "integrations/data-warehouses/google-big-query",
+              "integrations/data-warehouses/snowflake"
+            ]
+          },
+          {
+            "group": "BI Tools",
+            "icon": "chart-bar",
+            "pages": [
+              "integrations/bi-tools",
+              "integrations/bi-tools/amplitude",
+              "integrations/bi-tools/mixpanel",
+              "integrations/bi-tools/power-bi"
+            ]
+          }
         ]
       },
       {
