@@ -62,9 +62,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
       Store this JSON key file securely. It grants read access to your BigQuery data. Do not commit it to version control or share it over unencrypted channels.
     </Warning>
 
-    <Tip>
-      If you prefer the CLI, grant all three roles in one go:
-
+    <Accordion title="Prefer the CLI? Grant all three roles in one go">
       ```bash
       PROJECT=YOUR_PROJECT_ID
       SA=actioneer-bigquery-reader@$PROJECT.iam.gserviceaccount.com
@@ -78,7 +76,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
       gcloud projects add-iam-policy-binding $PROJECT \
         --member="serviceAccount:$SA" --role="roles/bigquery.user"
       ```
-    </Tip>
+    </Accordion>
   </Step>
 
   <Step title="Connect BigQuery in Actioneer">
