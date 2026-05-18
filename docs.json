@@ -82,8 +82,8 @@
               "integrations/data-warehouses",
               "integrations/data-warehouses/amazon-redshift",
               "integrations/data-warehouses/s3",
-              "integrations/data-warehouses/google-big-query",
               "integrations/data-warehouses/databricks",
+              "integrations/data-warehouses/google-big-query",
               "integrations/data-warehouses/snowflake"
             ]
           },

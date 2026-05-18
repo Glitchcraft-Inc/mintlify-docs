@@ -1,6 +1,7 @@
 ---
 title: "Data Warehouses"
 sidebarTitle: "Overview"
+icon: "database"
 description: "Connect a data warehouse to give Actioneer read-only access to your business data."
 ---
 
@@ -9,20 +10,20 @@ description: "Connect a data warehouse to give Actioneer read-only access to you
 Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection in Actioneer.
 
 <CardGroup cols={2}>
-  <Card title="Google BigQuery" icon="database" href="/integrations/data-warehouses/google-big-query">
-    Grant read-only access via a GCP service account and connect in under 15 minutes.
+  <Card title="Amazon Redshift" icon="warehouse" href="/integrations/data-warehouses/amazon-redshift">
+    Create a read-only database user and connect your Redshift cluster.
   </Card>
-  <Card title="Databricks" icon="database" href="/integrations/data-warehouses/databricks">
+  <Card title="Amazon S3" icon="archive" href="/integrations/data-warehouses/s3">
+    Attach a read-only IAM policy to a dedicated user and connect your bucket.
+  </Card>
+  <Card title="Databricks" icon="blocks" href="/integrations/data-warehouses/databricks">
     Connect a SQL Warehouse using a Personal Access Token and Unity Catalog permissions.
+  </Card>
+  <Card title="Google BigQuery" icon="table" href="/integrations/data-warehouses/google-big-query">
+    Grant read-only access via a GCP service account and connect in under 15 minutes.
   </Card>
   <Card title="Snowflake" icon="snowflake" href="/integrations/data-warehouses/snowflake">
     Create a least-privilege service user with a Programmatic Access Token.
-  </Card>
-  <Card title="Amazon S3" icon="database" href="/integrations/data-warehouses/s3">
-    Attach a read-only IAM policy to a dedicated user and connect your bucket.
-  </Card>
-  <Card title="Amazon Redshift" icon="database" href="/integrations/data-warehouses/amazon-redshift">
-    Create a read-only database user and connect your Redshift cluster.
   </Card>
 </CardGroup>
 

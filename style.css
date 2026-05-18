@@ -100,7 +100,7 @@ img.nav-logo {
   height: auto;
 }
 
-/* Table styling — bright lime-green headers */
+/* Table styling — black headers, white text */
 table thead tr {
   background-color: #1a1a1a !important;
 }
@@ -112,12 +112,12 @@ table thead th {
 }
 
 .dark table thead tr {
-  background-color: #22C55E !important;
+  background-color: #1a1a1a !important;
 }
 
 .dark table thead th {
   color: #ffffff !important;
-  border-color: #22C55E !important;
+  border-color: #1a1a1a !important;
 }
 
 table tbody tr {
