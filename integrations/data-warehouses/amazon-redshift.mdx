@@ -1,7 +1,6 @@
 ---
 title: "Amazon Redshift"
 sidebarTitle: "Amazon Redshift"
-icon: "warehouse"
 description: "Connect Amazon Redshift to Actioneer as a read-only data source."
 ---
 
@@ -9,8 +8,8 @@ description: "Connect Amazon Redshift to Actioneer as a read-only data source."
 
 This guide walks through connecting a Redshift cluster to Actioneer. The setup creates a dedicated database user with `SELECT`-only permissions on the schemas you specify.
 
-| | |
-| :--- | :--- |
+|  |  |
+| :-- | :-- |
 | **Prerequisites** | AWS account with a Redshift cluster, Actioneer account |
 | **Access granted** | `SELECT` queries on specified schemas |
 | **Estimated time** | 20 minutes |
@@ -31,13 +30,12 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The port is always `5439`.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
-    | Value | Location | Example |
-    | :--- | :--- | :--- |
+    | Field | Location | Value Example |
+    | :-- | :-- | :-- |
     | **Host** | Cluster endpoint (without port) | `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
     | **Port** | Always `5439` for Redshift | `5439` |
     | **Database** | General information tab | `analytics` |
   </Step>
-
   <Step title="Create a read-only database user">
     Connect to your Redshift cluster using a SQL client (Redshift Query Editor, DBeaver, or psql) and run the following. Replace `YOUR_SCHEMA` with the schema Actioneer should query.
 
@@ -46,13 +44,13 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     CREATE USER actioneer_readonly
       PASSWORD 'Choose-A-Strong-Password-Here'
       CONNECTION LIMIT 5;
-
+    
     -- Grant schema access
     GRANT USAGE ON SCHEMA YOUR_SCHEMA TO actioneer_readonly;
-
+    
     -- Grant read access to all existing tables
     GRANT SELECT ON ALL TABLES IN SCHEMA YOUR_SCHEMA TO actioneer_readonly;
-
+    
     -- Ensure future tables are also readable
     ALTER DEFAULT PRIVILEGES IN SCHEMA YOUR_SCHEMA
       GRANT SELECT ON TABLES TO actioneer_readonly;
@@ -66,14 +64,13 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
       Save the password you set for `actioneer_readonly`. You will enter it in Actioneer in the next step. Store it in a password manager.
     </Warning>
   </Step>
-
   <Step title="Connect Redshift in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Amazon Redshift** from the list of data sources.
     3. Complete the connection form:
 
     | Field | Value |
-    | :--- | :--- |
+    | :-- | :-- |
     | **Connection Name** | A descriptive label, e.g. `Production Redshift` |
     | **Host** | From Step 1 — cluster endpoint without the port |
     | **Port** | `5439` |

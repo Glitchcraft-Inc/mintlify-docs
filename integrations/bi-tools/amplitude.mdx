@@ -1,7 +1,6 @@
 ---
 title: "Amplitude"
 sidebarTitle: "Amplitude"
-icon: "activity"
 description: "Connect Amplitude to Actioneer as a data source."
 ---
 
@@ -9,8 +8,8 @@ description: "Connect Amplitude to Actioneer as a data source."
 
 This guide walks through connecting an Amplitude project to Actioneer. By the end, Actioneer will be able to query your event data and charts.
 
-| | |
-| :--- | :--- |
+|  |  |
+| :-- | :-- |
 | **Prerequisites** | Amplitude account with project-level access, Actioneer account |
 | **Access granted** | Event data and chart queries via the Amplitude API |
 | **Estimated time** | 10 minutes |
@@ -30,8 +29,8 @@ This guide walks through connecting an Amplitude project to Actioneer. By the en
     3. Go to **Settings** (gear icon) → **Projects** → select the project.
     4. Scroll to the **API Key** and **Secret Key** fields. Copy both.
 
-    | Value | Location | Example |
-    | :--- | :--- | :--- |
+    | Field | Location | Value Example |
+    | :-- | :-- | :-- |
     | **API Key** | Project Settings | `abc123def456...` |
     | **Secret Key** | Project Settings | `sec789ghi012...` |
 
@@ -39,14 +38,13 @@ This guide walks through connecting an Amplitude project to Actioneer. By the en
       The Secret Key grants data export access. Treat it like a password — do not share it over unencrypted channels or commit it to version control.
     </Warning>
   </Step>
-
   <Step title="Connect Amplitude in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Amplitude** from the list of data sources.
     3. Complete the connection form:
 
     | Field | Value |
-    | :--- | :--- |
+    | :-- | :-- |
     | **Connection Name** | A descriptive label, e.g. `Production Amplitude` |
     | **API Key** | From Step 1 |
     | **Secret Key** | From Step 1 |

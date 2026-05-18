@@ -1,7 +1,6 @@
 ---
 title: "Amazon S3"
 sidebarTitle: "Amazon S3"
-icon: "archive"
 description: "Connect Amazon S3 to Actioneer as a read-only data source."
 ---
 
@@ -9,8 +8,8 @@ description: "Connect Amazon S3 to Actioneer as a read-only data source."
 
 This guide walks through connecting an S3 bucket to Actioneer. The setup creates a dedicated IAM user with a read-only policy scoped to your specific bucket.
 
-| | |
-| :--- | :--- |
+|  |  |
+| :-- | :-- |
 | **Prerequisites** | AWS account with an S3 bucket, Actioneer account |
 | **Access granted** | `ListBucket` and `GetObject` on specified bucket |
 | **Estimated time** | 15–20 minutes |
@@ -29,12 +28,11 @@ This guide walks through connecting an S3 bucket to Actioneer. The setup creates
     2. Locate your bucket in the list. Copy the exact **Bucket Name** — it is case-sensitive.
     3. Click the bucket name. The **AWS Region** is shown at the top of the overview page (e.g., `us-east-1`).
 
-    | Value | Location | Example |
-    | :--- | :--- | :--- |
+    | Field | Location | Value Example |
+    | :-- | :-- | :-- |
     | **Bucket Name** | S3 bucket list | `my-company-data` |
     | **AWS Region** | Bucket overview page | `us-east-1` |
   </Step>
-
   <Step title="Create a read-only IAM policy">
     This policy grants Actioneer permission to list and read objects in your bucket. Nothing else.
 
@@ -67,7 +65,6 @@ This guide walks through connecting an S3 bucket to Actioneer. The setup creates
       If you only want Actioneer to access a specific folder (e.g., `reports/2025/`), replace the `/*` at the end of the second resource line with `/your-folder/*`. This limits access to that folder and everything inside it.
     </Tip>
   </Step>
-
   <Step title="Create a dedicated IAM user and generate access keys">
     A dedicated user keeps Actioneer's credentials separate from personal accounts and makes it straightforward to revoke access later.
 
@@ -82,14 +79,13 @@ This guide walks through connecting an S3 bucket to Actioneer. The setup creates
       AWS displays the Secret Access Key exactly once. If you close the page without copying it, you will need to delete the key and create a new one. Store both values in a password manager.
     </Warning>
   </Step>
-
   <Step title="Connect Amazon S3 in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Amazon S3** from the list of data sources.
     3. Complete the connection form:
 
     | Field | Value |
-    | :--- | :--- |
+    | :-- | :-- |
     | **Connection Name** | A descriptive label, e.g. `Analytics Bucket` |
     | **Bucket Name** | From Step 1 (e.g., `my-data-bucket`) |
     | **AWS Region** | From Step 1 (e.g., `us-east-1`) |
