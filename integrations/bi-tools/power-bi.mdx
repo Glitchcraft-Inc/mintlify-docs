@@ -1,0 +1,95 @@
+---
+title: "Power BI"
+sidebarTitle: "Power BI"
+description: "Connect Microsoft Power BI to Actioneer as a data source."
+---
+
+# Linking Power BI as a Source
+
+This guide walks through connecting a Microsoft Power BI workspace to Actioneer. By the end, Actioneer will be able to query your datasets and read report data.
+
+|  |  |
+| :-- | :-- |
+| **Prerequisites** | Azure AD admin access, Power BI Pro or Premium workspace, Actioneer account |
+| **Access granted** | Dataset queries and report reads via the Power BI REST API |
+| **Estimated time** | 20 minutes |
+
+<Info>
+  Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Register an Azure AD app">
+    Power BI authenticates through Microsoft Entra ID (formerly Azure Active Directory). You register a dedicated app that acts as Actioneer's identity.
+
+    1. Sign in at [portal.azure.com](https://portal.azure.com).
+    2. Search for **App registrations** and click **New registration**.
+    3. Name it `Actioneer Power BI`. Leave the other fields as defaults. Click **Register**.
+    4. On the app overview page, copy the **Application (client) ID** and the **Directory (tenant) ID**.
+    5. In the left sidebar, click **Certificates & secrets** → **New client secret**.
+    6. Add a description (e.g., `Actioneer`), choose an expiry period (1 or 2 years), and click **Add**.
+    7. Copy the **Value** of the secret immediately.
+
+    | Field | Location | Value Example |
+    | :-- | :-- | :-- |
+    | **Client ID** | App overview → Application (client) ID | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | **Tenant ID** | App overview → Directory (tenant) ID | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | **Client Secret** | Certificates & secrets → Value | Store in a password manager |
+
+    <Warning>
+      Azure displays the client secret Value exactly once. If you leave the page without copying it, you will need to delete the secret and create a new one.
+    </Warning>
+  </Step>
+  <Step title="Grant the app Viewer access in Power BI">
+    The Viewer role is the lowest-permission level in Power BI. It allows reading datasets and reports without any edit or administrative permissions.
+
+    1. Go to [app.powerbi.com](https://app.powerbi.com) and open the workspace you want Actioneer to access.
+    2. Click the three-dot menu next to the workspace name and select **Workspace access**.
+    3. Search for the app you registered (`Actioneer Power BI`) and select it.
+    4. Set the role to **Viewer** and click **Add**.
+    5. Note the **Workspace ID** — it is the GUID in your browser's URL bar when viewing the workspace (e.g., `app.powerbi.com/groups/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/...`).
+
+    | Field | Location | Value Example |
+    | :-- | :-- | :-- |
+    | **Workspace ID** | Browser URL bar (GUID after `/groups/`) | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+
+    <Tip>
+      If the app does not appear in the search, your Power BI admin may need to enable service principal access. The setting is under **Admin portal → Tenant settings → Allow service principals to use Power BI APIs**. Share this page with your admin if needed.
+    </Tip>
+  </Step>
+  <Step title="Connect Power BI in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Microsoft Power BI** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :-- | :-- |
+    | **Connection Name** | A descriptive label, e.g. `Company Power BI` |
+    | **Tenant ID** | From Step 1 |
+    | **Client ID** | From Step 1 |
+    | **Client Secret** | From Step 1 |
+    | **Workspace ID** | From Step 2 |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can Actioneer modify reports or dashboards in Power BI?">
+    No. The Viewer role assigned in Step 2 limits access to reading datasets and report data. Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your workspace.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>
