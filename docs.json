@@ -108,6 +108,14 @@
             ]
           }
         ]
+      },
+      {
+        "group": "Security and Privacy",
+        "icon": "shield-check",
+        "pages": [
+          "security/data-protection",
+          "security/governance"
+        ]
       }
     ]
   },

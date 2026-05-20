@@ -70,15 +70,16 @@ Actioneer is not a replacement for your data warehouse, BI tool, or CDP. It is a
 
 ## Security and Compliance
 
-All credentials and data are encrypted with AES-256 at rest and transmitted over TLS 1.3. Actioneer never stores raw customer data in plain text.
+Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Role-based access control, audit logs, and explainable AI are built in.
 
-| Certification | Status |
-| :--- | :--- |
-| **SOC 2 Type II** | Certified |
-| **ISO 27001** | Certified (audited by Schellman) |
-| **GDPR** | Compliant |
-
-Role-based access control, full audit logs, and explainable AI are built in. Every query is traceable — the underlying SQL is always visible, never a black box.
+<CardGroup cols={2}>
+  <Card title="Data Protection" icon="shield-check" href="/security/data-protection">
+    Encryption, credential handling, data residency, and third-party audits.
+  </Card>
+  <Card title="Governance" icon="scale" href="/security/governance">
+    Access control, audit logging, AI transparency, and metric governance.
+  </Card>
+</CardGroup>
 
 <Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
   See how Actioneer connects to your data stack and turns questions into actions.
