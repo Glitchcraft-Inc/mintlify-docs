@@ -1,0 +1,103 @@
+---
+title: "ClickHouse"
+sidebarTitle: "ClickHouse"
+icon: "columns-3"
+description: "Connect ClickHouse to Actioneer as a read-only data source."
+---
+
+# Linking ClickHouse as a Source
+
+This guide walks through connecting a ClickHouse database to Actioneer. The setup creates a dedicated read-only user with `SELECT`-only permissions on the databases you specify.
+
+| | |
+| :--- | :--- |
+| **Prerequisites** | ClickHouse instance (self-hosted or ClickHouse Cloud), Actioneer account |
+| **Access granted** | `SELECT` queries on specified databases |
+| **Estimated time** | 15 minutes |
+| **Actioneer IP** | `35.244.14.238` (whitelist if your instance uses an IP allowlist) |
+
+<Info>
+  Actioneer cannot insert, update, delete, or modify any data, tables, or settings in your ClickHouse instance.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Locate your ClickHouse connection details">
+    Two values are needed: the host address and port.
+
+    **ClickHouse Cloud:** Open your service in the ClickHouse Cloud console. The host and port are displayed on the service overview page.
+
+    **Self-hosted:** Use the hostname or IP address of your ClickHouse server. The default HTTP port is `8123`. The default native port is `9000`.
+
+    | Value | Location | Example |
+    | :--- | :--- | :--- |
+    | **Host** | Service overview or server config | `my-instance.clickhouse.cloud` |
+    | **Port** | Service overview or server config | `8123` |
+  </Step>
+
+  <Step title="Create a read-only database user">
+    Connect to your ClickHouse instance using a SQL client and run the following. Replace `your_database` with the database Actioneer should query.
+
+    ```sql expandable
+    -- Create a dedicated read-only user
+    CREATE USER actioneer_readonly
+      IDENTIFIED BY 'Choose-A-Strong-Password-Here'
+      SETTINGS readonly = 1;
+
+    -- Grant read access to all tables in the target database
+    GRANT SELECT ON your_database.* TO actioneer_readonly;
+
+    -- Grant access to system tables for schema discovery
+    GRANT SELECT ON system.* TO actioneer_readonly;
+    ```
+
+    <Note>
+      Replace `your_database` with your actual database name. Run the `GRANT SELECT` statement for each database Actioneer should access.
+    </Note>
+
+    <Warning>
+      Save the password you set for `actioneer_readonly`. You will enter it in Actioneer in the next step. Store it in a password manager.
+    </Warning>
+  </Step>
+
+  <Step title="Connect ClickHouse in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **ClickHouse** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Connection Name** | A descriptive label, e.g. `Production ClickHouse` |
+    | **Host** | From Step 1 (e.g., `my-instance.clickhouse.cloud`) |
+    | **Port** | From Step 1 (e.g., `8123`) |
+    | **Database Name** | The database from Step 2 (e.g., `analytics`) |
+    | **Username** | `actioneer_readonly` |
+    | **Password** | The password set in Step 2 |
+    | **SSH Tunnel** | Optional — enable to connect via a bastion host for private instances |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can Actioneer modify data in ClickHouse?">
+    No. The `actioneer_readonly` user is configured with `readonly = 1` and holds only `SELECT` grants. It cannot insert, update, delete, or alter any objects in your instance.
+  </Accordion>
+
+  <Accordion title="When should I use the SSH Tunnel option?">
+    Enable the SSH Tunnel if your ClickHouse instance is in a private network (e.g., behind a VPC with no public endpoint). This connects Actioneer via a bastion host that has access to the private network.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>

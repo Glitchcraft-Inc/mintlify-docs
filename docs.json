@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Actioneer Docs",
-  "description": "Connect your data warehouses and BI tools to Actioneer.",
+  "description": "Connect your data warehouses, BI tools, and MMPs to Actioneer.",
   "colors": {
     "primary": "#22C55E",
     "light": "#4ADE80",
@@ -75,10 +75,15 @@
             "icon": "database",
             "pages": [
               "integrations/data-warehouses",
+              "integrations/data-warehouses/amazon-athena",
               "integrations/data-warehouses/amazon-redshift",
               "integrations/data-warehouses/s3",
+              "integrations/data-warehouses/clickhouse",
               "integrations/data-warehouses/databricks",
               "integrations/data-warehouses/google-big-query",
+              "integrations/data-warehouses/google-cloud-storage",
+              "integrations/data-warehouses/google-sheets",
+              "integrations/data-warehouses/postgresql",
               "integrations/data-warehouses/snowflake"
             ]
           },
@@ -90,6 +95,16 @@
               "integrations/bi-tools/amplitude",
               "integrations/bi-tools/mixpanel",
               "integrations/bi-tools/power-bi"
+            ]
+          },
+          {
+            "group": "MMP Connections",
+            "icon": "smartphone",
+            "pages": [
+              "integrations/mmp",
+              "integrations/mmp/adjust",
+              "integrations/mmp/appsflyer",
+              "integrations/mmp/singular"
             ]
           }
         ]

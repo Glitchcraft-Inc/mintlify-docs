@@ -1,0 +1,73 @@
+---
+title: "AppsFlyer"
+sidebarTitle: "AppsFlyer"
+icon: "plane"
+description: "Connect AppsFlyer to Actioneer as a data source."
+---
+
+# Linking AppsFlyer as a Source
+
+This guide walks through connecting an AppsFlyer account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
+
+| | |
+| :--- | :--- |
+| **Prerequisites** | AppsFlyer account with Admin access, Actioneer account |
+| **Access granted** | Attribution data, campaign metrics, and install events via the AppsFlyer API |
+| **Estimated time** | 10 minutes |
+
+<Info>
+  Actioneer cannot create, modify, or delete any apps, partners, postbacks, or attribution settings in your AppsFlyer account.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Generate an AppsFlyer API key">
+    AppsFlyer authenticates API access via a token tied to your account. You need the API key (also called the API token V2) from your AppsFlyer dashboard.
+
+    1. Sign in at [hq.appsflyer.com](https://hq.appsflyer.com).
+    2. Click your email in the top-right corner and select **Security Center**.
+    3. Under **API Tokens**, locate the **API Token V2**.
+    4. If no token exists, click **Generate**. If one exists, click **Reveal** to view it.
+    5. Copy the **API Key**.
+
+    | Value | Location | Example |
+    | :--- | :--- | :--- |
+    | **API Key** | Security Center → API Tokens | `eyJhbGciOiJBMjU2S1ci...` |
+
+    <Warning>
+      The API key grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control.
+    </Warning>
+  </Step>
+
+  <Step title="Connect AppsFlyer in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **AppsFlyer** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Connection Name** | A descriptive label, e.g. `Production AppsFlyer` |
+    | **API Key** | From Step 1 |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="What AppsFlyer data can Actioneer access?">
+    Actioneer can query attribution data, campaign performance, install events, in-app events, and cohort data accessible via the AppsFlyer API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>

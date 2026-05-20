@@ -10,17 +10,32 @@ description: "Connect a data warehouse to give Actioneer read-only access to you
 Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection in Actioneer.
 
 <CardGroup cols={2}>
+  <Card title="Amazon Athena" icon="search" href="/integrations/data-warehouses/amazon-athena">
+    Connect via IAM credentials and query your Glue catalog databases.
+  </Card>
   <Card title="Amazon Redshift" icon="warehouse" href="/integrations/data-warehouses/amazon-redshift">
     Create a read-only database user and connect your Redshift cluster.
   </Card>
   <Card title="Amazon S3" icon="archive" href="/integrations/data-warehouses/s3">
     Attach a read-only IAM policy to a dedicated user and connect your bucket.
   </Card>
+  <Card title="ClickHouse" icon="columns-3" href="/integrations/data-warehouses/clickhouse">
+    Create a read-only user and connect your ClickHouse instance.
+  </Card>
   <Card title="Databricks" icon="blocks" href="/integrations/data-warehouses/databricks">
     Connect a SQL Warehouse using a Personal Access Token and Unity Catalog permissions.
   </Card>
   <Card title="Google BigQuery" icon="table" href="/integrations/data-warehouses/google-big-query">
     Grant read-only access via a GCP service account and connect in under 15 minutes.
+  </Card>
+  <Card title="Google Cloud Storage" icon="cloud" href="/integrations/data-warehouses/google-cloud-storage">
+    Grant Storage Object Viewer access via a service account and connect your bucket.
+  </Card>
+  <Card title="Google Sheets" icon="file-spreadsheet" href="/integrations/data-warehouses/google-sheets">
+    Share a spreadsheet with Actioneer's service account and connect in under 5 minutes.
+  </Card>
+  <Card title="PostgreSQL" icon="server" href="/integrations/data-warehouses/postgresql">
+    Create a read-only database user and connect your PostgreSQL instance.
   </Card>
   <Card title="Snowflake" icon="snowflake" href="/integrations/data-warehouses/snowflake">
     Create a least-privilege service user with a Programmatic Access Token.

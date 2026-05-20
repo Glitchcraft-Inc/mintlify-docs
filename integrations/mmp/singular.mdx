@@ -1,0 +1,72 @@
+---
+title: "Singular"
+sidebarTitle: "Singular"
+icon: "crosshair"
+description: "Connect Singular to Actioneer as a data source."
+---
+
+# Linking Singular as a Source
+
+This guide walks through connecting a Singular account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
+
+| | |
+| :--- | :--- |
+| **Prerequisites** | Singular account with API access, Actioneer account |
+| **Access granted** | Attribution data, campaign metrics, and install events via the Singular API |
+| **Estimated time** | 10 minutes |
+
+<Info>
+  Actioneer cannot create, modify, or delete any apps, partners, postbacks, or attribution settings in your Singular account.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Generate a Singular API key">
+    Singular authenticates API access via an API key tied to your account.
+
+    1. Sign in at [app.singular.net](https://app.singular.net).
+    2. In the left sidebar, click **Settings** → **API Keys**.
+    3. If no key exists, click **Generate API Key**. If one exists, copy it directly.
+    4. Copy the **API Key**.
+
+    | Value | Location | Example |
+    | :--- | :--- | :--- |
+    | **API Key** | Settings → API Keys | `sk_live_a1b2c3d4e5f6...` |
+
+    <Warning>
+      The API key grants read access to your Singular data. Treat it like a password — do not share it over unencrypted channels or commit it to version control. Store it in a password manager.
+    </Warning>
+  </Step>
+
+  <Step title="Connect Singular in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Singular** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Connection Name** | A descriptive label, e.g. `Production Singular` |
+    | **API Key** | From Step 1 |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="What Singular data can Actioneer access?">
+    Actioneer can query attribution data, campaign performance, install events, ad revenue data, and creative-level reporting accessible via the Singular API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>

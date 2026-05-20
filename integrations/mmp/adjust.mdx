@@ -1,0 +1,74 @@
+---
+title: "Adjust"
+sidebarTitle: "Adjust"
+icon: "sliders-horizontal"
+description: "Connect Adjust to Actioneer as a data source."
+---
+
+# Linking Adjust as a Source
+
+This guide walks through connecting an Adjust account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
+
+| | |
+| :--- | :--- |
+| **Prerequisites** | Adjust account with API access, Actioneer account |
+| **Access granted** | Attribution data, campaign metrics, and install events via the Adjust API |
+| **Estimated time** | 10 minutes |
+
+<Info>
+  Actioneer cannot create, modify, or delete any apps, trackers, callbacks, or attribution settings in your Adjust account.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Generate an Adjust API key">
+    Adjust authenticates external integrations via API keys. You need a key scoped to the data Actioneer should access.
+
+    1. Sign in at [dash.adjust.com](https://dash.adjust.com).
+    2. Click the **Settings** icon (gear) in the bottom-left corner.
+    3. Go to **Account settings → API tokens**.
+    4. Click **Generate new token** (or use an existing read-only token if one is available).
+    5. Name it `Actioneer Integration`.
+    6. Copy the **API Key** immediately.
+
+    | Value | Location | Example |
+    | :--- | :--- | :--- |
+    | **API Key** | Account settings → API tokens | `a1b2c3d4e5f6g7h8i9j0...` |
+
+    <Warning>
+      Treat the API key like a password. Do not share it over unencrypted channels or commit it to version control. Store it in a password manager.
+    </Warning>
+  </Step>
+
+  <Step title="Connect Adjust in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Adjust** from the list of data sources.
+    3. Complete the connection form:
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Connection Name** | A descriptive label, e.g. `Production Adjust` |
+    | **API Key** | From Step 1 |
+
+    4. Click **Connect**.
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="What Adjust data can Actioneer access?">
+    Actioneer can query attribution data, campaign performance metrics, install events, and in-app event data accessible via the Adjust API. It cannot modify trackers, callbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>
