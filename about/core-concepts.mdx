@@ -2,51 +2,62 @@
 title: "Core Concepts"
 sidebarTitle: "Overview"
 icon: "layers"
-description: "The building blocks of Actioneer — from natural-language chat to automated playbooks."
+description: "The four capability patterns and key features of Actioneer."
 ---
 
 # Core Concepts
 
-Actioneer is organised around a set of interconnected capabilities. Each one serves a specific function, but they are designed to work together — a question asked in Chat can become a metric on a Board, a segment pushed to your CLM, or a playbook that runs on schedule.
+Actioneer's capabilities fall into four patterns — each built on top of the Context Engine and Agent Orchestration Runtime. Alongside these, the platform includes purpose-built features for ongoing analysis and monitoring.
 
 ---
 
-## Platform Components
+## Capability Patterns
 
-| Component | Type | Purpose |
+| Pattern | What it does | Key outcome |
 | :--- | :--- | :--- |
-| **Chat** | Interface | Natural-language querying — ask a question, get a traceable answer |
-| **Metrics** | Definition | Centrally governed business measures that ground every answer |
+| **Conversational Analytics** | Plain-language access to data, grounded in governed definitions | 3-day analyst requests answered in the same conversation |
+| **Monitoring Agents (Scouts)** | Scheduled agents that proactively surface what's moving in the business | Anomalies caught before they compound, with root cause attached |
+| **Operational Playbooks** | Multi-step workflows combining analysis, decision, and action | Weeks of analyst effort, on autopilot |
+| **Custom Agents** | Bespoke agentic capabilities built to the shape of your organisation | Variance commentary, reconciliation, exception handling — governed and observable |
+
+---
+
+## Platform Features
+
+| Feature | Type | Purpose |
+| :--- | :--- | :--- |
 | **Boards** | Visualisation | Persistent pages of charts, tables, and metrics for ongoing monitoring |
-| **Playbooks** | Automation | Reproducible analytical workflows that run on schedule or on demand |
-| **Segments** | Audience | Rule-based user groups defined by properties, behaviours, and events |
-| **Campaigns** | Action | Push segments to your CLM and messaging tools for targeted outreach |
+| **Segments** | Audience + Action | Rule-based user groups — defined by behaviour, pushed to CLM tools |
 | **Funnels** | Analysis | Step-by-step conversion tracking with drop-off diagnosis |
 | **Retention** | Analysis | Cohort-based retention tracking across time windows and segments |
-| **Knowledge** | Context | Persistent business context that compounds with every interaction |
+| **Metrics** | Data Catalog | Governed metric definitions, SQL logic, and the data catalog |
+| **Knowledge** | Context | Institutional knowledge that sharpens every AI answer |
 
 ---
 
-## Explore Each Concept
+## Explore
 
-<CardGroup cols={3}>
-  <Card title="Chat" icon="message-square" href="/about/core-concepts/chat">
-    The natural-language interface to your data.
+<CardGroup cols={2}>
+  <Card title="Conversational Analytics" icon="message-square" href="/about/core-concepts/conversational-analytics">
+    Plain-language data access grounded in your definitions.
   </Card>
-  <Card title="Metrics" icon="gauge" href="/about/core-concepts/metrics">
-    Defined, governed, and reusable across the platform.
-  </Card>
-  <Card title="Boards" icon="layout-dashboard" href="/about/core-concepts/boards">
-    Persistent pages of charts, tables, and metrics.
+  <Card title="Scouts" icon="radar" href="/about/core-concepts/scouts">
+    Monitoring agents that surface anomalies before anyone asks.
   </Card>
   <Card title="Playbooks" icon="book-open" href="/about/core-concepts/playbooks">
-    Reproducible analytical workflows.
+    Multi-step automated workflows — built once, run automatically.
+  </Card>
+  <Card title="Custom Agents" icon="zap" href="/about/core-concepts/custom-agents">
+    Bespoke agentic capabilities for your organisation.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Boards" icon="layout-dashboard" href="/about/core-concepts/boards">
+    Persistent dashboards built through conversation.
   </Card>
   <Card title="Segments" icon="users" href="/about/core-concepts/segments">
-    Audience groups defined by behaviour and properties.
-  </Card>
-  <Card title="Campaigns" icon="send" href="/about/core-concepts/campaigns">
-    Push actions to your CLM and messaging tools.
+    Audience groups with one-click push to CLM tools.
   </Card>
   <Card title="Funnels" icon="git-branch" href="/about/core-concepts/funnels">
     Step-by-step conversion tracking.
@@ -54,8 +65,14 @@ Actioneer is organised around a set of interconnected capabilities. Each one ser
   <Card title="Retention" icon="refresh-cw" href="/about/core-concepts/retention">
     Cohort-based retention analysis.
   </Card>
+</CardGroup>
+
+<CardGroup cols={2}>
+  <Card title="Metrics" icon="gauge" href="/about/core-concepts/metrics">
+    Governed metric definitions and the data catalog.
+  </Card>
   <Card title="Knowledge" icon="brain" href="/about/core-concepts/knowledge">
-    Persistent business context that compounds over time.
+    Institutional knowledge that sharpens every AI answer.
   </Card>
 </CardGroup>
 
@@ -63,17 +80,14 @@ Actioneer is organised around a set of interconnected capabilities. Each one ser
 
 ## How They Connect
 
-The concepts above are not standalone features. They form a continuous loop from question to action.
-
 | Phase | What happens | Components involved |
 | :--- | :--- | :--- |
-| **Ask** | Start with a question in Chat. Get an answer grounded in your Metrics and Knowledge. | Chat, Metrics, Knowledge |
-| **Analyse** | Explore the answer through Funnels, Retention cohorts, or Segments. | Funnels, Retention, Segments |
-| **Persist** | Save findings to a Board or codify the methodology as a Playbook. | Boards, Playbooks |
-| **Act** | Push a Segment to a Campaign, set up an alert, or schedule a Playbook to run automatically. | Campaigns, Segments, Playbooks |
-
-Every phase feeds back into the Knowledge layer. The more Actioneer is used, the better it understands your business.
+| **Ask** | Start with a question — agents span the data estate, grounded in the Context Engine | Conversational Analytics, Context Engine |
+| **Detect** | Scouts monitor KPIs on schedule and flag anomalies with root cause | Scouts, Proactive Alerts |
+| **Analyse** | Explore through Funnels, Retention cohorts, or Boards | Funnels, Retention, Boards |
+| **Act** | Push a Segment, trigger a campaign, schedule a Playbook | Segments, Playbooks, Insight-to-Action |
+| **Learn** | Every interaction feeds back into the Context Engine — the platform compounds | Context Engine, Observability |
 
 <Card title="Next: Getting Started" icon="rocket" horizontal href="/about/getting-started">
-  Set up your account and connect your first data source.
+  Set up your account and ship the first capability.
 </Card>

@@ -52,14 +52,15 @@
             "icon": "layers",
             "pages": [
               "about/core-concepts",
-              "about/core-concepts/chat",
-              "about/core-concepts/metrics",
-              "about/core-concepts/boards",
+              "about/core-concepts/conversational-analytics",
+              "about/core-concepts/scouts",
               "about/core-concepts/playbooks",
+              "about/core-concepts/custom-agents",
+              "about/core-concepts/boards",
               "about/core-concepts/segments",
-              "about/core-concepts/campaigns",
               "about/core-concepts/funnels",
               "about/core-concepts/retention",
+              "about/core-concepts/metrics",
               "about/core-concepts/knowledge"
             ]
           },
@@ -114,7 +115,8 @@
         "icon": "shield-check",
         "pages": [
           "security/data-protection",
-          "security/governance"
+          "security/governance",
+          "security/responsible-ai"
         ]
       }
     ]
@@ -134,7 +136,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
+      "linkedin": "https://linkedin.com/company/gameramp"
     }
   }
 }

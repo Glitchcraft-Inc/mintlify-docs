@@ -2,12 +2,12 @@
 title: "How It Works"
 sidebarTitle: "How It Works"
 icon: "workflow"
-description: "How Actioneer connects to your data stack and turns questions into actions."
+description: "The seven-layer architecture behind Actioneer."
 ---
 
 # How It Works
 
-Actioneer sits as a single intelligence layer across your data warehouse, BI tools, and customer engagement platforms. It does not replace any of them. It connects to what you already have and adds three capabilities that no single tool in the stack provides: natural-language querying, persistent business memory, and an action layer.
+Actioneer sits as a single intelligence and action layer across your entire data estate. It does not replace any tool in your stack. It connects to what you already have and adds capabilities no single tool provides: governed context, agent orchestration, automated playbooks, and a direct path from insight to action.
 
 ---
 
@@ -16,154 +16,175 @@ Actioneer sits as a single intelligence layer across your data warehouse, BI too
 <div style={{ background: 'linear-gradient(135deg, #0F1F1F 0%, #1a2e2e 100%)', borderRadius: '16px', padding: '40px 32px', color: '#ffffff', fontFamily: 'Inter, sans-serif', position: 'relative', overflow: 'hidden' }}>
   <div style={{ position: 'absolute', top: '-30%', right: '-15%', width: '50%', height: '160%', background: 'radial-gradient(circle, rgba(24, 195, 103, 0.12), transparent 60%)', pointerEvents: 'none' }} />
 
-  {/* Actioneer layer */}
-  <div style={{ position: 'relative', textAlign: 'center', marginBottom: '32px' }}>
+  {/* Top: Governance + Observability */}
+  <div style={{ position: 'relative', display: 'flex', justifyContent: 'center', gap: '12px', marginBottom: '20px' }}>
+    <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '10px 20px', fontSize: '11px', color: '#6B7676', letterSpacing: '0.04em' }}>Enterprise Governance</div>
+    <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '8px', padding: '10px 20px', fontSize: '11px', color: '#6B7676', letterSpacing: '0.04em' }}>Continuous Observability</div>
+  </div>
+
+  {/* Actioneer core */}
+  <div style={{ position: 'relative', textAlign: 'center', marginBottom: '16px' }}>
     <div style={{ display: 'inline-block', background: 'linear-gradient(135deg, #18C367, #0FA455)', borderRadius: '12px', padding: '20px 40px', boxShadow: '0 4px 24px rgba(24, 195, 103, 0.3)' }}>
       <div style={{ fontSize: '18px', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '4px' }}>Actioneer</div>
-      <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.04em' }}>Query · Memory · Action</div>
+      <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.85)', letterSpacing: '0.04em' }}>Context Engine · Agent Orchestration · Playbook Studio</div>
     </div>
   </div>
 
-  {/* Connection lines */}
+  {/* Middle: Capabilities */}
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px', marginBottom: '20px', position: 'relative' }}>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '14px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>Conversational Analytics</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3' }}>Plain-language data access</div>
+    </div>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '14px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>Monitoring Agents (Scouts)</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3' }}>Proactive anomaly detection</div>
+    </div>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '14px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>Operational Playbooks</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3' }}>Automated multi-step workflows</div>
+    </div>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '14px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>Insight-to-Action</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3' }}>Segment push · Campaign · Alert</div>
+    </div>
+  </div>
+
+  {/* Connection line */}
   <div style={{ textAlign: 'center', marginBottom: '8px' }}>
-    <div style={{ display: 'inline-block', width: '2px', height: '24px', background: 'linear-gradient(to bottom, #18C367, #2E3A3A)' }} />
+    <div style={{ display: 'inline-block', width: '2px', height: '20px', background: 'linear-gradient(to bottom, #18C367, #2E3A3A)' }} />
   </div>
   <div style={{ textAlign: 'center', color: '#5FDB9A', fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '8px' }}>
-    CONNECTS TO
+    700+ DATA SOURCES
   </div>
-  <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-    <div style={{ display: 'inline-block', width: '2px', height: '24px', background: 'linear-gradient(to bottom, #2E3A3A, #3d5050)' }} />
-  </div>
-
-  {/* Three pillars */}
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', position: 'relative' }}>
-    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
-      <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>Data Warehouses</div>
-      <div style={{ fontSize: '12px', color: '#B8C9C3', lineHeight: 1.5 }}>Snowflake · BigQuery · Databricks · Redshift · S3</div>
-    </div>
-    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
-      <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>BI & Analytics</div>
-      <div style={{ fontSize: '12px', color: '#B8C9C3', lineHeight: 1.5 }}>Amplitude · Mixpanel · Power BI · Looker · Tableau</div>
-    </div>
-    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '20px', textAlign: 'center' }}>
-      <div style={{ fontSize: '14px', fontWeight: 700, marginBottom: '8px', color: '#ffffff' }}>CDP & CLM</div>
-      <div style={{ fontSize: '12px', color: '#B8C9C3', lineHeight: 1.5 }}>CleverTap · MoEngage · WebEngage · Braze</div>
-    </div>
+  <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+    <div style={{ display: 'inline-block', width: '2px', height: '20px', background: 'linear-gradient(to bottom, #2E3A3A, #3d5050)' }} />
   </div>
 
-  {/* Bottom: raw data */}
-  <div style={{ textAlign: 'center', marginTop: '24px' }}>
-    <div style={{ display: 'inline-block', width: '2px', height: '24px', background: 'linear-gradient(to bottom, #3d5050, #2E3A3A)' }} />
-  </div>
-  <div style={{ textAlign: 'center', marginTop: '4px' }}>
-    <div style={{ display: 'inline-block', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', padding: '14px 28px' }}>
-      <div style={{ fontSize: '12px', color: '#6B7676', letterSpacing: '0.04em' }}>App events · Backend databases · Transaction logs</div>
+  {/* Data sources */}
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', position: 'relative' }}>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, marginBottom: '6px', color: '#ffffff' }}>Data Warehouses</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3', lineHeight: 1.5 }}>Snowflake · BigQuery · Databricks · Redshift · S3</div>
+    </div>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, marginBottom: '6px', color: '#ffffff' }}>BI & Analytics</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3', lineHeight: 1.5 }}>Amplitude · Mixpanel · Power BI · Looker · Tableau</div>
+    </div>
+    <div style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', padding: '16px', textAlign: 'center' }}>
+      <div style={{ fontSize: '13px', fontWeight: 700, marginBottom: '6px', color: '#ffffff' }}>CDP · CLM · CRM</div>
+      <div style={{ fontSize: '11px', color: '#B8C9C3', lineHeight: 1.5 }}>CleverTap · MoEngage · WebEngage · Braze · Slack</div>
     </div>
   </div>
 </div>
 
 ---
 
-## The Three Layers
+## The Seven Layers
 
-### Query Layer
+### Layer 1 — Enterprise Data Connectors
 
-The Query Layer translates plain-English questions into SQL queries executed against your connected data warehouse. It is schema-aware — it reads your tables, columns, and relationships, so queries are grounded in your actual data model.
-
-| Component | Description |
-| :--- | :--- |
-| **Intent Parsing** | Interprets the question, identifies data scope and relevant tables |
-| **Schema Mapping** | Maps the question to your metric definitions, columns, and relationships |
-| **SQL Generation** | Generates, validates, and optimises SQL before execution |
-| **Result Delivery** | Returns the answer as a chart, table, or metric — with the SQL visible |
-
-<Tip>
-  Every answer includes the SQL that produced it. Nothing is a black box.
-</Tip>
-
-### Memory Layer
-
-Most AI tools start from scratch every conversation. Actioneer does not. The Memory Layer maintains a persistent knowledge base specific to your organisation.
-
-| Context Type | Examples |
-| :--- | :--- |
-| **Metric Definitions** | What "conversion" or "retention" means at your company — not what the model assumes |
-| **KPI Targets** | The numbers your team tracks against (e.g. MAU target: 500K) |
-| **Campaign History** | What was run, when, and what moved |
-| **Playbooks** | Validated analytical workflows that can be reused and scheduled |
-| **Team Preferences** | How results should be formatted, which breakdowns matter |
-
-This context compounds over time. The more Actioneer is used, the more precisely it understands your business.
-
-### Action Layer
-
-Insights are only useful if they lead to action. The Action Layer closes the gap between seeing a problem and doing something about it.
+Connects to 700+ data sources out of the box. Read-only by default. No data migration, no pipeline rebuilds.
 
 | Capability | Description |
 | :--- | :--- |
-| **Segment Push** | Push audience lists to CleverTap, WebEngage, MoEngage, or Braze in one click |
-| **Campaign Launch** | Build campaigns directly from cohort analysis results |
-| **Alert Setup** | Monitor metrics and trigger Slack notifications with root-cause context |
-| **Playbook Scheduling** | Run validated analyses on a cadence — daily, weekly, or every few hours |
-| **Agent Deployment** | Deploy monitoring agents that watch KPIs and flag anomalies in the background |
+| **Breadth** | BI tools, analytics platforms, CRM, ad platforms, databases, Slack, payment systems, product databases |
+| **Read-only** | Data stays in place — Actioneer reads it where it lives |
+| **Custom API** | Available for sources not natively supported |
+
+### Layer 2 — Context Engine
+
+The semantic layer that gives every AI model a governed, business-specific understanding of the organisation.
+
+| Capability | Description |
+| :--- | :--- |
+| **Business mapping** | Automatically maps the app's signals and causal relationships between them |
+| **Metric definitions** | Codified once, shared across every capability built on the platform |
+| **North-star goals** | Understands which metrics matter and what moves them |
+| **Ownership graph** | Maps which team or person owns each data asset |
+| **Lineage** | Definitions and their provenance tracked across the full data estate |
+
+<Info>
+  This is what makes Actioneer's answers correct every time — the model reasons over a structured, governed representation of the business, not raw data.
+</Info>
+
+### Layer 3 — Agent Orchestration Runtime
+
+The execution layer that runs single and multi-agent workflows at enterprise scale.
+
+| Capability | Description |
+| :--- | :--- |
+| **Multi-agent** | A single question can trigger agents across every corner of the data estate simultaneously |
+| **Model abstraction** | Models can be swapped or upgraded without breaking workflows |
+| **Tool integration** | Agents connect to operational systems, not just data stores |
+| **Policy enforcement** | Enforced at every step of execution |
+| **Detect → Reason → Act → Learn** | Continuous loop that improves with every interaction |
+
+### Layer 4 — Playbook Studio
+
+Where multi-step capabilities are defined, tested, deployed, and refined.
+
+| Component | Description |
+| :--- | :--- |
+| **Playbooks** | UA reviews, churn scans, lifecycle analyses — built once, run automatically. Weeks of analyst effort, on autopilot. |
+| **Scouts** | Agents that run on schedule (daily, weekly, every 6 hours) and deliver graded reports (A–E) per title, region, or team — before anyone has to ask. |
+| **Proactive Alerts** | When CAC spikes or retention drops, Actioneer sends a Slack alert with root cause attached. |
+
+### Layer 5 — Insight-to-Action Layer
+
+Closes the loop between query and execution.
+
+| Capability | Description |
+| :--- | :--- |
+| **Segment push** | One-click push to CleverTap, WebEngage, MoEngage, Braze |
+| **Cohort to campaign** | Identify high-value users and reach them before the moment passes |
+| **Anomaly to fix** | Spot it, plan it, push it — without leaving the tab |
+
+### Layer 6 — Continuous Observability
+
+Trace-level visibility into every agent decision, every playbook run, every model call.
+
+| Capability | Description |
+| :--- | :--- |
+| **SQL transparency** | All answers include the SQL query used — auditable and traceable |
+| **Performance analytics** | Drift detection, execution metrics, and quality monitoring |
+| **Confidence flagging** | Low-confidence queries are flagged — no hallucinations permitted |
+
+### Layer 7 — Enterprise Governance
+
+| Capability | Description |
+| :--- | :--- |
+| **RBAC** | Who builds what, who runs what, who sees what |
+| **Audit logs** | Full trail for all data access and agent actions |
+| **Explainable AI** | No black box answers — reasoning and SQL visible on every response |
+| **Private cloud** | Custom deployment available for institutions that require it |
+| **Data residency** | US, EU, APAC options |
 
 ---
 
 ## What Happens When You Ask a Question
 
 <Steps>
-  <Step title="Intent parsed">
-    Actioneer interprets the question, identifies the data scope, and determines which tables and metrics are relevant.
+  <Step title="Question received">
+    You ask a question in plain English. Actioneer parses the intent, data scope, and relevant signals.
   </Step>
   <Step title="Context loaded">
-    The Memory Layer loads your metric definitions, KPI targets, and any relevant playbooks or past analyses. This grounds the query in your business logic.
+    The Context Engine loads your metric definitions, north-star goals, ownership graph, and any relevant playbooks. The query is grounded in your business logic — not the model's assumptions.
+  </Step>
+  <Step title="Agents dispatched">
+    The Agent Orchestration Runtime routes the question to one or more agents. For complex questions, multiple agents span different corners of the data estate simultaneously.
   </Step>
   <Step title="SQL generated and executed">
-    A query plan is built — potentially spanning multiple SQL queries and validation checks. Queries run against your connected warehouse.
+    Queries are generated, validated against governed definitions, and executed against your connected sources. Every query is traceable.
   </Step>
   <Step title="Answer delivered">
-    The result is returned as a chart, table, or metric card — along with the SQL used, so the answer is fully traceable and auditable.
+    Results are returned as a chart, table, or metric — with the SQL and reasoning visible alongside the answer.
   </Step>
   <Step title="Action available">
-    From the same result, you can save to a Board, build a Segment, push a Campaign, set an alert, or pin the finding for later.
+    From the same result, push a segment, trigger a campaign, set an alert, pin to a Board, or save as a Playbook.
   </Step>
 </Steps>
-
----
-
-## Use Cases
-
-| Use Case | What happens |
-| :--- | :--- |
-| **Instant data retrieval** | Ask a question, get an answer grounded in your metric definitions — not a generic LLM assumption |
-| **Continuous monitoring** | Deploy agents that watch your KPIs in the background and flag anomalies with root-cause context |
-| **Funnel monitoring** | Track every stage of your conversion funnel. If drop-off at KYC spikes, you know immediately |
-| **Campaign hyper-segmentation** | Target users on dimensions like order frequency, basket size, dormancy, and location clusters |
-| **Regional drop detection** | Flag a drop in user activity in a specific region before it compounds into a bigger problem |
-| **Insight to action** | See a drop, build a segment, push a campaign — all from the same window |
-
----
-
-## Connecting to Your Stack
-
-Actioneer connects to over 700 data sources. No pipeline rebuilds. No data migration. No schema changes required.
-
-<Steps>
-  <Step title="Authenticate">
-    Connect your data warehouse using OAuth, a service account, or an access key — depending on the platform.
-  </Step>
-  <Step title="Schema discovery">
-    Actioneer maps your schema automatically — tables, columns, relationships, and event taxonomy.
-  </Step>
-  <Step title="Start asking">
-    Your team starts asking questions. Metric definitions and playbooks build over time as the platform is used.
-  </Step>
-</Steps>
-
-<Info>
-  Actioneer operates as a read-only integration by default. It queries your data but does not create, modify, or delete anything in your warehouse or connected tools.
-</Info>
 
 <Card title="Next: Core Concepts" icon="layers" horizontal href="/about/core-concepts">
-  Explore the building blocks of Actioneer — from Chat to Playbooks to Knowledge.
+  Explore the four capability patterns and key features of Actioneer.
 </Card>

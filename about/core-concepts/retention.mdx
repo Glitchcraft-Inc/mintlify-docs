@@ -7,7 +7,23 @@ description: "Cohort-based retention analysis to track user engagement over time
 
 # Retention
 
-Retention in Actioneer tracks whether users return after their initial action — and how that behaviour changes over time, across cohorts, and between Segments. It answers the fundamental question: are users sticking around?
+Retention tracks how many users return to your app after their initial install or first activity. It shows user engagement over time using cohort-based retention curves.
+
+---
+
+## What Is a Retention View
+
+A Retention View is a saved analysis showing the percentage of users who return at defined intervals after their starting event.
+
+**Key terms:**
+
+| Term | Meaning |
+| :--- | :--- |
+| **D1 Retention** | % of users who return 1 day after install |
+| **D7 Retention** | % of users who return 7 days after install |
+| **D30 Retention** | % of users who return 30 days after install |
+| **Cohort** | Group of users who installed on the same date, week, or month |
+| **Retention event** | The action that counts as "returning" — e.g. app open, screen view, any user-triggered event |
 
 ---
 
@@ -26,39 +42,41 @@ Retention in Actioneer tracks whether users return after their initial action �
 
 | View | Description |
 | :--- | :--- |
-| **Cohort table** | A matrix showing retention rates over time. Rows are cohorts (by signup week). Columns are intervals (Day 1, Day 7, Day 30). Each cell shows the percentage that returned. |
-| **Retention curve** | A line chart plotting retention over time for one or more cohorts. Useful for spotting whether retention is improving or declining. |
-| **Segment comparison** | Compare retention between two or more Segments — paid vs organic, by region, by acquisition channel. |
+| **Retention table** | Grid showing % of users retained at D1, D3, D7, D14, D30 by install cohort |
+| **Retention curves** | Visual trend lines showing how retention decays over time |
+| **Cohort comparison** | Compare retention across different install weeks or months |
+| **Segment comparison** | Compare retention between Segments — paid vs organic, by region, by channel |
+
+Example: *"Show me D1, D7, and D30 retention for users who installed in April 2026, broken down by country"*
 
 ---
 
 ## Conditional Cohorts
 
-Standard retention groups users by a single event. Actioneer also supports conditional cohort definitions — adding criteria to the starting event that narrow the population.
+Add criteria to the starting event that narrow the population:
 
 | Condition | Example |
 | :--- | :--- |
 | **Event + time constraint** | Users who signed up and completed KYC within 48 hours |
 | **Event + value filter** | Users who made a first purchase where order value exceeded ₹1,000 |
-| **Event + engagement threshold** | Users from a specific acquisition channel who engaged with at least 3 sessions in their first week |
-
-This lets you compare retention between meaningfully different user groups, not just calendar-based cohorts.
+| **Event + engagement threshold** | Users from a specific channel who had at least 3 sessions in their first week |
 
 ---
 
-## Acting on Retention Data
+## Managing Retention
 
-| Action | Description |
-| :--- | :--- |
-| **Save a cohort as a Segment** | Target users who retained at Day 7 but churned by Day 30 for a winback campaign |
-| **Pin to a Board** | Add the retention curve to a persistent dashboard for ongoing monitoring |
-| **Feed into a Playbook** | Schedule a retention analysis to run weekly and auto-deliver a graded report |
-| **Set an alert** | Get notified when retention for a specific cohort drops below a threshold |
+| Action | How to do it | Example prompt |
+| :--- | :--- | :--- |
+| **View retention** | Ask for specific metrics and cohorts | *"Show me D1, D7, D30 retention for last month"* |
+| **Break down** | Split by dimension | *"Retention by country/platform/campaign"* |
+| **Compare cohorts** | Overlay different time periods | *"Compare March vs April retention"* |
+| **Pin to a Board** | Attach for ongoing monitoring — refreshes automatically | *"Pin retention to my engagement board"* |
+| **Delete** | Remove a saved Retention view — confirmation required | *"Delete the April retention view"* |
 
 <Info>
-  Actioneer processes at least 12 months of retention data in hot storage for forecasting and trend analysis. Older data is available in cold storage for historical lookups.
+  Actioneer processes at least 12 months of retention data in hot storage for forecasting and trend analysis. Older data is available in cold storage.
 </Info>
 
-<Card title="Next: Knowledge" icon="brain" horizontal href="/about/core-concepts/knowledge">
-  Learn how Actioneer's persistent knowledge base compounds over time.
+<Card title="Next: Metrics" icon="gauge" horizontal href="/about/core-concepts/metrics">
+  Learn how metric definitions and the data catalog work.
 </Card>

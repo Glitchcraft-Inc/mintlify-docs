@@ -2,69 +2,156 @@
 title: "Metrics"
 sidebarTitle: "Metrics"
 icon: "gauge"
-description: "Centrally defined, governed metrics that ground every answer Actioneer gives."
+description: "Data catalog, metric definitions, and the metrics tree."
 ---
 
 # Metrics
 
-Metrics in Actioneer are centrally defined, governed business measures. They ensure that when someone asks about "conversion" or "retention," the answer reflects what those terms actually mean at your company — not a generic assumption.
+Metrics in Actioneer are centrally defined, governed business measures built on top of your connected schema. They ensure that when someone asks about "conversion" or "retention," the answer reflects what those terms mean at your company — not a generic assumption.
 
 ---
 
-## Why Centralised Metrics Matter
+## Data Catalog
 
-In most organisations, the same metric is defined differently across tools. Retention in the BI dashboard might use a 7-day window. Retention in the CDP might use 30 days. The analyst's ad-hoc query might use yet another definition.
+The Data Catalog is Actioneer's view of your connected schema — the tables, columns, and data types that underpin every metric and query.
 
-Actioneer solves this by maintaining a single, authoritative set of metric definitions that every feature on the platform uses — Chat, Boards, Playbooks, Funnels, and Segments all reference the same source of truth.
+### Tables and Columns
 
----
+Each connected data source exposes tables containing typed columns. Actioneer uses these to generate accurate SQL. Example:
 
-## Metric Definition
+**Borrower Profile Summary**
 
-Each metric in Actioneer includes the following components.
+| S. No. | Column | Data Type |
+| :--- | :--- | :--- |
+| 1 | `Entity` | VARCHAR |
+| 2 | `Employment_type` | VARCHAR |
+| 3 | `Income_category` | VARCHAR |
+| 4 | `Is_ntc` | BOOLEAN |
+| 5 | `Loan_count` | BIGINT |
+| 6 | `Total_disbursed` | HUGEINT |
+| 7 | `Avg_ticket` | DOUBLE |
+| 8 | `Avg_CIBIL` | DOUBLE |
+| 9 | `Avg_LTV` | DOUBLE |
+| 10 | `NPA_count` | BIGINT |
+| 11 | `GNPA_PCT` | DOUBLE |
 
-| Component | Description |
+### SQL Data Types Reference
+
+Understanding data types ensures metrics are defined correctly and queries return accurate results.
+
+**Numeric Types**
+
+| Type | Description | Example |
+| :--- | :--- | :--- |
+| `INTEGER` / `INT` | Standard whole number | `42`, `1000` |
+| `BIGINT` | Large integer (up to 9.2 quintillion) | `15000`, `2340987` |
+| `HUGEINT` | Very large integer beyond BIGINT range | `71000000000` |
+| `DOUBLE` / `FLOAT64` | Floating-point decimal | `3.14`, `0.85`, `12.7` |
+| `NUMERIC` / `DECIMAL` | Fixed-precision decimal | `DECIMAL(38,9)` |
+
+**String / Text Types**
+
+| Type | Description | Example |
+| :--- | :--- | :--- |
+| `VARCHAR(n)` | Variable-length text, max `n` characters | `'Salaried'`, `'Mumbai'` |
+| `CHAR(n)` | Fixed-length text, padded with spaces | `'Hi   '` |
+| `TEXT` / `STRING` | Unlimited-length text | `'A very long description...'` |
+
+**Boolean**
+
+| Type | Description | Example |
+| :--- | :--- | :--- |
+| `BOOLEAN` / `BOOL` | True or false | `TRUE`, `FALSE`, `1`, `0` |
+
+**Date and Time Types**
+
+| Type | Description | Example |
+| :--- | :--- | :--- |
+| `DATE` | Calendar date only | `'2026-05-20'` |
+| `TIME` | Time of day only | `'14:30:00'` |
+| `DATETIME` | Date + time | `'2026-05-20 14:30:00'` |
+| `TIMESTAMP` | Date + time, timezone-aware | `'2026-05-20T14:30:00Z'` |
+| `INTERVAL` | Duration between two points | `INTERVAL 7 DAY` |
+
+**Semi-Structured Types**
+
+| Type | Description | Example |
+| :--- | :--- | :--- |
+| `ARRAY` | Ordered list of values | `[1, 2, 3]` |
+| `STRUCT` / `RECORD` | Nested key-value object | `STRUCT('John' AS name, 30 AS age)` |
+| `JSON` | JSON document | `'{"key": "value"}'` |
+
+<Accordion title="BigQuery-specific type mappings">
+
+| BigQuery Type | Equivalent |
 | :--- | :--- |
-| **Name** | A human-readable label, e.g. "D7 Retention" or "First Investment Conversion" |
-| **Definition** | The precise business logic — what counts, what does not, and over what time window |
-| **SQL Mapping** | The underlying query that computes the metric from your warehouse tables |
-| **Dimensions** | The breakdowns the metric supports — by city, channel, platform, cohort |
-| **Owner** | The team or individual responsible for the definition |
+| `INT64` | `BIGINT` |
+| `FLOAT64` | `DOUBLE` |
+| `NUMERIC` | `DECIMAL(38,9)` |
+| `STRING` | `VARCHAR` (unlimited) |
+| `BOOL` | `BOOLEAN` |
+| `TIMESTAMP` | `TIMESTAMP` with microseconds |
+| `RECORD` | `STRUCT` |
+
+</Accordion>
+
+---
+
+## Adding a New Metric
+
+Describe what you want to measure in plain language. Actioneer validates the references against your schema, drafts the SQL, and asks you to confirm before computing.
+
+**Required fields:**
+
+| Field | What to provide | Example |
+| :--- | :--- | :--- |
+| **Category** | `UA`, `Engagement`, `Monetization`, or `Underwriting` | `Monetization` |
+| **Classification** | `△ KPI`, `○ Indicator`, `◇ Diagnostic`, or `● Index` | `△ KPI` |
+| **Name** | Short unique name | `ARPDAU`, `D7 Retention` |
+| **Definition** | What it measures in plain English | "Daily IAP revenue divided by DAU" |
+| **SQL Logic** | Table + column + formula (Actioneer can help draft this) | `SUM(iap_revenue) / COUNT(DISTINCT user_id)` |
+| **Period** | Calculation window | `daily`, `7 days`, `30 days` |
+| **Relationships** | *(Optional)* Links to other metrics | Related to `DAU` and `Revenue` |
+
+**Example prompts:**
+- *"Add a Monetization KPI called ARPDAU — daily IAP revenue divided by DAU"*
+- *"Create an Engagement metric for D7 Retention"*
+- *"Add a UA diagnostic for Cost Per Install by campaign"*
+
+You don't need to know the exact SQL — describe what you want to measure and Actioneer handles the query construction.
+
+---
+
+## Metrics Tree
+
+The Metrics Tree is the visual hierarchy of all defined metrics and their relationships — base metrics, derived metrics, and dependencies.
+
+### Managing Metrics
+
+All metric management happens through natural language. Actioneer confirms with you before making any changes.
+
+| Action | How to do it | Example prompt |
+| :--- | :--- | :--- |
+| **Edit a metric** | Ask to update a metric's definition, query, or metadata | *"Update CPI to use a new formula"* or *"Change D7 Retention to filter by organic users only"* |
+| **Regenerate from schema** | Ask to refresh or recompute metrics against latest data | *"Refresh all metrics"* or *"Recompute UA metrics"* |
+| **Delete a metric** | Ask to remove a specific metric — confirmation required | *"Delete the D14 Retention metric"* |
+| **Add a related metric** | Create a new metric linked to an existing one | *"Add ARPDAU related to DAU and Revenue"* or *"Create D3 Retention similar to D1 Retention"* |
 
 <Info>
-  Metric definitions are version-controlled. When a definition changes, Actioneer tracks the update so historical comparisons remain valid.
+  Actioneer identifies whether a new metric is base or derived, ensures dependencies exist first, then computes and stores it. Metrics are recomputed in parallel by category — UA, Engagement, Monetisation, Underwriting — for speed.
 </Info>
-
----
-
-## Where Metrics Are Used
-
-Once defined, metrics are available across the entire platform.
-
-| Surface | How metrics are used |
-| :--- | :--- |
-| **Chat** | Ask a question referencing a metric by name. Actioneer uses the defined logic. |
-| **Boards** | Add a metric card to a Board. It always computes using the governed definition. |
-| **Playbooks** | Reference metrics in automated workflows. The same definition runs on every execution. |
-| **Funnels** | Conversion steps can reference metric-defined thresholds. |
-| **Alerts** | Monitor a metric and trigger a notification when it crosses a boundary. |
 
 ---
 
 ## Metric Governance
 
-Metric definitions are managed at the organisation level. Changes are tracked and auditable.
-
-| Governance feature | Description |
+| Control | Description |
 | :--- | :--- |
-| **Change tracking** | All updates are logged with a timestamp and the user who made the change |
+| **Single source of truth** | Every feature — conversations, Boards, Playbooks, Funnels — references the same governed definition |
+| **Version control** | Definition changes are logged with a timestamp and the user who made the change |
 | **Historical preservation** | Values computed under a previous definition are preserved — not retroactively recalculated |
-| **Conflict detection** | Duplicate or conflicting definitions are flagged during setup |
+| **Conflict detection** | Duplicate or contradictory definitions are flagged during setup |
 
-<Tip>
-  During onboarding, Actioneer's team runs a discovery process to map your existing metric definitions from BI tools, spreadsheets, and documentation.
-</Tip>
-
-<Card title="Next: Boards" icon="layout-dashboard" horizontal href="/about/core-concepts/boards">
-  Learn how to organise metrics, charts, and findings into persistent Boards.
+<Card title="Next: Knowledge" icon="brain" horizontal href="/about/core-concepts/knowledge">
+  Learn how business context and knowledge bases improve analysis accuracy.
 </Card>

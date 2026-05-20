@@ -7,7 +7,27 @@ description: "Track step-by-step conversion and identify where users drop off."
 
 # Funnels
 
-Funnels in Actioneer track user progression through a defined sequence of events — from first touch to conversion, or any multi-step flow your product involves. They surface where users drop off, how long each step takes, and how different Segments compare.
+A Funnel is a sequential analysis of user steps — tracking how users move through a defined series of actions and where they drop off. Funnels help identify conversion bottlenecks and optimise user flows.
+
+---
+
+## Creating a Funnel
+
+Ask in plain language or use the Funnels page:
+- *"Create a funnel for onboarding: install → tutorial start → tutorial complete → first session"*
+- *"Build a purchase funnel from app open to checkout"*
+
+**Required fields:**
+
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| **Name** | Unique funnel label | `onboarding_funnel` |
+| **Steps** | Ordered sequence of events | Step 1: `app_open`, Step 2: `tutorial_start`, Step 3: `first_purchase` |
+| **Filters** *(optional)* | Narrow the audience | Platform, country, date range, segment |
+| **Time window** *(optional)* | Max time allowed between steps | *"Complete all steps within 7 days"* |
+| **Breakdown** *(optional)* | Split results by a dimension | By country, platform, campaign |
+
+Process: You define the steps → Actioneer validates events exist in your data → funnel is computed showing user counts and drop-off % at each step → results are saved for reuse.
 
 ---
 
@@ -15,21 +35,10 @@ Funnels in Actioneer track user progression through a defined sequence of events
 
 | Component | Description |
 | :--- | :--- |
-| **Steps** | Ordered sequence of up to 10 events, e.g. App Open → Sign Up → KYC → First Investment |
+| **Steps** | Ordered sequence of up to 10 events |
 | **Conversion rate** | Percentage of users who progressed from one step to the next |
 | **Drop-off** | Users who completed step N but did not reach step N+1 |
 | **Time between steps** | Median, mean, and P95 duration between consecutive steps |
-
----
-
-## Creating a Funnel
-
-| Method | Description |
-| :--- | :--- |
-| **From Chat** | Ask "Show me the funnel from app download to first investment" and Actioneer builds it |
-| **From the Funnels page** | Define steps manually by selecting events from your schema |
-
-Each step can include property filters to narrow the scope — e.g. "Sign Up" where platform is Android, or "Purchase" where amount exceeds ₹500.
 
 ---
 
@@ -37,24 +46,34 @@ Each step can include property filters to narrow the scope — e.g. "Sign Up" wh
 
 | View | Description |
 | :--- | :--- |
-| **Step-by-step conversion** | Raw count and percentage at each step. Identifies the single biggest drop-off point. |
-| **Time-to-convert** | How long it takes users to move between steps. Median and P95 times distinguish healthy progression from stalled users. |
-| **Segment comparison** | Overlay two or more Segments on the same Funnel. Compare Android vs iOS, paid vs organic, or any dimension. |
-| **Drop-off diagnosis** | For users who dropped at a specific step, see what events they performed after — across sessions. |
+| **Step-by-step conversion** | Raw count and percentage at each step — identifies the biggest drop-off point |
+| **Time-to-convert** | How long users take to move between steps |
+| **Segment comparison** | Overlay two or more Segments on the same Funnel |
+| **Drop-off diagnosis** | See what events dropped users performed after leaving the funnel |
 
 ---
 
-## Acting on Funnel Insights
+## Managing Funnels
 
-| Action | Description |
+| Action | How to do it | Example prompt |
+| :--- | :--- | :--- |
+| **Edit** | Add, remove, or reorder steps. Adjust filters or time window. | *"Add 'level 5 reached' after tutorial complete"* or *"Change the time window to 3 days"* |
+| **Pin to a Board** | Attach the funnel chart for ongoing monitoring. Pinned funnels refresh automatically. | *"Pin the onboarding funnel to my engagement board"* |
+| **Delete** | Permanently remove — confirmation required. Does not affect underlying event data. | *"Delete the onboarding funnel"* |
+
+**Edit types:**
+
+| Edit | Example |
 | :--- | :--- |
-| **Save drop-off users as a Segment** | Target users who fell off at a specific step for re-engagement |
-| **Pin to a Board** | Add the Funnel chart to a Board for ongoing monitoring |
-| **Set an alert** | Monitor a step's conversion rate and get notified when it drops below a threshold |
-| **Build a Campaign** | Push the drop-off Segment to your CLM and trigger a nudge |
+| Add a step | *"Insert 'add to cart' between browse and checkout"* |
+| Remove a step | *"Drop the registration step"* |
+| Reorder steps | *"Move 'first purchase' before 'profile setup'"* |
+| Change filters | *"Filter to iOS users only"* |
+| Adjust time window | *"Allow 14 days between steps instead of 7"* |
+| Add breakdown | *"Break down by country"* |
 
 <Info>
-  Funnels support up to 10 steps. For longer flows, break them into sub-funnels and analyse them independently.
+  Funnels support up to 10 steps. For longer flows, break them into sub-funnels and analyse independently.
 </Info>
 
 <Card title="Next: Retention" icon="refresh-cw" horizontal href="/about/core-concepts/retention">

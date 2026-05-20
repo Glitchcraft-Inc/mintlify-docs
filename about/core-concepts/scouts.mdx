@@ -1,0 +1,66 @@
+---
+title: "Scouts"
+sidebarTitle: "Scouts"
+icon: "radar"
+description: "Automated monitoring agents that watch your data and alert you proactively."
+---
+
+# Scouts
+
+A Scout is an automated monitoring agent that continuously watches your data for specific conditions, anomalies, or thresholds you define. Instead of manually checking dashboards, a Scout proactively notifies you when something important happens.
+
+---
+
+## Creating a Scout
+
+Click **+ Create Scout** from the Scouts page, or ask in plain language:
+- *"Create a scout that monitors daily revenue and alerts me if it drops below $10K"*
+
+**Required fields:**
+
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| **Scout Name** | Short descriptive label | `Weekly Sales Report` |
+| **Prompt** | What to monitor — the metric, condition, and scope | *"Analyze weekly sales trends and provide insights"* |
+| **Schedule** | How often to run | `Daily` or `Weekly` |
+| **Email Recipients** | Team members who receive the report | Select from workspace members |
+
+### Writing effective prompts
+
+| Good prompt | Weak prompt |
+| :--- | :--- |
+| *"Alert me if D1 retention falls below 30% for any campaign"* | *"Watch retention"* |
+| *"Notify me when daily spend exceeds $50K across all channels"* | *"Monitor spending"* |
+| *"Flag any country where CPI increases by more than 25% week-over-week"* | *"Track CPI"* |
+
+Be specific about: the **metric** (what to measure), the **threshold** (what triggers the alert), the **scope** (all data or filtered), and the **timeframe** (day-over-day, week-over-week).
+
+---
+
+## Scout Reports
+
+Each run delivers a graded report — A through E — per dimension (title, region, team). Reports include:
+- The metric values and how they compare to thresholds
+- Root-cause context when anomalies are detected
+- Recommended next steps
+
+Reports are delivered via email to selected recipients and visible on the Scouts page.
+
+---
+
+## Managing Scouts
+
+| Action | How to do it | Example |
+| :--- | :--- | :--- |
+| **Pause** | Temporarily stop a Scout from running | *"Pause the revenue drop scout"* |
+| **Resume** | Re-enable a paused Scout | *"Resume the CPI alert scout"* |
+| **Edit** | Update threshold, prompt, or schedule | *"Change the revenue scout to alert below $8K"* |
+| **Delete** | Permanently remove a Scout — confirmation required | *"Delete the revenue drop scout"* |
+
+<Info>
+  Pausing a Scout stops monitoring but preserves the configuration. You can resume at any time. Deletion is permanent — the monitoring stops and alert history is removed.
+</Info>
+
+<Card title="Next: Playbooks" icon="book-open" horizontal href="/about/core-concepts/playbooks">
+  Learn how multi-step workflows are built once and run automatically.
+</Card>

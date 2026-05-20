@@ -2,63 +2,118 @@
 title: "Segments"
 sidebarTitle: "Segments"
 icon: "users"
-description: "Define audience groups based on user properties, behaviours, and event sequences."
+description: "Define audience groups, explore events, push to CLM tools, and launch campaigns."
 ---
 
 # Segments
 
-Segments are audience groups defined by a combination of user properties, behavioural patterns, and event sequences. They are the bridge between analysis and action — once you identify a cohort worth targeting, you save it as a Segment and push it to your CLM or ad platform.
-
----
-
-## Rule Types
-
-Segments are built using rules that evaluate against your user data.
-
-| Rule Type | Example |
-| :--- | :--- |
-| **Property filter** | Country is India, platform is iOS, LTV above ₹10,000 |
-| **Behavioural** | Completed event "add_to_cart" at least 3 times in the last 7 days |
-| **Sequential** | Did "view_product" then "add_to_cart" then abandoned — in that order, within 24 hours |
-| **Metric threshold** | Retention score above 0.6, dormancy period exceeding 30 days |
-
-Rules can be combined with AND/OR logic to build precise audience definitions.
+A Segment is a defined group of users based on specific criteria — behaviour, demographics, spend, or event sequences. Segments are stored as tables containing user ID lists that can be used for analysis, targeting, and campaign activation.
 
 ---
 
 ## Creating a Segment
 
-| Method | Description |
+Describe the audience in plain language:
+- *"Create a segment of users who installed in the last 7 days and made a purchase"*
+- *"Build a segment of players who reached level 10 but haven't played in 14 days"*
+
+**Required fields:**
+
+| Field | Description | Example |
+| :--- | :--- | :--- |
+| **Name** | Unique identifier (snake_case) | `high_value_payers_30d` |
+| **Description** | Who's in this segment | *"Users who spent over $50 in the last 30 days"* |
+| **Kind** | One-time or auto-refreshing | `static` or `dynamic` |
+| **Refresh** *(if dynamic)* | How often to update | `hourly`, `daily`, `weekly` |
+
+---
+
+## Rule Types
+
+| Rule Type | Example |
 | :--- | :--- |
-| **From Chat** | Ask "How many users completed KYC but never invested?" and save the result as a Segment |
-| **From Funnels** | Identify users who dropped off at a specific step and save them |
-| **From Retention** | Save a retention cohort (e.g. users who retained at Day 7 but churned by Day 30) |
-| **From the Segments page** | Define rules manually using the builder interface |
+| **Property filter** | Country is India, platform is iOS, LTV above ₹10,000 |
+| **Behavioural** | Completed "add_to_cart" at least 3 times in the last 7 days |
+| **Sequential** | Did "view_product" → "add_to_cart" → abandoned, in order, within 24 hours |
+| **Metric threshold** | Retention score above 0.6, dormancy exceeding 30 days |
+
+Rules can be combined with AND/OR logic.
+
+---
+
+## Exploring Events Within Segments
+
+Dive into what a specific user group is doing:
+- *"Show me the top events for users in the whales segment"*
+- *"What screens do lapsed payers visit most?"*
+
+Actioneer joins the segment's user list against your events data to analyse event frequency, screen views, session patterns, monetisation behaviour, and retention within the segment.
+
+---
+
+## Pinning to a Board
+
+Attach segment-level metrics to any Board for ongoing monitoring:
+- *"Pin the high-value payers segment to my monetisation board"*
+- *"Add D7 retention for my lapsed users segment to the weekly board"*
+
+---
+
+## Campaigns
+
+Campaigns connect Segments to your CLM and messaging tools. When you identify a cohort worth reaching, push that audience to your messaging platform without leaving Actioneer.
+
+### Connecting to CRM platforms
+
+Link your CLM tools to enable direct segment push:
+- Segment is computed and stored as a table
+- An export pipeline pushes the user list to your CRM (CleverTap, MoEngage, WebEngage, Braze)
+- Syncs can be one-time or recurring for dynamic segments
+
+### Pushing segments to campaigns
+
+- *"Push the high-spender segment to my retargeting campaign in Braze"*
+
+Flow: Segment computed → user list exported to CRM → CRM picks up the audience → dynamic segments auto-refresh on schedule.
+
+### Drafting and editing campaigns
+
+- *"Draft a re-engagement campaign for lapsed users from the last 30 days"*
+- *"Edit the whales campaign to include users who spent over $50"*
+
+### Optimising campaigns
+
+| Area | What Actioneer does |
+| :--- | :--- |
+| **Budget allocation** | Identify top-performing campaigns and recommend spend reallocation |
+| **Audience targeting** | Analyse which segments convert best and suggest refined audiences |
+| **Channel mix** | Compare performance across networks/channels (CPI, ROAS, retention) |
+| **Creative performance** | Break down metrics by ad creative or campaign variant |
+| **Bid strategy** | Flag campaigns with diminishing returns or rising costs |
+
+### Editing segments within a campaign
+
+| Edit type | Example |
+| :--- | :--- |
+| **Broaden audience** | *"Include users from all countries, not just US"* |
+| **Narrow audience** | *"Only include users who completed tutorial"* |
+| **Change timeframe** | *"Switch from 7-day to 30-day inactivity window"* |
+| **Swap segment** | *"Use the high-LTV segment instead of all payers"* |
+| **Update refresh** | *"Change from weekly to daily refresh"* |
 
 <Info>
-  Segments are defined using SQL under the hood. Actioneer generates the query from the rules you specify — you do not need to write SQL yourself.
+  Actioneer handles audience definition and push. Message composition, A/B testing, and delivery scheduling remain in your CLM tool.
 </Info>
 
 ---
 
-## Segment Refresh
+## Managing Segments and Campaigns
 
-| Refresh Type | Description |
+| Action | Example prompt |
 | :--- | :--- |
-| **Daily batch** | Default. Segment membership is recalculated once per day. |
-| **On-demand** | Trigger a manual refresh at any time from the Segments page. |
+| **Delete a segment** | *"Delete the lapsed payers segment"* — removes definition and underlying table. Permanent. |
+| **Delete a campaign** | *"Delete the spring retargeting campaign"* — removes campaign definition. Does not delete the underlying segment. |
 
----
-
-## Acting on Segments
-
-| Action | Description |
-| :--- | :--- |
-| **Push to CLM** | Send the Segment to CleverTap, MoEngage, WebEngage, or Braze for campaign targeting |
-| **Use in Campaigns** | Reference a Segment directly when building a Campaign in Actioneer |
-| **Compare in Funnels** | Overlay two Segments on a Funnel to compare conversion rates |
-| **Monitor over time** | Track how Segment size changes day over day to detect shifts in user behaviour |
-
-<Card title="Next: Campaigns" icon="send" horizontal href="/about/core-concepts/campaigns">
-  Learn how to push Segments and insights into action through Campaigns.
+<Card title="Next: Funnels" icon="git-branch" horizontal href="/about/core-concepts/funnels">
+  Learn how to track step-by-step conversion with Funnels.
 </Card>

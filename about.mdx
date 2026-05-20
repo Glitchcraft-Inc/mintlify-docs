@@ -7,70 +7,70 @@ description: "What Actioneer is, who it serves, and how it fits into your data s
 
 # Actioneer
 
-Actioneer is an AI coworker for growth and business teams. It sits on top of your existing data stack — warehouses, BI tools, CDPs, and CLMs — and lets anyone on the team go from question to insight to action, all in natural language, without switching tools.
+Actioneer is the intelligence and action layer for consumer and B2B businesses. It connects to your full data estate, understands your business context, answers any operational question instantly, and closes the loop from insight to action — without leaving the platform.
 
 ---
 
-## Key Components
+## The Problem
 
-Actioneer is built around three layers that work together on top of your existing infrastructure.
-
-| Component | Purpose |
+| Before Actioneer | After Actioneer |
 | :--- | :--- |
-| **Query Layer** | A natural-language interface to your data warehouse. Ask a question in plain English, get an answer grounded in your schema and metric definitions. |
-| **Memory Layer** | Persistent business context — KPI definitions, past campaigns, playbooks, and team preferences. Every conversation builds on the last. |
-| **Action Layer** | Act on insights from the same window. Build a segment, push a campaign, set an alert, or deploy a monitoring agent — without switching tools. |
-
-The combination is the point. A BI tool gives you the Query Layer. A CDP gives you fragments of the Action Layer. Actioneer ties all three together with compounding business context in between.
+| Analyst requests take 3+ days to turn around | Any question answered in the same conversation |
+| Insights die in dashboards — they don't connect to actions | A single query triggers agents across the entire data estate |
+| Every team operates on different definitions of the same metrics | One unified context layer — everyone works on the same definitions |
+| Anomalies are caught late, after they've compounded | Anomalies caught proactively with root cause attached |
+| AI pilots stall — no infrastructure to connect data, context, and execution | First AI capability ships in weeks, scope expands from there |
 
 ---
 
 ## Who Is Actioneer For
 
-Actioneer is built for operators at B2C and fintech companies — people who need answers from data every day but do not want to wait on analyst queues or learn SQL.
+Actioneer serves consumer product companies (gaming, fintech, e-commerce) and enterprise lines of business where the AI mandate is set but operational capability is not yet built.
 
-| Role | How they use Actioneer |
+| Vertical | Primary Use Cases |
 | :--- | :--- |
-| **Growth Lead** | Ask ad-hoc questions in plain English, get granular breakdowns in seconds |
-| **Product Manager** | Monitor funnel health, spot anomalies early, act on them immediately |
-| **Marketing Team** | Build hyper-targeted segments and push campaigns from the same window |
-| **Business Analyst** | Offload tier-one requests, focus on deeper modelling and experimentation |
+| **Consumer Apps** | Retention diagnostics, support escalation routing, growth experiment copilot |
+| **Banking & Lending** | Underwriting copilot, portfolio early-warning, regulatory query response |
+| **B2B Operations** | Quote-to-cash analyst, account health monitoring, exception triage |
+| **Finance & FP&A** | Variance commentary, period close assistant, forecast accuracy diagnostic |
+| **GTM Operations** | Pipeline integrity agent, performance diagnostic, territory optimization |
+
+The platform is horizontal infrastructure. The verticals are entry points, not limits.
 
 ---
 
-## Where Actioneer Sits in the Stack
+## Key Components
 
-Actioneer is not a replacement for your data warehouse, BI tool, or CDP. It is an intelligence layer that sits across all of them.
+Actioneer is built in seven layers, each serving a distinct function.
 
-| Stack Layer | Tools | Role |
+| Layer | Component | Purpose |
 | :--- | :--- | :--- |
-| **Raw Data** | App events, backend databases, transaction logs | Source of truth |
-| **Data Warehouse** | Snowflake, BigQuery, Databricks, Redshift, S3 | Stores and structures data for analytical queries |
-| **BI & Analytics** | Amplitude, Mixpanel, Power BI, Looker, Tableau | Predefined dashboards and visualisation |
-| **CDP / CLM** | CleverTap, MoEngage, WebEngage, Braze | Customer profiles and lifecycle messaging |
-| **Actioneer** | Query + Memory + Action | Natural-language querying, persistent context, and insight-to-action — across all layers above |
-
-<Info>
-  Actioneer connects to your existing infrastructure. It does not require data migration, pipeline rebuilds, or schema changes.
-</Info>
+| **1** | **Enterprise Data Connectors** | Connects to 700+ data sources — read-only by default, no data migration |
+| **2** | **Context Engine** | Semantic layer that gives every model a governed, business-specific understanding |
+| **3** | **Agent Orchestration Runtime** | Execution layer running single and multi-agent workflows at scale |
+| **4** | **Playbook Studio** | Multi-step capabilities — built once, run automatically |
+| **5** | **Insight-to-Action Layer** | Closes the loop between query and execution — segment push, campaign, alert |
+| **6** | **Continuous Observability** | Trace-level visibility into every agent decision and playbook run |
+| **7** | **Enterprise Governance** | RBAC, audit logs, explainable AI, private cloud deployment |
 
 ---
 
 ## Actioneer vs Alternatives
 
-| Alternative | What they do well | Where Actioneer differs |
-| :--- | :--- | :--- |
-| **BI Tools** (Tableau, Looker) | Predefined dashboards, visualisation | Natural-language ad-hoc queries, action layer, memory |
-| **CDP / CLM** (CleverTap, MoEngage) | Customer messaging, profile stitching | Query and insight layer, not just messaging |
-| **Databricks Genie** | Text-to-SQL on Databricks warehouse | Business context memory, action orchestration across tools |
-| **Claude + MCP** | General LLM with data access | Domain-specific, remembers KPIs and playbooks, integrated action |
-| **Internal Analytics Team** | Deep custom analysis | 100x faster turnaround, self-serve for non-analysts |
+| Alternative | Where Actioneer differs |
+| :--- | :--- |
+| **Hiring analysts** | 3-day turnaround becomes same-conversation. Scouts run 24/7, not 9–5. Context is codified, not siloed. |
+| **Building in-house** | 6–12 months becomes weeks. No infrastructure to build or maintain. |
+| **BI tools** (Tableau, Looker) | BI answers questions you thought to ask. Actioneer proactively surfaces what you didn't know to look for — and closes the loop to action. |
+| **Vertical AI point tools** | You adapt to the product. Actioneer is engineered to your context and continuously extended. |
+| **Consulting firms** | Project-scoped and re-engage per initiative. Actioneer is continuously maintained infrastructure. |
+| **Generic LLM wrappers** (ChatGPT on your data) | Model reasons over raw data, prone to hallucination. Actioneer reasons over a governed context layer — with an action layer attached. |
 
 ---
 
 ## Security and Compliance
 
-Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Role-based access control, audit logs, and explainable AI are built in.
+Actioneer is SOC 2 Type II certified, ISO 27001 certified, and GDPR compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Custom private cloud deployment and data residency (US, EU, APAC) are available.
 
 <CardGroup cols={2}>
   <Card title="Data Protection" icon="shield-check" href="/security/data-protection">
@@ -81,6 +81,18 @@ Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman)
   </Card>
 </CardGroup>
 
+---
+
+## Company
+
+| Field | Detail |
+| :--- | :--- |
+| **Legal entity** | Glitchcraft Inc. (operating as Actioneer) |
+| **HQ** | 650 Castro St, Mountain View, CA 94041 |
+| **Contact** | connect@actioneer.com |
+| **LinkedIn** | [linkedin.com/company/gameramp](https://linkedin.com/company/gameramp) |
+| **Website** | [actioneer.com](https://www.actioneer.com) |
+
 <Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
-  See how Actioneer connects to your data stack and turns questions into actions.
+  See the seven-layer architecture and how a question becomes an action.
 </Card>

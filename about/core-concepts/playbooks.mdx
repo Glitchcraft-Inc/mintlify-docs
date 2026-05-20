@@ -2,69 +2,98 @@
 title: "Playbooks"
 sidebarTitle: "Playbooks"
 icon: "book-open"
-description: "Reproducible, executable analytical workflows that run on schedule or on demand."
+description: "Multi-step automated workflows — built once, run automatically."
 ---
 
 # Playbooks
 
-A Playbook is a validated analytical workflow — a sequence of queries, analysis steps, and output formats — that has been frozen so it can be rerun reliably with fresh data. Playbooks turn one-off analysis into repeatable process.
-
----
-
-## Why Playbooks Exist
-
-Ad-hoc analysis is not reproducible. The same question asked on two different days can produce different SQL, different filters, and different conclusions. If an analyst leaves or a metric definition shifts, the methodology is lost.
-
-Playbooks capture the full methodology — not just the final answer, but every step, validation check, and output format — so it can be executed consistently, by anyone, at any time.
-
----
-
-## Playbook Components
-
-| Component | Description |
-| :--- | :--- |
-| **Steps** | Ordered sequence of SQL queries, analysis operations, and validation checks |
-| **Parameters** | Configurable inputs — date ranges, segments, thresholds — that can change between runs |
-| **Branching logic** | Conditional paths that execute based on intermediate results |
-| **Output format** | The structure of the final deliverable — charts, tables, narrative summary |
-| **Schema binding** | Tied to a specific schema version. If the schema changes, Actioneer auto-adapts or flags the mismatch |
+A Playbook is a saved, reusable, multi-step analysis pipeline — a sequence of data queries, computations, and visualisations that can be run repeatedly with consistent results. UA reviews, churn scans, lifecycle analyses — built once, run automatically. Weeks of analyst effort, on autopilot.
 
 ---
 
 ## Creating a Playbook
 
-| Step | Description |
-| :--- | :--- |
-| **Run the analysis** | Ask your question in Chat, refine the results, confirm the methodology is correct |
-| **Save as Playbook** | Actioneer extracts the steps automatically — queries, intermediate logic, output format, and insight generation |
-| **Review and adjust** | Edit parameters, adjust branching logic, or add validation checks |
+### From a conversation
+
+Ask Actioneer to create one:
+- *"Create a playbook for weekly retention analysis"*
+- *"Build a playbook that tracks CPI by campaign monthly"*
+
+Actioneer redirects you to the Playbook Builder, where a guided process walks you through defining each step.
+
+### Guided Q&A Playbook
+
+The Playbook Builder runs a structured interview:
+- What metrics do you want to track?
+- What date ranges and filters apply?
+- What breakdowns (country, platform, channel) do you need?
+- What output format — tables, charts, or both?
+
+Based on your answers, it auto-generates the full playbook with validated queries.
+
+### AI-assisted generation
+
+Describe your goal in plain language and Actioneer will break it into logical steps, write the SQL and code, add visualisations, and validate against your schema.
+
+*"Create a playbook that pulls D1, D7, D30 retention by install cohort, computes drop-off rates, and produces a trend chart"*
 
 ---
 
-## Running a Playbook
+## Playbook Structure
 
-| Trigger | Description |
+| Component | Description |
 | :--- | :--- |
-| **On demand** | Run manually from the Playbooks page or reference it in Chat |
-| **On schedule** | Set a cadence (daily, weekly, every six hours) and Actioneer runs it automatically |
-| **Via Scouts** | Automated agents that run Playbooks in the background, grade results, and flag anomalies |
+| **Trigger conditions** | What initiates the Playbook — a schedule, an anomaly, or a manual run |
+| **Analytical steps** | Ordered sequence of SQL queries, intermediate analysis, and validation checks |
+| **Decision logic** | Conditional branching based on intermediate results |
+| **Action steps** | Push a Segment, send an alert, update a Board, or trigger a follow-up Playbook |
+| **Approval gates** | Optional human-in-the-loop checkpoints before critical actions execute |
+| **Outcome logging** | Every run is logged — inputs, outputs, decisions, and execution time |
 
-<Info>
-  Scouts are Actioneer's scheduled monitoring agents. They execute Playbooks on a recurring basis and deliver graded reports — A through E — per title, region, or team. Anomalies are surfaced with root-cause context attached.
-</Info>
+---
+
+## Playbook Features
+
+### Chat with your Playbook
+
+Once a Playbook exists, you can have a conversation about it:
+- *"Run my retention playbook for April 2026"*
+- *"What did the last run of my revenue playbook show?"*
+- *"Explain the results from cell 3"*
+
+Actioneer loads the Playbook, executes it, and walks you through the results.
+
+### Add to a Board
+
+Playbook outputs feed directly into Boards:
+- *"Add my retention playbook results to the weekly performance board"*
+- *"Create a new board from my monetisation playbook"*
+
+This connects live Playbook runs to dashboards for ongoing monitoring.
+
+---
+
+## Managing Playbooks
+
+| Action | How to do it | Example prompt |
+| :--- | :--- | :--- |
+| **Run** | Execute on demand or reference in a conversation | *"Run my retention playbook"* |
+| **Schedule** | Set a cadence — daily, weekly, every six hours | Configured in Playbook settings |
+| **Edit** | Modify steps, queries, filters, or visualisations | *"Edit my retention playbook to add D14 retention"* |
+| **Delete** | Permanently remove — confirmation required | *"Delete the weekly retention playbook"* |
 
 ---
 
 ## Schema Drift Handling
 
-When your data warehouse schema changes — a column is renamed, a table is restructured — Playbooks do not silently break. Actioneer detects the mismatch, attempts to auto-adapt the affected queries, and creates a new versioned copy. If auto-adaptation fails, the Playbook is flagged for manual review.
+When your warehouse schema changes, Playbooks do not silently break. Actioneer detects the mismatch, attempts to auto-adapt the affected queries, and creates a new versioned copy. If auto-adaptation fails, the Playbook is flagged for review.
 
 ---
 
 ## Playbook Discovery
 
-Before creating a new Playbook, Actioneer checks whether a similar one already exists using semantic matching at an 80%+ similarity threshold. This prevents duplication and keeps the Playbook library clean.
+Before creating a new Playbook, Actioneer checks whether a similar one already exists using semantic matching at an 80%+ similarity threshold — preventing duplication.
 
-<Card title="Next: Segments" icon="users" horizontal href="/about/core-concepts/segments">
-  Learn how to define and manage audience segments in Actioneer.
+<Card title="Next: Custom Agents" icon="zap" horizontal href="/about/core-concepts/custom-agents">
+  Learn how bespoke agentic capabilities are built for your organisation.
 </Card>

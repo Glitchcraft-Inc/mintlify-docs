@@ -11,16 +11,36 @@ Actioneer is designed to handle sensitive business data without compromising sec
 
 ---
 
-## Encryption
+## Deployment Model
 
-| Layer | Standard | Details |
-| :--- | :--- | :--- |
-| **In transit** | TLS 1.3 | All traffic between your infrastructure and Actioneer is encrypted using TLS 1.3 — the latest transport layer security protocol. |
-| **At rest** | AES-256 | All stored data, including credentials, configuration, and cached results, is encrypted with AES-256 bit encryption. |
+Actioneer does not ingest, copy, or relocate your data. It connects to your existing data sources and queries them in place.
+
+| Principle | Description |
+| :--- | :--- |
+| **In-place querying** | Actioneer reads data where it lives — in your warehouse, BI tool, or CRM. Nothing is moved. |
+| **No data pipeline** | No ETL required. No staging tables. No data duplication. |
+| **Read-only by default** | Actioneer runs `SELECT` queries. It cannot insert, update, or delete data in your connected sources. |
+| **Your infrastructure, your control** | Credentials are yours. You can disconnect a data source and revoke access from your own platform at any time. |
 
 ---
 
-## Credential Handling
+## Encryption
+
+### AES-256 at rest
+
+All stored data — credentials, configuration, cached results — is encrypted using **AES-256**. This is the same encryption standard used by banks, governments, and military systems worldwide. "256" refers to the key length (256 bits), which means there are more possible key combinations than atoms in the observable universe. Even with the fastest computers available today, brute-forcing this encryption would take longer than the age of the universe.
+
+In practical terms: if someone gained physical access to Actioneer's storage, the data would be unreadable without the encryption key.
+
+### TLS 1.3 in transit
+
+All data moving between your systems and Actioneer is encrypted using **TLS 1.3** — the latest version of the Transport Layer Security protocol. TLS creates an encrypted tunnel between two points so that data cannot be intercepted or read while in transit. Version 1.3 is faster and more secure than its predecessors, removing outdated cryptographic algorithms and reducing the handshake to a single round trip.
+
+In practical terms: everything flowing over the network — queries, results, credentials — is encrypted from the moment it leaves your infrastructure until it arrives at Actioneer, and vice versa.
+
+---
+
+## Source Read Access
 
 Actioneer connects to your data warehouse, BI tools, and CLM platforms using credentials you provide — service account keys, API tokens, or access key pairs.
 
@@ -55,7 +75,7 @@ For organisations with strict data sovereignty or network isolation requirements
 
 ---
 
-## Read-Only by Default
+## Source Read Access
 
 Actioneer operates as a read-only integration. It queries your data but does not create, modify, or delete anything in your warehouse, BI tool, or CLM platform.
 

@@ -2,61 +2,112 @@
 title: "Knowledge"
 sidebarTitle: "Knowledge"
 icon: "brain"
-description: "Actioneer's persistent, compounding business context layer."
+description: "Metric definitions, business context, and benchmarks that improve analysis accuracy."
 ---
 
 # Knowledge
 
-Knowledge is the memory layer that makes Actioneer different from a generic AI query tool. It is a persistent, structured store of your organisation's business context — metric definitions, KPI targets, past campaigns, team preferences, and validated playbooks. Every interaction with the platform adds to it.
+The Knowledge Base is a store of context — metric definitions, business rules, benchmarks, and data validation notes — that Actioneer references during every analysis. It makes answers more accurate, consistent, and tailored to your specific business.
 
 ---
 
-## What Knowledge Contains
+## How Knowledge Improves Accuracy
 
-| Context Type | Examples |
-| :--- | :--- |
-| **Metric definitions** | "D7 Retention" means users who returned within 7 days of first open. "Conversion" means completed KYC within 14 days of signup. |
-| **KPI targets** | Monthly active users target: 500K. First-investment conversion target: 12%. |
-| **Campaign history** | "Spring Re-engagement" ran in March, targeted dormant users, achieved 8% reactivation. |
-| **Playbooks** | Weekly retention analysis methodology — which tables, which filters, which output format. |
-| **Schema context** | Table relationships, column meanings, event taxonomy, data freshness schedules. |
-| **Team preferences** | Default breakdowns (by city, by platform), preferred chart types, reporting cadence. |
-
----
-
-## How Knowledge Is Built
-
-| Channel | Description |
-| :--- | :--- |
-| **Onboarding** | Actioneer's team runs a discovery process. Metric definitions, KPI targets, schema context, and playbooks are mapped from your existing BI tools, documentation, and conversations with your data team. |
-| **Usage** | Every interaction refines the Knowledge layer. Corrections, adjusted preferences, and validated Playbooks are stored at the user or organisation level. |
-| **Automated learning** | Actioneer detects patterns across queries — commonly requested dimensions, frequently compared segments, recurring analysis patterns — and incorporates them. |
-
----
-
-## Knowledge Tiers
-
-Context is stored at two levels to balance consistency and personalisation.
-
-| Tier | Scope | Examples |
+| Scenario | Without Knowledge | With Knowledge |
 | :--- | :--- | :--- |
-| **Organisation** | Shared across the entire team | Metric definitions, KPI targets, schema mappings |
-| **User** | Specific to an individual | Preferred chart types, default breakdowns, past questions |
+| **CPI calculation** | Generic formula: total spend / total installs | Your definition: paid spend only / attributed installs excluding organics |
+| **Launch context** | Treats all dates equally | Knows July 29th was global launch — excludes pre-launch data from benchmarks |
+| **Data quality** | May query unreliable tables | Knows to never use `cost_etl_*` tables — they contain erroneous data |
+| **Evaluation** | No reference point for "good" or "bad" | Knows industry D1 retention for casual games is 35% |
 
-Organisation-level knowledge ensures consistency — everyone gets the same answer for the same question. User-level knowledge ensures personalisation — results are formatted the way each person prefers.
+Knowledge turns generic analysis into *your* analysis.
 
 ---
 
-## Why Knowledge Matters
+## Knowledge Types
 
-Without business context, an AI tool is guessing. It might generate valid SQL, but if it defines "retention" differently from how your team defines it, the answer is wrong even if the query is correct.
+| Type | What it does | Example |
+| :--- | :--- | :--- |
+| **Metric** (`METRIC`) | Ensures consistent formulas across all analyses | *"ARPDAU = IAP revenue only, excludes ad revenue"* |
+| **Metric Range** (`METRIC_RANGE`) | Flags when a value looks abnormal | *"CPI should be $0.50–$5.00; flag if outside this range"* |
+| **Insight** (`INSIGHT`) | Provides business context that can't be inferred from data | *"July 29th was global launch — exclude pre-launch data"* |
+| **Data Validation** (`DATA_VALIDATION`) | Prevents use of bad tables or wrong filters | *"Never use cost_etl_* tables — erroneous data"* |
+| **External Benchmark** (`EXTERNAL_BENCHMARK`) | Gives reference points for evaluation | *"Industry D1 retention for casual games is 35%"* |
+| **Reporting** (`REPORTING`) | Standardises output format | *"Always report revenue in USD, rounded to nearest dollar"* |
+| **Segment** (`SEGMENT`) | Consistent audience definitions | *"Whales = users with LTV > $100 in first 30 days"* |
+| **Visualisation** (`VISUALISATION`) | Charting preferences and standards | *"Use line charts for time-series, bar charts for comparisons"* |
 
-Knowledge eliminates this class of error. It grounds every answer in your definitions, not the model's assumptions. The more Actioneer is used, the more precise it becomes — a compounding advantage that generic query tools cannot replicate.
+---
 
-<Tip>
-  Knowledge is versioned and auditable. When a metric definition changes, the update is tracked with a timestamp and the user who made the change.
-</Tip>
+## Priority and Scope
 
-<Card title="Get started" icon="sparkles" horizontal href="/about/getting-started">
-  Ready to set up your account? Head to the Getting Started guide.
+**Priority levels:**
+
+| Priority | When to use |
+| :--- | :--- |
+| **Critical** | Must always be applied — e.g. *"Never use cost_etl tables"* |
+| **High** | Applied by default — e.g. metric definitions, key business context |
+| **Low** | Referenced when relevant — e.g. nice-to-have benchmarks |
+
+**Scope levels:**
+
+| Level | Visibility |
+| :--- | :--- |
+| **Tenant** | Shared across all users in your organisation |
+| **User** | Private to your account only |
+
+---
+
+## Adding Knowledge
+
+### Text-based / manual entry
+
+Tell Actioneer what to remember in plain language:
+- *"Add knowledge: D1 retention benchmark for hyper-casual games is 40%"*
+- *"Save this rule: always filter acquisition data by tenant_id = 'Spektra'"*
+
+Actioneer asks you to confirm the type, priority, and level before saving.
+
+### File-based imports
+
+Upload documents and Actioneer indexes their content.
+
+| Format | Use case |
+| :--- | :--- |
+| **PDF** | Reports, strategy docs, benchmark studies |
+| **CSV** | Metric lookup tables, reference data |
+| **Word (.docx)** | Business documentation |
+| **Text (.txt)** | Plain text notes |
+
+Uploaded files are searchable — relevant passages are retrieved during analysis.
+
+### Integrations
+
+Connect external sources to keep knowledge current:
+- **Web research** — search for industry benchmarks and save findings
+- **Internal wikis** — upload exports from Confluence, Notion, or similar
+- **Previous analyses** — save key findings from past work as reusable context
+
+### From analysis results
+
+After any analysis, Actioneer may suggest saving a finding:
+- *"Save this insight: US has 2x higher ARPU than other markets"*
+
+---
+
+## Managing Knowledge
+
+| Action | How to do it | Example |
+| :--- | :--- | :--- |
+| **Search** | Ask what Actioneer knows about a topic | *"What do you know about retention?"* |
+| **List all** | Browse the full knowledge base | *"List all knowledge entries"* |
+| **Filter** | View by type or priority | *"Show all CRITICAL knowledge"* |
+| **Delete** | Remove a specific entry — confirmation required | *"Delete knowledge entry about CPI benchmark"* |
+
+<Info>
+  Knowledge is versioned and auditable. When a definition changes, the update is tracked with a timestamp and the user who made the change.
+</Info>
+
+<Card title="Next: Getting Started" icon="rocket" horizontal href="/about/getting-started">
+  Set up your account and ship your first capability.
 </Card>
