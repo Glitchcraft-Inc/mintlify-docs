@@ -9,6 +9,26 @@ description: "The building blocks of Actioneer — from natural-language chat to
 
 Actioneer is organised around a set of interconnected capabilities. Each one serves a specific function, but they are designed to work together — a question asked in Chat can become a metric on a Board, a segment pushed to your CLM, or a playbook that runs on schedule.
 
+---
+
+## Platform Components
+
+| Component | Type | Purpose |
+| :--- | :--- | :--- |
+| **Chat** | Interface | Natural-language querying — ask a question, get a traceable answer |
+| **Metrics** | Definition | Centrally governed business measures that ground every answer |
+| **Boards** | Visualisation | Persistent pages of charts, tables, and metrics for ongoing monitoring |
+| **Playbooks** | Automation | Reproducible analytical workflows that run on schedule or on demand |
+| **Segments** | Audience | Rule-based user groups defined by properties, behaviours, and events |
+| **Campaigns** | Action | Push segments to your CLM and messaging tools for targeted outreach |
+| **Funnels** | Analysis | Step-by-step conversion tracking with drop-off diagnosis |
+| **Retention** | Analysis | Cohort-based retention tracking across time windows and segments |
+| **Knowledge** | Context | Persistent business context that compounds with every interaction |
+
+---
+
+## Explore Each Concept
+
 <CardGroup cols={3}>
   <Card title="Chat" icon="message-square" href="/about/core-concepts/chat">
     The natural-language interface to your data.
@@ -41,13 +61,19 @@ Actioneer is organised around a set of interconnected capabilities. Each one ser
 
 ---
 
-## How they connect
+## How They Connect
 
-The concepts above are not standalone features. They form a loop:
+The concepts above are not standalone features. They form a continuous loop from question to action.
 
-1. **Ask** — Start with a question in Chat. Get an answer grounded in your Metrics and Knowledge.
-2. **Analyse** — Explore the answer through Funnels, Retention cohorts, or Segments.
-3. **Persist** — Save findings to a Board or codify the methodology as a Playbook.
-4. **Act** — Push a Segment to a Campaign, set up an alert, or schedule a Playbook to run automatically.
+| Phase | What happens | Components involved |
+| :--- | :--- | :--- |
+| **Ask** | Start with a question in Chat. Get an answer grounded in your Metrics and Knowledge. | Chat, Metrics, Knowledge |
+| **Analyse** | Explore the answer through Funnels, Retention cohorts, or Segments. | Funnels, Retention, Segments |
+| **Persist** | Save findings to a Board or codify the methodology as a Playbook. | Boards, Playbooks |
+| **Act** | Push a Segment to a Campaign, set up an alert, or schedule a Playbook to run automatically. | Campaigns, Segments, Playbooks |
 
-Every feature feeds back into the Knowledge layer. The more Actioneer is used, the better it understands your business.
+Every phase feeds back into the Knowledge layer. The more Actioneer is used, the better it understands your business.
+
+<Card title="Next: Getting Started" icon="rocket" horizontal href="/about/getting-started">
+  Set up your account and connect your first data source.
+</Card>

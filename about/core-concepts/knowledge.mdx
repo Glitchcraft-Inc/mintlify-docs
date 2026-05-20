@@ -11,11 +11,9 @@ Knowledge is the memory layer that makes Actioneer different from a generic AI q
 
 ---
 
-## What Knowledge contains
+## What Knowledge Contains
 
-The Knowledge layer is not a single database. It is a combination of structured context that Actioneer draws on when interpreting questions, generating queries, and formatting results.
-
-| Context type | Examples |
+| Context Type | Examples |
 | :--- | :--- |
 | **Metric definitions** | "D7 Retention" means users who returned within 7 days of first open. "Conversion" means completed KYC within 14 days of signup. |
 | **KPI targets** | Monthly active users target: 500K. First-investment conversion target: 12%. |
@@ -26,27 +24,19 @@ The Knowledge layer is not a single database. It is a combination of structured 
 
 ---
 
-## How Knowledge is built
+## How Knowledge Is Built
 
-Knowledge accumulates through three channels:
-
-<Steps>
-  <Step title="Onboarding">
-    During setup, Actioneer's team runs a discovery process. Metric definitions, KPI targets, schema context, and playbooks are mapped from your existing BI tools, documentation, and conversations with your data team.
-  </Step>
-  <Step title="Usage">
-    Every interaction refines the Knowledge layer. When a user corrects a metric interpretation, adjusts a breakdown preference, or validates a Playbook, that context is stored at the user or organisation level.
-  </Step>
-  <Step title="Automated learning">
-    Actioneer detects patterns across queries — commonly requested dimensions, frequently compared segments, recurring analysis patterns — and incorporates them into the knowledge base.
-  </Step>
-</Steps>
+| Channel | Description |
+| :--- | :--- |
+| **Onboarding** | Actioneer's team runs a discovery process. Metric definitions, KPI targets, schema context, and playbooks are mapped from your existing BI tools, documentation, and conversations with your data team. |
+| **Usage** | Every interaction refines the Knowledge layer. Corrections, adjusted preferences, and validated Playbooks are stored at the user or organisation level. |
+| **Automated learning** | Actioneer detects patterns across queries — commonly requested dimensions, frequently compared segments, recurring analysis patterns — and incorporates them. |
 
 ---
 
-## Knowledge tiers
+## Knowledge Tiers
 
-Context is stored at two levels:
+Context is stored at two levels to balance consistency and personalisation.
 
 | Tier | Scope | Examples |
 | :--- | :--- | :--- |
@@ -57,14 +47,14 @@ Organisation-level knowledge ensures consistency — everyone gets the same answ
 
 ---
 
-## Why Knowledge matters
+## Why Knowledge Matters
 
 Without business context, an AI tool is guessing. It might generate valid SQL, but if it defines "retention" differently from how your team defines it, the answer is wrong even if the query is correct.
 
 Knowledge eliminates this class of error. It grounds every answer in your definitions, not the model's assumptions. The more Actioneer is used, the more precise it becomes — a compounding advantage that generic query tools cannot replicate.
 
 <Tip>
-  Knowledge is versioned and auditable. When a metric definition changes, the update is tracked with a timestamp and the user who made the change. Historical analyses computed under a previous definition remain valid and accessible.
+  Knowledge is versioned and auditable. When a metric definition changes, the update is tracked with a timestamp and the user who made the change.
 </Tip>
 
 <Card title="Get started" icon="sparkles" horizontal href="/about/getting-started">

@@ -7,100 +7,107 @@ description: "Set up your Actioneer account and connect your first data source."
 
 # Getting Started
 
-This guide walks through setting up Actioneer — from account creation to your first connected data source. The process takes approximately 15 minutes.
+This guide walks through setting up Actioneer — from account creation to your first insight. The setup follows four phases.
 
 ---
 
-## Prerequisites
+## Phase 1: Foundation
 
-Before you begin, make sure you have:
+Set up your account and workspace.
 
-- Access credentials for at least one data warehouse (Snowflake, BigQuery, Databricks, Redshift, or S3) or BI tool (Amplitude, Mixpanel, or Power BI).
-- Administrative or project-level permissions on the source platform to create service accounts or API keys.
+| Step | Description |
+| :--- | :--- |
+| **Request access** | Visit [actioneer.com](https://www.actioneer.com) and request access. Your team will receive an onboarding invitation with login credentials. |
+| **Create workspace** | Each workspace is scoped to your organisation. Multiple team members can be added to the same workspace. |
+| **Assign roles** | Invite team members and assign roles. Actioneer supports role-based access control out of the box. |
+
+---
+
+## Phase 2: Data Connection
+
+Connect Actioneer to your existing data stack.
+
+| Step | Description |
+| :--- | :--- |
+| **Choose a data source** | Navigate to **Data** in the left sidebar. Select your data warehouse, BI tool, or MMP from the list. |
+| **Authenticate** | Provide the credentials required for your platform — a service account key, access token, or API key. Each integration guide has the exact fields. |
+| **Schema discovery** | After connecting, Actioneer automatically discovers your schema — tables, columns, relationships, and event taxonomy. This runs in the background and typically completes within a few minutes. |
+
+<CardGroup cols={3}>
+  <Card title="Data Warehouses" icon="database" href="/integrations/data-warehouses">
+    BigQuery, Snowflake, Databricks, Redshift, S3, and more.
+  </Card>
+  <Card title="BI Tools" icon="chart-bar" href="/integrations/bi-tools">
+    Amplitude, Mixpanel, Power BI.
+  </Card>
+  <Card title="MMP Connections" icon="smartphone" href="/integrations/mmp">
+    Adjust, AppsFlyer, Singular.
+  </Card>
+</CardGroup>
 
 <Info>
-  If you are unsure which credentials you need, see the specific integration guide for your platform under [Data Warehouses](/integrations/data-warehouses) or [BI Tools](/integrations/bi-tools).
+  Actioneer operates as a read-only integration by default. It queries your data but does not create, modify, or delete anything in your warehouse or connected tools.
 </Info>
 
 ---
 
-## Step-by-step setup
+## Phase 3: Context Setup
 
-<Steps>
-  <Step title="Create your account">
-    Visit [actioneer.com](https://www.actioneer.com) and request access. Your team will receive an onboarding invitation with login credentials and workspace setup instructions.
+Load your business context so that answers are grounded in your definitions from day one.
 
-    Each workspace is scoped to your organisation. Multiple team members can be added to the same workspace.
-  </Step>
+| Step | Description |
+| :--- | :--- |
+| **Onboarding call** | Actioneer's team schedules a discovery call (30–60 minutes) to map your existing metric definitions, KPI targets, and playbooks. |
+| **Metric definitions** | Define what "conversion," "retention," and your north-star metrics mean at your company. These definitions are used across Chat, Boards, Playbooks, and Segments. |
+| **KPI targets** | Set the numbers your team tracks against. Actioneer uses these to flag anomalies and contextualise results. |
+| **Playbook mapping** | Existing analytical workflows — weekly reviews, funnel checks, cohort analyses — are codified as Playbooks so they can be rerun automatically. |
 
-  <Step title="Connect a data source">
-    Once logged in, navigate to **Data** in the left sidebar. Select your data warehouse or BI tool from the list of available integrations.
-
-    Each integration requires a set of credentials specific to the platform — a service account JSON key for BigQuery, an access key pair for S3, or an API token for Amplitude, for example.
-
-    Follow the integration guide for your platform:
-
-    <CardGroup cols={2}>
-      <Card title="Data Warehouses" icon="database" href="/integrations/data-warehouses">
-        BigQuery, Databricks, Snowflake, S3, Redshift
-      </Card>
-      <Card title="BI Tools" icon="chart-bar" href="/integrations/bi-tools">
-        Amplitude, Mixpanel, Power BI
-      </Card>
-    </CardGroup>
-  </Step>
-
-  <Step title="Schema discovery">
-    After connecting, Actioneer automatically discovers your schema — tables, columns, relationships, and event taxonomy. This process runs in the background and typically completes within a few minutes.
-
-    Once discovery is complete, Actioneer is ready to receive questions about your data.
-  </Step>
-
-  <Step title="Onboarding call">
-    Actioneer's team schedules a discovery call to map your existing metric definitions, KPI targets, and playbooks. This context is loaded into the Knowledge layer so that answers are grounded in your business logic from day one.
-
-    The onboarding call is typically 30–60 minutes and covers:
-    - Key metric definitions (what "conversion," "retention," and your north-star metrics mean at your company).
-    - Existing dashboards and reports that Actioneer should be aware of.
-    - Priority use cases for your team.
-  </Step>
-
-  <Step title="Start asking questions">
-    Open Chat and ask your first question. Actioneer uses your schema, metric definitions, and business context to generate an accurate, traceable answer.
-
-    Try starting with something your team asks frequently — a weekly KPI check, a funnel breakdown, or a segment count. The answer will include the SQL used, so you can validate it against your existing reports.
-  </Step>
-</Steps>
+<Tip>
+  During onboarding, Actioneer's team runs a discovery process to map your existing definitions from BI tools, spreadsheets, and documentation. This ensures the platform starts with accurate, team-validated context from day one.
+</Tip>
 
 ---
 
-## What happens next
+## Phase 4: Go Live
 
-Once your first data source is connected and the onboarding call is complete, your team can:
+Start using Actioneer with your team.
 
-- **Ask ad-hoc questions** in Chat and get answers in seconds.
-- **Build Boards** to persist findings and monitor KPIs.
-- **Create Segments** and push them to your CLM for campaigns.
-- **Save Playbooks** from validated analyses and schedule them to run automatically.
-
-The platform compounds over time. Every question, correction, and validated playbook adds to the Knowledge layer, making subsequent answers faster and more precise.
+| Step | Description |
+| :--- | :--- |
+| **Ask your first question** | Open Chat and ask something your team asks frequently — a weekly KPI check, a funnel breakdown, or a segment count. The answer includes the SQL used, so you can validate it against existing reports. |
+| **Build your first Board** | Save a result to a Board for ongoing monitoring. Add cards for the metrics your team tracks daily. |
+| **Create a Segment** | Identify a cohort worth targeting and save it as a Segment. Push it to your CLM for a campaign. |
+| **Schedule a Playbook** | Codify a validated analysis as a Playbook and schedule it to run daily or weekly. Results are delivered to a Board or Slack. |
 
 ---
 
-## Common questions
+## What Happens Next
+
+Once your first data source is connected and the onboarding call is complete, the platform compounds over time. Every question, correction, and validated playbook adds to the Knowledge layer, making subsequent answers faster and more precise.
+
+| Capability | What it unlocks |
+| :--- | :--- |
+| **Ad-hoc questions** | Anyone on the team can ask a question in Chat and get an answer in seconds |
+| **Persistent dashboards** | Boards give your team a living view of the metrics that matter |
+| **Automated workflows** | Playbooks and Scouts run analyses in the background and flag anomalies |
+| **Insight to action** | Segments and Campaigns close the loop between seeing a problem and acting on it |
+
+---
+
+## Common Questions
 
 <AccordionGroup>
   <Accordion title="How long does setup take?">
     Connecting a data source takes 10–15 minutes. Schema discovery runs automatically after connection. The onboarding call is typically scheduled within the first week and takes 30–60 minutes.
   </Accordion>
   <Accordion title="Can I connect multiple data sources?">
-    Yes. Actioneer supports multiple warehouse and BI tool connections within a single workspace. Each connection is managed independently.
+    Yes. Actioneer supports multiple warehouse, BI tool, and MMP connections within a single workspace. Each connection is managed independently.
   </Accordion>
   <Accordion title="What permissions does Actioneer need?">
     Actioneer operates as a read-only integration by default. It queries your data but does not create, modify, or delete anything in your warehouse or connected tools. The specific permissions vary by platform — see the individual integration guides for details.
   </Accordion>
   <Accordion title="Is my data secure?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3. Actioneer is SOC 2 Type II certified, ISO 27001 certified, and GDPR compliant. Role-based access control and full audit logs are built in.
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant. Role-based access control and full audit logs are built in.
   </Accordion>
 </AccordionGroup>
 

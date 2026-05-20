@@ -11,9 +11,7 @@ Retention in Actioneer tracks whether users return after their initial action �
 
 ---
 
-## How Retention works
-
-Retention analysis groups users into cohorts based on when they performed a starting event (e.g. signed up, made a first purchase, installed the app). It then tracks how many of those users returned to perform a follow-up event on subsequent days, weeks, or months.
+## Retention Components
 
 | Component | Description |
 | :--- | :--- |
@@ -24,42 +22,38 @@ Retention analysis groups users into cohorts based on when they performed a star
 
 ---
 
-## Retention views
+## Retention Views
 
-<AccordionGroup>
-  <Accordion title="Cohort table">
-    A matrix showing retention rates over time. Rows are cohorts (by signup week, for example). Columns are intervals (Day 1, Day 7, Day 30, etc.). Each cell shows the percentage of the cohort that returned.
-  </Accordion>
-  <Accordion title="Retention curve">
-    A line chart plotting retention over time for a single cohort or multiple cohorts overlaid. Useful for spotting trends — is retention improving or declining across successive cohorts?
-  </Accordion>
-  <Accordion title="Segment comparison">
-    Compare retention between two or more Segments. See whether paid users retain better than organic, or whether users from a specific campaign outperform the baseline.
-  </Accordion>
-</AccordionGroup>
+| View | Description |
+| :--- | :--- |
+| **Cohort table** | A matrix showing retention rates over time. Rows are cohorts (by signup week). Columns are intervals (Day 1, Day 7, Day 30). Each cell shows the percentage that returned. |
+| **Retention curve** | A line chart plotting retention over time for one or more cohorts. Useful for spotting whether retention is improving or declining. |
+| **Segment comparison** | Compare retention between two or more Segments — paid vs organic, by region, by acquisition channel. |
 
 ---
 
-## Conditional cohorts
+## Conditional Cohorts
 
-Standard retention groups users by a single event. Actioneer also supports conditional cohort definitions — adding criteria to the starting event that narrow the population:
+Standard retention groups users by a single event. Actioneer also supports conditional cohort definitions — adding criteria to the starting event that narrow the population.
 
-- Users who signed up **and** completed KYC within 48 hours.
-- Users who made a first purchase **where** the order value exceeded ₹1,000.
-- Users from a specific acquisition channel **who** engaged with at least 3 sessions in their first week.
+| Condition | Example |
+| :--- | :--- |
+| **Event + time constraint** | Users who signed up and completed KYC within 48 hours |
+| **Event + value filter** | Users who made a first purchase where order value exceeded ₹1,000 |
+| **Event + engagement threshold** | Users from a specific acquisition channel who engaged with at least 3 sessions in their first week |
 
 This lets you compare retention between meaningfully different user groups, not just calendar-based cohorts.
 
 ---
 
-## Acting on Retention data
+## Acting on Retention Data
 
-Like other analysis surfaces in Actioneer, Retention is connected to the action layer:
-
-- **Save a cohort as a Segment** — Target users who retained at Day 7 but churned by Day 30 for a winback campaign.
-- **Pin to a Board** — Add the retention curve to a persistent dashboard for ongoing monitoring.
-- **Feed into a Playbook** — Schedule a retention analysis to run weekly and auto-deliver a graded report.
-- **Set an alert** — Get notified when retention for a specific cohort drops below a threshold.
+| Action | Description |
+| :--- | :--- |
+| **Save a cohort as a Segment** | Target users who retained at Day 7 but churned by Day 30 for a winback campaign |
+| **Pin to a Board** | Add the retention curve to a persistent dashboard for ongoing monitoring |
+| **Feed into a Playbook** | Schedule a retention analysis to run weekly and auto-deliver a graded report |
+| **Set an alert** | Get notified when retention for a specific cohort drops below a threshold |
 
 <Info>
   Actioneer processes at least 12 months of retention data in hot storage for forecasting and trend analysis. Older data is available in cold storage for historical lookups.

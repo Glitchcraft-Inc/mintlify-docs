@@ -11,9 +11,9 @@ Boards are persistent, organised pages where findings from Chat, Playbooks, and 
 
 ---
 
-## What a Board looks like
+## Board Structure
 
-A Board is a scrollable page made of **sections**. Each section has a title, an optional insight line, and a grid of **cards**. Cards are the atomic unit — each one holds a single chart, table, or metric.
+A Board is a scrollable page made of sections. Each section contains a grid of cards.
 
 | Element | Description |
 | :--- | :--- |
@@ -25,49 +25,37 @@ A Board is a scrollable page made of **sections**. Each section has a title, an 
 
 ## Creating a Board
 
-There are several ways to create a Board:
-
-<AccordionGroup>
-  <Accordion title="From a template">
-    Start a new Board and pick a template — Product KPIs, Growth, Revenue, or others. Actioneer reads your schema and auto-generates sections with relevant charts and metrics.
-  </Accordion>
-  <Accordion title="From a research report">
-    After a deep research conversation in Chat, save the findings as a Board. Each investigated area becomes a section, and inferred charts from the analysis become cards.
-  </Accordion>
-  <Accordion title="From scratch">
-    Start with a blank Board and add cards manually. Each card is created by describing what you want — Actioneer generates the query and selects the chart type automatically.
-  </Accordion>
-  <Accordion title="From a business deck">
-    Upload a presentation PDF. Each slide becomes a section, charts become cards, and commentary becomes paired text cards — with links back to the original deck.
-  </Accordion>
-  <Accordion title="By pinning from anywhere">
-    Any result in Chat, or any finding on a Segment, Funnel, or Retention page, can be pinned to a Board with one click. A board picker lets you choose the destination.
-  </Accordion>
-</AccordionGroup>
+| Method | Description |
+| :--- | :--- |
+| **From a template** | Pick a template — Product KPIs, Growth, Revenue. Actioneer reads your schema and auto-generates sections with relevant charts. |
+| **From a research report** | After a deep research conversation in Chat, save the findings as a Board. Each investigated area becomes a section. |
+| **From scratch** | Start with a blank Board and describe what each card should show. Actioneer generates the queries automatically. |
+| **From a business deck** | Upload a presentation PDF. Each slide becomes a section, charts become cards, commentary becomes paired text cards. |
+| **By pinning** | Any result in Chat, Funnels, Retention, or Segments can be pinned to a Board with one click. |
 
 ---
 
-## Card types and visualisation
+## Card Types
 
-Actioneer auto-detects the appropriate visualisation based on the shape of the result:
+Actioneer auto-detects the appropriate visualisation based on the shape of the result.
 
-| Result shape | Default card type |
+| Result Shape | Default Card Type |
 | :--- | :--- |
 | Time series | Line chart |
 | Single number | Metric card |
 | Ranked list | Bar chart |
 | Tabular data | Table |
 
-You do not need to configure chart types manually. Actioneer infers the best representation from the data.
-
 ---
 
-## Board management
+## Board Management
 
-- **Rename** a Board, section, or card at any time.
-- **Reorder** sections by dragging them into place.
-- **Apply a global date filter** to update all time-based cards at once.
-- **Delete** individual cards or entire sections without affecting other parts of the Board.
+| Action | Description |
+| :--- | :--- |
+| **Rename** | Rename a Board, section, or card at any time |
+| **Reorder** | Drag sections into place |
+| **Global date filter** | Update all time-based cards at once |
+| **Delete** | Remove individual cards or entire sections without affecting other parts |
 
 <Info>
   Boards are scoped to the active dataset. If you connect multiple data sources, each Board is associated with the dataset it was created against.

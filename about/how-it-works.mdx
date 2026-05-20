@@ -64,80 +64,106 @@ Actioneer sits as a single intelligence layer across your data warehouse, BI too
 
 ---
 
-## The three layers
+## The Three Layers
 
-### Query layer
+### Query Layer
 
-Actioneer translates plain-English questions into SQL queries executed against your connected data warehouse. The translation is schema-aware — it reads your tables, columns, and relationships, so queries are grounded in your actual data model, not a generic guess.
+The Query Layer translates plain-English questions into SQL queries executed against your connected data warehouse. It is schema-aware — it reads your tables, columns, and relationships, so queries are grounded in your actual data model.
 
-When a user asks a question, Actioneer:
-1. Parses the intent and identifies the data scope.
-2. Maps the question to the relevant tables and metric definitions.
-3. Generates and validates SQL before execution.
-4. Returns the answer with the underlying query visible and auditable.
+| Component | Description |
+| :--- | :--- |
+| **Intent Parsing** | Interprets the question, identifies data scope and relevant tables |
+| **Schema Mapping** | Maps the question to your metric definitions, columns, and relationships |
+| **SQL Generation** | Generates, validates, and optimises SQL before execution |
+| **Result Delivery** | Returns the answer as a chart, table, or metric — with the SQL visible |
 
 <Tip>
   Every answer includes the SQL that produced it. Nothing is a black box.
 </Tip>
 
-### Memory layer
+### Memory Layer
 
-Most AI tools start from scratch every conversation. Actioneer does not. It maintains a persistent knowledge base specific to your organisation:
+Most AI tools start from scratch every conversation. Actioneer does not. The Memory Layer maintains a persistent knowledge base specific to your organisation.
 
-- **Metric definitions** — what "conversion" or "retention" means at your company, not what the model assumes.
-- **KPI targets** — the numbers your team tracks against.
-- **Past campaigns** — what was run, when, and what moved.
-- **Playbooks** — validated analytical workflows that can be reused and scheduled.
-- **Team preferences** — how results should be formatted, which breakdowns matter.
+| Context Type | Examples |
+| :--- | :--- |
+| **Metric Definitions** | What "conversion" or "retention" means at your company — not what the model assumes |
+| **KPI Targets** | The numbers your team tracks against (e.g. MAU target: 500K) |
+| **Campaign History** | What was run, when, and what moved |
+| **Playbooks** | Validated analytical workflows that can be reused and scheduled |
+| **Team Preferences** | How results should be formatted, which breakdowns matter |
 
 This context compounds over time. The more Actioneer is used, the more precisely it understands your business.
 
-### Action layer
+### Action Layer
 
-Insights are only useful if they lead to action. Actioneer closes the gap between seeing a problem and doing something about it:
+Insights are only useful if they lead to action. The Action Layer closes the gap between seeing a problem and doing something about it.
 
-- **Push segments** to CleverTap, WebEngage, MoEngage, or other CLM tools in one click.
-- **Build campaigns** directly from cohort analysis results.
-- **Set up alerts** so that anomalies trigger Slack messages with root-cause context.
-- **Schedule playbooks** to run on a cadence — daily, weekly, or every few hours.
+| Capability | Description |
+| :--- | :--- |
+| **Segment Push** | Push audience lists to CleverTap, WebEngage, MoEngage, or Braze in one click |
+| **Campaign Launch** | Build campaigns directly from cohort analysis results |
+| **Alert Setup** | Monitor metrics and trigger Slack notifications with root-cause context |
+| **Playbook Scheduling** | Run validated analyses on a cadence — daily, weekly, or every few hours |
+| **Agent Deployment** | Deploy monitoring agents that watch KPIs and flag anomalies in the background |
 
 ---
 
-## What happens when you ask a question
+## What Happens When You Ask a Question
 
 <Steps>
   <Step title="Intent parsed">
     Actioneer interprets the question, identifies the data scope, and determines which tables and metrics are relevant.
   </Step>
-  <Step title="Plan generated">
-    A query plan is built — potentially spanning multiple SQL queries, intermediate analysis steps, and validation checks.
+  <Step title="Context loaded">
+    The Memory Layer loads your metric definitions, KPI targets, and any relevant playbooks or past analyses. This grounds the query in your business logic.
   </Step>
-  <Step title="Queries executed">
-    SQL is run against your connected warehouse. Results are validated against your metric definitions and business context.
+  <Step title="SQL generated and executed">
+    A query plan is built — potentially spanning multiple SQL queries and validation checks. Queries run against your connected warehouse.
   </Step>
   <Step title="Answer delivered">
-    The result is returned as a chart, table, or metric — along with the SQL used, so the answer is fully traceable.
+    The result is returned as a chart, table, or metric card — along with the SQL used, so the answer is fully traceable and auditable.
   </Step>
   <Step title="Action available">
-    From the same result, you can save to a Board, build a segment, push a campaign, or pin the finding for later.
+    From the same result, you can save to a Board, build a Segment, push a Campaign, set an alert, or pin the finding for later.
   </Step>
 </Steps>
 
 ---
 
-## Connecting to your stack
+## Use Cases
 
-Actioneer connects to over 700 data sources. No pipeline rebuild. No data migration. No schema changes required.
+| Use Case | What happens |
+| :--- | :--- |
+| **Instant data retrieval** | Ask a question, get an answer grounded in your metric definitions — not a generic LLM assumption |
+| **Continuous monitoring** | Deploy agents that watch your KPIs in the background and flag anomalies with root-cause context |
+| **Funnel monitoring** | Track every stage of your conversion funnel. If drop-off at KYC spikes, you know immediately |
+| **Campaign hyper-segmentation** | Target users on dimensions like order frequency, basket size, dormancy, and location clusters |
+| **Regional drop detection** | Flag a drop in user activity in a specific region before it compounds into a bigger problem |
+| **Insight to action** | See a drop, build a segment, push a campaign — all from the same window |
 
-Setup involves three steps:
-1. **Authenticate** your data warehouse (OAuth, service account, or access key — depending on the platform).
-2. **Actioneer maps your schema** — tables, columns, relationships, and event taxonomy are discovered automatically.
-3. **Your team starts asking questions** — metric definitions and playbooks build over time as the platform is used.
+---
+
+## Connecting to Your Stack
+
+Actioneer connects to over 700 data sources. No pipeline rebuilds. No data migration. No schema changes required.
+
+<Steps>
+  <Step title="Authenticate">
+    Connect your data warehouse using OAuth, a service account, or an access key — depending on the platform.
+  </Step>
+  <Step title="Schema discovery">
+    Actioneer maps your schema automatically — tables, columns, relationships, and event taxonomy.
+  </Step>
+  <Step title="Start asking">
+    Your team starts asking questions. Metric definitions and playbooks build over time as the platform is used.
+  </Step>
+</Steps>
 
 <Info>
   Actioneer operates as a read-only integration by default. It queries your data but does not create, modify, or delete anything in your warehouse or connected tools.
 </Info>
 
-<Card title="Connect your first source" icon="plug" horizontal>
-  See the [Data Warehouse](/integrations/data-warehouses) or [BI Tool](/integrations/bi-tools) integration guides.
+<Card title="Next: Core Concepts" icon="layers" horizontal href="/about/core-concepts">
+  Explore the building blocks of Actioneer — from Chat to Playbooks to Knowledge.
 </Card>

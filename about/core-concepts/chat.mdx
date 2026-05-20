@@ -7,38 +7,26 @@ description: "Actioneer's natural-language interface for querying your data."
 
 # Chat
 
-Chat is the primary interface for interacting with Actioneer. It is a natural-language conversation layer that translates plain-English questions into SQL queries, runs them against your connected data warehouse, and returns structured answers — charts, tables, or single metrics.
+Chat is the primary interface for interacting with Actioneer. It translates plain-English questions into SQL queries, runs them against your connected data warehouse, and returns structured answers — charts, tables, or single metrics.
 
 ---
 
-## How it works
+## How It Works
 
-Type a question the way you would ask a colleague. Actioneer handles the rest.
-
-<Steps>
-  <Step title="Ask a question">
-    Write your question in plain English. No SQL, no query syntax, no specific formatting required.
-
-    Example: *"What was conversion from app download to first investment last week, broken down by city?"*
-  </Step>
-  <Step title="Actioneer interprets and plans">
-    The question is parsed for intent, data scope, and relevant signals. Actioneer maps it to your schema and metric definitions, then generates a query plan.
-  </Step>
-  <Step title="Queries execute">
-    SQL is generated, validated, and run against your warehouse. For complex questions, multiple queries may run in sequence — each building on the results of the previous one.
-  </Step>
-  <Step title="Answer delivered">
-    Results are returned as a chart, table, or metric card. The underlying SQL is always visible alongside the answer.
-  </Step>
-</Steps>
+| Step | Description |
+| :--- | :--- |
+| **Ask a question** | Write your question in plain English. No SQL, no query syntax, no specific formatting required. |
+| **Intent parsed** | The question is parsed for intent, data scope, and relevant signals. Actioneer maps it to your schema and metric definitions. |
+| **SQL generated** | Queries are generated, validated, and run against your warehouse. For complex questions, multiple queries may run in sequence. |
+| **Answer delivered** | Results are returned as a chart, table, or metric card. The underlying SQL is always visible alongside the answer. |
 
 ---
 
-## What you can ask
+## What You Can Ask
 
-Chat is not limited to predefined reports. It handles ad-hoc questions across any data your warehouse contains.
+Chat handles ad-hoc questions across any data your warehouse contains. It is not limited to predefined reports.
 
-| Question type | Example |
+| Question Type | Example |
 | :--- | :--- |
 | **Metric lookups** | "What was DAU last week?" |
 | **Breakdowns** | "Show me retention by acquisition channel for the March cohort." |
@@ -49,26 +37,28 @@ Chat is not limited to predefined reports. It handles ad-hoc questions across an
 
 ---
 
-## Research mode
+## Research Mode
 
 For questions that require deeper investigation — spanning multiple tables, intermediate analysis, or conditional logic — Chat enters research mode. Instead of a single query, Actioneer runs a multi-step investigation and returns a structured report with findings, supporting data, and recommendations.
 
 Research mode activates automatically when the question warrants it. You do not need to enable it manually.
 
 <Info>
-  Every answer in Chat is traceable. The SQL query, data source, and execution time are displayed alongside the result. Nothing is a black box.
+  Every answer in Chat is traceable. The SQL query, data source, and execution time are displayed alongside the result.
 </Info>
 
 ---
 
-## From Chat to action
+## From Chat to Action
 
-Chat is not a dead end. Any result can flow into other parts of the platform:
+Any result in Chat can flow into other parts of the platform.
 
-- **Pin to a Board** — Save a chart or metric to a persistent dashboard.
-- **Save as a Playbook** — Codify a multi-step analysis so it can be rerun with fresh data.
-- **Build a Segment** — Turn a cohort from a query result into a targetable audience.
-- **Set an alert** — Ask Actioneer to monitor a metric and notify you when it crosses a threshold.
+| Action | Description |
+| :--- | :--- |
+| **Pin to a Board** | Save a chart or metric to a persistent dashboard |
+| **Save as a Playbook** | Codify a multi-step analysis so it can be rerun with fresh data |
+| **Build a Segment** | Turn a cohort from a query result into a targetable audience |
+| **Set an alert** | Monitor a metric and get notified when it crosses a threshold |
 
 <Card title="Next: Metrics" icon="gauge" horizontal href="/about/core-concepts/metrics">
   Learn how Actioneer defines, governs, and reuses metrics across the platform.

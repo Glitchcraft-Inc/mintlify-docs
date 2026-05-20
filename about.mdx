@@ -5,53 +5,50 @@ icon: "info"
 description: "What Actioneer is, who it serves, and how it fits into your data stack."
 ---
 
-# What is Actioneer
+# Actioneer
 
 Actioneer is an AI coworker for growth and business teams. It sits on top of your existing data stack — warehouses, BI tools, CDPs, and CLMs — and lets anyone on the team go from question to insight to action, all in natural language, without switching tools.
 
-Most B2C companies already have dashboards, analytics platforms, and messaging tools. The problem is not a lack of data. It is that data lives in one place, decisions happen in another, and action happens in a third. By the time someone on the growth team notices a drop in conversion, pulls a report, shares it on Slack, gets alignment, and actually runs a campaign to fix it, the window has passed.
+---
 
-Actioneer collapses that loop.
+## Key Components
+
+Actioneer is built around three layers that work together on top of your existing infrastructure.
+
+| Component | Purpose |
+| :--- | :--- |
+| **Query Layer** | A natural-language interface to your data warehouse. Ask a question in plain English, get an answer grounded in your schema and metric definitions. |
+| **Memory Layer** | Persistent business context — KPI definitions, past campaigns, playbooks, and team preferences. Every conversation builds on the last. |
+| **Action Layer** | Act on insights from the same window. Build a segment, push a campaign, set an alert, or deploy a monitoring agent — without switching tools. |
+
+The combination is the point. A BI tool gives you the Query Layer. A CDP gives you fragments of the Action Layer. Actioneer ties all three together with compounding business context in between.
 
 ---
 
-## Who is Actioneer for
+## Who Is Actioneer For
 
-Actioneer is built for operators — growth leads, product managers, marketing teams, and business analysts at B2C and fintech companies who need answers from data every day but do not want to wait on analyst queues or learn SQL.
+Actioneer is built for operators at B2C and fintech companies — people who need answers from data every day but do not want to wait on analyst queues or learn SQL.
 
 | Role | How they use Actioneer |
 | :--- | :--- |
-| **Growth lead** | Ask ad-hoc questions in plain English, get granular breakdowns in seconds |
-| **Product manager** | Monitor funnel health, spot anomalies early, act on them immediately |
-| **Marketing team** | Build hyper-targeted segments and push campaigns from the same window |
-| **Business analyst** | Offload tier-one requests, focus on deeper modelling and experimentation |
+| **Growth Lead** | Ask ad-hoc questions in plain English, get granular breakdowns in seconds |
+| **Product Manager** | Monitor funnel health, spot anomalies early, act on them immediately |
+| **Marketing Team** | Build hyper-targeted segments and push campaigns from the same window |
+| **Business Analyst** | Offload tier-one requests, focus on deeper modelling and experimentation |
 
 ---
 
-## What Actioneer helps with
-
-<CardGroup cols={2}>
-  <Card title="Instant data retrieval" icon="zap">
-    Ask a question, get an answer grounded in your own metric definitions — not a generic LLM assumption.
-  </Card>
-  <Card title="Continuous monitoring" icon="radar">
-    Deploy agents that watch your KPIs in the background and flag anomalies with root-cause context.
-  </Card>
-  <Card title="Funnel and retention analysis" icon="git-branch">
-    Track every stage of your conversion funnel and retention cohorts without writing SQL.
-  </Card>
-  <Card title="Insight to action" icon="play">
-    See a drop, build a segment, push a campaign — all from the same window. No tool-switching.
-  </Card>
-</CardGroup>
-
----
-
-## Where Actioneer sits in the stack
+## Where Actioneer Sits in the Stack
 
 Actioneer is not a replacement for your data warehouse, BI tool, or CDP. It is an intelligence layer that sits across all of them.
 
-Your data warehouse stores the raw data. Your BI tool visualises predefined dashboards. Your CDP stitches user profiles. Actioneer connects to all three and adds what none of them offer on their own: natural-language querying with business context, persistent memory of your KPIs and playbooks, and the ability to act on insights without leaving the platform.
+| Stack Layer | Tools | Role |
+| :--- | :--- | :--- |
+| **Raw Data** | App events, backend databases, transaction logs | Source of truth |
+| **Data Warehouse** | Snowflake, BigQuery, Databricks, Redshift, S3 | Stores and structures data for analytical queries |
+| **BI & Analytics** | Amplitude, Mixpanel, Power BI, Looker, Tableau | Predefined dashboards and visualisation |
+| **CDP / CLM** | CleverTap, MoEngage, WebEngage, Braze | Customer profiles and lifecycle messaging |
+| **Actioneer** | Query + Memory + Action | Natural-language querying, persistent context, and insight-to-action — across all layers above |
 
 <Info>
   Actioneer connects to your existing infrastructure. It does not require data migration, pipeline rebuilds, or schema changes.
@@ -59,27 +56,19 @@ Your data warehouse stores the raw data. Your BI tool visualises predefined dash
 
 ---
 
-## Why Actioneer
+## Actioneer vs Alternatives
 
-Three layers, stacked on top of your existing tools:
-
-<Steps>
-  <Step title="Query layer">
-    A natural-language interface to your data warehouse. Ask a question in plain English, get an answer grounded in your schema and metric definitions.
-  </Step>
-  <Step title="Memory layer">
-    Actioneer remembers your business context — KPI definitions, past campaigns, playbooks, and team preferences. Every conversation builds on the last.
-  </Step>
-  <Step title="Action layer">
-    When you see an insight, act on it from the same window. Build a segment, launch a campaign, push to your CLM, or set up an alert — without switching tools.
-  </Step>
-</Steps>
-
-The combination is the point. A BI tool gives you the query layer. A CDP gives you fragments of the action layer. Actioneer ties all three together with compounding business context in between.
+| Alternative | What they do well | Where Actioneer differs |
+| :--- | :--- | :--- |
+| **BI Tools** (Tableau, Looker) | Predefined dashboards, visualisation | Natural-language ad-hoc queries, action layer, memory |
+| **CDP / CLM** (CleverTap, MoEngage) | Customer messaging, profile stitching | Query and insight layer, not just messaging |
+| **Databricks Genie** | Text-to-SQL on Databricks warehouse | Business context memory, action orchestration across tools |
+| **Claude + MCP** | General LLM with data access | Domain-specific, remembers KPIs and playbooks, integrated action |
+| **Internal Analytics Team** | Deep custom analysis | 100x faster turnaround, self-serve for non-analysts |
 
 ---
 
-## Security and compliance
+## Security and Compliance
 
 All credentials and data are encrypted with AES-256 at rest and transmitted over TLS 1.3. Actioneer never stores raw customer data in plain text.
 
@@ -91,6 +80,6 @@ All credentials and data are encrypted with AES-256 at rest and transmitted over
 
 Role-based access control, full audit logs, and explainable AI are built in. Every query is traceable — the underlying SQL is always visible, never a black box.
 
-<Card title="Ready to connect?" icon="sparkles" horizontal>
-  Head to the [Getting Started](/about/getting-started) guide to set up your account and connect your first data source.
+<Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
+  See how Actioneer connects to your data stack and turns questions into actions.
 </Card>

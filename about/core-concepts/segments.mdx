@@ -11,11 +11,11 @@ Segments are audience groups defined by a combination of user properties, behavi
 
 ---
 
-## How Segments work
+## Rule Types
 
-A Segment is a rule-based definition that evaluates against your user data. When a Segment is refreshed, Actioneer runs the underlying queries against your warehouse and returns the list of users who match.
+Segments are built using rules that evaluate against your user data.
 
-| Rule type | Example |
+| Rule Type | Example |
 | :--- | :--- |
 | **Property filter** | Country is India, platform is iOS, LTV above ₹10,000 |
 | **Behavioural** | Completed event "add_to_cart" at least 3 times in the last 7 days |
@@ -28,12 +28,12 @@ Rules can be combined with AND/OR logic to build precise audience definitions.
 
 ## Creating a Segment
 
-Segments can be created from multiple starting points:
-
-- **From Chat** — Ask a question like "How many users completed KYC but never invested?" and save the result as a Segment.
-- **From Funnels** — Identify users who dropped off at a specific step and save them as a Segment.
-- **From Retention** — Save a retention cohort (e.g. users who retained at Day 7 but churned by Day 30) as a targetable audience.
-- **From the Segments page** — Define rules manually using a builder interface.
+| Method | Description |
+| :--- | :--- |
+| **From Chat** | Ask "How many users completed KYC but never invested?" and save the result as a Segment |
+| **From Funnels** | Identify users who dropped off at a specific step and save them |
+| **From Retention** | Save a retention cohort (e.g. users who retained at Day 7 but churned by Day 30) |
+| **From the Segments page** | Define rules manually using the builder interface |
 
 <Info>
   Segments are defined using SQL under the hood. Actioneer generates the query from the rules you specify — you do not need to write SQL yourself.
@@ -41,11 +41,9 @@ Segments can be created from multiple starting points:
 
 ---
 
-## Segment refresh
+## Segment Refresh
 
-Segments are refreshed on a daily cadence by default. Each refresh re-evaluates the rules against the latest data in your warehouse and updates the membership list.
-
-| Refresh type | Availability |
+| Refresh Type | Description |
 | :--- | :--- |
 | **Daily batch** | Default. Segment membership is recalculated once per day. |
 | **On-demand** | Trigger a manual refresh at any time from the Segments page. |
@@ -54,12 +52,12 @@ Segments are refreshed on a daily cadence by default. Each refresh re-evaluates 
 
 ## Acting on Segments
 
-A Segment on its own is an audience list. The value comes from what you do with it:
-
-- **Push to CLM** — Send the Segment to CleverTap, MoEngage, WebEngage, or Braze for campaign targeting.
-- **Use in Campaigns** — Reference a Segment directly when building a Campaign in Actioneer.
-- **Compare in Funnels** — Overlay two Segments on a Funnel to compare conversion rates.
-- **Monitor over time** — Track how Segment size changes day over day to detect shifts in user behaviour.
+| Action | Description |
+| :--- | :--- |
+| **Push to CLM** | Send the Segment to CleverTap, MoEngage, WebEngage, or Braze for campaign targeting |
+| **Use in Campaigns** | Reference a Segment directly when building a Campaign in Actioneer |
+| **Compare in Funnels** | Overlay two Segments on a Funnel to compare conversion rates |
+| **Monitor over time** | Track how Segment size changes day over day to detect shifts in user behaviour |
 
 <Card title="Next: Campaigns" icon="send" horizontal href="/about/core-concepts/campaigns">
   Learn how to push Segments and insights into action through Campaigns.

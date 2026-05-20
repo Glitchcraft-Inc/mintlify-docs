@@ -11,33 +11,15 @@ A Playbook is a validated analytical workflow — a sequence of queries, analysi
 
 ---
 
-## Why Playbooks exist
+## Why Playbooks Exist
 
 Ad-hoc analysis is not reproducible. The same question asked on two different days can produce different SQL, different filters, and different conclusions. If an analyst leaves or a metric definition shifts, the methodology is lost.
 
-Playbooks solve this by capturing the full methodology behind an analysis — not just the final answer, but every step, validation check, and output format — so it can be executed consistently, by anyone, at any time.
+Playbooks capture the full methodology — not just the final answer, but every step, validation check, and output format — so it can be executed consistently, by anyone, at any time.
 
 ---
 
-## How a Playbook is created
-
-Playbooks are typically born from a validated Chat conversation:
-
-<Steps>
-  <Step title="Run the analysis in Chat">
-    Ask your question, refine the results, confirm the methodology is correct.
-  </Step>
-  <Step title="Save as Playbook">
-    When you are satisfied with the analysis, save it as a Playbook. Actioneer extracts the steps automatically — queries, intermediate logic, output format, and insight generation.
-  </Step>
-  <Step title="Review and adjust">
-    Edit parameters, adjust branching logic, or add validation checks. Playbooks support conditional paths — if a metric crosses a threshold, the analysis can take a different route.
-  </Step>
-</Steps>
-
----
-
-## What a Playbook contains
+## Playbook Components
 
 | Component | Description |
 | :--- | :--- |
@@ -49,13 +31,23 @@ Playbooks are typically born from a validated Chat conversation:
 
 ---
 
+## Creating a Playbook
+
+| Step | Description |
+| :--- | :--- |
+| **Run the analysis** | Ask your question in Chat, refine the results, confirm the methodology is correct |
+| **Save as Playbook** | Actioneer extracts the steps automatically — queries, intermediate logic, output format, and insight generation |
+| **Review and adjust** | Edit parameters, adjust branching logic, or add validation checks |
+
+---
+
 ## Running a Playbook
 
-Playbooks can be invoked in three ways:
-
-1. **On demand** — Run it manually from the Playbooks page or reference it in Chat.
-2. **On schedule** — Set a cadence (daily, weekly, every six hours) and Actioneer runs it automatically, delivering the output to a Board or Slack channel.
-3. **Via Scouts** — Automated agents that run Playbooks in the background, grade results, and flag anomalies before anyone has to ask.
+| Trigger | Description |
+| :--- | :--- |
+| **On demand** | Run manually from the Playbooks page or reference it in Chat |
+| **On schedule** | Set a cadence (daily, weekly, every six hours) and Actioneer runs it automatically |
+| **Via Scouts** | Automated agents that run Playbooks in the background, grade results, and flag anomalies |
 
 <Info>
   Scouts are Actioneer's scheduled monitoring agents. They execute Playbooks on a recurring basis and deliver graded reports — A through E — per title, region, or team. Anomalies are surfaced with root-cause context attached.
@@ -63,15 +55,15 @@ Playbooks can be invoked in three ways:
 
 ---
 
-## Schema drift handling
+## Schema Drift Handling
 
 When your data warehouse schema changes — a column is renamed, a table is restructured — Playbooks do not silently break. Actioneer detects the mismatch, attempts to auto-adapt the affected queries, and creates a new versioned copy. If auto-adaptation fails, the Playbook is flagged for manual review.
 
 ---
 
-## Playbook discovery
+## Playbook Discovery
 
-As the number of Playbooks grows, discovery becomes important. Before creating a new Playbook, Actioneer checks whether a similar one already exists (using semantic matching at an 80%+ similarity threshold) and suggests reusing it instead of duplicating effort.
+Before creating a new Playbook, Actioneer checks whether a similar one already exists using semantic matching at an 80%+ similarity threshold. This prevents duplication and keeps the Playbook library clean.
 
 <Card title="Next: Segments" icon="users" horizontal href="/about/core-concepts/segments">
   Learn how to define and manage audience segments in Actioneer.
