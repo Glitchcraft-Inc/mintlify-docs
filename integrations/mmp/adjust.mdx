@@ -22,37 +22,15 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 ---
 
 <Steps>
-  <Step title="Grant Actioneer restricted user access">
-    Actioneer needs restricted user access to your Adjust account for secure data integration.
+  <Step title="Generate an Adjust API key">
+    Adjust authenticates external integrations via API keys. You need a key scoped to the data Actioneer should access.
 
-    1. Open your [Adjust Dashboard](https://dash.adjust.com).
-    2. Navigate to **Settings** → **Team Members**.
-    3. Add the following email as a **restricted user**:
-
-    ```
-    analysis+studioname@gameramp.com
-    ```
-
-    Replace `studioname` with your studio or company name (e.g., `analysis+awesomegames@gameramp.com`).
-
-    | Field | Value |
-    | :--- | :--- |
-    | **Email** | `analysis+studioname@gameramp.com` (replace `studioname` with your name) |
-    | **Role** | Restricted user |
-
-    <Tip>
-      Watch the [video walkthrough](https://youtu.be/jJT43Al-lOA) for a step-by-step visual guide.
-    </Tip>
-  </Step>
-
-  <Step title="Add your MMP access token">
-    Actioneer needs an API token to query your Adjust data programmatically.
-
-    1. In your [Adjust Dashboard](https://dash.adjust.com), click the **Settings** icon (gear) in the bottom-left corner.
-    2. Go to **Account settings → API tokens**.
-    3. Click **Generate new token** (or use an existing read-only token if one is available).
-    4. Name it `Actioneer Integration`.
-    5. Copy the **API Key** immediately.
+    1. Sign in at [dash.adjust.com](https://dash.adjust.com).
+    2. Click the **Settings** icon (gear) in the bottom-left corner.
+    3. Go to **Account settings → API tokens**.
+    4. Click **Generate new token** (or use an existing read-only token if one is available).
+    5. Name it `Actioneer Integration`.
+    6. Copy the **API Key** immediately.
 
     | Value | Location | Example |
     | :--- | :--- | :--- |
@@ -71,7 +49,7 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
     | Field | Value |
     | :--- | :--- |
     | **Connection Name** | A descriptive label, e.g. `Production Adjust` |
-    | **API Key** | From Step 2 |
+    | **API Key** | From Step 1 |
 
     4. Click **Connect**.
   </Step>
@@ -84,10 +62,6 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 <AccordionGroup>
   <Accordion title="What Adjust data can Actioneer access?">
     Actioneer can query attribution data, campaign performance metrics, install events, and in-app event data accessible via the Adjust API. It cannot modify trackers, callbacks, attribution settings, or any account configuration.
-  </Accordion>
-
-  <Accordion title="Why does Actioneer need restricted user access?">
-    Restricted user access allows Actioneer to securely read your attribution and campaign data. This is the lowest permission level — it does not grant any write or admin capabilities.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">

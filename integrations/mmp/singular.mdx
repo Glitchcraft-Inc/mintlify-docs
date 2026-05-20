@@ -22,34 +22,11 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
 ---
 
 <Steps>
-  <Step title="Grant Actioneer restricted user access">
-    Actioneer needs restricted user access to your Singular account for secure data integration.
+  <Step title="Generate a Singular API key">
+    Singular authenticates API access via an API key tied to your account.
 
-    1. Open your [Singular Dashboard](https://app.singular.net).
-    2. Navigate to **Settings** → **Team Members**.
-    3. Add the following email as a **restricted user**:
-
-    ```
-    analysis+studioname@gameramp.com
-    ```
-
-    Replace `studioname` with your studio or company name (e.g., `analysis+awesomegames@gameramp.com`).
-
-    | Field | Value |
-    | :--- | :--- |
-    | **Email** | `analysis+studioname@gameramp.com` (replace `studioname` with your name) |
-    | **Role** | Restricted user |
-
-    <Tip>
-      Watch the [video walkthrough](https://youtu.be/E4PPsKGIrgk) for a step-by-step visual guide.
-    </Tip>
-  </Step>
-
-  <Step title="Add your MMP access token">
-    Actioneer needs an API key to query your Singular data programmatically.
-
-    1. In your [Singular Dashboard](https://app.singular.net), click **Settings** in the left sidebar.
-    2. Go to **API Keys**.
+    1. Sign in at [app.singular.net](https://app.singular.net).
+    2. In the left sidebar, click **Settings** → **API Keys**.
     3. If no key exists, click **Generate API Key**. If one exists, copy it directly.
     4. Copy the **API Key**.
 
@@ -70,7 +47,7 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
     | Field | Value |
     | :--- | :--- |
     | **Connection Name** | A descriptive label, e.g. `Production Singular` |
-    | **API Key** | From Step 2 |
+    | **API Key** | From Step 1 |
 
     4. Click **Connect**.
   </Step>
@@ -83,10 +60,6 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
 <AccordionGroup>
   <Accordion title="What Singular data can Actioneer access?">
     Actioneer can query attribution data, campaign performance, install events, ad revenue data, and creative-level reporting accessible via the Singular API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
-  </Accordion>
-
-  <Accordion title="Why does Actioneer need restricted user access?">
-    Restricted user access allows Actioneer to securely read your attribution and campaign data. This is the lowest permission level — it does not grant any write or admin capabilities.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
