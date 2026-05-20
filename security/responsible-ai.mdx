@@ -40,36 +40,18 @@ Every AI-generated output in Actioneer is traceable and auditable.
 
 ## Privacy
 
-Actioneer respects the boundaries of your data at every layer.
+Actioneer is designed around data minimisation and boundary respect. The platform queries your data in place, never copies or relocates it, and retains no raw results beyond the active session. Full details on encryption, credential handling, and data residency are covered in Data Protection.
 
-| Principle | How it works |
-| :--- | :--- |
-| **Read-only by default** | Actioneer queries your data in place. It does not create, modify, or delete anything in your warehouse or connected tools. |
-| **In-place querying** | Data is never copied, ingested, or relocated. Actioneer reads it where it lives. |
-| **No raw data retention** | Query results are not stored beyond the active session unless explicitly saved to a Board |
-| **Credential isolation** | Each workspace's credentials are isolated. No cross-tenant data access. |
-| **Data minimisation** | Each query only reads the tables and columns relevant to the question |
+<Card title="Data Protection" icon="shield-check" horizontal href="/security/data-protection">
+  Encryption, credential handling, residency, and third-party audits.
+</Card>
 
 ---
 
-## Security
+## Security and Governance
 
-Enterprise-grade security is built into the platform, not added as an afterthought.
+Enterprise-grade security and access controls are built into the platform. Actioneer holds SOC 2 Type II, ISO 27001, and GDPR certifications. Role-based access control, full audit logging, and explainable AI are covered in Governance.
 
-| Certification | Status |
-| :--- | :--- |
-| **SOC 2 Type II** | Certified — annual audit covering security, availability, and confidentiality |
-| **ISO 27001** | Certified — audited by Schellman |
-| **GDPR** | Compliant — data minimisation, subject rights, 72-hour breach notification |
-
-| Control | Description |
-| :--- | :--- |
-| **Encryption at rest** | AES-256 — all stored data is encrypted using the same standard banks and governments use |
-| **Encryption in transit** | TLS 1.3 — all data moving between your systems and Actioneer is encrypted in the latest transport protocol |
-| **RBAC** | Role-based access control — who builds what, who runs what, who sees what |
-| **Private cloud deployment** | Available for institutions that require dedicated infrastructure |
-| **Data residency** | US, EU, and APAC options |
-
-<Card title="Data Protection" icon="shield-check" horizontal href="/security/data-protection">
-  Full details on encryption, credential handling, and third-party audits.
+<Card title="Governance" icon="scale" horizontal href="/security/governance">
+  RBAC, audit logging, metric governance, and compliance summary.
 </Card>

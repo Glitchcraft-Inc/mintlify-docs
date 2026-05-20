@@ -61,27 +61,11 @@ Actioneer does not produce opaque answers. Every response is traceable back to t
 
 ## Metric Governance
 
-Metric definitions are centrally managed and version-controlled. This prevents the common problem of the same metric meaning different things across tools and teams.
+Metric definitions are centrally managed and version-controlled — preventing the same metric from meaning different things across tools and teams. Full details on metric definition, the data catalog, and governance controls are in the Metrics page.
 
-| Control | Description |
-| :--- | :--- |
-| **Single source of truth** | Every feature — Chat, Boards, Playbooks, Funnels — references the same governed definition |
-| **Version control** | When a definition changes, the update is logged with a timestamp and the user who made the change |
-| **Historical preservation** | Values computed under a previous definition are preserved and not retroactively recalculated |
-| **Conflict detection** | Duplicate or contradictory definitions are flagged during setup |
-
----
-
-## Data Minimisation
-
-Actioneer follows the principle of data minimisation — it only accesses and processes the data required to answer a specific question.
-
-| Practice | Description |
-| :--- | :--- |
-| **Query-scoped access** | Each query only reads the tables and columns relevant to the question |
-| **No bulk data copies** | Actioneer does not replicate your warehouse. It queries in place. |
-| **No raw data retention** | Query results are not stored beyond the active session unless explicitly saved to a Board |
-| **Credential isolation** | Each workspace's credentials are isolated. No cross-tenant data access. |
+<Card title="Metrics" icon="gauge" horizontal href="/about/core-concepts/metrics">
+  Metric definitions, data catalog, SQL types, and governance controls.
+</Card>
 
 ---
 
