@@ -9,7 +9,7 @@ description: "Connect AppsFlyer to Actioneer as a data source."
 
 This guide walks through connecting an AppsFlyer account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
 
-| | |
+|  |  |
 | :--- | :--- |
 | **Prerequisites** | AppsFlyer account with Admin access, Actioneer account |
 | **Access granted** | Attribution data, campaign metrics, and install events via the AppsFlyer API |
@@ -22,18 +22,44 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
 ---
 
 <Steps>
-  <Step title="Generate an AppsFlyer API key">
-    AppsFlyer authenticates API access via a token tied to your account. You need the API key (also called the API token V2) from your AppsFlyer dashboard.
+  <Step title="Grant Actioneer restricted user access">
+    Actioneer needs restricted user access to your AppsFlyer account for secure data integration.
 
-    1. Sign in at [hq.appsflyer.com](https://hq.appsflyer.com).
-    2. Click your email in the top-right corner and select **Security Center**.
-    3. Under **API Tokens**, locate the **API Token V2**.
-    4. If no token exists, click **Generate**. If one exists, click **Reveal** to view it.
-    5. Copy the **API Key**.
+    1. Open your [AppsFlyer Dashboard](https://hq1.appsflyer.com).
+    2. Navigate to **Settings** → **Team Members**.
+    3. Add the following email as a **restricted user**:
+
+    ```
+    analysis+studioname@gameramp.com
+    ```
+
+    Replace `studioname` with your studio or company name (e.g., `analysis+awesomegames@gameramp.com`).
+
+    | Field | Value |
+    | :--- | :--- |
+    | **Email** | `analysis+studioname@gameramp.com` (replace `studioname` with your name) |
+    | **Role** | Restricted user |
+
+    <Tip>
+      Watch the [video walkthrough](https://youtu.be/dupaIz-3yeg) for a step-by-step visual guide.
+    </Tip>
+  </Step>
+
+  <Step title="Add your MMP access token">
+    Actioneer needs an API token to query your AppsFlyer data programmatically.
+
+    <Warning>
+      The following steps must be completed from an account with the **Admin** role.
+    </Warning>
+
+    1. In your [AppsFlyer Dashboard](https://hq1.appsflyer.com), click your email in the top-right corner and select **Security Center**.
+    2. Under **API Tokens**, locate the **API Token V2**.
+    3. If no token exists, click **Generate**. If one exists, click **Reveal** to view it.
+    4. Copy the **API Key**.
 
     | Value | Location | Example |
     | :--- | :--- | :--- |
-    | **API Key** | Security Center → API Tokens | `eyJhbGciOiJBMjU2S1ci...` |
+    | **API Key** | Security Center → API Tokens → API Token V2 | `eyJhbGciOiJBMjU2S1ci...` |
 
     <Warning>
       The API key grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control.
@@ -48,7 +74,7 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
     | Field | Value |
     | :--- | :--- |
     | **Connection Name** | A descriptive label, e.g. `Production AppsFlyer` |
-    | **API Key** | From Step 1 |
+    | **API Key** | From Step 2 |
 
     4. Click **Connect**.
   </Step>
@@ -61,6 +87,10 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
 <AccordionGroup>
   <Accordion title="What AppsFlyer data can Actioneer access?">
     Actioneer can query attribution data, campaign performance, install events, in-app events, and cohort data accessible via the AppsFlyer API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="Why does Actioneer need restricted user access?">
+    Restricted user access allows Actioneer to securely read your attribution and campaign data. This is the lowest permission level — it does not grant any write or admin capabilities.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
