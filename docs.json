@@ -108,8 +108,8 @@
             ]
           },
           {
-            "group": "Collaboration",
-            "icon": "message-circle",
+            "group": "Operational Surfaces",
+            "icon": "monitor",
             "pages": [
               "integrations/slack"
             ]
