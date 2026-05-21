@@ -88,6 +88,48 @@ Actioneer's capabilities fall into four patterns — each built on top of the Co
 | **Act** | Push a Segment, trigger a campaign, schedule a Playbook | Segments, Playbooks, Insight-to-Action |
 | **Learn** | Every interaction feeds back into the Context Engine — the platform compounds | Context Engine, Observability |
 
+---
+
+## Use Cases by Buyer Function
+
+### Growth Teams
+
+| Problem | Capability Pattern |
+| :--- | :--- |
+| Data scattered across product / ads / CRM / messaging — can't answer growth questions same-day | Conversational Analytics |
+| Don't know which cohorts to target with which messaging | Conversational Analytics + Scouts |
+| Funnel performance is opaque — can't isolate where users drop and why | Conversational Analytics (Funnel parity) |
+| Retention diagnosis requires the data team and takes weeks | Custom Agent: retention diagnostic |
+| Performance marketing spend partially wasted but the team can't say where | Scouts + Custom analysis |
+| Cross-sell opportunities exist but the messaging stack doesn't reach them | Playbooks (triggered messaging) |
+
+### Retention Teams
+
+| Problem | Capability Pattern |
+| :--- | :--- |
+| Don't know who's about to churn or why | Custom Agent: churn diagnostic + Scout |
+| Lifecycle has too many touchpoints to instrument manually | Playbooks across the lifecycle |
+| KYC / activation drop-off is invisible | Scout surfacing the funnel drop and reasoning |
+| Re-engagement campaigns are generic when they should be cohort-specific | Playbooks (cohort-specific messaging) |
+
+### Operations Teams
+
+| Problem | Capability Pattern |
+| :--- | :--- |
+| Supplier/vendor risk visible too late, after damage done | Scout ranked by customer impact |
+| Exception handling eats the day | Playbook + Custom Agent for triage |
+| Production schedule slippage is reactive, not proactive | Scout + Playbook |
+| Cross-system reconciliation (ERP / CRM / billing) is manual | Custom Agent: continuous reconciliation |
+
+### Finance / FP&A Teams
+
+| Problem | Capability Pattern |
+| :--- | :--- |
+| Variance commentary eats the team every period | Custom Agent: variance commentary + drivers |
+| Board-pack prep is a fire drill | Custom Agent: board variance pack |
+| Period close requires cross-system reconciliation done by hand | Custom Agent: period close assistant |
+| Forecast accuracy is unknown until it's wrong | Scout: forecast accuracy diagnostic |
+
 <Card title="Next: Getting Started" icon="rocket" horizontal href="/about/getting-started">
   Set up your account and ship the first capability.
 </Card>
