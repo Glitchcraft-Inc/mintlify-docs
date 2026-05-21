@@ -2,7 +2,11 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Actioneer Docs",
-  "description": "Connect your data warehouses, BI tools, and MMPs to Actioneer.",
+  "description": "Enterprise AI that answers any data question and acts on it.",
+  "banner": {
+    "content": "Actioneer holds the **#1 score (93.78%)** on the [DABstep benchmark](https://dabstep.huggingface.co/leaderboard) by Adyen & Hugging Face.",
+    "dismissible": true
+  },
   "colors": {
     "primary": "#22C55E",
     "light": "#4ADE80",

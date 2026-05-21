@@ -9,12 +9,12 @@ description: "Connect ClickHouse to Actioneer as a read-only data source."
 
 This guide walks through connecting a ClickHouse database to Actioneer. The setup creates a dedicated read-only user with `SELECT`-only permissions on the databases you specify.
 
-| | |
-| :--- | :--- |
-| **Prerequisites** | ClickHouse instance (self-hosted or ClickHouse Cloud), Actioneer account |
-| **Access granted** | `SELECT` queries on specified databases |
-| **Estimated time** | 15 minutes |
-| **Actioneer IP** | `35.244.14.238` (whitelist if your instance uses an IP allowlist) |
+<Note>
+  - **Prerequisites:** ClickHouse instance (self-hosted or ClickHouse Cloud), Actioneer account
+  - **Access granted:** `SELECT` queries on specified databases
+  - **Estimated time:** ~15 minutes
+  - **Actioneer IP:** `35.244.14.238`
+</Note>
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or settings in your ClickHouse instance.

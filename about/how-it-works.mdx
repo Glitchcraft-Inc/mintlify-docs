@@ -84,83 +84,71 @@ The customer interacts through three operational surfaces — **Web**, **Slack**
 
 ## The Seven Layers
 
-### Layer 1 — Enterprise Data Connectors
+<AccordionGroup>
+  <Accordion title="Layer 1 — Enterprise Data Connectors" icon="plug" defaultOpen>
+    Connects to 700+ data sources out of the box. Read-only by default. No data migration, no pipeline rebuilds.
 
-Connects to 700+ data sources out of the box. Read-only by default. No data migration, no pipeline rebuilds.
+    - **Breadth** — BI tools, analytics platforms, CRM, ad platforms, databases, Slack, payment systems, product databases
+    - **Read-only** — Data stays in place — Actioneer reads it where it lives
+    - **Custom API** — Available for sources not natively supported
+  </Accordion>
 
-| Capability | Description |
-| :--- | :--- |
-| **Breadth** | BI tools, analytics platforms, CRM, ad platforms, databases, Slack, payment systems, product databases |
-| **Read-only** | Data stays in place — Actioneer reads it where it lives |
-| **Custom API** | Available for sources not natively supported |
+  <Accordion title="Layer 2 — Context Engine" icon="brain">
+    The semantic layer that gives every AI model a governed, business-specific understanding of the organisation.
 
-### Layer 2 — Context Engine
+    - **Business mapping** — Automatically maps the app's signals and causal relationships
+    - **Metric definitions** — Codified once, shared across every capability
+    - **North-star goals** — Understands which metrics matter and what moves them
+    - **Ownership graph** — Maps which team or person owns each data asset
+    - **Lineage** — Definitions and their provenance tracked across the full data estate
 
-The semantic layer that gives every AI model a governed, business-specific understanding of the organisation.
+    <Info>
+      This is what stops the AI from hallucinating plausibly when it doesn't actually know what "revenue" or "active user" or "Tier-1 customer" means inside your organisation. The model reasons over a structured, governed representation of the business — not raw data, not its own training assumptions.
+    </Info>
+  </Accordion>
 
-| Capability | Description |
-| :--- | :--- |
-| **Business mapping** | Automatically maps the app's signals and causal relationships between them |
-| **Metric definitions** | Codified once, shared across every capability built on the platform |
-| **North-star goals** | Understands which metrics matter and what moves them |
-| **Ownership graph** | Maps which team or person owns each data asset |
-| **Lineage** | Definitions and their provenance tracked across the full data estate |
+  <Accordion title="Layer 3 — Agent Orchestration Runtime" icon="cpu">
+    The execution layer that runs single and multi-agent workflows at enterprise scale.
 
-<Info>
-  This is what stops the AI from hallucinating plausibly when it doesn't actually know what "revenue" or "active user" or "Tier-1 customer" means inside your organisation. The model reasons over a structured, governed representation of the business — not raw data, not its own training assumptions.
-</Info>
+    - **Multi-agent** — A single question can trigger agents across every corner of the data estate simultaneously
+    - **Model abstraction** — Models can be swapped or upgraded without breaking workflows
+    - **Tool integration** — Agents connect to operational systems, not just data stores
+    - **Policy enforcement** — Enforced at every step of execution
+    - **Detect → Reason → Act → Learn** — Continuous loop that improves with every interaction
+  </Accordion>
 
-### Layer 3 — Agent Orchestration Runtime
+  <Accordion title="Layer 4 — Playbook Studio" icon="book-open">
+    Where multi-step capabilities are defined, tested, deployed, and refined.
 
-The execution layer that runs single and multi-agent workflows at enterprise scale.
+    - **Playbooks** — UA reviews, churn scans, lifecycle analyses — built once, run automatically
+    - **Scouts** — Agents that run on schedule and deliver graded reports (A–E) per title, region, or team
+    - **Proactive Alerts** — When CAC spikes or retention drops, Actioneer sends a Slack alert with root cause attached
+  </Accordion>
 
-| Capability | Description |
-| :--- | :--- |
-| **Multi-agent** | A single question can trigger agents across every corner of the data estate simultaneously |
-| **Model abstraction** | Models can be swapped or upgraded without breaking workflows |
-| **Tool integration** | Agents connect to operational systems, not just data stores |
-| **Policy enforcement** | Enforced at every step of execution |
-| **Detect → Reason → Act → Learn** | Continuous loop that improves with every interaction |
+  <Accordion title="Layer 5 — Insight-to-Action Layer" icon="zap">
+    Closes the loop between query and execution.
 
-### Layer 4 — Playbook Studio
+    - **Segment push** — One-click push to CleverTap, WebEngage, MoEngage, Braze
+    - **Cohort to campaign** — Identify high-value users and reach them before the moment passes
+    - **Anomaly to fix** — Spot it, plan it, push it — without leaving the tab
+  </Accordion>
 
-Where multi-step capabilities are defined, tested, deployed, and refined.
+  <Accordion title="Layer 6 — Continuous Observability" icon="eye">
+    Trace-level visibility into every agent decision, every playbook run, every model call.
 
-| Component | Description |
-| :--- | :--- |
-| **Playbooks** | UA reviews, churn scans, lifecycle analyses — built once, run automatically. Weeks of analyst effort, on autopilot. |
-| **Scouts** | Agents that run on schedule (daily, weekly, every 6 hours) and deliver graded reports (A–E) per title, region, or team — before anyone has to ask. |
-| **Proactive Alerts** | When CAC spikes or retention drops, Actioneer sends a Slack alert with root cause attached. |
+    - **SQL transparency** — All answers include the SQL query used — auditable and traceable
+    - **Performance analytics** — Drift detection, execution metrics, and quality monitoring
+    - **Confidence flagging** — Low-confidence queries are flagged — no hallucinations permitted
+  </Accordion>
 
-### Layer 5 — Insight-to-Action Layer
-
-Closes the loop between query and execution.
-
-| Capability | Description |
-| :--- | :--- |
-| **Segment push** | One-click push to CleverTap, WebEngage, MoEngage, Braze |
-| **Cohort to campaign** | Identify high-value users and reach them before the moment passes |
-| **Anomaly to fix** | Spot it, plan it, push it — without leaving the tab |
-
-### Layer 6 — Continuous Observability
-
-Trace-level visibility into every agent decision, every playbook run, every model call.
-
-| Capability | Description |
-| :--- | :--- |
-| **SQL transparency** | All answers include the SQL query used — auditable and traceable |
-| **Performance analytics** | Drift detection, execution metrics, and quality monitoring |
-| **Confidence flagging** | Low-confidence queries are flagged — no hallucinations permitted |
-
-### Layer 7 — Enterprise Governance
-
-| Capability | Description |
-| :--- | :--- |
-| **RBAC** | Who builds what, who runs what, who sees what |
-| **Audit logs** | Full trail for all data access and agent actions |
-| **Explainable AI** | No black box answers — reasoning and SQL visible on every response |
-| **Private cloud** | Custom deployment available for institutions that require it |
-| **Data residency** | US, EU, APAC options |
+  <Accordion title="Layer 7 — Enterprise Governance" icon="shield-check">
+    - **RBAC** — Who builds what, who runs what, who sees what
+    - **Audit logs** — Full trail for all data access and agent actions
+    - **Explainable AI** — No black box answers — reasoning and SQL visible on every response
+    - **Private cloud** — Custom deployment available for institutions that require it
+    - **Data residency** — US, EU, APAC options
+  </Accordion>
+</AccordionGroup>
 
 ---
 

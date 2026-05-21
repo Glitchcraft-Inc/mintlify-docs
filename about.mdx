@@ -3,6 +3,7 @@ title: "Introduction"
 sidebarTitle: "Introduction"
 icon: "info"
 description: "What Actioneer is, who it serves, and how it fits into your data stack."
+mode: "wide"
 ---
 
 # Actioneer
@@ -19,24 +20,47 @@ Actioneer is the platform that gives enterprise teams fast answers from their ow
 
 **Stuck.** Even when the answer arrives, the action lives somewhere else. Insight and operation are disconnected — value is identified continuously and captured occasionally.
 
-| Before Actioneer | After Actioneer |
-| :--- | :--- |
-| Analyst requests take 3+ days to turn around | Any question answered in the same conversation |
-| Insights die in dashboards — they don't connect to actions | A single query triggers agents across the entire data estate |
-| Every team operates on different definitions of the same metrics | One unified context layer — everyone works on the same definitions |
-| Anomalies are caught late, after they've compounded | Anomalies caught proactively with root cause attached |
-| AI pilots stall — no infrastructure to connect data, context, and execution | First AI capability ships in weeks, scope expands from there |
+<Tabs>
+  <Tab title="Before Actioneer" icon="x">
+    <Card type="danger">
+      - Analyst requests take **3+ days** to turn around
+      - Insights die in dashboards — they don't connect to actions
+      - Every team operates on **different definitions** of the same metrics
+      - Anomalies are caught late, after they've compounded
+      - AI pilots stall — no infrastructure to connect data, context, and execution
+    </Card>
+  </Tab>
+  <Tab title="After Actioneer" icon="check">
+    <Card type="check">
+      - Any question answered in the **same conversation**
+      - A single query triggers agents across the **entire data estate**
+      - One unified context layer — everyone works on the **same definitions**
+      - Anomalies caught **proactively** with root cause attached
+      - First AI capability ships in **weeks**, scope expands from there
+    </Card>
+  </Tab>
+</Tabs>
 
-One number across teams, because every answer is grounded in a shared context layer. Answers in seconds, because every team can ask in plain language. Audit-ready decisions, because every answer traces back to the source rows that produced it, and every action is logged.
+**Actioneer collapses the gap between question and action.** One platform, one context layer, one audit trail.
 
 ---
 
 ## What Actioneer Is Not
 
-- **Not a generic LLM wrapper.** ChatGPT, Claude, and Gemini are model interfaces. Actioneer is the infrastructure that makes those models useful inside an enterprise — unified data, business context, observability, governance, action-taking. The model is one ingredient.
-- **Not a no-code BI tool.** Tableau, Mode, and Looker are dashboards for analysts. Actioneer answers questions in natural language for non-technical operators, and acts on the answers.
-- **Not a consulting firm.** Actioneer is engineering-led and platform-backed. Consulting firms re-engage per project; Actioneer builds in and operates the capabilities it ships.
-- **Not a vertical AI tool.** Vertical tools (lending agents, FP&A copilots) are narrow and pre-defined. Actioneer is the platform underneath any of those, built for the customer's specific decisions and definitions.
+<CardGroup cols={2}>
+  <Card title="Not a generic LLM wrapper" icon="bot" type="warning">
+    ChatGPT, Claude, and Gemini are model interfaces. Actioneer is the infrastructure that makes those models useful inside an enterprise — unified data, business context, observability, governance, action-taking.
+  </Card>
+  <Card title="Not a no-code BI tool" icon="chart-pie" type="warning">
+    Tableau, Mode, and Looker are dashboards for analysts. Actioneer answers questions in natural language for non-technical operators, and acts on the answers.
+  </Card>
+  <Card title="Not a consulting firm" icon="briefcase" type="warning">
+    Actioneer is engineering-led and platform-backed. Consulting firms re-engage per project; Actioneer builds in and operates the capabilities it ships.
+  </Card>
+  <Card title="Not a vertical AI tool" icon="puzzle" type="warning">
+    Vertical tools (lending agents, FP&A copilots) are narrow and pre-defined. Actioneer is the platform underneath any of those, built for the customer's specific decisions and definitions.
+  </Card>
+</CardGroup>
 
 ---
 
@@ -44,15 +68,25 @@ One number across teams, because every answer is grounded in a shared context la
 
 Actioneer serves consumer product companies and enterprise lines of business where the AI mandate is set but operational capability is not yet built. The primary buyer is a senior operator — head of growth, retention, ops, or FP&A — not IT or engineering.
 
-| Vertical | Primary Use Cases |
-| :--- | :--- |
-| **Software / SaaS** | Growth analytics, FP&A variance commentary, customer-success monitoring |
-| **Lending / NBFC** | Pre-30 DPD early warning, LAP cross-sell, branch ops query layer |
-| **Fintech** | Cross-sell, funnel optimisation, channel attribution, KYC bottleneck surfacing |
-| **Consumer Media & Entertainment** | Retention diagnostics, content-spend optimisation, creative performance |
-| **Manufacturing & Supply Chain** | Supplier risk ranked by customer impact, production-schedule integrity, exception triage |
+<Tabs>
+  <Tab title="Software / SaaS" icon="code">
+    Growth analytics, FP&A variance commentary, customer-success monitoring.
+  </Tab>
+  <Tab title="Lending / NBFC" icon="landmark">
+    Pre-30 DPD early warning, LAP cross-sell, branch ops query layer.
+  </Tab>
+  <Tab title="Fintech" icon="wallet">
+    Cross-sell, funnel optimisation, channel attribution, KYC bottleneck surfacing.
+  </Tab>
+  <Tab title="Consumer Media" icon="play">
+    Retention diagnostics, content-spend optimisation, creative performance.
+  </Tab>
+  <Tab title="Manufacturing" icon="factory">
+    Supplier risk ranked by customer impact, production-schedule integrity, exception triage.
+  </Tab>
+</Tabs>
 
-The platform is horizontal infrastructure. The verticals are entry points, not limits.
+<Tip>The platform is horizontal infrastructure. The verticals are entry points, not limits.</Tip>
 
 ---
 
@@ -89,9 +123,12 @@ Actioneer is built in seven layers, each serving a distinct function.
 
 Actioneer holds the top score on **DABstep**, a public benchmark for data analysis agents built by Adyen and Hugging Face. The benchmark tests whether AI agents can do real data work end-to-end — joining sources, interpreting business context, producing correct answers.
 
+<Check>
+  **Actioneer v0.5 — 93.78%** <Badge color="green">Rank #1</Badge>
+</Check>
+
 | Agent | Score |
 | :--- | :--- |
-| **Actioneer v0.5** | **93.78%** |
 | NVIDIA KGMON | 89.56% |
 | Microsoft 365 Copilot | 68.00% |
 | Sphinx AI | 65.56% |
@@ -145,33 +182,33 @@ Actioneer is SOC 2 Type II certified, ISO 27001 certified, GDPR compliant, HIPAA
 
 ## Company
 
-| Field | Detail |
-| :--- | :--- |
-| **Legal entity** | Glitchcraft Inc. (operating as Actioneer) |
-| **HQ** | 650 Castro St, Mountain View, CA 94041 |
-| **Contact** | connect@actioneer.com |
-| **LinkedIn** | [linkedin.com/company/gameramp](https://linkedin.com/company/gameramp) |
-| **Website** | [actioneer.com](https://www.actioneer.com) |
+**Glitchcraft Inc.** (operating as Actioneer) · 650 Castro St, Mountain View, CA 94041 · [connect@actioneer.com](mailto:connect@actioneer.com) · [actioneer.com](https://www.actioneer.com) · [LinkedIn](https://linkedin.com/company/gameramp)
 
 ### Team
 
-| Person | Role | Background |
-| :--- | :--- | :--- |
-| **Vivek Ramachandran** | CEO | Product analytics at Electronic Arts. 0-to-1 product at Big Viking Games. Consumer-tech investor at Matrix / Z47. |
-| **Sashank Vandrangi** | CPTO | Monetisation design for Candy Crush Saga at King. AVP Product at MPL. Consumer practice at BCG. |
-| **Taha Tinwala** | COO | Financial-services investor at Matrix / Z47. KPMG Deal Advisory on BFSI M&A. EY business consulting. |
+<CardGroup cols={3}>
+  <Card title="Vivek Ramachandran" icon="user">
+    **CEO** — Product analytics at Electronic Arts. 0-to-1 product at Big Viking Games. Consumer-tech investor at Matrix / Z47.
+  </Card>
+  <Card title="Sashank Vandrangi" icon="user">
+    **CPTO** — Monetisation design for Candy Crush Saga at King. AVP Product at MPL. Consumer practice at BCG.
+  </Card>
+  <Card title="Taha Tinwala" icon="user">
+    **COO** — Financial-services investor at Matrix / Z47. KPMG Deal Advisory on BFSI M&A. EY business consulting.
+  </Card>
+</CardGroup>
 
 ### By the Numbers
 
-| Metric | Value |
-| :--- | :--- |
-| **Clients** | 15 across 5 industries |
-| **Engineering team** | 30 |
-| **Production deployments** | 12 live |
+<CardGroup cols={3}>
+  <Card title="15 Clients" icon="building">across 5 industries</Card>
+  <Card title="30 Engineers" icon="code">full platform team</Card>
+  <Card title="12 Deployments" icon="rocket">live in production</Card>
+</CardGroup>
 
 ### Investors
 
-Bitkraft, MIXI, Sony Innovation Fund, South Park Commons.
+<Badge color="purple">Bitkraft</Badge> <Badge color="purple">MIXI</Badge> <Badge color="purple">Sony Innovation Fund</Badge> <Badge color="purple">South Park Commons</Badge>
 
 <Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
   See the seven-layer architecture and how a question becomes an action.

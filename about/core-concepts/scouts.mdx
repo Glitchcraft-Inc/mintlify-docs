@@ -5,15 +5,9 @@ icon: "radar"
 description: "Automated monitoring agents that watch your data and alert you proactively."
 ---
 
-<CardGroup cols={5}>
-  <Card title="Analytics" icon="message-square" href="/about/core-concepts/conversational-analytics" />
-  <Card title="Scouts" icon="radar" href="/about/core-concepts/scouts" />
-  <Card title="Playbooks" icon="book-open" href="/about/core-concepts/playbooks" />
-  <Card title="Agents" icon="zap" href="/about/core-concepts/custom-agents" />
-  <Card title="All Concepts" icon="layers" href="/about/core-concepts" />
-</CardGroup>
-
 # Scouts
+
+Your metrics move before anyone notices. **Scouts catch it first.**
 
 A Scout is an automated monitoring agent that watches the metrics, signals, and conditions material to the business. When something moves, the Scout isolates the cause, routes the diagnosis to the right owner, and surfaces the full reasoning — not just an alert.
 
@@ -51,13 +45,21 @@ Click **+ Create Scout** from the Scouts page, or ask in plain language:
 
 ### Writing effective prompts
 
-| Good prompt | Weak prompt |
-| :--- | :--- |
-| *"Alert me if D1 retention falls below 30% for any campaign"* | *"Watch retention"* |
-| *"Notify me when daily spend exceeds $50K across all channels"* | *"Monitor spending"* |
-| *"Flag any country where CPI increases by more than 25% week-over-week"* | *"Track CPI"* |
+<Check>
+  **Good prompts** — specific metric, threshold, scope, and timeframe:
+  - *"Alert me if D1 retention falls below 30% for any campaign"*
+  - *"Notify me when daily spend exceeds $50K across all channels"*
+  - *"Flag any country where CPI increases by more than 25% week-over-week"*
+</Check>
 
-Be specific about: the **metric** (what to measure), the **threshold** (what triggers the alert), the **scope** (all data or filtered), and the **timeframe** (day-over-day, week-over-week).
+<Danger>
+  **Weak prompts** — too vague for actionable monitoring:
+  - *"Watch retention"*
+  - *"Monitor spending"*
+  - *"Track CPI"*
+</Danger>
+
+Be specific about: the **metric**, the **threshold**, the **scope**, and the **timeframe**.
 
 ---
 

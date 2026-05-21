@@ -9,12 +9,12 @@ description: "Connect PostgreSQL to Actioneer as a read-only data source."
 
 This guide walks through connecting a PostgreSQL database to Actioneer. The setup creates a dedicated database user with `SELECT`-only permissions on the schemas you specify.
 
-| | |
-| :--- | :--- |
-| **Prerequisites** | PostgreSQL instance (self-hosted, RDS, Cloud SQL, or any managed provider), Actioneer account |
-| **Access granted** | `SELECT` queries on specified schemas |
-| **Estimated time** | 15 minutes |
-| **Actioneer IP** | `35.244.14.238` (whitelist if your database uses an IP allowlist) |
+<Note>
+  - **Prerequisites:** PostgreSQL instance (self-hosted, RDS, Cloud SQL, or any managed provider), Actioneer account
+  - **Access granted:** `SELECT` queries on specified schemas
+  - **Estimated time:** ~15 minutes
+  - **Actioneer IP:** `35.244.14.238`
+</Note>
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or database settings.
