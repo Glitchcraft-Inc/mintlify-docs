@@ -7,7 +7,13 @@ description: "Connect a data warehouse to give Actioneer read-only access to you
 
 # Data Warehouses
 
-Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection in Actioneer.
+Your warehouse is the foundation. **Connect it once — Actioneer queries it in place, read-only, no data migration.**
+
+Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection.
+
+<Tip>
+  All warehouse connections are **read-only** (`SELECT` only). Actioneer's IP for whitelisting: `35.244.14.238`.
+</Tip>
 
 <CardGroup cols={2}>
   <Card title="Amazon Athena" icon="search" href="/integrations/data-warehouses/amazon-athena">
