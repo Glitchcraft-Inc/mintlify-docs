@@ -9,12 +9,12 @@ description: "Connect Snowflake to Actioneer as a read-only data source."
 
 This guide walks through connecting a Snowflake account to Actioneer. The setup creates a dedicated, least-privilege service user with a Programmatic Access Token (PAT) and locks it to Actioneer's IP address.
 
-<Note>
-  - **Prerequisites:** Snowflake account with `ACCOUNTADMIN` access, Actioneer account
-  - **Access granted:** `SELECT` queries on specified tables and views
-  - **Estimated time:** ~20 minutes
-  - **Actioneer IP:** `35.244.14.238`
-</Note>
+| | |
+| :--- | :--- |
+| **Prerequisites** | Snowflake account with `ACCOUNTADMIN` access, Actioneer account |
+| **Access granted** | `SELECT` queries on specified tables and views |
+| **Estimated time** | ~20 minutes |
+| **Actioneer IP** | `35.244.14.238` |
 
 <Info>
   The service user created below holds only `SELECT` and `USAGE` grants — no write, delete, or DDL permissions.
