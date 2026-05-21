@@ -4,7 +4,7 @@
   "name": "Actioneer Docs",
   "description": "Enterprise AI that answers any data question and acts on it.",
   "banner": {
-    "content": "Actioneer holds the **#1 score (93.78%)** on the [DABstep benchmark](https://dabstep.huggingface.co/leaderboard) by Adyen & Hugging Face.",
+    "content": "Actioneer holds the **#1 score (93.78%)** on the [DABstep benchmark](https://huggingface.co/spaces/adyen/DABstep) by Adyen & Hugging Face.",
     "dismissible": true
   },
   "colors": {
