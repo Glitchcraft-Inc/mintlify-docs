@@ -7,11 +7,17 @@ description: "What Actioneer is, who it serves, and how it fits into your data s
 
 # Actioneer
 
-Actioneer is the intelligence and action layer for consumer and B2B businesses. It connects to your full data estate, understands your business context, answers any operational question instantly, and closes the loop from insight to action — without leaving the platform.
+Actioneer is the platform that gives enterprise teams fast answers from their own data, and then builds the agents and playbooks that act on those answers. It connects to your full data estate, understands your business context, answers any operational question instantly, and closes the loop from insight to action — across Web, Slack, and CLI.
 
 ---
 
 ## The Problem
+
+**Scattered.** Six tools open, three different numbers for the same KPI. Every team has its own view. None of them reconcile.
+
+**Slow.** The median time from a business question to a defensible answer is four days. Most decisions get made on instinct because nobody has time to wait.
+
+**Stuck.** Even when the answer arrives, the action lives somewhere else. Insight and operation are disconnected — value is identified continuously and captured occasionally.
 
 | Before Actioneer | After Actioneer |
 | :--- | :--- |
@@ -25,15 +31,15 @@ Actioneer is the intelligence and action layer for consumer and B2B businesses. 
 
 ## Who Is Actioneer For
 
-Actioneer serves consumer product companies (gaming, fintech, e-commerce) and enterprise lines of business where the AI mandate is set but operational capability is not yet built.
+Actioneer serves consumer product companies and enterprise lines of business where the AI mandate is set but operational capability is not yet built. The primary buyer is a senior operator — head of growth, retention, ops, or FP&A — not IT or engineering.
 
 | Vertical | Primary Use Cases |
 | :--- | :--- |
-| **Consumer Apps** | Retention diagnostics, support escalation routing, growth experiment copilot |
-| **Banking & Lending** | Underwriting copilot, portfolio early-warning, regulatory query response |
-| **B2B Operations** | Quote-to-cash analyst, account health monitoring, exception triage |
-| **Finance & FP&A** | Variance commentary, period close assistant, forecast accuracy diagnostic |
-| **GTM Operations** | Pipeline integrity agent, performance diagnostic, territory optimization |
+| **Software / SaaS** | Growth analytics, FP&A variance commentary, customer-success monitoring |
+| **Lending / NBFC** | Pre-30 DPD early warning, LAP cross-sell, branch ops query layer |
+| **Fintech** | Cross-sell, funnel optimisation, channel attribution, KYC bottleneck surfacing |
+| **Consumer Media & Entertainment** | Retention diagnostics, content-spend optimisation, creative performance |
+| **Manufacturing & Supply Chain** | Supplier risk ranked by customer impact, production-schedule integrity, exception triage |
 
 The platform is horizontal infrastructure. The verticals are entry points, not limits.
 
@@ -68,9 +74,27 @@ Actioneer is built in seven layers, each serving a distinct function.
 
 ---
 
+## Independent Proof — DABstep Benchmark
+
+Actioneer holds the top score on **DABstep**, a public benchmark for data analysis agents built by Adyen and Hugging Face. The benchmark tests whether AI agents can do real data work end-to-end — joining sources, interpreting business context, producing correct answers.
+
+| Agent | Score |
+| :--- | :--- |
+| **Actioneer v0.5** | **93.78%** |
+| NVIDIA KGMON | 89.56% |
+| Microsoft 365 Copilot | 68.00% |
+| Sphinx AI | 65.56% |
+| Google DS-Star | 52.00% |
+
+<Info>
+  Source: [dabstep.huggingface.co/leaderboard](https://dabstep.huggingface.co/leaderboard), hosted by Adyen and Hugging Face.
+</Info>
+
+---
+
 ## Security and Compliance
 
-Actioneer is SOC 2 Type II certified, ISO 27001 certified, and GDPR compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Custom private cloud deployment and data residency (US, EU, APAC) are available.
+Actioneer is SOC 2 Type II certified, ISO 27001 certified, GDPR compliant, HIPAA-aligned (BAA available), and DPDP Act (India) compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Read-only access by default — nothing is ingested, copied, or relocated. Private cloud deployment and data residency (US, EU, APAC) are available.
 
 <CardGroup cols={2}>
   <Card title="Data Protection" icon="shield-check" href="/security/data-protection">
@@ -92,6 +116,26 @@ Actioneer is SOC 2 Type II certified, ISO 27001 certified, and GDPR compliant. A
 | **Contact** | connect@actioneer.com |
 | **LinkedIn** | [linkedin.com/company/gameramp](https://linkedin.com/company/gameramp) |
 | **Website** | [actioneer.com](https://www.actioneer.com) |
+
+### Team
+
+| Person | Role | Background |
+| :--- | :--- | :--- |
+| **Vivek Ramachandran** | CEO | Product analytics at Electronic Arts. 0-to-1 product at Big Viking Games. Consumer-tech investor at Matrix / Z47. |
+| **Sashank Vandrangi** | CPTO | Monetisation design for Candy Crush Saga at King. AVP Product at MPL. Consumer practice at BCG. |
+| **Taha Tinwala** | COO | Financial-services investor at Matrix / Z47. KPMG Deal Advisory on BFSI M&A. EY business consulting. |
+
+### By the Numbers
+
+| Metric | Value |
+| :--- | :--- |
+| **Clients** | 15 across 5 industries |
+| **Engineering team** | 30 |
+| **Production deployments** | 12 live |
+
+### Investors
+
+Bitkraft, MIXI, Sony Innovation Fund, South Park Commons.
 
 <Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
   See the seven-layer architecture and how a question becomes an action.
