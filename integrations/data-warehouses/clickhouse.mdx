@@ -28,12 +28,23 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
     **ClickHouse Cloud:** Open your service in the ClickHouse Cloud console. The host and port are displayed on the service overview page.
 
-    **Self-hosted:** Use the hostname or IP address of your ClickHouse server. The default HTTP port is `8123`. The default native port is `9000`.
+    **Self-hosted:** Use the hostname or IP address of your ClickHouse server.
 
     | Value | Location | Example |
     | :--- | :--- | :--- |
     | **Host** | Service overview or server config | `my-instance.clickhouse.cloud` |
-    | **Port** | Service overview or server config | `8123` |
+    | **Port** | See port table below | `8443` (Cloud) or `8123` (self-hosted) |
+
+    **Port reference:**
+
+    | Port | Environment | Protocol |
+    | :--- | :--- | :--- |
+    | `8443` | ClickHouse Cloud | HTTPS (required) |
+    | `8123` | Self-hosted | HTTP |
+
+    <Warning>
+      Native port `9000` is not supported by this connector. Use the HTTP interface (`8123` for self-hosted, `8443` for ClickHouse Cloud).
+    </Warning>
   </Step>
 
   <Step title="Create a read-only database user">

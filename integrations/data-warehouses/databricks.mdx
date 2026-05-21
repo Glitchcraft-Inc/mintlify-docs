@@ -81,8 +81,8 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     | Field | Value |
     | :-- | :-- |
     | **Connection Name** | A descriptive label, e.g. `Production Databricks` |
-    | **Server Hostname** | From Step 1 (e.g., `adb-1234567890.5.azuredatabricks.net`) |
-    | **Schema / Database** | Optional — leave as `default` if unsure |
+    | **Server Hostname** | From Step 1 (e.g., `adb-1234567890.5.azuredatabricks.net`) — **do not include `https://`** |
+    | **Schema / Database** | The schema from Step 3 (e.g., `default`). Required — Actioneer scopes table discovery to this value. |
     | **HTTP Path** | From Step 1 (starts with `/sql/1.0/warehouses/`) |
     | **Catalog** | The catalog from Step 3 (e.g., `main`) |
     | **Personal Access Token** | From Step 2 (starts with `dapi`) |

@@ -34,17 +34,17 @@
         }
       ]
     },
-    "groups": [
+    "tabs": [
       {
-        "group": "About Us",
+        "tab": "About",
         "icon": "info",
-        "pages": [
-          "about",
+        "groups": [
           {
-            "group": "How It Works",
-            "icon": "workflow",
+            "group": "About Actioneer",
             "pages": [
-              "about/how-it-works"
+              "about",
+              "about/how-it-works",
+              "about/getting-started"
             ]
           },
           {
@@ -63,14 +63,13 @@
               "about/core-concepts/metrics",
               "about/core-concepts/knowledge"
             ]
-          },
-          "about/getting-started"
+          }
         ]
       },
       {
-        "group": "Integrations",
+        "tab": "Integrations",
         "icon": "plug",
-        "pages": [
+        "groups": [
           {
             "group": "Data Warehouses",
             "icon": "database",
@@ -107,16 +106,28 @@
               "integrations/mmp/appsflyer",
               "integrations/mmp/singular"
             ]
+          },
+          {
+            "group": "Collaboration",
+            "icon": "message-circle",
+            "pages": [
+              "integrations/slack"
+            ]
           }
         ]
       },
       {
-        "group": "Security and Privacy",
+        "tab": "Security",
         "icon": "shield-check",
-        "pages": [
-          "security/data-protection",
-          "security/governance",
-          "security/responsible-ai"
+        "groups": [
+          {
+            "group": "Security and Privacy",
+            "pages": [
+              "security/data-protection",
+              "security/governance",
+              "security/responsible-ai"
+            ]
+          }
         ]
       }
     ]

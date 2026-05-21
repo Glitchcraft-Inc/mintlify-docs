@@ -56,7 +56,7 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     ```
 
     <Note>
-      Replace `your_schema` with your actual schema name (e.g., `public` or `reporting`). Run the `GRANT` statements for each schema Actioneer should access.
+      Replace `your_schema` with your actual schema name (e.g., `public` or `reporting`). The **Database Name** is the top-level database; `your_schema` is a namespace within it. Run the `GRANT` statements for each schema Actioneer should access.
     </Note>
 
     <Warning>
@@ -77,7 +77,7 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     | **Database Name** | From Step 1 (e.g., `analytics`) |
     | **Username** | `actioneer_readonly` |
     | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — enable to connect via a bastion host for private databases |
+    | **SSH Tunnel** | Optional — enable to connect via a bastion host for private databases. Also required if your provider enforces SSL (e.g., some RDS configs, Heroku Postgres). |
 
     4. Click **Connect**.
   </Step>
@@ -93,7 +93,7 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
   </Accordion>
 
   <Accordion title="When should I use the SSH Tunnel option?">
-    Enable the SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint). This connects Actioneer via a bastion host that has access to the private network.
+    Enable the SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint), or if your provider requires SSL connections. The tunnel connects Actioneer via a bastion host that has access to the private network.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
