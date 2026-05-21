@@ -19,7 +19,7 @@ Actioneer enforces role-based access control (RBAC) at the workspace level. Each
 | :--- | :--- | :--- | :--- |
 | Connect and manage data sources | Yes | No | No |
 | Define and edit metric definitions | Yes | Yes | No |
-| Ask questions in Chat | Yes | Yes | Yes |
+| Ask questions via Conversational Analytics | Yes | Yes | Yes |
 | Create and edit Boards | Yes | Yes | No |
 | Create and push Segments | Yes | Yes | No |
 | View Boards and results | Yes | Yes | Yes |
@@ -52,10 +52,10 @@ Actioneer does not produce opaque answers. Every response is traceable back to t
 
 | Principle | How it works |
 | :--- | :--- |
-| **SQL visibility** | Every answer in Chat includes the SQL query that generated it. Users can inspect, copy, and validate the query independently. |
+| **SQL visibility** | Every answer includes the SQL query that generated it. Users can inspect, copy, and validate the query independently. |
 | **Source attribution** | Results reference the specific tables, columns, and metric definitions used. |
 | **Confidence flagging** | When Actioneer has low confidence in an answer — due to ambiguous questions, missing data, or schema gaps — it flags the result rather than guessing. |
-| **No hallucinations by design** | Answers are grounded in your metric definitions and schema, not the model's assumptions. The Memory Layer ensures that business terms are interpreted correctly. |
+| **No hallucinations by design** | Answers are grounded in your metric definitions and schema, not the model's assumptions. The Context Engine ensures that business terms are interpreted correctly. |
 
 ---
 
