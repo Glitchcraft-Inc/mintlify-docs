@@ -1,0 +1,223 @@
+---
+title: "Introduction"
+sidebarTitle: "Introduction"
+icon: "info"
+description: "What Actioneer is, who it serves, and how it fits into your data stack."
+mode: "wide"
+---
+
+# Actioneer
+
+Actioneer is the platform that gives enterprise teams fast answers from their own data, and then builds the agents and playbooks that act on those answers. It connects to your full data estate, understands your business context, answers any operational question instantly, and closes the loop from insight to action — across Web, Slack, and CLI.
+
+---
+
+## The Problem
+
+**Scattered.** Six tools open, three different numbers for the same KPI. Every team has its own view. None of them reconcile.
+
+**Slow.** The median time from a business question to a defensible answer is four days. Most decisions get made on instinct because nobody has time to wait.
+
+**Stuck.** Even when the answer arrives, the action lives somewhere else. Insight and operation are disconnected — value is identified continuously and captured occasionally.
+
+<Tabs>
+  <Tab title="Before Actioneer" icon="x">
+    <Card type="danger">
+      - Analyst requests take **3+ days** to turn around
+      - Insights die in dashboards — they don't connect to actions
+      - Every team operates on **different definitions** of the same metrics
+      - Anomalies are caught late, after they've compounded
+      - AI pilots stall — no infrastructure to connect data, context, and execution
+    </Card>
+  </Tab>
+  <Tab title="After Actioneer" icon="check">
+    <Card type="check">
+      - Any question answered in the **same conversation**
+      - A single query triggers agents across the **entire data estate**
+      - One unified context layer — everyone works on the **same definitions**
+      - Anomalies caught **proactively** with root cause attached
+      - First AI capability ships in **weeks**, scope expands from there
+    </Card>
+  </Tab>
+</Tabs>
+
+**Actioneer collapses the gap between question and action.** One platform, one context layer, one audit trail.
+
+---
+
+## What Actioneer Is Not
+
+<CardGroup cols={2}>
+  <Card title="Not a generic LLM wrapper" icon="bot" type="warning">
+    ChatGPT, Claude, and Gemini are model interfaces. Actioneer is the infrastructure that makes those models useful inside an enterprise — unified data, business context, observability, governance, action-taking.
+  </Card>
+  <Card title="Not a no-code BI tool" icon="chart-pie" type="warning">
+    Tableau, Mode, and Looker are dashboards for analysts. Actioneer answers questions in natural language for non-technical operators, and acts on the answers.
+  </Card>
+  <Card title="Not a consulting firm" icon="briefcase" type="warning">
+    Actioneer is engineering-led and platform-backed. Consulting firms re-engage per project; Actioneer builds in and operates the capabilities it ships.
+  </Card>
+  <Card title="Not a vertical AI tool" icon="puzzle" type="warning">
+    Vertical tools (lending agents, FP&A copilots) are narrow and pre-defined. Actioneer is the platform underneath any of those, built for the customer's specific decisions and definitions.
+  </Card>
+</CardGroup>
+
+---
+
+## Who Is Actioneer For
+
+Actioneer serves consumer product companies and enterprise lines of business where the AI mandate is set but operational capability is not yet built. The primary buyer is a senior operator — head of growth, retention, ops, or FP&A — not IT or engineering.
+
+<Tabs>
+  <Tab title="Software / SaaS" icon="code">
+    **Common pain:** Product data, CRM data, revenue data, and behavioural data live in different stacks. The data team is overwhelmed. Growth and finance can't move on questions same-day.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Growth analytics across product / ads / CRM | &nbsp; Conversational Analytics |
+    | &nbsp; FP&A variance commentary and board-pack prep | &nbsp; Custom Agent |
+    | &nbsp; Customer-success health monitoring by cohort | &nbsp; Playbooks with scheduled monitoring |
+    | &nbsp; Funnel performance and conversion diagnosis | &nbsp; Conversational Analytics (Funnel parity) |
+  </Tab>
+  <Tab title="Lending / NBFC" icon="landmark">
+    **Common pain:** Origination, repayment, collections, and bureau data in separate systems. Pre-DPD risk is visible too late. Cross-sell underperforms because field teams don't get the right leads at the right time.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Pre-30 DPD early warning across branches | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; LAP cross-sell pushed directly to field CRM | &nbsp; Playbooks (triggered messaging) |
+    | &nbsp; Branch-level ops query layer (191+ branches) | &nbsp; Conversational Analytics |
+    | &nbsp; Portfolio risk monitoring and exception triage | &nbsp; Custom Agent |
+  </Tab>
+  <Tab title="Fintech" icon="wallet">
+    **Common pain:** High-intent users across multiple products, but the messaging stack doesn't reach the right segments. KYC and activation drop-off is invisible.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Dormant AUM surfacing and cross-sell targeting | &nbsp; Playbooks (cohort-specific messaging) |
+    | &nbsp; KYC bottleneck surfacing and activation diagnosis | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Channel attribution and paid-spend mismatch | &nbsp; Conversational Analytics |
+    | &nbsp; Funnel optimisation across onboarding flows | &nbsp; Conversational Analytics (Funnel parity) |
+  </Tab>
+  <Tab title="Consumer Media" icon="play">
+    **Common pain:** Content, acquisition, and retention data live in different stacks. Spend rebalancing decisions are made on instinct. The shows users complete aren't the shows that retain them.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Content-retention-creative performance joining | &nbsp; Conversational Analytics |
+    | &nbsp; Spend rebalancing off low-retention content | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Regional concentration and state-level splits | &nbsp; Conversational Analytics |
+    | &nbsp; Creative performance and retargeting flow build | &nbsp; Playbooks + Custom Agent |
+  </Tab>
+  <Tab title="Manufacturing" icon="factory">
+    **Common pain:** Supplier SLA reports exist, but customer-impact-weighted SLA reports don't. Exception handling is reactive. Risk is distributed across ERP, supplier portal, and order book.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Supplier risk ranked by customer-order impact | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Production-schedule integrity and slippage alerts | &nbsp; Playbooks + Custom Agent |
+    | &nbsp; Cross-system reconciliation (ERP / CRM / billing) | &nbsp; Custom Agent |
+    | &nbsp; Exception triage and PO re-routing recommendations | &nbsp; Playbooks |
+  </Tab>
+</Tabs>
+
+<Tip>The platform is horizontal infrastructure. The verticals are entry points, not limits.</Tip>
+
+---
+
+## Key Components
+
+Actioneer is built in seven layers, each serving a distinct function.
+
+| &nbsp; Layer | &nbsp; Component | &nbsp; Purpose |
+| :--- | :--- | :--- |
+| &nbsp; **1** | &nbsp; **Enterprise Data Connectors** | &nbsp; Connects to 700+ data sources — read-only by default, no data migration |
+| &nbsp; **2** | &nbsp; **Context Engine** | &nbsp; Semantic layer that gives every model a governed, business-specific understanding |
+| &nbsp; **3** | &nbsp; **Agent Orchestration Runtime** | &nbsp; Execution layer running single and multi-agent workflows at scale |
+| &nbsp; **4** | &nbsp; **Playbook Studio** | &nbsp; Multi-step capabilities and scheduled monitoring — built once, run automatically |
+| &nbsp; **5** | &nbsp; **Insight-to-Action Layer** | &nbsp; Closes the loop between query and execution — segment push, campaign, alert |
+| &nbsp; **6** | &nbsp; **Continuous Observability** | &nbsp; Trace-level visibility into every agent decision and playbook run |
+| &nbsp; **7** | &nbsp; **Enterprise Governance** | &nbsp; RBAC, audit logs, explainable AI, private cloud deployment |
+
+---
+
+## Actioneer vs Alternatives
+
+| &nbsp; Alternative | &nbsp; Where Actioneer differs |
+| :--- | :--- |
+| &nbsp; **Hiring analysts** | &nbsp; 3-day turnaround becomes same-conversation. Playbooks run 24/7, not 9–5. Context is codified, not siloed. |
+| &nbsp; **Building in-house** | &nbsp; 6–12 months becomes weeks. No infrastructure to build or maintain. |
+| &nbsp; **BI tools** (Tableau, Looker) | &nbsp; BI answers questions you thought to ask. Actioneer proactively surfaces what you didn't know to look for — and closes the loop to action. |
+| &nbsp; **Vertical AI point tools** | &nbsp; You adapt to the product. Actioneer is engineered to your context and continuously extended. |
+| &nbsp; **Consulting firms** | &nbsp; Project-scoped and re-engage per initiative. Actioneer is continuously maintained infrastructure. |
+| &nbsp; **Generic LLM wrappers** (ChatGPT on your data) | &nbsp; Model reasons over raw data, prone to hallucination. Actioneer reasons over a governed context layer — with an action layer attached. |
+
+---
+
+## Security and Compliance
+
+Actioneer is SOC 2 Type II certified, ISO 27001 certified, GDPR compliant, HIPAA-aligned (BAA available), and DPDP Act (India) compliant. All data is encrypted with AES-256 at rest and TLS 1.3 in transit. Read-only access by default — nothing is ingested, copied, or relocated. Private cloud deployment and data residency (US, EU, APAC) are available.
+
+<CardGroup cols={2}>
+  <Card title="Data Protection" icon="shield-check" href="/security/data-protection">
+    Encryption, credential handling, data residency, and third-party audits.
+  </Card>
+  <Card title="Governance" icon="scale" href="/security/governance">
+    Access control, audit logging, AI transparency, and metric governance.
+  </Card>
+</CardGroup>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="We already use ChatGPT / Claude directly.">
+    Actioneer makes the model useful inside the enterprise. The model is one ingredient — Actioneer adds unified data, a business-specific context layer, action-taking tools, observability, and governance. The same model produces better answers and does more useful work because it operates inside a governed context. If your team is already on Claude, the licence stays.
+  </Accordion>
+  <Accordion title="We have an internal data team.">
+    Actioneer works alongside them. The data team owns what the data means and how it is governed. Actioneer owns the engineering that turns that context into operating capabilities. Most data teams are over-subscribed — this extends their reach rather than displacing them.
+  </Accordion>
+  <Accordion title="Our data is too sensitive.">
+    Read-only access by default. Nothing ingested, copied, or relocated. Private cloud deployment available. Open-source models can run entirely inside your perimeter. SOC 2, ISO 27001, HIPAA-aligned, GDPR, DPDP. Actioneer queries in place — you can audit every query.
+  </Accordion>
+  <Accordion title="How is this different from BI tools?">
+    BI tools build dashboards for analysts. Actioneer answers questions in plain language for operators, and acts on the answers. Different layer of the stack, different user, different value. A dashboard tells you what happened. Actioneer tells you what happened, why, and routes the action.
+  </Accordion>
+  <Accordion title="How long until we see value?">
+    Two weeks to a working platform. Four to eight weeks to the first operational capability live in production. Most engagements identify the second capability before the first one ships.
+  </Accordion>
+  <Accordion title="Can we start small?">
+    Yes. The standard pilot is exactly that — one capability, four weeks, scoped to a specific problem. If it works, the engagement continues. If it doesn't, both sides have a clean parting.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Company
+
+| &nbsp; | &nbsp; |
+| :--- | :--- |
+| &nbsp; **Legal entity** | &nbsp; Glitchcraft Inc. (operating as Actioneer) |
+| &nbsp; **HQ** | &nbsp; 650 Castro St, Mountain View, CA 94041 |
+| &nbsp; **Contact** | &nbsp; [connect@actioneer.com](mailto:connect@actioneer.com) |
+| &nbsp; **Web** | &nbsp; [actioneer.com](https://www.actioneer.com) |
+| &nbsp; **LinkedIn** | &nbsp; [linkedin.com/company/gameramp](https://linkedin.com/company/gameramp) |
+
+### Team
+
+<CardGroup cols={3}>
+  <Card title="Vivek Ramachandran" icon="user">
+    **CEO** — Product analytics at Electronic Arts. 0-to-1 product at Big Viking Games. Consumer-tech investor at Matrix / Z47.
+  </Card>
+  <Card title="Sashank Vandrangi" icon="user">
+    **CPTO** — Monetisation design for Candy Crush Saga at King. AVP Product at MPL. Consumer practice at BCG.
+  </Card>
+  <Card title="Taha Tinwala" icon="user">
+    **COO** — Financial-services investor at Matrix / Z47. KPMG Deal Advisory on BFSI M&A. EY business consulting.
+  </Card>
+</CardGroup>
+
+<Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
+  See the seven-layer architecture and how a question becomes an action.
+</Card>

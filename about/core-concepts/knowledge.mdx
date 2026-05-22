@@ -1,0 +1,109 @@
+---
+title: "Knowledge"
+sidebarTitle: "Knowledge"
+icon: "brain"
+description: "Metric definitions, business context, and benchmarks that improve analysis accuracy."
+---
+
+# Knowledge
+
+The difference between a generic AI answer and the right answer is **business context.**
+
+The Knowledge Base is a store of context — metric definitions, business rules, benchmarks, and data validation notes — that Actioneer references during every analysis. It makes answers more accurate, consistent, and tailored to your specific business.
+
+---
+
+## How Knowledge Improves Accuracy
+
+| &nbsp; Scenario | &nbsp; Without Knowledge | &nbsp; With Knowledge |
+| :--- | :--- | :--- |
+| &nbsp; **CPI calculation** | &nbsp; Generic formula: total spend / total installs | &nbsp; Your definition: paid spend only / attributed installs excluding organics |
+| &nbsp; **Launch context** | &nbsp; Treats all dates equally | &nbsp; Knows July 29th was global launch — excludes pre-launch data from benchmarks |
+| &nbsp; **Data quality** | &nbsp; May query unreliable tables | &nbsp; Knows to never use `cost_etl_*` tables — they contain erroneous data |
+| &nbsp; **Evaluation** | &nbsp; No reference point for "good" or "bad" | &nbsp; Knows industry D1 retention for casual games is 35% |
+
+Knowledge turns generic analysis into *your* analysis.
+
+---
+
+## Knowledge Types
+
+| &nbsp; Type | &nbsp; What it does | &nbsp; Example |
+| :--- | :--- | :--- |
+| &nbsp; **Metric** (`METRIC`) | &nbsp; Ensures consistent formulas across all analyses | &nbsp; *"ARPDAU = IAP revenue only, excludes ad revenue"* |
+| &nbsp; **Metric Range** (`METRIC_RANGE`) | &nbsp; Flags when a value looks abnormal | &nbsp; *"CPI should be $0.50–$5.00; flag if outside this range"* |
+| &nbsp; **Insight** (`INSIGHT`) | &nbsp; Provides business context that can't be inferred from data | &nbsp; *"July 29th was global launch — exclude pre-launch data"* |
+| &nbsp; **Data Validation** (`DATA_VALIDATION`) | &nbsp; Prevents use of bad tables or wrong filters | &nbsp; *"Never use cost_etl_* tables — erroneous data"* |
+| &nbsp; **External Benchmark** (`EXTERNAL_BENCHMARK`) | &nbsp; Gives reference points for evaluation | &nbsp; *"Industry D1 retention for casual games is 35%"* |
+| &nbsp; **Reporting** (`REPORTING`) | &nbsp; Standardises output format | &nbsp; *"Always report revenue in USD, rounded to nearest dollar"* |
+| &nbsp; **Segment** (`SEGMENT`) | &nbsp; Consistent audience definitions | &nbsp; *"Whales = users with LTV > $100 in first 30 days"* |
+| &nbsp; **Visualisation** (`VISUALISATION`) | &nbsp; Charting preferences and standards | &nbsp; *"Use line charts for time-series, bar charts for comparisons"* |
+
+---
+
+## Priority and Scope
+
+**Priority levels:**
+
+| &nbsp; Priority | &nbsp; When to use |
+| :--- | :--- |
+| &nbsp; **Critical** | &nbsp; Must always be applied — e.g. *"Never use cost_etl tables"* |
+| &nbsp; **High** | &nbsp; Applied by default — e.g. metric definitions, key business context |
+| &nbsp; **Low** | &nbsp; Referenced when relevant — e.g. nice-to-have benchmarks |
+
+**Scope levels:**
+
+| &nbsp; Level | &nbsp; Visibility |
+| :--- | :--- |
+| &nbsp; **Tenant** | &nbsp; Shared across all users in your organisation |
+| &nbsp; **User** | &nbsp; Private to your account only |
+
+---
+
+## Adding Knowledge
+
+### Text-based / manual entry
+
+Tell Actioneer what to remember in plain language:
+- *"Add knowledge: D1 retention benchmark for hyper-casual games is 40%"*
+- *"Save this rule: always filter acquisition data by tenant_id = 'Spektra'"*
+
+Actioneer asks you to confirm the type, priority, and level before saving.
+
+### File-based imports
+
+Upload documents and Actioneer indexes their content.
+
+| &nbsp; Format | &nbsp; Use case |
+| :--- | :--- |
+| &nbsp; **PDF** | &nbsp; Reports, strategy docs, benchmark studies |
+| &nbsp; **CSV** | &nbsp; Metric lookup tables, reference data |
+| &nbsp; **Word (.docx)** | &nbsp; Business documentation |
+| &nbsp; **Text (.txt)** | &nbsp; Plain text notes |
+
+Uploaded files are searchable — relevant passages are retrieved during analysis.
+
+### Integrations
+
+Connect external sources to keep knowledge current:
+- **Internal wikis** — upload exports from Confluence, Notion, or similar
+- **Previous analyses** — save key findings from past work as reusable context
+
+---
+
+## Managing Knowledge
+
+| &nbsp; Action | &nbsp; How to do it | &nbsp; Example |
+| :--- | :--- | :--- |
+| &nbsp; **Search** | &nbsp; Ask what Actioneer knows about a topic | &nbsp; *"What do you know about retention?"* |
+| &nbsp; **List all** | &nbsp; Browse the full knowledge base | &nbsp; *"List all knowledge entries"* |
+| &nbsp; **Filter** | &nbsp; View by type or priority | &nbsp; *"Show all CRITICAL knowledge"* |
+| &nbsp; **Delete** | &nbsp; Remove a specific entry — confirmation required | &nbsp; *"Delete knowledge entry about CPI benchmark"* |
+
+<Info>
+  Knowledge is versioned and auditable. When a definition changes, the update is tracked with a timestamp and the user who made the change.
+</Info>
+
+<Card title="Next: Getting Started" icon="rocket" horizontal href="/about/getting-started">
+  Set up your account and ship your first capability.
+</Card>

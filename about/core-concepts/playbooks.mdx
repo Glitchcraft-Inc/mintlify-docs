@@ -1,0 +1,166 @@
+---
+title: "Playbooks"
+sidebarTitle: "Playbooks"
+icon: "book-open"
+description: "Multi-step automated workflows and scheduled monitoring — built once, run automatically."
+---
+
+# Playbooks
+
+The analysis your team runs every week — **automated, versioned, on autopilot.**
+
+A Playbook is a saved, reusable, multi-step analysis pipeline — a sequence of data queries, computations, and visualisations that can be run repeatedly with consistent results. UA reviews, churn scans, lifecycle analyses, scheduled monitoring reports — built once, run automatically. Weeks of analyst effort, on autopilot.
+
+---
+
+## Creating a Playbook
+
+### From a conversation
+
+Ask Actioneer to create one:
+- *"Create a playbook for weekly retention analysis"*
+- *"Build a playbook that tracks CPI by campaign monthly"*
+
+Actioneer redirects you to the Playbook Builder, where a guided process walks you through defining each step.
+
+### Guided Q&A Playbook
+
+The Playbook Builder runs a structured interview:
+- What metrics do you want to track?
+- What date ranges and filters apply?
+- What breakdowns (country, platform, channel) do you need?
+- What output format — tables, charts, or both?
+
+Based on your answers, it auto-generates the full playbook with validated queries.
+
+### AI-assisted generation
+
+Describe your goal in plain language and Actioneer will break it into logical steps, write the SQL and code, add visualisations, and validate against your schema.
+
+*"Create a playbook that pulls D1, D7, D30 retention by install cohort, computes drop-off rates, and produces a trend chart"*
+
+---
+
+## Playbook Structure
+
+| &nbsp; Component | &nbsp; Description |
+| :--- | :--- |
+| &nbsp; **Trigger conditions** | &nbsp; What initiates the Playbook — a schedule, an anomaly, or a manual run |
+| &nbsp; **Analytical steps** | &nbsp; Ordered sequence of SQL queries, intermediate analysis, and validation checks |
+| &nbsp; **Decision logic** | &nbsp; Conditional branching based on intermediate results |
+| &nbsp; **Action steps** | &nbsp; Push a Segment, send an alert, update a Board, or trigger a follow-up Playbook |
+| &nbsp; **Approval gates** | &nbsp; Optional human-in-the-loop checkpoints before critical actions execute |
+| &nbsp; **Outcome logging** | &nbsp; Every run is logged — inputs, outputs, decisions, and execution time |
+
+---
+
+## Playbook Features
+
+### Chat with your Playbook
+
+Once a Playbook exists, you can have a conversation about it:
+- *"Run my retention playbook for April 2026"*
+- *"What did the last run of my revenue playbook show?"*
+- *"Explain the results from cell 3"*
+
+Actioneer loads the Playbook, executes it, and walks you through the results.
+
+### Add to a Board
+
+Playbook outputs feed directly into Boards:
+- *"Add my retention playbook results to the weekly performance board"*
+- *"Create a new board from my monetisation playbook"*
+
+This connects live Playbook runs to dashboards for ongoing monitoring.
+
+---
+
+## Managing Playbooks
+
+| &nbsp; Action | &nbsp; How to do it | &nbsp; Example prompt |
+| :--- | :--- | :--- |
+| &nbsp; **Run** | &nbsp; Execute on demand or reference in a conversation | &nbsp; *"Run my retention playbook"* |
+| &nbsp; **Schedule** | &nbsp; Set a cadence — daily, weekly, every six hours | &nbsp; Configured in Playbook settings |
+| &nbsp; **Edit** | &nbsp; Modify steps, queries, filters, or visualisations | &nbsp; *"Edit my retention playbook to add D14 retention"* |
+| &nbsp; **Pause** | &nbsp; Temporarily stop a scheduled Playbook from running | &nbsp; *"Pause the revenue drop playbook"* |
+| &nbsp; **Resume** | &nbsp; Re-enable a paused Playbook | &nbsp; *"Resume the CPI alert playbook"* |
+| &nbsp; **Delete** | &nbsp; Permanently remove — confirmation required | &nbsp; *"Delete the weekly retention playbook"* |
+
+---
+
+## Scheduled Monitoring
+
+Playbooks can run on a recurring schedule to proactively monitor the business — surfacing what's moving before anyone has to ask.
+
+### Creating a scheduled Playbook
+
+Click **+ Create Scout** from the Playbooks page, or ask in plain language:
+- *"Create a playbook that monitors daily revenue and alerts me if it drops below $10K"*
+
+**Required fields:**
+
+| &nbsp; Field | &nbsp; Description | &nbsp; Example |
+| :--- | :--- | :--- |
+| &nbsp; **Name** | &nbsp; Short descriptive label | &nbsp; `Weekly Sales Report` |
+| &nbsp; **Prompt** | &nbsp; What to monitor — the metric, condition, and scope | &nbsp; *"Analyze weekly sales trends and provide insights"* |
+| &nbsp; **Schedule** | &nbsp; How often to run | &nbsp; `Daily` or `Weekly` |
+| &nbsp; **Email Recipients** | &nbsp; Team members who receive the report | &nbsp; Select from workspace members |
+
+### Writing effective prompts
+
+<Check>
+  **Good prompts** — specific metric, threshold, scope, and timeframe:
+  - *"Alert me if D1 retention falls below 30% for any campaign"*
+  - *"Notify me when daily spend exceeds $50K across all channels"*
+  - *"Flag any country where CPI increases by more than 25% week-over-week"*
+</Check>
+
+<Danger>
+  **Weak prompts** — too vague for actionable monitoring:
+  - *"Watch retention"*
+  - *"Monitor spending"*
+  - *"Track CPI"*
+</Danger>
+
+Be specific about: the **metric**, the **threshold**, the **scope**, and the **timeframe**.
+
+### Monitoring reports
+
+Each run delivers a graded report — A through E — per dimension (title, region, team). Reports include:
+- The metric values and how they compare to thresholds
+- Root-cause context when anomalies are detected
+- Recommended next steps
+
+Reports are delivered via email to selected recipients and visible on the Playbooks page.
+
+### What Playbooks can monitor
+
+| &nbsp; Monitoring Shape | &nbsp; Example |
+| :--- | :--- |
+| &nbsp; **Operating variance vs forecast** | &nbsp; Revenue, spend, or volume deviating from plan |
+| &nbsp; **Throughput vs plan across regions** | &nbsp; Branch or region falling behind on origination, fulfilment, or engagement |
+| &nbsp; **Reconciliation gaps** | &nbsp; Warehouse vs CRM vs billing not matching |
+| &nbsp; **Exception volume** | &nbsp; Spike in errors, refunds, or escalations |
+| &nbsp; **Supplier SLA misses** | &nbsp; Ranked by customer impact, not just miss count |
+| &nbsp; **Pipeline integrity by stage** | &nbsp; Deals stalling, skipping stages, or regressing |
+| &nbsp; **Account health by cohort** | &nbsp; Engagement, usage, or NRR trending down in a segment |
+
+<Info>
+  Pausing a scheduled Playbook stops monitoring but preserves the configuration. You can resume at any time. Deletion is permanent — the monitoring stops and report history is removed.
+</Info>
+
+---
+
+## Schema Drift Handling
+
+When your warehouse schema changes, Playbooks do not silently break. Actioneer detects the mismatch, attempts to auto-adapt the affected queries, and creates a new versioned copy. If auto-adaptation fails, the Playbook is flagged for review.
+
+---
+
+## Playbook Discovery
+
+Before creating a new Playbook, Actioneer checks whether a similar one already exists using semantic matching — preventing duplication.
+
+<Card title="Next: Custom Agents" icon="zap" horizontal href="/about/core-concepts/custom-agents">
+  Learn how bespoke agentic capabilities are built for your organisation.
+</Card>

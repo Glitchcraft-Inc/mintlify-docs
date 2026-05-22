@@ -1,0 +1,71 @@
+---
+title: "Slack"
+sidebarTitle: "Slack"
+icon: "slack"
+iconType: "brands"
+tag: "NEW"
+description: "Connect Slack to Actioneer and query your data from any channel."
+---
+
+# Linking Slack to Actioneer
+
+Connect your Slack workspace to Actioneer so your team can ask questions, receive insights, and share results — without leaving Slack.
+
+| | |
+| :--- | :--- |
+| &nbsp; **Prerequisites** | &nbsp; Slack workspace with admin permissions, Actioneer account |
+| &nbsp; **Estimated time** | &nbsp; ~5 minutes |
+
+---
+
+## What You Can Do
+
+| &nbsp; Capability | &nbsp; Description |
+| :--- | :--- |
+| &nbsp; **Chat with Actioneer in Slack** | &nbsp; Mention `@Sentinel` in any channel or DM the bot directly to ask questions about your data. Responses are delivered as threaded replies. |
+| &nbsp; **Share responses to Slack** | &nbsp; Share any Actioneer response to a Slack channel with one click using the share button below each AI message. |
+| &nbsp; **Thread continuity** | &nbsp; Follow-up questions in the same Slack thread use the same conversation context — Actioneer remembers what you discussed. |
+
+---
+
+## Getting Started
+
+<Steps>
+  <Step title="Link your account">
+    Type `/sentinel-connect` in any Slack channel to link your Slack user to your Actioneer account.
+  </Step>
+
+  <Step title="Ask a question">
+    Mention `@Sentinel` followed by your question in any channel.
+
+    Example: `@Sentinel what is our DAU this month?`
+
+    Actioneer responds in a threaded reply with the answer, chart, or table.
+  </Step>
+
+  <Step title="Switch apps">
+    Use `/sentinel-app` to change which connected data source the bot queries. Useful when you have multiple apps or databases connected to Actioneer.
+  </Step>
+</Steps>
+
+---
+
+## Common Questions
+
+<AccordionGroup>
+  <Accordion title="Can Actioneer modify anything in Slack?">
+    No. Actioneer only reads messages where it is mentioned (`@Sentinel`) and responds in threads. It cannot read channels it is not invited to, access DMs between other users, or modify any Slack settings.
+  </Accordion>
+
+  <Accordion title="Does every team member need an Actioneer account?">
+    Each Slack user who wants to query data needs to link their Actioneer account using `/sentinel-connect`.
+  </Accordion>
+
+  <Accordion title="Can I use Slack and the web interface at the same time?">
+    Yes. Slack and the Actioneer web interface share the same data, context, and definitions. A question asked in Slack produces the same answer as one asked on the web.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support at connect@actioneer.com.
+</Card>

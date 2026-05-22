@@ -6,6 +6,7 @@
   --default-border-color: var(--gray-800);
 }
 
+/* Sidebar nav styling */
 #sidebar .nav-dropdown-trigger {
   border: none !important;
   background: transparent !important;
@@ -29,12 +30,6 @@
   padding: 0 !important;
 }
 
-.nav-dropdown-content {
-}
-
-.nav-dropdown-content .nav-dropdown-item {
-}
-
 .nav-dropdown-content .nav-dropdown-item-icon {
   border: none !important;
   background: transparent !important;
@@ -47,14 +42,18 @@
   display: none !important;
 }
 
-#sidebar .nav-anchor span {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+/* Typography — clean sans-serif, medium weight headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em;
 }
 
+body, p, li, td, th, span {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Homepage styling */
 body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] {
   color: rgb(var(--primary)) !important;
   font-weight: 600 !important;
@@ -96,54 +95,53 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
   background-color: #09090b !important;
 }
 
-.product-guide-feature-card {
-  grid-column: 1 / -1;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-  min-height: 260px;
-  background: url('/images/sample-feature-light.png') center / cover no-repeat !important;
-  border: none !important;
-  box-shadow: none !important;
-  color: white !important;
-  .dark & {
-    background-image: url('/images/sample-feature-dark.png') !important;
-  }
-}
-
-.product-guide-feature-card > div {
-  display: flex !important;
-  flex: 1;
-  flex-direction: column !important;
-  justify-content: space-between !important;
-}
-
-.product-guide-feature-card :is(h2, h3, p, span, svg) {
-  color: white !important;
-}
-
-.product-guide-feature-card :is(svg, [class*='icon']) {
-  background-color: white !important;
-  width: 2em !important;
-  height: 2em !important;
-  margin-top: 2px;
-}
-
-.product-guide-feature-card-title {
-  font-size: 1.2em;
-  font-weight: 500;
-}
-
-.product-guide-feature-card :is(h2, h3, p, span, svg).product-guide-feature-card-description {
-  font-size: 1.05em;
-  font-weight: 400;
-  color: rgb(var(--gray-50) / 62.5%) !important;
-  .dark & {
-    color: rgb(var(--gray-50) / 50%) !important;
-  }
-}
-
 img.nav-logo {
   max-width: 220px;
   height: auto;
+}
+
+/* Table styling — black headers, white text */
+table thead tr {
+  background-color: #1a1a1a !important;
+}
+
+table thead th {
+  color: #ffffff !important;
+  font-weight: 600;
+  border-color: #1a1a1a !important;
+}
+
+.dark table thead tr {
+  background-color: #1a1a1a !important;
+}
+
+.dark table thead th {
+  color: #ffffff !important;
+  border-color: #1a1a1a !important;
+}
+
+table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+table tbody tr:hover {
+  background-color: rgba(34, 197, 94, 0.06);
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+/* Right sidebar TOC — active item highlighted in green */
+#table-of-contents a[data-active="true"],
+#table-of-contents a.active,
+nav[aria-label="On this page"] a[data-active="true"],
+nav[aria-label="On this page"] a.active {
+  color: #22C55E !important;
+  font-weight: 500;
+}
+
+#table-of-contents a[data-active="true"]::before,
+nav[aria-label="On this page"] a[data-active="true"]::before {
+  background-color: #22C55E !important;
 }

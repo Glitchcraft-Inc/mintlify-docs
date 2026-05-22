@@ -1,0 +1,94 @@
+---
+title: "AppsFlyer"
+sidebarTitle: "AppsFlyer"
+icon: "plane"
+description: "Connect AppsFlyer to Actioneer as a data source."
+---
+
+# Linking AppsFlyer as a Source
+
+This guide walks through connecting an AppsFlyer account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
+
+| | |
+| :--- | :--- |
+| &nbsp; **Prerequisites** | &nbsp; AppsFlyer account with **Admin** role and **Master API** enabled, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Attribution data, campaign metrics, and install events via the AppsFlyer API |
+| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
+
+<Warning>
+  Actioneer requires **Master API** access on your AppsFlyer account. Master API is a premium feature — if it is not enabled, contact your AppsFlyer account manager or email [partners@appsflyer.com](mailto:partners@appsflyer.com) to request access before proceeding.
+</Warning>
+
+<Info>
+  Actioneer cannot create, modify, or delete any apps, partners, postbacks, or attribution settings in your AppsFlyer account.
+</Info>
+
+---
+
+<Steps>
+  <Step title="Generate an AppsFlyer API key">
+    AppsFlyer authenticates API access via a token tied to your account. You need the API key (also called the API Token V2) from your AppsFlyer dashboard.
+
+    <Warning>
+      The following steps must be completed from an account with the **Admin** role.
+    </Warning>
+
+    1. Sign in at [hq1.appsflyer.com](https://hq1.appsflyer.com).
+    2. Click your email in the top-right corner and select **Security Center**.
+    3. Under **API Tokens**, locate the **API Token V2**.
+    4. If no token exists, click **Generate**. If one exists, click **Reveal** to view it.
+    5. Copy the **API Key**.
+
+    | &nbsp; Value | &nbsp; Location | &nbsp; Example |
+    | :--- | :--- | :--- |
+    | &nbsp; **API Key** | &nbsp; Security Center → API Tokens → API Token V2 | &nbsp; `eyJhbGciOiJBMjU2S1ci...` |
+
+    <Warning>
+      The API key grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control.
+    </Warning>
+  </Step>
+
+  <Step title="Connect AppsFlyer in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **AppsFlyer** from the list of data sources.
+    3. When prompted, select **Direct Connection**.
+    4. Complete the connection form:
+
+    | &nbsp; Field | &nbsp; Value |
+    | :--- | :--- |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production AppsFlyer` |
+    | &nbsp; **API Key** | &nbsp; From Step 1 |
+
+    5. Click **Connect**.
+  </Step>
+
+  <Step title="Verify and select games">
+    After connecting, Actioneer verifies your API key and retrieves the list of apps (games) available in your AppsFlyer account.
+
+    1. Review the list of available apps.
+    2. Select the apps whose data Actioneer should query.
+    3. Confirm your selection.
+
+    <Info>
+      You can update the selected apps later from the connection settings.
+    </Info>
+  </Step>
+</Steps>
+
+---
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="What AppsFlyer data can Actioneer access?">
+    Actioneer can query attribution data, campaign performance, install events, in-app events, and cohort data accessible via the AppsFlyer API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="How does Actioneer protect credentials?">
+    MMP credentials are stored and managed by the tenant service layer, encrypted at rest with AES-256, and transmitted over TLS 1.3. They are isolated per tenant and never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+</AccordionGroup>
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Stuck on a step or running into an error? Reach out to Actioneer support.
+</Card>

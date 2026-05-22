@@ -1,0 +1,89 @@
+---
+title: "Governance"
+sidebarTitle: "Governance"
+icon: "scale"
+description: "Access control, audit logging, and AI transparency in Actioneer."
+---
+
+# Governance
+
+Every question, every answer, every action — **logged and traceable.**
+
+Actioneer is built with governance controls that give your organisation visibility and control over who accesses data, what queries are run, and how AI-generated answers are produced. Nothing is a black box.
+
+---
+
+## Role-Based Access Control
+
+Actioneer enforces role-based access control (RBAC) at the workspace level. Each user is assigned a role that determines what they can see and do.
+
+| &nbsp; Capability | &nbsp; Admin | &nbsp; Analyst | &nbsp; Viewer |
+| :--- | :--- | :--- | :--- |
+| &nbsp; Connect and manage data sources | &nbsp; Yes | &nbsp; No | &nbsp; No |
+| &nbsp; Define and edit metric definitions | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; Ask questions via Conversational Analytics | &nbsp; Yes | &nbsp; Yes | &nbsp; Yes |
+| &nbsp; Create and edit Boards | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; Create and push Segments | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; View Boards and results | &nbsp; Yes | &nbsp; Yes | &nbsp; Yes |
+| &nbsp; Manage workspace settings | &nbsp; Yes | &nbsp; No | &nbsp; No |
+
+<Info>
+  Roles are managed at the workspace level. A user's role applies across all connected data sources within that workspace.
+</Info>
+
+---
+
+## Audit Logging
+
+Every action in Actioneer is logged. Audit logs provide a full trail of who did what, when, and on which data.
+
+| &nbsp; Log Type | &nbsp; What is captured |
+| :--- | :--- |
+| &nbsp; **Query logs** | &nbsp; Every question asked, the SQL generated, the data source queried, and the execution time |
+| &nbsp; **Access logs** | &nbsp; User logins, role changes, and data source connection events |
+| &nbsp; **Change logs** | &nbsp; Updates to metric definitions, Playbook edits, and Segment modifications |
+| &nbsp; **Push logs** | &nbsp; Segment pushes to CLM tools — which Segment, which destination, and when |
+
+Logs are retained according to your workspace's configured retention policy and are available for export.
+
+---
+
+## Explainable AI
+
+Actioneer does not produce opaque answers. Every response is traceable back to the data and logic that produced it.
+
+| &nbsp; Principle | &nbsp; How it works |
+| :--- | :--- |
+| &nbsp; **SQL visibility** | &nbsp; Every answer includes the SQL query that generated it. Users can inspect, copy, and validate the query independently. |
+| &nbsp; **Source attribution** | &nbsp; Results reference the specific tables, columns, and metric definitions used. |
+| &nbsp; **Confidence flagging** | &nbsp; When Actioneer has low confidence in an answer — due to ambiguous questions, missing data, or schema gaps — it flags the result rather than guessing. |
+| &nbsp; **No hallucinations by design** | &nbsp; Answers are grounded in your metric definitions and schema, not the model's assumptions. The Context Engine ensures that business terms are interpreted correctly. |
+
+---
+
+## Metric Governance
+
+Metric definitions are centrally managed and version-controlled — preventing the same metric from meaning different things across tools and teams. Full details on metric definition, the data catalog, and governance controls are in the Metrics page.
+
+<Card title="Metrics" icon="gauge" horizontal href="/about/core-concepts/metrics">
+  Metric definitions, data catalog, SQL types, and governance controls.
+</Card>
+
+---
+
+## Compliance Summary
+
+| &nbsp; Requirement | &nbsp; How Actioneer addresses it |
+| :--- | :--- |
+| &nbsp; **SOC 2 Type II** | &nbsp; Annual audit covering security, availability, and confidentiality controls over a sustained period |
+| &nbsp; **ISO 27001** | &nbsp; Certified ISMS with policies, risk management, and continuous improvement — audited by Schellman |
+| &nbsp; **GDPR** | &nbsp; Data minimisation, data subject rights support, 72-hour breach notification, DPA available on request |
+| &nbsp; **HIPAA** | &nbsp; Aligned — BAA available on request for healthcare and regulated data |
+| &nbsp; **DPDP Act (India)** | &nbsp; Compliant with India's Digital Personal Data Protection Act |
+| &nbsp; **RBAC** | &nbsp; Role-based access control with Admin, Analyst, and Viewer roles |
+| &nbsp; **Audit trail** | &nbsp; Full logging of queries, access events, changes, and segment pushes |
+| &nbsp; **Encryption** | &nbsp; AES-256 at rest, TLS 1.3 in transit |
+
+<Card title="Need a hand?" icon="sparkles" horizontal>
+  Questions about security, compliance, or governance? Reach out to Actioneer support at connect@actioneer.com.
+</Card>

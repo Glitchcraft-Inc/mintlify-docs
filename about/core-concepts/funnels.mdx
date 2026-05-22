@@ -1,0 +1,83 @@
+---
+title: "Funnels"
+sidebarTitle: "Funnels"
+icon: "git-branch"
+description: "Track step-by-step conversion and identify where users drop off."
+---
+
+# Funnels
+
+Users drop off somewhere. **Funnels show you exactly where — and why.**
+
+A Funnel is a sequential analysis of user steps — tracking how users move through a defined series of actions and where they drop off. Funnels help identify conversion bottlenecks and optimise user flows.
+
+---
+
+## Creating a Funnel
+
+Ask in plain language or use the Funnels page:
+- *"Create a funnel for onboarding: install → tutorial start → tutorial complete → first session"*
+- *"Build a purchase funnel from app open to checkout"*
+
+**Required fields:**
+
+| &nbsp; Field | &nbsp; Description | &nbsp; Example |
+| :--- | :--- | :--- |
+| &nbsp; **Name** | &nbsp; Unique funnel label | &nbsp; `onboarding_funnel` |
+| &nbsp; **Steps** | &nbsp; Ordered sequence of events | &nbsp; Step 1: `app_open`, Step 2: `tutorial_start`, Step 3: `first_purchase` |
+| &nbsp; **Filters** *(optional)* | &nbsp; Narrow the audience | &nbsp; Platform, country, date range, segment |
+| &nbsp; **Time window** *(optional)* | &nbsp; Max time allowed between steps | &nbsp; *"Complete all steps within 7 days"* |
+| &nbsp; **Breakdown** *(optional)* | &nbsp; Split results by a dimension | &nbsp; By country, platform, campaign |
+
+Process: You define the steps → Actioneer validates events exist in your data → funnel is computed showing user counts and drop-off % at each step → results are saved for reuse.
+
+---
+
+## Funnel Components
+
+| &nbsp; Component | &nbsp; Description |
+| :--- | :--- |
+| &nbsp; **Steps** | &nbsp; Ordered sequence of up to 10 events |
+| &nbsp; **Conversion rate** | &nbsp; Percentage of users who progressed from one step to the next |
+| &nbsp; **Drop-off** | &nbsp; Users who completed step N but did not reach step N+1 |
+| &nbsp; **Time between steps** | &nbsp; Median, mean, and P95 duration between consecutive steps |
+
+---
+
+## Analysis Views
+
+| &nbsp; View | &nbsp; Description |
+| :--- | :--- |
+| &nbsp; **Step-by-step conversion** | &nbsp; Raw count and percentage at each step — identifies the biggest drop-off point |
+| &nbsp; **Time-to-convert** | &nbsp; How long users take to move between steps |
+| &nbsp; **Segment comparison** | &nbsp; Overlay two or more Segments on the same Funnel |
+| &nbsp; **Drop-off diagnosis** | &nbsp; See what events dropped users performed after leaving the funnel |
+
+---
+
+## Managing Funnels
+
+| &nbsp; Action | &nbsp; How to do it | &nbsp; Example prompt |
+| :--- | :--- | :--- |
+| &nbsp; **Edit** | &nbsp; Add, remove, or reorder steps. Adjust filters or time window. | &nbsp; *"Add 'level 5 reached' after tutorial complete"* or *"Change the time window to 3 days"* |
+| &nbsp; **Pin to a Board** | &nbsp; Attach the funnel chart for ongoing monitoring. Pinned funnels refresh automatically. | &nbsp; *"Pin the onboarding funnel to my engagement board"* |
+| &nbsp; **Delete** | &nbsp; Permanently remove — confirmation required. Does not affect underlying event data. | &nbsp; *"Delete the onboarding funnel"* |
+
+**Edit types:**
+
+| &nbsp; Edit | &nbsp; Example |
+| :--- | :--- |
+| &nbsp; Add a step | &nbsp; *"Insert 'add to cart' between browse and checkout"* |
+| &nbsp; Remove a step | &nbsp; *"Drop the registration step"* |
+| &nbsp; Reorder steps | &nbsp; *"Move 'first purchase' before 'profile setup'"* |
+| &nbsp; Change filters | &nbsp; *"Filter to iOS users only"* |
+| &nbsp; Adjust time window | &nbsp; *"Allow 14 days between steps instead of 7"* |
+| &nbsp; Add breakdown | &nbsp; *"Break down by country"* |
+
+<Info>
+  Funnels support up to 10 steps. For longer flows, break them into sub-funnels and analyse independently.
+</Info>
+
+<Card title="Next: Retention" icon="refresh-cw" horizontal href="/about/core-concepts/retention">
+  Learn how to track cohort-based retention and identify churn patterns.
+</Card>
