@@ -12,9 +12,9 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Azure AD account, Power BI Pro or Premium workspace, Actioneer account |
+| &nbsp; **Prerequisites** | &nbsp; Power BI Pro or Premium workspace, Actioneer account |
 | &nbsp; **Access granted** | &nbsp; Dataset queries and report reads via Fivetran sync |
-| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
+| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Info>
   Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
@@ -41,42 +41,21 @@ Actioneer uses [Fivetran](https://fivetran.com) to sync Power BI metadata and da
     5. Actioneer creates the warehouse connection and displays a **Connection Created** confirmation.
     6. Click **Continue to Power BI** — a new tab opens to the Fivetran configuration page.
   </Step>
-  <Step title="Register an Azure AD app">
-    Fivetran authenticates through Microsoft Entra ID (formerly Azure Active Directory). You register a dedicated app that acts as the connector's identity.
+  <Step title="Gather your Power BI credentials">
+    Fivetran needs three values from your Microsoft account. Your Power BI or IT admin can provide these.
 
-    1. Sign in at [portal.azure.com](https://portal.azure.com).
-    2. Search for **App registrations** and click **New registration**.
-    3. Name it `Fivetran Power BI`. Leave the other fields as defaults. Click **Register**.
-    4. On the app overview page, copy the **Application (client) ID** and the **Directory (tenant) ID**.
-    5. In the left sidebar, click **Certificates & secrets** → **New client secret**.
-    6. Add a description (e.g., `Fivetran`), choose an expiry period (1 or 2 years), and click **Add**.
-    7. Copy the **Value** of the secret immediately.
-
-    | &nbsp; Field | &nbsp; Location |
+    | &nbsp; Field | &nbsp; Where to find it |
     | :--- | :--- |
-    | &nbsp; **Client ID** | &nbsp; App overview → Application (client) ID |
-    | &nbsp; **Tenant ID** | &nbsp; App overview → Directory (tenant) ID |
-    | &nbsp; **Client Secret** | &nbsp; Certificates & secrets → Value |
-
-    <Warning>
-      Azure displays the client secret Value exactly once. If you leave the page without copying it, you will need to delete the secret and create a new one.
-    </Warning>
-  </Step>
-  <Step title="Grant API permissions">
-    The registered app needs permission to read Power BI data.
-
-    1. In the Azure portal, go to your app registration.
-    2. Click **API permissions** → **Add a permission**.
-    3. Select **Power BI Service** and add the following **Delegated permissions**:
-       - `Tenant.Read.All`
-    4. Click **Grant admin consent** to activate the permission.
+    | &nbsp; **Tenant ID** | &nbsp; Your Microsoft Entra ID directory ID |
+    | &nbsp; **Client ID** | &nbsp; The application ID of a registered app with Power BI read access |
+    | &nbsp; **Client secret** | &nbsp; A valid secret for that registered app |
 
     <Tip>
-      If you are a Fabric administrator, you can authenticate directly. Otherwise, configure a service principal — see [Microsoft's service principal documentation](https://learn.microsoft.com/en-us/power-bi/developer/embedded/embed-service-principal) for details.
+      If you need to create these credentials from scratch, follow [Fivetran's Power BI setup guide](https://fivetran.com/docs/connectors/applications/microsoft-power-bi/setup-guide) — it walks through app registration and permissions step by step.
     </Tip>
   </Step>
   <Step title="Complete the Fivetran configuration">
-    On the Fivetran configuration page:
+    On the Fivetran configuration page, enter the three credentials:
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
@@ -118,7 +97,7 @@ Sync frequency is configured in Fivetran. Actioneer queries whatever lands in th
   </Accordion>
 
   <Accordion title="What Power BI license do I need?">
-    A Power BI Pro account is required at minimum. Power BI Premium provides additional features. You also need a tenant in Microsoft Entra ID (Azure AD) to register the app.
+    A Power BI Pro account is required at minimum. Power BI Premium provides additional features.
   </Accordion>
 </AccordionGroup>
 
