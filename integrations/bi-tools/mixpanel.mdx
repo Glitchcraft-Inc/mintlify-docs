@@ -1,7 +1,6 @@
 ---
 title: "Mixpanel"
 sidebarTitle: "Mixpanel"
-icon: "circle-nodes"
 description: "Connect Mixpanel to Actioneer as a data source."
 ---
 
@@ -9,11 +8,11 @@ description: "Connect Mixpanel to Actioneer as a data source."
 
 This guide walks through connecting a Mixpanel project to Actioneer. By the end, Actioneer will be able to query your event data and user profiles.
 
-| | |
-| :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Mixpanel account with Owner or Admin permissions and billing enabled, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Event data and user profile queries via Fivetran sync |
-| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
+|  |  |
+| :-- | :-- |
+| **Prerequisites** | Mixpanel account with Owner or Admin permissions and billing enabled, Actioneer account |
+| **Access granted** | Event data and user profile queries via Fivetran sync |
+| **Estimated time** | ~10 minutes |
 
 <Info>
   Actioneer cannot create, edit, or delete events, user properties, or reports in your Mixpanel project.
@@ -50,10 +49,10 @@ Actioneer uses [Fivetran](https://fivetran.com) to sync Mixpanel data into your 
     5. Set the role to **Analyst** or **Admin**.
     6. Click **Create** and copy the **Username** and **Secret** immediately.
 
-    | &nbsp; Field | &nbsp; Location |
-    | :--- | :--- |
-    | &nbsp; **Service Account Username** | &nbsp; Service Account creation dialogue |
-    | &nbsp; **Service Account Secret** | &nbsp; Service Account creation dialogue — shown once |
+    | Field | Location |
+    | :-: | :-: |
+    | **Service Account Username** | Service Account creation dialogue |
+    | **Service Account Secret** | Service Account creation dialogue — shown once |
 
     <Warning>
       Mixpanel displays the Secret exactly once. If you close the dialogue without copying it, you will need to delete the Service Account and create a new one. Store both values in a password manager.
@@ -70,13 +69,13 @@ Actioneer uses [Fivetran](https://fivetran.com) to sync Mixpanel data into your 
   <Step title="Complete the Fivetran configuration">
     On the Fivetran configuration page:
 
-    | &nbsp; Field | &nbsp; Value |
-    | :--- | :--- |
-    | &nbsp; **Service Account Username** | &nbsp; From Step 2 |
-    | &nbsp; **Service Account Secret** | &nbsp; From Step 2 |
-    | &nbsp; **Project ID** | &nbsp; From Step 3 |
-    | &nbsp; **Historical sync time frame** | &nbsp; Choose how far back to sync — `Sync all historical data` pulls the full history |
-    | &nbsp; **Data Region** | &nbsp; `US` or `EU` — match your Mixpanel project's data residency setting |
+    | Field | Value |
+    | :-- | :-- |
+    | **Service Account Username** | From Step 2 |
+    | **Service Account Secret** | From Step 2 |
+    | **Project ID** | From Step 3 |
+    | **Historical sync time frame** | Choose how far back to sync — `Sync all historical data` pulls the full history |
+    | **Data Region** | `US` or `EU` — match your Mixpanel project's data residency setting |
 
     Click **Save & Test**. Fivetran validates the connection and begins the initial sync.
   </Step>
@@ -88,11 +87,11 @@ Actioneer uses [Fivetran](https://fivetran.com) to sync Mixpanel data into your 
 
 Fivetran syncs the following Mixpanel data into your warehouse:
 
-| &nbsp; Table | &nbsp; Description |
-| :--- | :--- |
-| &nbsp; **event** | &nbsp; Raw event data including event name, user distinct ID, timestamp, and event properties |
-| &nbsp; **engage** | &nbsp; User profile data and people properties |
-| &nbsp; **export** | &nbsp; Full event export with all properties |
+| Table | Description |
+| :-- | :-- |
+| **event** | Raw event data including event name, user distinct ID, timestamp, and event properties |
+| **engage** | User profile data and people properties |
+| **export** | Full event export with all properties |
 
 Sync frequency and historical backfill depth are configured in Fivetran. Actioneer queries whatever lands in the warehouse.
 
