@@ -12,9 +12,9 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Power BI Pro or Premium workspace, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Dataset queries and report reads via Fivetran sync |
-| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Azure AD admin access, Power BI Pro or Premium workspace, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Dataset queries and report reads via the Power BI REST API |
+| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
 
 <Info>
   Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
@@ -22,66 +22,61 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
 
 ---
 
-## Direct Connection <Badge>Coming Soon</Badge>
-
-Direct API connection to Power BI is on the roadmap. Once available, Actioneer will query Power BI datasets in real time without an intermediate sync step.
-
----
-
-## Connect via Fivetran
-
-Actioneer uses [Fivetran](https://fivetran.com) to sync Power BI metadata and dataset information into your warehouse. Fivetran handles extraction and scheduling — Actioneer queries the synced tables.
-
 <Steps>
-  <Step title="Start the connection in Actioneer">
-    1. In Actioneer, click **Data** in the left sidebar.
-    2. Select **Microsoft Power BI** from the list of data sources.
-    3. Enter a **Connection Name** — a descriptive label to identify this source (e.g., `Company Power BI`).
-    4. Click **Connect**.
-    5. Actioneer creates the warehouse connection and displays a **Connection Created** confirmation.
-    6. Click **Continue to Power BI** — a new tab opens to the Fivetran configuration page.
-  </Step>
-  <Step title="Gather your Power BI credentials">
-    Fivetran needs three values from your Microsoft account. Your Power BI or IT admin can provide these.
+  <Step title="Register an Azure AD app">
+    Power BI authenticates through Microsoft Entra ID (formerly Azure Active Directory). You register a dedicated app that acts as Actioneer's identity.
 
-    | &nbsp; Field | &nbsp; Where to find it |
-    | :--- | :--- |
-    | &nbsp; **Tenant ID** | &nbsp; Your Microsoft Entra ID directory ID |
-    | &nbsp; **Client ID** | &nbsp; The application ID of a registered app with Power BI read access |
-    | &nbsp; **Client secret** | &nbsp; A valid secret for that registered app |
+    1. Sign in at [portal.azure.com](https://portal.azure.com).
+    2. Search for **App registrations** and click **New registration**.
+    3. Name it `Actioneer Power BI`. Leave the other fields as defaults. Click **Register**.
+    4. On the app overview page, copy the **Application (client) ID** and the **Directory (tenant) ID**.
+    5. In the left sidebar, click **Certificates & secrets** → **New client secret**.
+    6. Add a description (e.g., `Actioneer`), choose an expiry period (1 or 2 years), and click **Add**.
+    7. Copy the **Value** of the secret immediately.
+
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
+    | :-- | :-- | :-- |
+    | &nbsp; **Client ID** | &nbsp; App overview → Application (client) ID | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | &nbsp; **Tenant ID** | &nbsp; App overview → Directory (tenant) ID | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | &nbsp; **Client Secret** | &nbsp; Certificates & secrets → Value | &nbsp; Store in a password manager |
+
+    <Warning>
+      Azure displays the client secret Value exactly once. If you leave the page without copying it, you will need to delete the secret and create a new one.
+    </Warning>
+  </Step>
+  <Step title="Grant the app Viewer access in Power BI">
+    The Viewer role is the lowest-permission level in Power BI. It allows reading datasets and reports without any edit or administrative permissions.
+
+    1. Go to [app.powerbi.com](https://app.powerbi.com) and open the workspace you want Actioneer to access.
+    2. Click the three-dot menu next to the workspace name and select **Workspace access**.
+    3. Search for the app you registered (`Actioneer Power BI`) and select it.
+    4. Set the role to **Viewer** and click **Add**.
+    5. Note the **Workspace ID** — it is the GUID in your browser's URL bar when viewing the workspace (e.g., `app.powerbi.com/groups/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/...`).
+
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
+    | :-- | :-- | :-- |
+    | &nbsp; **Workspace ID** | &nbsp; Browser URL bar (GUID after `/groups/`) | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
 
     <Tip>
-      If you need to create these credentials from scratch, follow [Fivetran's Power BI setup guide](https://fivetran.com/docs/connectors/applications/microsoft-power-bi/setup-guide) — it walks through app registration and permissions step by step.
+      If the app does not appear in the search, your Power BI admin may need to enable service principal access. The setting is under **Admin portal → Tenant settings → Allow service principals to use Power BI APIs**. Share this page with your admin if needed.
     </Tip>
   </Step>
-  <Step title="Complete the Fivetran configuration">
-    On the Fivetran configuration page, enter the three credentials:
+  <Step title="Connect Power BI in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Microsoft Power BI** from the list of data sources.
+    3. Complete the connection form:
 
     | &nbsp; Field | &nbsp; Value |
-    | :--- | :--- |
-    | &nbsp; **Tenant ID** | &nbsp; From Step 2 |
-    | &nbsp; **Client ID** | &nbsp; From Step 2 |
-    | &nbsp; **Client secret** | &nbsp; From Step 2 |
+    | :-- | :-- |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Company Power BI` |
+    | &nbsp; **Tenant ID** | &nbsp; From Step 1 |
+    | &nbsp; **Client ID** | &nbsp; From Step 1 |
+    | &nbsp; **Client Secret** | &nbsp; From Step 1 |
+    | &nbsp; **Workspace ID** | &nbsp; From Step 2 |
 
-    Click **Save & Test**. Fivetran validates the connection and begins the initial sync.
+    4. Click **Connect**.
   </Step>
 </Steps>
-
----
-
-## What syncs
-
-Fivetran syncs the following Power BI metadata into your warehouse:
-
-| &nbsp; Table | &nbsp; Description |
-| :--- | :--- |
-| &nbsp; **dataset** | &nbsp; Dataset metadata including name, configuration, and refresh schedules |
-| &nbsp; **report** | &nbsp; Report definitions and workspace associations |
-| &nbsp; **dashboard** | &nbsp; Dashboard metadata and tile layouts |
-| &nbsp; **workspace** | &nbsp; Workspace details and membership |
-| &nbsp; **refresh_history** | &nbsp; Dataset refresh logs and status |
-
-Sync frequency is configured in Fivetran. Actioneer queries whatever lands in the warehouse.
 
 ---
 
@@ -89,15 +84,11 @@ Sync frequency is configured in Fivetran. Actioneer queries whatever lands in th
 
 <AccordionGroup>
   <Accordion title="Can Actioneer modify reports or dashboards in Power BI?">
-    No. Actioneer reads synced metadata from your warehouse. It cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
+    No. The Viewer role assigned in Step 2 limits access to reading datasets and report data. Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your workspace.
   </Accordion>
 
-  <Accordion title="Where are my Power BI credentials stored?">
-    Your Power BI credentials (Tenant ID, Client ID, and Client secret) are stored and managed by Fivetran, not by Actioneer. Fivetran encrypts all credentials at rest and in transit. Actioneer only queries the synced data in your warehouse.
-  </Accordion>
-
-  <Accordion title="What Power BI license do I need?">
-    A Power BI Pro account is required at minimum. Power BI Premium provides additional features.
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
