@@ -67,7 +67,8 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
   <Step title="Connect PostgreSQL in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **PostgreSQL** from the list of data sources.
-    3. Complete the connection form:
+    3. When prompted, select **Direct Connection**.
+    4. Complete the connection form:
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
@@ -77,9 +78,9 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     | &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
     | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
     | &nbsp; **Password** | &nbsp; The password set in Step 2 |
-    | &nbsp; **SSH Tunnel** | &nbsp; Optional — enable to connect via a bastion host for private databases. Also required if your provider enforces SSL (e.g., some RDS configs, Heroku Postgres). |
+    | &nbsp; **SSH Tunnel** | &nbsp; Optional — enable to connect through a bastion host if your PostgreSQL instance is in a private network with no public endpoint |
 
-    4. Click **Connect**.
+    5. Click **Connect**.
   </Step>
 </Steps>
 
@@ -93,7 +94,7 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
   </Accordion>
 
   <Accordion title="When should I use the SSH Tunnel option?">
-    Enable the SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint), or if your provider requires SSL connections. The tunnel connects Actioneer via a bastion host that has access to the private network.
+    Enable the SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint). The tunnel routes Actioneer's connection through a bastion host that has network access to your database. SSH tunneling is not the same as SSL — all Actioneer connections use TLS encryption regardless of whether the tunnel is enabled.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">

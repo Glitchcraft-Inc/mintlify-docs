@@ -92,8 +92,8 @@ Sync frequency is configured in Fivetran. Actioneer queries whatever lands in th
     No. Actioneer reads synced metadata from your warehouse. It cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
   </Accordion>
 
-  <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  <Accordion title="Where are my Power BI credentials stored?">
+    Your Power BI credentials (Tenant ID, Client ID, and Client secret) are stored and managed by Fivetran, not by Actioneer. Fivetran encrypts all credentials at rest and in transit. Actioneer only queries the synced data in your warehouse.
   </Accordion>
 
   <Accordion title="What Power BI license do I need?">

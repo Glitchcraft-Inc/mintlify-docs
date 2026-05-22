@@ -44,13 +44,26 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
   <Step title="Connect Adjust in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Adjust** from the list of data sources.
-    3. Complete the connection form:
+    3. When prompted, select **Direct Connection**.
+    4. Complete the connection form:
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Adjust` |
     | &nbsp; **API Key** | &nbsp; From Step 1 |
 
-    4. Click **Connect**.
+    5. Click **Connect**.
+  </Step>
+  <Step title="Verify and select games">
+    After connecting, Actioneer verifies your API key and retrieves the list of apps (games) available in your Adjust account.
+
+    1. Review the list of available apps.
+    2. Select the apps whose data Actioneer should query.
+    3. Confirm your selection.
+
+    <Info>
+      You can update the selected apps later from the connection settings.
+    </Info>
   </Step>
 </Steps>
 

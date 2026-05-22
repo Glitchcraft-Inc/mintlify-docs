@@ -31,7 +31,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     3. In the left sidebar, open **BigQuery**. Expand your project in the Explorer panel and locate the dataset Actioneer should query. Note the exact **Dataset ID** (e.g., `analytics_data`). Also case-sensitive.
 
     | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
-    | :-- | :-- | :-- |
+    | :--- | :--- | :--- |
     | &nbsp; **GCP Project ID** | &nbsp; Project selector, top-left | &nbsp; `gc-prod-459709` |
     | &nbsp; **Dataset ID** | &nbsp; BigQuery Explorer panel | &nbsp; `analytics_data` |
   </Step>
@@ -46,7 +46,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     4. Assign the following two roles:
 
     | &nbsp; Role | &nbsp; Role ID | &nbsp; Purpose |
-    | :-- | :-- | :-- |
+    | :--- | :--- | :--- |
     | &nbsp; BigQuery User | &nbsp; `roles/bigquery.user` | &nbsp; Run queries and access BigQuery resources |
     | &nbsp; BigQuery Data Viewer | &nbsp; `roles/bigquery.dataViewer` | &nbsp; Read datasets and tables |
 
@@ -78,10 +78,11 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
   <Step title="Connect BigQuery in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Google BigQuery** from the list of data sources.
-    3. Complete the connection form:
+    3. When prompted, select **Direct Connection**.
+    4. Complete the connection form:
 
     | &nbsp; Field | &nbsp; Value |
-    | :-- | :-- |
+    | :--- | :--- |
     | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production BigQuery` |
     | &nbsp; **GCP Project ID** | &nbsp; From Step 1 — case-sensitive |
     | &nbsp; **Dataset ID** | &nbsp; From Step 1 — case-sensitive |
@@ -91,7 +92,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
       The **GCP Project ID** you enter must match the `project_id` inside your service account JSON key. If they differ, the connection will use the project from the JSON key, not the one entered in the form.
     </Warning>
 
-    4. Click **Connect**.
+    5. Click **Connect**.
   </Step>
 </Steps>
 
