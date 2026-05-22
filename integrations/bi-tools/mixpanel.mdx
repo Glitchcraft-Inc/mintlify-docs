@@ -11,8 +11,8 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Mixpanel account with Project Admin access, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Event data and user profile queries via the Mixpanel API |
+| &nbsp; **Prerequisites** | &nbsp; Mixpanel account with Owner or Admin permissions and billing enabled, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Event data and user profile queries via Fivetran sync |
 | &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Info>
@@ -21,54 +21,80 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
 
 ---
 
+## Direct Connection <Badge>Coming Soon</Badge>
+
+Direct API connection to Mixpanel is on the roadmap. Once available, Actioneer will query Mixpanel in real time without an intermediate sync step.
+
+---
+
+## Connect via Fivetran
+
+Actioneer uses [Fivetran](https://fivetran.com) to sync Mixpanel data into your warehouse. Fivetran handles extraction and scheduling — Actioneer queries the synced tables.
+
 <Steps>
-  <Step title="Find your Mixpanel Project ID">
-    The Project ID identifies which Mixpanel project Actioneer should connect to.
+  <Step title="Start the connection in Actioneer">
+    1. In Actioneer, click **Data** in the left sidebar.
+    2. Select **Mixpanel** from the list of data sources.
+    3. Enter a **Connection Name** — a descriptive label to identify this source (e.g., `Production Mixpanel`).
+    4. Click **Connect**.
+    5. Actioneer creates the warehouse connection and displays a **Connection Created** confirmation.
+    6. Click **Continue to Mixpanel** — a new tab opens to the Fivetran configuration page.
+  </Step>
+  <Step title="Create a Service Account in Mixpanel">
+    Fivetran authenticates using a Mixpanel Service Account — a machine-to-machine credential, separate from personal logins.
 
     1. Sign in at [mixpanel.com](https://mixpanel.com).
-    2. Click your project name in the top-left corner and select the target project.
-    3. Go to **Settings** (gear icon, top-right) → **Project Settings**.
-    4. Copy the **Project ID** shown at the top of the page (a numeric ID, e.g., `12345678`).
+    2. Go to **Settings** (gear icon) → **Project Settings** → **Service Accounts**.
+    3. Click **Add Service Account**.
+    4. Name it something clear, e.g. `Fivetran Sync`.
+    5. Set the role to **Analyst** or **Admin**.
+    6. Click **Create** and copy the **Username** and **Secret** immediately.
 
-    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
-    | :-- | :-- | :-- |
-    | &nbsp; **Project ID** | &nbsp; Project Settings, top of page | &nbsp; `12345678` |
-  </Step>
-  <Step title="Create a Service Account for Actioneer">
-    A Mixpanel Service Account is a machine-to-machine credential, separate from personal logins. It provides scoped access to your project's data.
-
-    1. In Mixpanel, go to **Settings → Project Settings → Service Accounts**.
-    2. Click **Add Service Account**.
-    3. Name it something clear, e.g. `Actioneer Integration`.
-    4. Set the role to **Analyst**. This limits access to querying data — no administrative permissions.
-    5. Click **Create**.
-    6. Copy the **Username** and **Secret** immediately.
-
-    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
-    | :-- | :-- | :-- |
-    | &nbsp; **Username** | &nbsp; Service Account creation dialogue | &nbsp; `abc123.mp-service-acct` |
-    | &nbsp; **Secret** | &nbsp; Service Account creation dialogue — shown once | &nbsp; `wZ4xR9qL2vB7...` |
+    | &nbsp; Field | &nbsp; Location |
+    | :--- | :--- |
+    | &nbsp; **Service Account Username** | &nbsp; Service Account creation dialogue |
+    | &nbsp; **Service Account Secret** | &nbsp; Service Account creation dialogue — shown once |
 
     <Warning>
       Mixpanel displays the Secret exactly once. If you close the dialogue without copying it, you will need to delete the Service Account and create a new one. Store both values in a password manager.
     </Warning>
+
+    <Info>
+      All Mixpanel connections created on or after December 16, 2024 require the Service Account authentication method. Project Secret is no longer supported for new connections.
+    </Info>
   </Step>
-  <Step title="Connect Mixpanel in Actioneer">
-    1. In Actioneer, click **Data** in the left sidebar.
-    2. Select **Mixpanel** from the list of data sources.
-    3. Complete the connection form:
+  <Step title="Find your Project ID">
+    1. In Mixpanel, go to **Settings** → **Project Settings**.
+    2. Copy the **Project ID** shown at the top of the page (a numeric ID, e.g., `12345678`).
+  </Step>
+  <Step title="Complete the Fivetran configuration">
+    On the Fivetran configuration page:
 
     | &nbsp; Field | &nbsp; Value |
-    | :-- | :-- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Mixpanel` |
-    | &nbsp; **Project ID** | &nbsp; From Step 1 |
+    | :--- | :--- |
     | &nbsp; **Service Account Username** | &nbsp; From Step 2 |
     | &nbsp; **Service Account Secret** | &nbsp; From Step 2 |
-    | &nbsp; **Data Center** | &nbsp; `US` or `EU` — match your Mixpanel project's data residency setting |
+    | &nbsp; **Project ID** | &nbsp; From Step 3 |
+    | &nbsp; **Historical sync time frame** | &nbsp; Choose how far back to sync — `Sync all historical data` pulls the full history |
+    | &nbsp; **Data Region** | &nbsp; `US` or `EU` — match your Mixpanel project's data residency setting |
 
-    4. Click **Connect**.
+    Click **Save & Test**. Fivetran validates the connection and begins the initial sync.
   </Step>
 </Steps>
+
+---
+
+## What syncs
+
+Fivetran syncs the following Mixpanel data into your warehouse:
+
+| &nbsp; Table | &nbsp; Description |
+| :--- | :--- |
+| &nbsp; **event** | &nbsp; Raw event data including event name, user distinct ID, timestamp, and event properties |
+| &nbsp; **engage** | &nbsp; User profile data and people properties |
+| &nbsp; **export** | &nbsp; Full event export with all properties |
+
+Sync frequency and historical backfill depth are configured in Fivetran. Actioneer queries whatever lands in the warehouse.
 
 ---
 
@@ -76,11 +102,15 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
 
 <AccordionGroup>
   <Accordion title="What data can Actioneer read from Mixpanel?">
-    Actioneer can query event data, user profiles, and reports accessible via the Mixpanel API — the same data visible to the Analyst role. It cannot create, modify, or delete events, user properties, or reports.
+    Actioneer queries the tables Fivetran syncs into your warehouse — event data, user profiles, and engagement data. It cannot access Mixpanel directly or modify any data in your Mixpanel project.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
     All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+
+  <Accordion title="Can I use a Project Secret instead of a Service Account?">
+    No. As of December 16, 2024, Mixpanel requires the Service Account authentication method for all new Fivetran connections. Existing connections created before that date may still use a Project Secret.
   </Accordion>
 </AccordionGroup>
 
