@@ -17,15 +17,15 @@ Actioneer is built with governance controls that give your organisation visibili
 
 Actioneer enforces role-based access control (RBAC) at the workspace level. Each user is assigned a role that determines what they can see and do.
 
-| Capability | Admin | Analyst | Viewer |
+| &nbsp; Capability | &nbsp; Admin | &nbsp; Analyst | &nbsp; Viewer |
 | :--- | :--- | :--- | :--- |
-| Connect and manage data sources | Yes | No | No |
-| Define and edit metric definitions | Yes | Yes | No |
-| Ask questions via Conversational Analytics | Yes | Yes | Yes |
-| Create and edit Boards | Yes | Yes | No |
-| Create and push Segments | Yes | Yes | No |
-| View Boards and results | Yes | Yes | Yes |
-| Manage workspace settings | Yes | No | No |
+| &nbsp; Connect and manage data sources | &nbsp; Yes | &nbsp; No | &nbsp; No |
+| &nbsp; Define and edit metric definitions | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; Ask questions via Conversational Analytics | &nbsp; Yes | &nbsp; Yes | &nbsp; Yes |
+| &nbsp; Create and edit Boards | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; Create and push Segments | &nbsp; Yes | &nbsp; Yes | &nbsp; No |
+| &nbsp; View Boards and results | &nbsp; Yes | &nbsp; Yes | &nbsp; Yes |
+| &nbsp; Manage workspace settings | &nbsp; Yes | &nbsp; No | &nbsp; No |
 
 <Info>
   Roles are managed at the workspace level. A user's role applies across all connected data sources within that workspace.
@@ -37,12 +37,12 @@ Actioneer enforces role-based access control (RBAC) at the workspace level. Each
 
 Every action in Actioneer is logged. Audit logs provide a full trail of who did what, when, and on which data.
 
-| Log Type | What is captured |
+| &nbsp; Log Type | &nbsp; What is captured |
 | :--- | :--- |
-| **Query logs** | Every question asked, the SQL generated, the data source queried, and the execution time |
-| **Access logs** | User logins, role changes, and data source connection events |
-| **Change logs** | Updates to metric definitions, Playbook edits, and Segment modifications |
-| **Push logs** | Segment pushes to CLM tools — which Segment, which destination, and when |
+| &nbsp; **Query logs** | &nbsp; Every question asked, the SQL generated, the data source queried, and the execution time |
+| &nbsp; **Access logs** | &nbsp; User logins, role changes, and data source connection events |
+| &nbsp; **Change logs** | &nbsp; Updates to metric definitions, Playbook edits, and Segment modifications |
+| &nbsp; **Push logs** | &nbsp; Segment pushes to CLM tools — which Segment, which destination, and when |
 
 Logs are retained according to your workspace's configured retention policy and are available for export.
 
@@ -52,12 +52,12 @@ Logs are retained according to your workspace's configured retention policy and 
 
 Actioneer does not produce opaque answers. Every response is traceable back to the data and logic that produced it.
 
-| Principle | How it works |
+| &nbsp; Principle | &nbsp; How it works |
 | :--- | :--- |
-| **SQL visibility** | Every answer includes the SQL query that generated it. Users can inspect, copy, and validate the query independently. |
-| **Source attribution** | Results reference the specific tables, columns, and metric definitions used. |
-| **Confidence flagging** | When Actioneer has low confidence in an answer — due to ambiguous questions, missing data, or schema gaps — it flags the result rather than guessing. |
-| **No hallucinations by design** | Answers are grounded in your metric definitions and schema, not the model's assumptions. The Context Engine ensures that business terms are interpreted correctly. |
+| &nbsp; **SQL visibility** | &nbsp; Every answer includes the SQL query that generated it. Users can inspect, copy, and validate the query independently. |
+| &nbsp; **Source attribution** | &nbsp; Results reference the specific tables, columns, and metric definitions used. |
+| &nbsp; **Confidence flagging** | &nbsp; When Actioneer has low confidence in an answer — due to ambiguous questions, missing data, or schema gaps — it flags the result rather than guessing. |
+| &nbsp; **No hallucinations by design** | &nbsp; Answers are grounded in your metric definitions and schema, not the model's assumptions. The Context Engine ensures that business terms are interpreted correctly. |
 
 ---
 
@@ -73,16 +73,16 @@ Metric definitions are centrally managed and version-controlled — preventing t
 
 ## Compliance Summary
 
-| Requirement | How Actioneer addresses it |
+| &nbsp; Requirement | &nbsp; How Actioneer addresses it |
 | :--- | :--- |
-| **SOC 2 Type II** | Annual audit covering security, availability, and confidentiality controls over a sustained period |
-| **ISO 27001** | Certified ISMS with policies, risk management, and continuous improvement — audited by Schellman |
-| **GDPR** | Data minimisation, data subject rights support, 72-hour breach notification, DPA available on request |
-| **HIPAA** | Aligned — BAA available on request for healthcare and regulated data |
-| **DPDP Act (India)** | Compliant with India's Digital Personal Data Protection Act |
-| **RBAC** | Role-based access control with Admin, Analyst, and Viewer roles |
-| **Audit trail** | Full logging of queries, access events, changes, and segment pushes |
-| **Encryption** | AES-256 at rest, TLS 1.3 in transit |
+| &nbsp; **SOC 2 Type II** | &nbsp; Annual audit covering security, availability, and confidentiality controls over a sustained period |
+| &nbsp; **ISO 27001** | &nbsp; Certified ISMS with policies, risk management, and continuous improvement — audited by Schellman |
+| &nbsp; **GDPR** | &nbsp; Data minimisation, data subject rights support, 72-hour breach notification, DPA available on request |
+| &nbsp; **HIPAA** | &nbsp; Aligned — BAA available on request for healthcare and regulated data |
+| &nbsp; **DPDP Act (India)** | &nbsp; Compliant with India's Digital Personal Data Protection Act |
+| &nbsp; **RBAC** | &nbsp; Role-based access control with Admin, Analyst, and Viewer roles |
+| &nbsp; **Audit trail** | &nbsp; Full logging of queries, access events, changes, and segment pushes |
+| &nbsp; **Encryption** | &nbsp; AES-256 at rest, TLS 1.3 in transit |
 
 <Card title="Need a hand?" icon="sparkles" horizontal>
   Questions about security, compliance, or governance? Reach out to Actioneer support at connect@actioneer.com.

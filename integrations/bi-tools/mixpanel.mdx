@@ -11,9 +11,9 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
 
 | | |
 | :--- | :--- |
-| **Prerequisites** | Mixpanel account with Project Admin access, Actioneer account |
-| **Access granted** | Event data and user profile queries via the Mixpanel API |
-| **Estimated time** | ~10 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Mixpanel account with Project Admin access, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Event data and user profile queries via the Mixpanel API |
+| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Info>
   Actioneer cannot create, edit, or delete events, user properties, or reports in your Mixpanel project.
@@ -30,9 +30,9 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
     3. Go to **Settings** (gear icon, top-right) → **Project Settings**.
     4. Copy the **Project ID** shown at the top of the page (a numeric ID, e.g., `12345678`).
 
-    | Field | Location | Value Example |
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :-- | :-- | :-- |
-    | **Project ID** | Project Settings, top of page | `12345678` |
+    | &nbsp; **Project ID** | &nbsp; Project Settings, top of page | &nbsp; `12345678` |
   </Step>
   <Step title="Create a Service Account for Actioneer">
     A Mixpanel Service Account is a machine-to-machine credential, separate from personal logins. It provides scoped access to your project's data.
@@ -44,10 +44,10 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
     5. Click **Create**.
     6. Copy the **Username** and **Secret** immediately.
 
-    | Field | Location | Value Example |
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :-- | :-- | :-- |
-    | **Username** | Service Account creation dialogue | `abc123.mp-service-acct` |
-    | **Secret** | Service Account creation dialogue — shown once | `wZ4xR9qL2vB7...` |
+    | &nbsp; **Username** | &nbsp; Service Account creation dialogue | &nbsp; `abc123.mp-service-acct` |
+    | &nbsp; **Secret** | &nbsp; Service Account creation dialogue — shown once | &nbsp; `wZ4xR9qL2vB7...` |
 
     <Warning>
       Mixpanel displays the Secret exactly once. If you close the dialogue without copying it, you will need to delete the Service Account and create a new one. Store both values in a password manager.
@@ -58,13 +58,13 @@ This guide walks through connecting a Mixpanel project to Actioneer. By the end,
     2. Select **Mixpanel** from the list of data sources.
     3. Complete the connection form:
 
-    | Field | Value |
+    | &nbsp; Field | &nbsp; Value |
     | :-- | :-- |
-    | **Connection Name** | A descriptive label, e.g. `Production Mixpanel` |
-    | **Project ID** | From Step 1 |
-    | **Service Account Username** | From Step 2 |
-    | **Service Account Secret** | From Step 2 |
-    | **Data Center** | `US` or `EU` — match your Mixpanel project's data residency setting |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Mixpanel` |
+    | &nbsp; **Project ID** | &nbsp; From Step 1 |
+    | &nbsp; **Service Account Username** | &nbsp; From Step 2 |
+    | &nbsp; **Service Account Secret** | &nbsp; From Step 2 |
+    | &nbsp; **Data Center** | &nbsp; `US` or `EU` — match your Mixpanel project's data residency setting |
 
     4. Click **Connect**.
   </Step>

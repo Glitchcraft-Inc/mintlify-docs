@@ -11,9 +11,9 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
 
 | | |
 | :--- | :--- |
-| **Prerequisites** | Azure AD admin access, Power BI Pro or Premium workspace, Actioneer account |
-| **Access granted** | Dataset queries and report reads via the Power BI REST API |
-| **Estimated time** | ~20 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Azure AD admin access, Power BI Pro or Premium workspace, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Dataset queries and report reads via the Power BI REST API |
+| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
 
 <Info>
   Actioneer cannot create, edit, publish, or delete any reports, dashboards, or datasets in your Power BI workspace.
@@ -33,11 +33,11 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
     6. Add a description (e.g., `Actioneer`), choose an expiry period (1 or 2 years), and click **Add**.
     7. Copy the **Value** of the secret immediately.
 
-    | Field | Location | Value Example |
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :-- | :-- | :-- |
-    | **Client ID** | App overview → Application (client) ID | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
-    | **Tenant ID** | App overview → Directory (tenant) ID | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
-    | **Client Secret** | Certificates & secrets → Value | Store in a password manager |
+    | &nbsp; **Client ID** | &nbsp; App overview → Application (client) ID | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | &nbsp; **Tenant ID** | &nbsp; App overview → Directory (tenant) ID | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | &nbsp; **Client Secret** | &nbsp; Certificates & secrets → Value | &nbsp; Store in a password manager |
 
     <Warning>
       Azure displays the client secret Value exactly once. If you leave the page without copying it, you will need to delete the secret and create a new one.
@@ -52,9 +52,9 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
     4. Set the role to **Viewer** and click **Add**.
     5. Note the **Workspace ID** — it is the GUID in your browser's URL bar when viewing the workspace (e.g., `app.powerbi.com/groups/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/...`).
 
-    | Field | Location | Value Example |
+    | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :-- | :-- | :-- |
-    | **Workspace ID** | Browser URL bar (GUID after `/groups/`) | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
+    | &nbsp; **Workspace ID** | &nbsp; Browser URL bar (GUID after `/groups/`) | &nbsp; `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` |
 
     <Tip>
       If the app does not appear in the search, your Power BI admin may need to enable service principal access. The setting is under **Admin portal → Tenant settings → Allow service principals to use Power BI APIs**. Share this page with your admin if needed.
@@ -65,13 +65,13 @@ This guide walks through connecting a Microsoft Power BI workspace to Actioneer.
     2. Select **Microsoft Power BI** from the list of data sources.
     3. Complete the connection form:
 
-    | Field | Value |
+    | &nbsp; Field | &nbsp; Value |
     | :-- | :-- |
-    | **Connection Name** | A descriptive label, e.g. `Company Power BI` |
-    | **Tenant ID** | From Step 1 |
-    | **Client ID** | From Step 1 |
-    | **Client Secret** | From Step 1 |
-    | **Workspace ID** | From Step 2 |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Company Power BI` |
+    | &nbsp; **Tenant ID** | &nbsp; From Step 1 |
+    | &nbsp; **Client ID** | &nbsp; From Step 1 |
+    | &nbsp; **Client Secret** | &nbsp; From Step 1 |
+    | &nbsp; **Workspace ID** | &nbsp; From Step 2 |
 
     4. Click **Connect**.
   </Step>
