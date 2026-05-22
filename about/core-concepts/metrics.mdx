@@ -23,19 +23,19 @@ Each connected data source exposes tables containing typed columns. Actioneer us
 
 **Borrower Profile Summary**
 
-| S. No. | Column | Data Type |
+| &nbsp; S. No. | &nbsp; Column | &nbsp; Data Type |
 | :--- | :--- | :--- |
-| 1 | `Entity` | VARCHAR |
-| 2 | `Employment_type` | VARCHAR |
-| 3 | `Income_category` | VARCHAR |
-| 4 | `Is_ntc` | BOOLEAN |
-| 5 | `Loan_count` | BIGINT |
-| 6 | `Total_disbursed` | HUGEINT |
-| 7 | `Avg_ticket` | DOUBLE |
-| 8 | `Avg_CIBIL` | DOUBLE |
-| 9 | `Avg_LTV` | DOUBLE |
-| 10 | `NPA_count` | BIGINT |
-| 11 | `GNPA_PCT` | DOUBLE |
+| &nbsp; 1 | &nbsp; `Entity` | &nbsp; VARCHAR |
+| &nbsp; 2 | &nbsp; `Employment_type` | &nbsp; VARCHAR |
+| &nbsp; 3 | &nbsp; `Income_category` | &nbsp; VARCHAR |
+| &nbsp; 4 | &nbsp; `Is_ntc` | &nbsp; BOOLEAN |
+| &nbsp; 5 | &nbsp; `Loan_count` | &nbsp; BIGINT |
+| &nbsp; 6 | &nbsp; `Total_disbursed` | &nbsp; HUGEINT |
+| &nbsp; 7 | &nbsp; `Avg_ticket` | &nbsp; DOUBLE |
+| &nbsp; 8 | &nbsp; `Avg_CIBIL` | &nbsp; DOUBLE |
+| &nbsp; 9 | &nbsp; `Avg_LTV` | &nbsp; DOUBLE |
+| &nbsp; 10 | &nbsp; `NPA_count` | &nbsp; BIGINT |
+| &nbsp; 11 | &nbsp; `GNPA_PCT` | &nbsp; DOUBLE |
 
 ### SQL Data Types Reference
 
@@ -43,57 +43,57 @@ Understanding data types ensures metrics are defined correctly and queries retur
 
 **Numeric Types**
 
-| Type | Description | Example |
+| &nbsp; Type | &nbsp; Description | &nbsp; Example |
 | :--- | :--- | :--- |
-| `INTEGER` / `INT` | Standard whole number | `42`, `1000` |
-| `BIGINT` | Large integer (up to 9.2 quintillion) | `15000`, `2340987` |
-| `HUGEINT` | Very large integer beyond BIGINT range | `71000000000` |
-| `DOUBLE` / `FLOAT64` | Floating-point decimal | `3.14`, `0.85`, `12.7` |
-| `NUMERIC` / `DECIMAL` | Fixed-precision decimal | `DECIMAL(38,9)` |
+| &nbsp; `INTEGER` / `INT` | &nbsp; Standard whole number | &nbsp; `42`, `1000` |
+| &nbsp; `BIGINT` | &nbsp; Large integer (up to 9.2 quintillion) | &nbsp; `15000`, `2340987` |
+| &nbsp; `HUGEINT` | &nbsp; Very large integer beyond BIGINT range | &nbsp; `71000000000` |
+| &nbsp; `DOUBLE` / `FLOAT64` | &nbsp; Floating-point decimal | &nbsp; `3.14`, `0.85`, `12.7` |
+| &nbsp; `NUMERIC` / `DECIMAL` | &nbsp; Fixed-precision decimal | &nbsp; `DECIMAL(38,9)` |
 
 **String / Text Types**
 
-| Type | Description | Example |
+| &nbsp; Type | &nbsp; Description | &nbsp; Example |
 | :--- | :--- | :--- |
-| `VARCHAR(n)` | Variable-length text, max `n` characters | `'Salaried'`, `'Mumbai'` |
-| `CHAR(n)` | Fixed-length text, padded with spaces | `'Hi   '` |
-| `TEXT` / `STRING` | Unlimited-length text | `'A very long description...'` |
+| &nbsp; `VARCHAR(n)` | &nbsp; Variable-length text, max `n` characters | &nbsp; `'Salaried'`, `'Mumbai'` |
+| &nbsp; `CHAR(n)` | &nbsp; Fixed-length text, padded with spaces | &nbsp; `'Hi   '` |
+| &nbsp; `TEXT` / `STRING` | &nbsp; Unlimited-length text | &nbsp; `'A very long description...'` |
 
 **Boolean**
 
-| Type | Description | Example |
+| &nbsp; Type | &nbsp; Description | &nbsp; Example |
 | :--- | :--- | :--- |
-| `BOOLEAN` / `BOOL` | True or false | `TRUE`, `FALSE`, `1`, `0` |
+| &nbsp; `BOOLEAN` / `BOOL` | &nbsp; True or false | &nbsp; `TRUE`, `FALSE`, `1`, `0` |
 
 **Date and Time Types**
 
-| Type | Description | Example |
+| &nbsp; Type | &nbsp; Description | &nbsp; Example |
 | :--- | :--- | :--- |
-| `DATE` | Calendar date only | `'2026-05-20'` |
-| `TIME` | Time of day only | `'14:30:00'` |
-| `DATETIME` | Date + time | `'2026-05-20 14:30:00'` |
-| `TIMESTAMP` | Date + time, timezone-aware | `'2026-05-20T14:30:00Z'` |
-| `INTERVAL` | Duration between two points | `INTERVAL 7 DAY` |
+| &nbsp; `DATE` | &nbsp; Calendar date only | &nbsp; `'2026-05-20'` |
+| &nbsp; `TIME` | &nbsp; Time of day only | &nbsp; `'14:30:00'` |
+| &nbsp; `DATETIME` | &nbsp; Date + time | &nbsp; `'2026-05-20 14:30:00'` |
+| &nbsp; `TIMESTAMP` | &nbsp; Date + time, timezone-aware | &nbsp; `'2026-05-20T14:30:00Z'` |
+| &nbsp; `INTERVAL` | &nbsp; Duration between two points | &nbsp; `INTERVAL 7 DAY` |
 
 **Semi-Structured Types**
 
-| Type | Description | Example |
+| &nbsp; Type | &nbsp; Description | &nbsp; Example |
 | :--- | :--- | :--- |
-| `ARRAY` | Ordered list of values | `[1, 2, 3]` |
-| `STRUCT` / `RECORD` | Nested key-value object | `STRUCT('John' AS name, 30 AS age)` |
-| `JSON` | JSON document | `'{"key": "value"}'` |
+| &nbsp; `ARRAY` | &nbsp; Ordered list of values | &nbsp; `[1, 2, 3]` |
+| &nbsp; `STRUCT` / `RECORD` | &nbsp; Nested key-value object | &nbsp; `STRUCT('John' AS name, 30 AS age)` |
+| &nbsp; `JSON` | &nbsp; JSON document | &nbsp; `'{"key": "value"}'` |
 
 <Accordion title="BigQuery-specific type mappings">
 
-| BigQuery Type | Equivalent |
+| &nbsp; BigQuery Type | &nbsp; Equivalent |
 | :--- | :--- |
-| `INT64` | `BIGINT` |
-| `FLOAT64` | `DOUBLE` |
-| `NUMERIC` | `DECIMAL(38,9)` |
-| `STRING` | `VARCHAR` (unlimited) |
-| `BOOL` | `BOOLEAN` |
-| `TIMESTAMP` | `TIMESTAMP` with microseconds |
-| `RECORD` | `STRUCT` |
+| &nbsp; `INT64` | &nbsp; `BIGINT` |
+| &nbsp; `FLOAT64` | &nbsp; `DOUBLE` |
+| &nbsp; `NUMERIC` | &nbsp; `DECIMAL(38,9)` |
+| &nbsp; `STRING` | &nbsp; `VARCHAR` (unlimited) |
+| &nbsp; `BOOL` | &nbsp; `BOOLEAN` |
+| &nbsp; `TIMESTAMP` | &nbsp; `TIMESTAMP` with microseconds |
+| &nbsp; `RECORD` | &nbsp; `STRUCT` |
 
 </Accordion>
 
@@ -105,15 +105,15 @@ Describe what you want to measure in plain language. Actioneer validates the ref
 
 **Required fields:**
 
-| Field | What to provide | Example |
+| &nbsp; Field | &nbsp; What to provide | &nbsp; Example |
 | :--- | :--- | :--- |
-| **Category** | `UA`, `Engagement`, `Monetization`, or `Underwriting` | `Monetization` |
-| **Classification** | `△ KPI`, `○ Indicator`, `◇ Diagnostic`, or `● Index` | `△ KPI` |
-| **Name** | Short unique name | `ARPDAU`, `D7 Retention` |
-| **Definition** | What it measures in plain English | "Daily IAP revenue divided by DAU" |
-| **SQL Logic** | Table + column + formula (Actioneer can help draft this) | `SUM(iap_revenue) / COUNT(DISTINCT user_id)` |
-| **Period** | Calculation window | `daily`, `7 days`, `30 days` |
-| **Relationships** | *(Optional)* Links to other metrics | Related to `DAU` and `Revenue` |
+| &nbsp; **Category** | &nbsp; `UA`, `Engagement`, `Monetization`, or `Underwriting` | &nbsp; `Monetization` |
+| &nbsp; **Classification** | &nbsp; `△ KPI`, `○ Indicator`, `◇ Diagnostic`, or `● Index` | &nbsp; `△ KPI` |
+| &nbsp; **Name** | &nbsp; Short unique name | &nbsp; `ARPDAU`, `D7 Retention` |
+| &nbsp; **Definition** | &nbsp; What it measures in plain English | &nbsp; "Daily IAP revenue divided by DAU" |
+| &nbsp; **SQL Logic** | &nbsp; Table + column + formula (Actioneer can help draft this) | &nbsp; `SUM(iap_revenue) / COUNT(DISTINCT user_id)` |
+| &nbsp; **Period** | &nbsp; Calculation window | &nbsp; `daily`, `7 days`, `30 days` |
+| &nbsp; **Relationships** | &nbsp; *(Optional)* Links to other metrics | &nbsp; Related to `DAU` and `Revenue` |
 
 **Example prompts:**
 - *"Add a Monetization KPI called ARPDAU — daily IAP revenue divided by DAU"*
@@ -132,12 +132,12 @@ The Metrics Tree is the visual hierarchy of all defined metrics and their relati
 
 All metric management happens through natural language. Actioneer confirms with you before making any changes.
 
-| Action | How to do it | Example prompt |
+| &nbsp; Action | &nbsp; How to do it | &nbsp; Example prompt |
 | :--- | :--- | :--- |
-| **Edit a metric** | Ask to update a metric's definition, query, or metadata | *"Update CPI to use a new formula"* or *"Change D7 Retention to filter by organic users only"* |
-| **Regenerate from schema** | Ask to refresh or recompute metrics against latest data | *"Refresh all metrics"* or *"Recompute UA metrics"* |
-| **Delete a metric** | Ask to remove a specific metric — confirmation required | *"Delete the D14 Retention metric"* |
-| **Add a related metric** | Create a new metric linked to an existing one | *"Add ARPDAU related to DAU and Revenue"* or *"Create D3 Retention similar to D1 Retention"* |
+| &nbsp; **Edit a metric** | &nbsp; Ask to update a metric's definition, query, or metadata | &nbsp; *"Update CPI to use a new formula"* or *"Change D7 Retention to filter by organic users only"* |
+| &nbsp; **Regenerate from schema** | &nbsp; Ask to refresh or recompute metrics against latest data | &nbsp; *"Refresh all metrics"* or *"Recompute UA metrics"* |
+| &nbsp; **Delete a metric** | &nbsp; Ask to remove a specific metric — confirmation required | &nbsp; *"Delete the D14 Retention metric"* |
+| &nbsp; **Add a related metric** | &nbsp; Create a new metric linked to an existing one | &nbsp; *"Add ARPDAU related to DAU and Revenue"* or *"Create D3 Retention similar to D1 Retention"* |
 
 <Info>
   Actioneer identifies whether a new metric is base or derived, ensures dependencies exist first, then computes and stores it. Metrics are recomputed in parallel by category — UA, Engagement, Monetisation, Underwriting — for speed.
@@ -147,12 +147,12 @@ All metric management happens through natural language. Actioneer confirms with 
 
 ## Metric Governance
 
-| Control | Description |
+| &nbsp; Control | &nbsp; Description |
 | :--- | :--- |
-| **Single source of truth** | Every feature — conversations, Boards, Playbooks, Funnels — references the same governed definition |
-| **Version control** | Definition changes are logged with a timestamp and the user who made the change |
-| **Historical preservation** | Values computed under a previous definition are preserved — not retroactively recalculated |
-| **Conflict detection** | Duplicate or contradictory definitions are flagged during setup |
+| &nbsp; **Single source of truth** | &nbsp; Every feature — conversations, Boards, Playbooks, Funnels — references the same governed definition |
+| &nbsp; **Version control** | &nbsp; Definition changes are logged with a timestamp and the user who made the change |
+| &nbsp; **Historical preservation** | &nbsp; Values computed under a previous definition are preserved — not retroactively recalculated |
+| &nbsp; **Conflict detection** | &nbsp; Duplicate or contradictory definitions are flagged during setup |
 
 <Card title="Next: Knowledge" icon="brain" horizontal href="/about/core-concepts/knowledge">
   Learn how business context and knowledge bases improve analysis accuracy.

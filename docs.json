@@ -47,7 +47,6 @@
             "pages": [
               "about/core-concepts",
               "about/core-concepts/conversational-analytics",
-              "about/core-concepts/scouts",
               "about/core-concepts/playbooks",
               "about/core-concepts/custom-agents",
               "about/core-concepts/boards",

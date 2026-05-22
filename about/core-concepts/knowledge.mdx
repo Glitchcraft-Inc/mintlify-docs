@@ -15,12 +15,12 @@ The Knowledge Base is a store of context — metric definitions, business rules,
 
 ## How Knowledge Improves Accuracy
 
-| Scenario | Without Knowledge | With Knowledge |
+| &nbsp; Scenario | &nbsp; Without Knowledge | &nbsp; With Knowledge |
 | :--- | :--- | :--- |
-| **CPI calculation** | Generic formula: total spend / total installs | Your definition: paid spend only / attributed installs excluding organics |
-| **Launch context** | Treats all dates equally | Knows July 29th was global launch — excludes pre-launch data from benchmarks |
-| **Data quality** | May query unreliable tables | Knows to never use `cost_etl_*` tables — they contain erroneous data |
-| **Evaluation** | No reference point for "good" or "bad" | Knows industry D1 retention for casual games is 35% |
+| &nbsp; **CPI calculation** | &nbsp; Generic formula: total spend / total installs | &nbsp; Your definition: paid spend only / attributed installs excluding organics |
+| &nbsp; **Launch context** | &nbsp; Treats all dates equally | &nbsp; Knows July 29th was global launch — excludes pre-launch data from benchmarks |
+| &nbsp; **Data quality** | &nbsp; May query unreliable tables | &nbsp; Knows to never use `cost_etl_*` tables — they contain erroneous data |
+| &nbsp; **Evaluation** | &nbsp; No reference point for "good" or "bad" | &nbsp; Knows industry D1 retention for casual games is 35% |
 
 Knowledge turns generic analysis into *your* analysis.
 
@@ -28,16 +28,16 @@ Knowledge turns generic analysis into *your* analysis.
 
 ## Knowledge Types
 
-| Type | What it does | Example |
+| &nbsp; Type | &nbsp; What it does | &nbsp; Example |
 | :--- | :--- | :--- |
-| **Metric** (`METRIC`) | Ensures consistent formulas across all analyses | *"ARPDAU = IAP revenue only, excludes ad revenue"* |
-| **Metric Range** (`METRIC_RANGE`) | Flags when a value looks abnormal | *"CPI should be $0.50–$5.00; flag if outside this range"* |
-| **Insight** (`INSIGHT`) | Provides business context that can't be inferred from data | *"July 29th was global launch — exclude pre-launch data"* |
-| **Data Validation** (`DATA_VALIDATION`) | Prevents use of bad tables or wrong filters | *"Never use cost_etl_* tables — erroneous data"* |
-| **External Benchmark** (`EXTERNAL_BENCHMARK`) | Gives reference points for evaluation | *"Industry D1 retention for casual games is 35%"* |
-| **Reporting** (`REPORTING`) | Standardises output format | *"Always report revenue in USD, rounded to nearest dollar"* |
-| **Segment** (`SEGMENT`) | Consistent audience definitions | *"Whales = users with LTV > $100 in first 30 days"* |
-| **Visualisation** (`VISUALISATION`) | Charting preferences and standards | *"Use line charts for time-series, bar charts for comparisons"* |
+| &nbsp; **Metric** (`METRIC`) | &nbsp; Ensures consistent formulas across all analyses | &nbsp; *"ARPDAU = IAP revenue only, excludes ad revenue"* |
+| &nbsp; **Metric Range** (`METRIC_RANGE`) | &nbsp; Flags when a value looks abnormal | &nbsp; *"CPI should be $0.50–$5.00; flag if outside this range"* |
+| &nbsp; **Insight** (`INSIGHT`) | &nbsp; Provides business context that can't be inferred from data | &nbsp; *"July 29th was global launch — exclude pre-launch data"* |
+| &nbsp; **Data Validation** (`DATA_VALIDATION`) | &nbsp; Prevents use of bad tables or wrong filters | &nbsp; *"Never use cost_etl_* tables — erroneous data"* |
+| &nbsp; **External Benchmark** (`EXTERNAL_BENCHMARK`) | &nbsp; Gives reference points for evaluation | &nbsp; *"Industry D1 retention for casual games is 35%"* |
+| &nbsp; **Reporting** (`REPORTING`) | &nbsp; Standardises output format | &nbsp; *"Always report revenue in USD, rounded to nearest dollar"* |
+| &nbsp; **Segment** (`SEGMENT`) | &nbsp; Consistent audience definitions | &nbsp; *"Whales = users with LTV > $100 in first 30 days"* |
+| &nbsp; **Visualisation** (`VISUALISATION`) | &nbsp; Charting preferences and standards | &nbsp; *"Use line charts for time-series, bar charts for comparisons"* |
 
 ---
 
@@ -45,18 +45,18 @@ Knowledge turns generic analysis into *your* analysis.
 
 **Priority levels:**
 
-| Priority | When to use |
+| &nbsp; Priority | &nbsp; When to use |
 | :--- | :--- |
-| **Critical** | Must always be applied — e.g. *"Never use cost_etl tables"* |
-| **High** | Applied by default — e.g. metric definitions, key business context |
-| **Low** | Referenced when relevant — e.g. nice-to-have benchmarks |
+| &nbsp; **Critical** | &nbsp; Must always be applied — e.g. *"Never use cost_etl tables"* |
+| &nbsp; **High** | &nbsp; Applied by default — e.g. metric definitions, key business context |
+| &nbsp; **Low** | &nbsp; Referenced when relevant — e.g. nice-to-have benchmarks |
 
 **Scope levels:**
 
-| Level | Visibility |
+| &nbsp; Level | &nbsp; Visibility |
 | :--- | :--- |
-| **Tenant** | Shared across all users in your organisation |
-| **User** | Private to your account only |
+| &nbsp; **Tenant** | &nbsp; Shared across all users in your organisation |
+| &nbsp; **User** | &nbsp; Private to your account only |
 
 ---
 
@@ -74,12 +74,12 @@ Actioneer asks you to confirm the type, priority, and level before saving.
 
 Upload documents and Actioneer indexes their content.
 
-| Format | Use case |
+| &nbsp; Format | &nbsp; Use case |
 | :--- | :--- |
-| **PDF** | Reports, strategy docs, benchmark studies |
-| **CSV** | Metric lookup tables, reference data |
-| **Word (.docx)** | Business documentation |
-| **Text (.txt)** | Plain text notes |
+| &nbsp; **PDF** | &nbsp; Reports, strategy docs, benchmark studies |
+| &nbsp; **CSV** | &nbsp; Metric lookup tables, reference data |
+| &nbsp; **Word (.docx)** | &nbsp; Business documentation |
+| &nbsp; **Text (.txt)** | &nbsp; Plain text notes |
 
 Uploaded files are searchable — relevant passages are retrieved during analysis.
 
@@ -93,12 +93,12 @@ Connect external sources to keep knowledge current:
 
 ## Managing Knowledge
 
-| Action | How to do it | Example |
+| &nbsp; Action | &nbsp; How to do it | &nbsp; Example |
 | :--- | :--- | :--- |
-| **Search** | Ask what Actioneer knows about a topic | *"What do you know about retention?"* |
-| **List all** | Browse the full knowledge base | *"List all knowledge entries"* |
-| **Filter** | View by type or priority | *"Show all CRITICAL knowledge"* |
-| **Delete** | Remove a specific entry — confirmation required | *"Delete knowledge entry about CPI benchmark"* |
+| &nbsp; **Search** | &nbsp; Ask what Actioneer knows about a topic | &nbsp; *"What do you know about retention?"* |
+| &nbsp; **List all** | &nbsp; Browse the full knowledge base | &nbsp; *"List all knowledge entries"* |
+| &nbsp; **Filter** | &nbsp; View by type or priority | &nbsp; *"Show all CRITICAL knowledge"* |
+| &nbsp; **Delete** | &nbsp; Remove a specific entry — confirmation required | &nbsp; *"Delete knowledge entry about CPI benchmark"* |
 
 <Info>
   Knowledge is versioned and auditable. When a definition changes, the update is tracked with a timestamp and the user who made the change.

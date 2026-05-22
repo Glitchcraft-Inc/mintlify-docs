@@ -70,19 +70,54 @@ Actioneer serves consumer product companies and enterprise lines of business whe
 
 <Tabs>
   <Tab title="Software / SaaS" icon="code">
-    Growth analytics, FP&A variance commentary, customer-success monitoring.
+    **Common pain:** Product data, CRM data, revenue data, and behavioural data live in different stacks. The data team is overwhelmed. Growth and finance can't move on questions same-day.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Growth analytics across product / ads / CRM | &nbsp; Conversational Analytics |
+    | &nbsp; FP&A variance commentary and board-pack prep | &nbsp; Custom Agent |
+    | &nbsp; Customer-success health monitoring by cohort | &nbsp; Playbooks with scheduled monitoring |
+    | &nbsp; Funnel performance and conversion diagnosis | &nbsp; Conversational Analytics (Funnel parity) |
   </Tab>
   <Tab title="Lending / NBFC" icon="landmark">
-    Pre-30 DPD early warning, LAP cross-sell, branch ops query layer.
+    **Common pain:** Origination, repayment, collections, and bureau data in separate systems. Pre-DPD risk is visible too late. Cross-sell underperforms because field teams don't get the right leads at the right time.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Pre-30 DPD early warning across branches | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; LAP cross-sell pushed directly to field CRM | &nbsp; Playbooks (triggered messaging) |
+    | &nbsp; Branch-level ops query layer (191+ branches) | &nbsp; Conversational Analytics |
+    | &nbsp; Portfolio risk monitoring and exception triage | &nbsp; Custom Agent |
   </Tab>
   <Tab title="Fintech" icon="wallet">
-    Cross-sell, funnel optimisation, channel attribution, KYC bottleneck surfacing.
+    **Common pain:** High-intent users across multiple products, but the messaging stack doesn't reach the right segments. KYC and activation drop-off is invisible.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Dormant AUM surfacing and cross-sell targeting | &nbsp; Playbooks (cohort-specific messaging) |
+    | &nbsp; KYC bottleneck surfacing and activation diagnosis | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Channel attribution and paid-spend mismatch | &nbsp; Conversational Analytics |
+    | &nbsp; Funnel optimisation across onboarding flows | &nbsp; Conversational Analytics (Funnel parity) |
   </Tab>
   <Tab title="Consumer Media" icon="play">
-    Retention diagnostics, content-spend optimisation, creative performance.
+    **Common pain:** Content, acquisition, and retention data live in different stacks. Spend rebalancing decisions are made on instinct. The shows users complete aren't the shows that retain them.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Content-retention-creative performance joining | &nbsp; Conversational Analytics |
+    | &nbsp; Spend rebalancing off low-retention content | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Regional concentration and state-level splits | &nbsp; Conversational Analytics |
+    | &nbsp; Creative performance and retargeting flow build | &nbsp; Playbooks + Custom Agent |
   </Tab>
   <Tab title="Manufacturing" icon="factory">
-    Supplier risk ranked by customer impact, production-schedule integrity, exception triage.
+    **Common pain:** Supplier SLA reports exist, but customer-impact-weighted SLA reports don't. Exception handling is reactive. Risk is distributed across ERP, supplier portal, and order book.
+
+    | &nbsp; Use Case | &nbsp; Capability |
+    | :--- | :--- |
+    | &nbsp; Supplier risk ranked by customer-order impact | &nbsp; Playbooks (scheduled monitoring) |
+    | &nbsp; Production-schedule integrity and slippage alerts | &nbsp; Playbooks + Custom Agent |
+    | &nbsp; Cross-system reconciliation (ERP / CRM / billing) | &nbsp; Custom Agent |
+    | &nbsp; Exception triage and PO re-routing recommendations | &nbsp; Playbooks |
   </Tab>
 </Tabs>
 
@@ -94,28 +129,28 @@ Actioneer serves consumer product companies and enterprise lines of business whe
 
 Actioneer is built in seven layers, each serving a distinct function.
 
-| Layer | Component | Purpose |
+| &nbsp; Layer | &nbsp; Component | &nbsp; Purpose |
 | :--- | :--- | :--- |
-| **1** | **Enterprise Data Connectors** | Connects to 700+ data sources — read-only by default, no data migration |
-| **2** | **Context Engine** | Semantic layer that gives every model a governed, business-specific understanding |
-| **3** | **Agent Orchestration Runtime** | Execution layer running single and multi-agent workflows at scale |
-| **4** | **Playbook Studio** | Multi-step capabilities — built once, run automatically |
-| **5** | **Insight-to-Action Layer** | Closes the loop between query and execution — segment push, campaign, alert |
-| **6** | **Continuous Observability** | Trace-level visibility into every agent decision and playbook run |
-| **7** | **Enterprise Governance** | RBAC, audit logs, explainable AI, private cloud deployment |
+| &nbsp; **1** | &nbsp; **Enterprise Data Connectors** | &nbsp; Connects to 700+ data sources — read-only by default, no data migration |
+| &nbsp; **2** | &nbsp; **Context Engine** | &nbsp; Semantic layer that gives every model a governed, business-specific understanding |
+| &nbsp; **3** | &nbsp; **Agent Orchestration Runtime** | &nbsp; Execution layer running single and multi-agent workflows at scale |
+| &nbsp; **4** | &nbsp; **Playbook Studio** | &nbsp; Multi-step capabilities and scheduled monitoring — built once, run automatically |
+| &nbsp; **5** | &nbsp; **Insight-to-Action Layer** | &nbsp; Closes the loop between query and execution — segment push, campaign, alert |
+| &nbsp; **6** | &nbsp; **Continuous Observability** | &nbsp; Trace-level visibility into every agent decision and playbook run |
+| &nbsp; **7** | &nbsp; **Enterprise Governance** | &nbsp; RBAC, audit logs, explainable AI, private cloud deployment |
 
 ---
 
 ## Actioneer vs Alternatives
 
-| Alternative | Where Actioneer differs |
+| &nbsp; Alternative | &nbsp; Where Actioneer differs |
 | :--- | :--- |
-| **Hiring analysts** | 3-day turnaround becomes same-conversation. Scouts run 24/7, not 9–5. Context is codified, not siloed. |
-| **Building in-house** | 6–12 months becomes weeks. No infrastructure to build or maintain. |
-| **BI tools** (Tableau, Looker) | BI answers questions you thought to ask. Actioneer proactively surfaces what you didn't know to look for — and closes the loop to action. |
-| **Vertical AI point tools** | You adapt to the product. Actioneer is engineered to your context and continuously extended. |
-| **Consulting firms** | Project-scoped and re-engage per initiative. Actioneer is continuously maintained infrastructure. |
-| **Generic LLM wrappers** (ChatGPT on your data) | Model reasons over raw data, prone to hallucination. Actioneer reasons over a governed context layer — with an action layer attached. |
+| &nbsp; **Hiring analysts** | &nbsp; 3-day turnaround becomes same-conversation. Playbooks run 24/7, not 9–5. Context is codified, not siloed. |
+| &nbsp; **Building in-house** | &nbsp; 6–12 months becomes weeks. No infrastructure to build or maintain. |
+| &nbsp; **BI tools** (Tableau, Looker) | &nbsp; BI answers questions you thought to ask. Actioneer proactively surfaces what you didn't know to look for — and closes the loop to action. |
+| &nbsp; **Vertical AI point tools** | &nbsp; You adapt to the product. Actioneer is engineered to your context and continuously extended. |
+| &nbsp; **Consulting firms** | &nbsp; Project-scoped and re-engage per initiative. Actioneer is continuously maintained infrastructure. |
+| &nbsp; **Generic LLM wrappers** (ChatGPT on your data) | &nbsp; Model reasons over raw data, prone to hallucination. Actioneer reasons over a governed context layer — with an action layer attached. |
 
 ---
 
@@ -161,7 +196,13 @@ Actioneer is SOC 2 Type II certified, ISO 27001 certified, GDPR compliant, HIPAA
 
 ## Company
 
-**Glitchcraft Inc.** (operating as Actioneer) · 650 Castro St, Mountain View, CA 94041 · [connect@actioneer.com](mailto:connect@actioneer.com) · [actioneer.com](https://www.actioneer.com) · [LinkedIn](https://linkedin.com/company/gameramp)
+| &nbsp; | &nbsp; |
+| :--- | :--- |
+| **Legal entity** | Glitchcraft Inc. (operating as Actioneer) |
+| **HQ** | 650 Castro St, Mountain View, CA 94041 |
+| **Contact** | [connect@actioneer.com](mailto:connect@actioneer.com) |
+| **Web** | [actioneer.com](https://www.actioneer.com) |
+| **LinkedIn** | [linkedin.com/company/gameramp](https://linkedin.com/company/gameramp) |
 
 ### Team
 
@@ -176,18 +217,6 @@ Actioneer is SOC 2 Type II certified, ISO 27001 certified, GDPR compliant, HIPAA
     **COO** — Financial-services investor at Matrix / Z47. KPMG Deal Advisory on BFSI M&A. EY business consulting.
   </Card>
 </CardGroup>
-
-### By the Numbers
-
-<CardGroup cols={3}>
-  <Card title="15 Clients" icon="building">across 4 industries</Card>
-  <Card title="30 Engineers" icon="code">full platform team</Card>
-  <Card title="12 Deployments" icon="rocket">live in production</Card>
-</CardGroup>
-
-### Investors
-
-<Badge color="purple">Bitkraft</Badge> <Badge color="purple">MIXI</Badge> <Badge color="purple">Sony Innovation Fund</Badge> <Badge color="purple">South Park Commons</Badge>
 
 <Card title="Next: How It Works" icon="workflow" horizontal href="/about/how-it-works">
   See the seven-layer architecture and how a question becomes an action.
