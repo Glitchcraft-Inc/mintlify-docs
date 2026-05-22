@@ -102,7 +102,7 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
   </Accordion>
 
   <Accordion title="When should I use the SSH Tunnel option?">
-    Enable the SSH Tunnel if your ClickHouse instance is in a private network (e.g., behind a VPC with no public endpoint). This connects Actioneer via a bastion host that has access to the private network.
+    Enable SSH Tunnel if your ClickHouse instance is in a private network (e.g., behind a VPC with no public endpoint). The tunnel is a **network routing mechanism** — it routes traffic through a bastion host that has access to your private instance. It does **not** replace or provide encryption. TLS encryption is applied to all Actioneer connections independently, regardless of whether SSH Tunnel is enabled.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">

@@ -94,7 +94,7 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
   </Accordion>
 
   <Accordion title="When should I use the SSH Tunnel option?">
-    Enable the SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint). The tunnel routes Actioneer's connection through a bastion host that has network access to your database. SSH tunneling is not the same as SSL — all Actioneer connections use TLS encryption regardless of whether the tunnel is enabled.
+    Enable SSH Tunnel if your PostgreSQL instance is in a private network (e.g., an RDS instance in a private subnet with no public endpoint). The tunnel is a **network routing mechanism** — it routes traffic through a bastion host that has access to your private instance. It does **not** replace or provide encryption. TLS encryption is applied to all Actioneer connections independently, regardless of whether SSH Tunnel is enabled.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
