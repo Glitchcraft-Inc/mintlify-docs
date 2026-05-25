@@ -36,31 +36,6 @@
     },
     "groups": [
       {
-        "group": "About Us",
-        "icon": "info",
-        "pages": [
-          "about",
-          "about/how-it-works",
-          {
-            "group": "Core Concepts",
-            "icon": "layers",
-            "pages": [
-              "about/core-concepts",
-              "about/core-concepts/conversational-analytics",
-              "about/core-concepts/playbooks",
-              "about/core-concepts/custom-agents",
-              "about/core-concepts/boards",
-              "about/core-concepts/segments",
-              "about/core-concepts/funnels",
-              "about/core-concepts/retention",
-              "about/core-concepts/metrics",
-              "about/core-concepts/knowledge"
-            ]
-          },
-          "about/getting-started"
-        ]
-      },
-      {
         "group": "Integrations",
         "icon": "plug",
         "pages": [
@@ -82,16 +57,6 @@
             ]
           },
           {
-            "group": "BI Tools",
-            "icon": "chart-bar",
-            "pages": [
-              "integrations/bi-tools",
-              "integrations/bi-tools/amplitude",
-              "integrations/bi-tools/mixpanel",
-              "integrations/bi-tools/power-bi"
-            ]
-          },
-          {
             "group": "MMP Connections",
             "icon": "smartphone",
             "pages": [
@@ -100,23 +65,7 @@
               "integrations/mmp/appsflyer",
               "integrations/mmp/singular"
             ]
-          },
-          {
-            "group": "Operational Surfaces",
-            "icon": "monitor",
-            "pages": [
-              "integrations/slack"
-            ]
           }
-        ]
-      },
-      {
-        "group": "Security and Privacy",
-        "icon": "shield-check",
-        "pages": [
-          "security/data-protection",
-          "security/governance",
-          "security/responsible-ai"
         ]
       }
     ]
