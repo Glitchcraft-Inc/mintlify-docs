@@ -72,6 +72,22 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
     </Warning>
   </Step>
 
+  <Step title="Allow Actioneer's IP address">
+    If your ClickHouse instance restricts inbound connections, add Actioneer's IP so it can reach the HTTP interface.
+
+    **ClickHouse Cloud**
+    1. Open your service in the ClickHouse Cloud console.
+    2. Go to **Settings → IP Access List**.
+    3. Add `35.244.14.238/32` and save.
+
+    **Self-hosted**
+    1. Ensure your firewall allows inbound TCP on the port from Step 1 (`8123` or `8443`) from `35.244.14.238`.
+
+    <Info>
+      If your instance is in a private network with no public endpoint, skip this step and use the **SSH Tunnel** option in Actioneer instead (see the connection form in the next step).
+    </Info>
+  </Step>
+
   <Step title="Connect ClickHouse in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **ClickHouse** from the list of data sources.

@@ -74,6 +74,14 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     </Note>
   </Step>
   <Step title="Connect Databricks in Actioneer">
+    <Warning>
+      Your SQL Warehouse must be **running** (not paused or stopped) when you click Connect. A stopped warehouse will cause a silent timeout. You can start it from the SQL Warehouses page in your Databricks workspace.
+    </Warning>
+
+    <Info>
+      If your Databricks workspace has **IP access lists** enabled, add `35.244.14.238/32` under **Admin Console → Settings → IP Access Lists** before connecting.
+    </Info>
+
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **Databricks** from the list of data sources.
     3. When prompted, select **Direct Connection**.
