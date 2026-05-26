@@ -64,6 +64,34 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     </Warning>
   </Step>
 
+  <Step title="Allow Actioneer's IP address">
+    If your PostgreSQL instance restricts inbound connections (most managed providers do by default), add Actioneer's IP so it can reach your database.
+
+    **AWS RDS / Aurora**
+    1. In the AWS Console, open **EC2 → Security Groups**.
+    2. Find the security group attached to your RDS instance (visible on the instance's **Connectivity & security** tab).
+    3. Click the security group → **Inbound rules → Edit inbound rules**.
+    4. Add a rule: Type = **PostgreSQL**, Port = **5432**, Source = **Custom** → `35.244.14.238/32`.
+    5. Click **Save rules**.
+
+    **Google Cloud SQL**
+    1. Go to your Cloud SQL instance → **Connections → Networking → Authorized networks**.
+    2. Click **Add a network**. Name it `Actioneer` and enter `35.244.14.238/32`.
+    3. Click **Save**.
+
+    **Self-hosted**
+    1. Add the following line to your `pg_hba.conf`:
+    ```
+    host all actioneer_readonly 35.244.14.238/32 scram-sha-256
+    ```
+    2. Ensure your firewall allows inbound TCP on port `5432` from `35.244.14.238`.
+    3. Reload the configuration: `SELECT pg_reload_conf();`
+
+    <Info>
+      If your instance is in a private network with no public endpoint, skip this step and use the **SSH Tunnel** option in Actioneer instead (see the connection form in the next step).
+    </Info>
+  </Step>
+
   <Step title="Connect PostgreSQL in Actioneer">
     1. In Actioneer, click **Data** in the left sidebar.
     2. Select **PostgreSQL** from the list of data sources.
