@@ -11,10 +11,10 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; PostgreSQL instance (self-hosted, RDS, Cloud SQL, or any managed provider), Actioneer account |
-| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified schemas |
-| &nbsp; **Estimated time** | &nbsp; ~15 minutes |
-| &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
+| **Prerequisites** | PostgreSQL instance (self-hosted, RDS, Cloud SQL, or any managed provider), Actioneer account |
+| **Access granted** | `SELECT` queries on specified schemas |
+| **Estimated time** | ~15 minutes |
+| **Actioneer IP** | `35.244.14.238` |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or database settings.
@@ -30,11 +30,11 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
 
     **Self-hosted:** Use the hostname or IP address of your PostgreSQL server. The default port is `5432`.
 
-    | &nbsp; Value | &nbsp; Location | &nbsp; Example |
+    | Value | Location | Example |
     | :--- | :--- | :--- |
-    | &nbsp; **Host** | &nbsp; Provider console or server config | &nbsp; `my-db.abc123.us-east-1.rds.amazonaws.com` |
-    | &nbsp; **Port** | &nbsp; Provider console or server config | &nbsp; `5432` |
-    | &nbsp; **Database Name** | &nbsp; Provider console or `\l` in psql | &nbsp; `analytics` |
+    | **Host** | Provider console or server config | `my-db.abc123.us-east-1.rds.amazonaws.com` |
+    | **Port** | Provider console or server config | `5432` |
+    | **Database Name** | Provider console or `\l` in psql | `analytics` |
   </Step>
 
   <Step title="Create a read-only database user">
@@ -98,15 +98,15 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | &nbsp; Field | &nbsp; Value |
+    | Field | Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production PostgreSQL` |
-    | &nbsp; **Host** | &nbsp; From Step 1 (e.g., `my-db.abc123.us-east-1.rds.amazonaws.com`) |
-    | &nbsp; **Port** | &nbsp; From Step 1 (e.g., `5432`) |
-    | &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
-    | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
-    | &nbsp; **Password** | &nbsp; The password set in Step 2 |
-    | &nbsp; **SSH Tunnel** | &nbsp; Optional — enable to connect through a bastion host if your PostgreSQL instance is in a private network with no public endpoint |
+    | **Connection Name** | A descriptive label, e.g. `Production PostgreSQL` |
+    | **Host** | From Step 1 (e.g., `my-db.abc123.us-east-1.rds.amazonaws.com`) |
+    | **Port** | From Step 1 (e.g., `5432`) |
+    | **Database Name** | From Step 1 (e.g., `analytics`) |
+    | **Username** | `actioneer_readonly` |
+    | **Password** | The password set in Step 2 |
+    | **SSH Tunnel** | Optional — enable to connect through a bastion host if your PostgreSQL instance is in a private network with no public endpoint |
 
     5. Click **Connect**.
   </Step>
