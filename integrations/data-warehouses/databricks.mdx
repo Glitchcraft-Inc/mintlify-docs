@@ -11,9 +11,9 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
 
 | | |
 | :--- | :--- |
-| **Prerequisites** | Databricks workspace with a SQL Warehouse, Actioneer account |
-| **Access granted** | `SELECT` queries on specified tables |
-| **Estimated time** | ~15–20 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Databricks workspace with a SQL Warehouse, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables |
+| &nbsp; **Estimated time** | &nbsp; ~15–20 minutes |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or settings in your Databricks workspace.
@@ -30,10 +30,10 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     3. Click the warehouse Actioneer should use.
     4. Open the **Connection Details** tab and copy both values below.
 
-    | Field | Where to find it | Example |
+    | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | **Server Hostname** | Connection Details tab | `adb-123456.azuredatabricks.net` |
-    | **HTTP Path** | Connection Details tab | `/sql/1.0/warehouses/abc123` |
+    | &nbsp; **Server Hostname** | &nbsp; Connection Details tab | &nbsp; `adb-123456.azuredatabricks.net` |
+    | &nbsp; **HTTP Path** | &nbsp; Connection Details tab | &nbsp; `/sql/1.0/warehouses/abc123` |
   </Step>
   <Step title="Create a Personal Access Token">
     A Personal Access Token (PAT) is the credential Actioneer uses to authenticate with Databricks.
@@ -63,11 +63,11 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     GRANT SELECT ON SCHEMA <your_catalog>.<your_schema> TO <username>;
     ```
 
-    | Permission | Purpose |
+    | &nbsp; Permission | &nbsp; Purpose |
     | :--- | :--- |
-    | `USE CATALOG` | Access the top-level catalog container |
-    | `USE SCHEMA` | Access the specific schema within the catalog |
-    | `SELECT` | Read tables within the schema |
+    | &nbsp; `USE CATALOG` | &nbsp; Access the top-level catalog container |
+    | &nbsp; `USE SCHEMA` | &nbsp; Access the specific schema within the catalog |
+    | &nbsp; `SELECT` | &nbsp; Read tables within the schema |
 
     <Note>
       These commands require Unity Catalog, which most modern Databricks workspaces use. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
@@ -87,14 +87,14 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+    | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production Databricks` |
-    | **Server Hostname** | From Step 1 — **do not include `https://`** |
-    | **Schema / Database** | From Step 3 (e.g., `default`) |
-    | **HTTP Path** | From Step 1 |
-    | **Catalog** | The catalog from Step 3 (e.g., `main`) |
-    | **Personal Access Token** | From Step 2 (starts with `dapi`) |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Databricks` |
+    | &nbsp; **Server Hostname** | &nbsp; From Step 1 — **do not include `https://`** |
+    | &nbsp; **Schema / Database** | &nbsp; From Step 3 (e.g., `default`) |
+    | &nbsp; **HTTP Path** | &nbsp; From Step 1 |
+    | &nbsp; **Catalog** | &nbsp; The catalog from Step 3 (e.g., `main`) |
+    | &nbsp; **Personal Access Token** | &nbsp; From Step 2 (starts with `dapi`) |
 
     5. Click **Connect**.
   </Step>

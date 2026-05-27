@@ -11,10 +11,10 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
 
 | | |
 | :--- | :--- |
-| **Prerequisites** | AWS account with a Redshift cluster, Actioneer account |
-| **Access granted** | `SELECT` queries on specified schemas |
-| **Estimated time** | ~20 minutes |
-| **Actioneer IP** | `35.244.14.238` |
+| &nbsp; **Prerequisites** | &nbsp; AWS account with a Redshift cluster, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified schemas |
+| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
+| &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or cluster settings.
@@ -31,11 +31,11 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The port is always `5439`.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
-    | Field | Where to find it | Example |
+    | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | **Host** | Cluster endpoint (without port) | `my-cluster.us-east-1.redshift.amazonaws.com` |
-    | **Port** | Always `5439` for Redshift | `5439` |
-    | **Database** | General information tab | `analytics` |
+    | &nbsp; **Host** | &nbsp; Cluster endpoint (without port) | &nbsp; `my-cluster.us-east-1.redshift.amazonaws.com` |
+    | &nbsp; **Port** | &nbsp; Always `5439` for Redshift | &nbsp; `5439` |
+    | &nbsp; **Database** | &nbsp; General information tab | &nbsp; `analytics` |
   </Step>
   <Step title="Create a read-only database user">
     Connect to your Redshift cluster using a SQL client (Redshift Query Editor, DBeaver, or psql) and run the following. Replace `YOUR_SCHEMA` with the schema Actioneer should query.
@@ -85,15 +85,15 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+    | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production Redshift` |
-    | **Host** | From Step 1 — cluster endpoint without the port |
-    | **Port** | `5439` |
-    | **Database Name** | From Step 1 (e.g., `analytics`) |
-    | **Username** | `actioneer_readonly` |
-    | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — for clusters that are not publicly accessible |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Redshift` |
+    | &nbsp; **Host** | &nbsp; From Step 1 — cluster endpoint without the port |
+    | &nbsp; **Port** | &nbsp; `5439` |
+    | &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
+    | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
+    | &nbsp; **Password** | &nbsp; The password set in Step 2 |
+    | &nbsp; **SSH Tunnel** | &nbsp; Optional — for clusters that are not publicly accessible |
 
     5. Click **Connect**.
   </Step>

@@ -11,9 +11,9 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
 
 | | |
 | :--- | :--- |
-| **Prerequisites** | Google Cloud project with BigQuery enabled, Actioneer account |
-| **Access granted** | `SELECT` queries on specified tables |
-| **Estimated time** | ~15 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Google Cloud project with BigQuery enabled, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables |
+| &nbsp; **Estimated time** | &nbsp; ~15 minutes |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or schemas in your BigQuery project.
@@ -29,10 +29,10 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     2. Open the project selector in the top-left corner. Copy the **Project ID** (e.g., `gc-prod-459709`). This is case-sensitive and differs from the project display name.
     3. In the left sidebar, open **BigQuery**. Expand your project in the Explorer panel and locate the dataset Actioneer should query. Note the exact **Dataset ID** (e.g., `analytics_data`). Also case-sensitive.
 
-    | Field | Where to find it | Example |
+    | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | **GCP Project ID** | Project selector, top-left | `gc-prod-459709` |
-    | **Dataset ID** | BigQuery Explorer panel | `analytics_data` |
+    | &nbsp; **GCP Project ID** | &nbsp; Project selector, top-left | &nbsp; `gc-prod-459709` |
+    | &nbsp; **Dataset ID** | &nbsp; BigQuery Explorer panel | &nbsp; `analytics_data` |
   </Step>
   <Step title="Create a service account and grant BigQuery roles">
     Actioneer authenticates using a GCP service account JSON key that you create and upload. This keeps credentials under your control.
@@ -44,10 +44,10 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     3. Name it something clear (e.g., `actioneer-bigquery-reader`). Click **Create and Continue**.
     4. Assign the following two roles:
 
-    | Role | Role ID | Purpose |
+    | &nbsp; Role | &nbsp; Role ID | &nbsp; Purpose |
     | :--- | :--- | :--- |
-    | BigQuery User | `roles/bigquery.user` | Run queries and access BigQuery resources |
-    | BigQuery Data Viewer | `roles/bigquery.dataViewer` | Read datasets and tables |
+    | &nbsp; BigQuery User | &nbsp; `roles/bigquery.user` | &nbsp; Run queries and access BigQuery resources |
+    | &nbsp; BigQuery Data Viewer | &nbsp; `roles/bigquery.dataViewer` | &nbsp; Read datasets and tables |
 
     5. Click **Continue**, then **Done**.
 
@@ -80,12 +80,12 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+    | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production BigQuery` |
-    | **GCP Project ID** | From Step 1 — case-sensitive |
-    | **Dataset ID** | From Step 1 — case-sensitive |
-    | **Service Account JSON Key** | Upload or drop the JSON key file from Step 2 |
+    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production BigQuery` |
+    | &nbsp; **GCP Project ID** | &nbsp; From Step 1 — case-sensitive |
+    | &nbsp; **Dataset ID** | &nbsp; From Step 1 — case-sensitive |
+    | &nbsp; **Service Account JSON Key** | &nbsp; Upload or drop the JSON key file from Step 2 |
 
     <Warning>
       The **GCP Project ID** you enter must match the `project_id` inside your service account JSON key. If they differ, the connection will use the project from the JSON key, not the one entered in the form.
