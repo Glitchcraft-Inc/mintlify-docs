@@ -12,10 +12,10 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; ClickHouse instance, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified databases |
-| &nbsp; **Estimated time** | &nbsp; ~15 minutes |
-| &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
+| **Prerequisites** | ClickHouse instance (self-hosted or ClickHouse Cloud), Actioneer account |
+| **Access granted** | `SELECT` queries on specified databases |
+| **Estimated time** | ~15 minutes |
+| **Actioneer IP** | `35.244.14.238` |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or settings in your ClickHouse instance.
@@ -31,17 +31,17 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
     **Self-hosted:** Use the hostname or IP address of your ClickHouse server.
 
-    | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
+    | Value | Location | Example |
     | :--- | :--- | :--- |
-    | &nbsp; **Host** | &nbsp; Service overview / server config | &nbsp; `my-instance.clickhouse.cloud` |
-    | &nbsp; **Port** | &nbsp; See port table below | &nbsp; `8443` or `8123` |
+    | **Host** | Service overview or server config | `my-instance.clickhouse.cloud` |
+    | **Port** | See port table below | `8443` (Cloud) or `8123` (self-hosted) |
 
     **Port reference:**
 
-    | &nbsp; Port | &nbsp; Environment | &nbsp; Protocol |
+    | Port | Environment | Protocol |
     | :--- | :--- | :--- |
-    | &nbsp; `8443` | &nbsp; ClickHouse Cloud | &nbsp; HTTPS (required) |
-    | &nbsp; `8123` | &nbsp; Self-hosted | &nbsp; HTTP |
+    | `8443` | ClickHouse Cloud | HTTPS (required) |
+    | `8123` | Self-hosted | HTTP |
 
     <Warning>
       Native port `9000` is not supported by this connector. Use the HTTP interface (`8123` for self-hosted, `8443` for ClickHouse Cloud).
@@ -95,15 +95,15 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | &nbsp; Field | &nbsp; Value |
+    | Field | Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; e.g. `Production ClickHouse` |
-    | &nbsp; **Host** | &nbsp; From Step 1 |
-    | &nbsp; **Port** | &nbsp; From Step 1 |
-    | &nbsp; **Database Name** | &nbsp; From Step 2 |
-    | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
-    | &nbsp; **Password** | &nbsp; The password set in Step 2 |
-    | &nbsp; **SSH Tunnel** | &nbsp; Optional |
+    | **Connection Name** | A descriptive label, e.g. `Production ClickHouse` |
+    | **Host** | From Step 1 (e.g., `my-instance.clickhouse.cloud`) |
+    | **Port** | From Step 1 (e.g., `8123`) |
+    | **Database Name** | The database from Step 2 (e.g., `analytics`) |
+    | **Username** | `actioneer_readonly` |
+    | **Password** | The password set in Step 2 |
+    | **SSH Tunnel** | Optional — enable to connect via a bastion host for private instances |
 
     5. Click **Connect**.
   </Step>
