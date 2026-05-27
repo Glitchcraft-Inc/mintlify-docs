@@ -31,7 +31,7 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
     4. Check your **Workgroup** under **Settings**. If you have not created a custom workgroup, the default is `primary`.
     5. Note the **S3 Output Location** for query results. This is under **Settings → Query result location** (e.g., `s3://my-bucket/results/`). Not needed if your workgroup has managed query results enabled.
 
-    | Value | Location | Example |
+    | Field | Where to find it | Example |
     | :--- | :--- | :--- |
     | **Database** | Athena query editor, database dropdown | `analytics_db` |
     | **AWS Region** | Console top-right corner | `us-east-1` |
@@ -109,10 +109,10 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
     7. Select **Application running outside AWS**, click **Next**, then **Create access key**.
     8. Copy both the **Access Key ID** and the **Secret Access Key**.
 
-    | Value | Location | Example |
+    | Field | Where to find it | Example |
     | :--- | :--- | :--- |
     | **Access Key ID** | IAM → Security credentials | `AKIAIOSFODNN7EXAMPLE` |
-    | **Secret Access Key** | IAM → Security credentials — shown once | `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` |
+    | **Secret Access Key** | IAM → Security credentials (shown once) | `wJalrXUtnFEMI/K7MDENG...` |
 
     <Warning>
       AWS displays the Secret Access Key exactly once. If you close the page without copying it, you will need to delete the key and create a new one. Store both values in a password manager.
@@ -142,7 +142,7 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
     | **Secret Access Key** | From Step 2 |
     | **AWS Region** | From Step 1 (e.g., `us-east-1`) |
     | **Database** | From Step 1 (e.g., `analytics_db`) |
-    | **S3 Output Location** | From Step 1 (e.g., `s3://my-bucket/results/`) — leave blank if your workgroup manages results |
+    | **S3 Output Location** | From Step 1 — leave blank if your workgroup manages results |
     | **Workgroup** | From Step 1 — defaults to `primary` |
     | **Data Catalog** | Defaults to `AwsDataCatalog` — only change for federated sources |
 

@@ -31,9 +31,9 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The port is always `5439`.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
-    | Field | Location | Value Example |
+    | Field | Where to find it | Example |
     | :--- | :--- | :--- |
-    | **Host** | Cluster endpoint (without port) | `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
+    | **Host** | Cluster endpoint (without port) | `my-cluster.us-east-1.redshift.amazonaws.com` |
     | **Port** | Always `5439` for Redshift | `5439` |
     | **Database** | General information tab | `analytics` |
   </Step>
@@ -93,7 +93,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     | **Database Name** | From Step 1 (e.g., `analytics`) |
     | **Username** | `actioneer_readonly` |
     | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — enable to connect through a bastion host if your cluster is not publicly accessible |
+    | **SSH Tunnel** | Optional — for clusters that are not publicly accessible |
 
     5. Click **Connect**.
   </Step>

@@ -30,7 +30,7 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
     **Self-hosted:** Use the hostname or IP address of your ClickHouse server.
 
-    | Value | Location | Example |
+    | Field | Where to find it | Example |
     | :--- | :--- | :--- |
     | **Host** | Service overview or server config | `my-instance.clickhouse.cloud` |
     | **Port** | See port table below | `8443` (Cloud) or `8123` (self-hosted) |
@@ -102,7 +102,7 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
     | **Database Name** | The database from Step 2 (e.g., `analytics`) |
     | **Username** | `actioneer_readonly` |
     | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — enable to connect via a bastion host for private instances |
+    | **SSH Tunnel** | Optional — for private instances with no public endpoint |
 
     5. Click **Connect**.
   </Step>

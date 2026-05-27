@@ -30,9 +30,9 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
 
     **Self-hosted:** Use the hostname or IP address of your PostgreSQL server. The default port is `5432`.
 
-    | Value | Location | Example |
+    | Field | Where to find it | Example |
     | :--- | :--- | :--- |
-    | **Host** | Provider console or server config | `my-db.abc123.us-east-1.rds.amazonaws.com` |
+    | **Host** | Provider console or server config | `my-db.us-east-1.rds.amazonaws.com` |
     | **Port** | Provider console or server config | `5432` |
     | **Database Name** | Provider console or `\l` in psql | `analytics` |
   </Step>
@@ -101,12 +101,12 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
     | Field | Value |
     | :--- | :--- |
     | **Connection Name** | A descriptive label, e.g. `Production PostgreSQL` |
-    | **Host** | From Step 1 (e.g., `my-db.abc123.us-east-1.rds.amazonaws.com`) |
+    | **Host** | From Step 1 |
     | **Port** | From Step 1 (e.g., `5432`) |
     | **Database Name** | From Step 1 (e.g., `analytics`) |
     | **Username** | `actioneer_readonly` |
     | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — enable to connect through a bastion host if your PostgreSQL instance is in a private network with no public endpoint |
+    | **SSH Tunnel** | Optional — for private instances with no public endpoint |
 
     5. Click **Connect**.
   </Step>
