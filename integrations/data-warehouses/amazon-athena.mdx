@@ -119,13 +119,13 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
     </Warning>
 
     <Accordion title="Quick setup with managed policies">
-      For a faster (broader) setup, attach these three AWS managed policies to the IAM user instead of creating a custom policy:
+      If you prefer a faster setup, attach these three AWS managed policies to the IAM user instead of creating the custom policy above:
 
       - `AmazonAthenaFullAccess`
       - `AmazonS3FullAccess`
       - `AWSGlueConsoleFullAccess`
 
-      This grants more permissions than required. The custom policy above is recommended for production.
+      These policies provide broader access than the custom policy. For tighter control over what Actioneer can access, use the custom policy in the previous step.
     </Accordion>
   </Step>
 
