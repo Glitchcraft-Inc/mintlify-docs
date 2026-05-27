@@ -11,8 +11,8 @@ This guide walks through connecting a Snowflake account to Actioneer. The setup 
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Snowflake account with `ACCOUNTADMIN` access, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables and views |
+| &nbsp; **Prerequisites** | &nbsp; Snowflake account with `ACCOUNTADMIN`, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables |
 | &nbsp; **Estimated time** | &nbsp; ~20 minutes |
 | &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
 
@@ -105,14 +105,14 @@ This guide walks through connecting a Snowflake account to Actioneer. The setup 
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Snowflake` |
-    | &nbsp; **Host** | &nbsp; Your Snowflake account URL (Account → Details → Account URL) |
+    | &nbsp; **Connection Name** | &nbsp; e.g. `Production Snowflake` |
+    | &nbsp; **Host** | &nbsp; Account → Details → Account URL |
     | &nbsp; **Port** | &nbsp; `443` |
     | &nbsp; **Database Name** | &nbsp; The `<<YOUR_DB>>` value from Step 1 |
     | &nbsp; **Username** | &nbsp; `AI_ANALYST_USER` |
-    | &nbsp; **Password** | &nbsp; Leave blank — PAT replaces the password |
-    | &nbsp; **Personal Access Token** | &nbsp; The `token_secret` from Step 2 |
-    | &nbsp; **SSH Tunnel** | &nbsp; Not required — network policy handles IP filtering |
+    | &nbsp; **Password** | &nbsp; Leave blank (PAT replaces it) |
+    | &nbsp; **Personal Access Token** | &nbsp; From Step 2 |
+    | &nbsp; **SSH Tunnel** | &nbsp; Not required |
 
     <Info>
       **Warehouse** is not entered here — Actioneer reads it from the `DEFAULT_WAREHOUSE` set on the Snowflake user in Step 1. If you need to change the warehouse later, update the user's `DEFAULT_WAREHOUSE` in Snowflake.

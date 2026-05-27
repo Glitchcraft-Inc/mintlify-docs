@@ -11,7 +11,7 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; ClickHouse instance (self-hosted or ClickHouse Cloud), Actioneer account |
+| &nbsp; **Prerequisites** | &nbsp; ClickHouse instance, Actioneer account |
 | &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified databases |
 | &nbsp; **Estimated time** | &nbsp; ~15 minutes |
 | &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
@@ -32,8 +32,8 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
     | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | &nbsp; **Host** | &nbsp; Service overview or server config | &nbsp; `my-instance.clickhouse.cloud` |
-    | &nbsp; **Port** | &nbsp; See port table below | &nbsp; `8443` (Cloud) or `8123` (self-hosted) |
+    | &nbsp; **Host** | &nbsp; Service overview / server config | &nbsp; `my-instance.clickhouse.cloud` |
+    | &nbsp; **Port** | &nbsp; See port table below | &nbsp; `8443` or `8123` |
 
     **Port reference:**
 
@@ -96,13 +96,13 @@ This guide walks through connecting a ClickHouse database to Actioneer. The setu
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production ClickHouse` |
-    | &nbsp; **Host** | &nbsp; From Step 1 (e.g., `my-instance.clickhouse.cloud`) |
-    | &nbsp; **Port** | &nbsp; From Step 1 (e.g., `8123`) |
-    | &nbsp; **Database Name** | &nbsp; The database from Step 2 (e.g., `analytics`) |
+    | &nbsp; **Connection Name** | &nbsp; e.g. `Production ClickHouse` |
+    | &nbsp; **Host** | &nbsp; From Step 1 |
+    | &nbsp; **Port** | &nbsp; From Step 1 |
+    | &nbsp; **Database Name** | &nbsp; From Step 2 |
     | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
     | &nbsp; **Password** | &nbsp; The password set in Step 2 |
-    | &nbsp; **SSH Tunnel** | &nbsp; Optional — for private instances with no public endpoint |
+    | &nbsp; **SSH Tunnel** | &nbsp; Optional |
 
     5. Click **Connect**.
   </Step>

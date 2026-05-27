@@ -11,7 +11,7 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Google Cloud project with BigQuery enabled, Actioneer account |
+| &nbsp; **Prerequisites** | &nbsp; GCP project with BigQuery, Actioneer account |
 | &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables |
 | &nbsp; **Estimated time** | &nbsp; ~15 minutes |
 
@@ -46,8 +46,8 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
 
     | &nbsp; Role | &nbsp; Role ID | &nbsp; Purpose |
     | :--- | :--- | :--- |
-    | &nbsp; BigQuery User | &nbsp; `roles/bigquery.user` | &nbsp; Run queries and access BigQuery resources |
-    | &nbsp; BigQuery Data Viewer | &nbsp; `roles/bigquery.dataViewer` | &nbsp; Read datasets and tables |
+    | &nbsp; BigQuery User | &nbsp; `roles/bigquery.user` | &nbsp; Run queries |
+    | &nbsp; BigQuery Data Viewer | &nbsp; `roles/bigquery.dataViewer` | &nbsp; Read tables |
 
     5. Click **Continue**, then **Done**.
 
@@ -82,10 +82,10 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production BigQuery` |
-    | &nbsp; **GCP Project ID** | &nbsp; From Step 1 — case-sensitive |
-    | &nbsp; **Dataset ID** | &nbsp; From Step 1 — case-sensitive |
-    | &nbsp; **Service Account JSON Key** | &nbsp; Upload or drop the JSON key file from Step 2 |
+    | &nbsp; **Connection Name** | &nbsp; e.g. `Production BigQuery` |
+    | &nbsp; **GCP Project ID** | &nbsp; From Step 1 |
+    | &nbsp; **Dataset ID** | &nbsp; From Step 1 |
+    | &nbsp; **Service Account JSON Key** | &nbsp; Upload the JSON key from Step 2 |
 
     <Warning>
       The **GCP Project ID** you enter must match the `project_id` inside your service account JSON key. If they differ, the connection will use the project from the JSON key, not the one entered in the form.

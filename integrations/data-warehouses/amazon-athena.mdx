@@ -11,8 +11,8 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; AWS account with Athena configured, a Glue catalog database, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Query execution on specified Athena database via Glue catalog |
+| &nbsp; **Prerequisites** | &nbsp; AWS account with Athena, Glue catalog database, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Query execution on specified Athena database |
 | &nbsp; **Estimated time** | &nbsp; ~15–20 minutes |
 
 <Info>
@@ -33,11 +33,11 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
 
     | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | &nbsp; **Database** | &nbsp; Athena query editor, database dropdown | &nbsp; `analytics_db` |
+    | &nbsp; **Database** | &nbsp; Athena query editor | &nbsp; `analytics_db` |
     | &nbsp; **AWS Region** | &nbsp; Console top-right corner | &nbsp; `us-east-1` |
     | &nbsp; **Workgroup** | &nbsp; Athena Settings | &nbsp; `primary` |
-    | &nbsp; **S3 Output Location** | &nbsp; Settings → Query result location | &nbsp; `s3://my-bucket/results/` |
-    | &nbsp; **Data Catalog** | &nbsp; Defaults to `AwsDataCatalog` | &nbsp; `AwsDataCatalog` |
+    | &nbsp; **S3 Output Location** | &nbsp; Settings → Query result location | &nbsp; `s3://bucket/results/` |
+    | &nbsp; **Data Catalog** | &nbsp; Default: `AwsDataCatalog` | &nbsp; `AwsDataCatalog` |
 
     <Tip>
       The Data Catalog defaults to `AwsDataCatalog` (AWS Glue). Only change this if you are using federated query sources.
@@ -111,8 +111,8 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
 
     | &nbsp; Field | &nbsp; Where to find it | &nbsp; Example |
     | :--- | :--- | :--- |
-    | &nbsp; **Access Key ID** | &nbsp; IAM → Security credentials | &nbsp; `AKIAIOSFODNN7EXAMPLE` |
-    | &nbsp; **Secret Access Key** | &nbsp; IAM → Security credentials (shown once) | &nbsp; `wJalrXUtnFEMI/K7MDENG...` |
+    | &nbsp; **Access Key ID** | &nbsp; IAM → Security credentials | &nbsp; `AKIA...EXAMPLE` |
+    | &nbsp; **Secret Access Key** | &nbsp; IAM → Security credentials | &nbsp; `wJalr...` |
 
     <Warning>
       AWS displays the Secret Access Key exactly once. If you close the page without copying it, you will need to delete the key and create a new one. Store both values in a password manager.
@@ -137,14 +137,14 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Athena` |
-    | &nbsp; **Access Key ID** | &nbsp; From Step 2 (starts with `AKIA`) |
+    | &nbsp; **Connection Name** | &nbsp; e.g. `Production Athena` |
+    | &nbsp; **Access Key ID** | &nbsp; From Step 2 |
     | &nbsp; **Secret Access Key** | &nbsp; From Step 2 |
-    | &nbsp; **AWS Region** | &nbsp; From Step 1 (e.g., `us-east-1`) |
-    | &nbsp; **Database** | &nbsp; From Step 1 (e.g., `analytics_db`) |
-    | &nbsp; **S3 Output Location** | &nbsp; From Step 1 — leave blank if your workgroup manages results |
-    | &nbsp; **Workgroup** | &nbsp; From Step 1 — defaults to `primary` |
-    | &nbsp; **Data Catalog** | &nbsp; Defaults to `AwsDataCatalog` — only change for federated sources |
+    | &nbsp; **AWS Region** | &nbsp; From Step 1 |
+    | &nbsp; **Database** | &nbsp; From Step 1 |
+    | &nbsp; **S3 Output Location** | &nbsp; From Step 1 (optional) |
+    | &nbsp; **Workgroup** | &nbsp; From Step 1 |
+    | &nbsp; **Data Catalog** | &nbsp; Default: `AwsDataCatalog` |
 
     5. Click **Connect**.
   </Step>

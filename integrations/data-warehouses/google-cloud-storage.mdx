@@ -11,7 +11,7 @@ This guide walks through connecting a Google Cloud Storage (GCS) bucket to Actio
 
 | | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Google Cloud project with a GCS bucket, Actioneer account |
+| &nbsp; **Prerequisites** | &nbsp; GCP project with GCS bucket, Actioneer account |
 | &nbsp; **Access granted** | &nbsp; Read-only object access on specified bucket |
 | &nbsp; **Estimated time** | &nbsp; ~15 minutes |
 
@@ -42,7 +42,7 @@ This guide walks through connecting a Google Cloud Storage (GCS) bucket to Actio
 
     | &nbsp; Role | &nbsp; Role ID | &nbsp; Purpose |
     | :--- | :--- | :--- |
-    | &nbsp; Storage Object Viewer | &nbsp; `roles/storage.objectViewer` | &nbsp; Read-only access to objects in the bucket |
+    | &nbsp; Storage Object Viewer | &nbsp; `roles/storage.objectViewer` | &nbsp; Read-only object access |
 
     <Tip>
       `Storage Object Viewer` is the least-privilege option and is recommended. Only use `Storage Object Admin` if Actioneer needs to access object metadata beyond standard reads.
@@ -69,9 +69,9 @@ This guide walks through connecting a Google Cloud Storage (GCS) bucket to Actio
 
     | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production GCS Bucket` |
-    | &nbsp; **Bucket Name** | &nbsp; From Step 1 (e.g., `my-data-bucket`) |
-    | &nbsp; **Service Account JSON Key** | &nbsp; Upload or drop the JSON key file from Step 2 |
+    | &nbsp; **Connection Name** | &nbsp; e.g. `Production GCS Bucket` |
+    | &nbsp; **Bucket Name** | &nbsp; From Step 1 |
+    | &nbsp; **Service Account JSON Key** | &nbsp; Upload the JSON key from Step 2 |
 
     5. Click **Connect**.
   </Step>
