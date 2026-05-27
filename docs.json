@@ -1,78 +1,62 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
-  "name": "Product Guide",
-  "description": "Step-by-step guides for every product—platform setup, analytics, and integrations in one place.",
+  "theme": "maple",
+  "name": "Actioneer Docs",
+  "description": "Enterprise AI that answers any data question and acts on it.",
   "colors": {
-    "primary": "#166E3F",
-    "light": "#26BD6C",
-    "dark": "#166E3F"
+    "primary": "#22C55E",
+    "light": "#4ADE80",
+    "dark": "#16A34A"
+  },
+  "font": {
+    "headings": {
+      "family": "Inter",
+      "weight": 500
+    },
+    "body": {
+      "family": "Inter"
+    }
   },
   "favicon": "/favicon.ico",
   "icons": {
     "library": "lucide"
   },
-  "styling": {
-    "eyebrows": "breadcrumbs"
-  },
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Home",
-          "icon": "house",
-          "href": "/"
-        },
-        {
-          "anchor": "Changelog",
-          "icon": "scroll-text",
-          "href": "https://www.mintlify.com/docs/changelog"
-        },
-        {
-          "anchor": "Help",
-          "icon": "life-buoy",
-          "href": "https://www.mintlify.com/docs/contact-support"
-        }
-      ]
-    },
-    "directory": "card",
     "groups": [
-      {
-        "group": "Platform",
-        "icon": "layers",
-        "expanded": true,
-        "pages": [
-          "platform/quickstart",
-          "platform/key-concepts",
-          "platform/configuration/settings",
-          "platform/configuration/user-management",
-          "platform/administration/roles-permissions"
-        ]
-      },
-      {
-        "group": "Analytics",
-        "icon": "chart-bar",
-        "expanded": true,
-        "pages": [
-          "analytics/quickstart",
-          "analytics/connect-data",
-          "analytics/dashboards/create-dashboard",
-          "analytics/reports/scheduled-reports"
-        ]
-      },
       {
         "group": "Integrations",
         "icon": "plug",
-        "expanded": true,
         "pages": [
-          "integrations/quickstart",
-          "integrations/authentication",
-          "integrations/connectors/crm",
-          "integrations/webhooks/configure",
-          "integrations/data-warehouses"
+          {
+            "group": "Data Warehouses",
+            "icon": "database",
+            "pages": [
+              "integrations/data-warehouses",
+              "integrations/data-warehouses/amazon-athena",
+              "integrations/data-warehouses/amazon-redshift",
+              "integrations/data-warehouses/s3",
+              "integrations/data-warehouses/clickhouse",
+              "integrations/data-warehouses/databricks",
+              "integrations/data-warehouses/google-big-query",
+              "integrations/data-warehouses/google-cloud-storage",
+              "integrations/data-warehouses/google-sheets",
+              "integrations/data-warehouses/postgresql",
+              "integrations/data-warehouses/snowflake"
+            ]
+          },
+          {
+            "group": "MMP Connections",
+            "icon": "smartphone",
+            "pages": [
+              "integrations/mmp",
+              "integrations/mmp/adjust",
+              "integrations/mmp/appsflyer",
+              "integrations/mmp/singular"
+            ]
+          }
         ]
       }
     ]
@@ -86,13 +70,13 @@
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://sentinel.gameramp.com/auth"
     }
   },
   "footer": {
     "socials": {
       "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/yourcompany"
+      "linkedin": "https://linkedin.com/company/gameramp"
     }
   }
 }
