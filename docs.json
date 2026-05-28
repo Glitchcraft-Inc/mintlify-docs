@@ -1,6 +1,9 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
+  "modeToggle": {
+    "default": "dark"
+  },
   "name": "Actioneer Docs",
   "description": "Enterprise AI that answers any data question and acts on it.",
   "colors": {
@@ -28,11 +31,9 @@
     "groups": [
       {
         "group": "Integrations",
-        "icon": "plug",
         "pages": [
           {
-            "group": "Data Warehouses",
-            "icon": "database",
+            "group": "Data Sources",
             "pages": [
               "integrations/data-warehouses",
               "integrations/data-warehouses/amazon-athena",
@@ -49,7 +50,6 @@
           },
           {
             "group": "MMP Connections",
-            "icon": "smartphone",
             "pages": [
               "integrations/mmp",
               "integrations/mmp/adjust",
@@ -73,10 +73,21 @@
       "href": "https://sentinel.gameramp.com/auth"
     }
   },
+  "seo": {
+    "metatags": {
+      "og:site_name": "Actioneer Docs",
+      "og:type": "website",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@actioneerhq",
+      "robots": "index, follow",
+      "canonical": "https://docs.actioneer.com"
+    },
+    "indexing": "all"
+  },
   "footer": {
     "socials": {
-      "x": "https://x.com/yourcompany",
-      "linkedin": "https://linkedin.com/company/gameramp"
+      "x": "https://x.com/actioneerhq",
+      "linkedin": "https://www.linkedin.com/company/actioneer-hq/"
     }
   }
 }

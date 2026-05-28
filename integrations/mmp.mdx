@@ -1,28 +1,37 @@
 ---
+mode: "wide"
 title: "MMP Connections"
 sidebarTitle: "Overview"
-icon: "smartphone"
 description: "Connect a Mobile Measurement Partner to Actioneer."
+"og:title": "MMP Integrations — Actioneer"
+"og:description": "Connect a Mobile Measurement Partner to Actioneer. Supported MMPs: Adjust, AppsFlyer, and Singular for attribution data, campaign metrics, and install events."
+keywords: ["MMP integration", "mobile measurement partner", "Adjust integration", "AppsFlyer integration", "Singular integration", "attribution data", "Actioneer"]
 ---
 
 # MMP Connections
 
 Attribution data, campaign performance, install events — **pulled into the same context layer as your warehouse and BI tools.**
 
-Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection.
+Actioneer connects to your Mobile Measurement Partner via its reporting API, giving you a single place to query installs, in-app events, campaign spend, and attribution data alongside everything else in your stack. Each connection is read-only and takes about 10 minutes to set up.
+
+Each guide below covers prerequisites, permissions, and the exact fields you need to complete the connection.
 
 <CardGroup cols={3}>
-  <Card title="Adjust" icon="settings" href="/integrations/mmp/adjust">
+  <Card title="Adjust" href="/integrations/mmp/adjust">
     Query attribution data, campaign metrics, and install events from Adjust.
   </Card>
-  <Card title="AppsFlyer" icon="plane" href="/integrations/mmp/appsflyer">
+  <Card title="AppsFlyer" href="/integrations/mmp/appsflyer">
     Query attribution data and campaign performance from AppsFlyer. Requires Master API.
   </Card>
-  <Card title="Singular" icon="locate" href="/integrations/mmp/singular">
+  <Card title="Singular" href="/integrations/mmp/singular">
     Query attribution data, campaign metrics, and install events from Singular.
   </Card>
 </CardGroup>
 
+<Tip>
+  All MMP connections use read-only API credentials (tokens or keys, depending on the platform). Actioneer never modifies your MMP configuration, postbacks, or attribution settings.
+</Tip>
+
 <Info>
-  Actioneer connects to MMP platforms in read-only mode. It can query attribution data, campaign performance, and install events but cannot modify any configuration, postbacks, or attribution settings.
+  After connecting, you choose which apps Actioneer can query. You can update your selection at any time from the connection settings.
 </Info>

@@ -1,20 +1,23 @@
 ---
+mode: "wide"
 title: "Amazon Redshift"
 sidebarTitle: "Amazon Redshift"
-icon: "server"
 description: "Connect Amazon Redshift to Actioneer as a read-only data source."
+"og:title": "Connect Amazon Redshift to Actioneer"
+"og:description": "Step-by-step guide to connect Amazon Redshift to Actioneer. Create a read-only database user, whitelist the IP, and start querying your cluster."
+keywords: ["Amazon Redshift integration", "Redshift read-only user", "Actioneer data source", "Redshift IP whitelisting", "Redshift connection setup"]
 ---
 
 # Linking Redshift as a Source
 
 This guide walks through connecting a Redshift cluster to Actioneer. The setup creates a dedicated database user with `SELECT`-only permissions on the schemas you specify.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | AWS account with a Redshift cluster, Actioneer account |
-| **Access granted** | `SELECT` queries on specified schemas |
-| **Estimated time** | ~20 minutes |
-| **Actioneer IP** | `35.244.14.238` |
+| &nbsp; **Prerequisites** | &nbsp; AWS account with a Redshift cluster, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified schemas |
+| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
+| &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or cluster settings.
@@ -24,18 +27,18 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
 
 <Steps>
   <Step title="Locate your Redshift cluster endpoint and database name">
-    Two values are needed from the AWS Console.
+    Three values are needed from the AWS Console.
 
     1. Sign in at [console.aws.amazon.com](https://console.aws.amazon.com) and open the **Amazon Redshift** service.
     2. Click **Clusters** in the left sidebar and select your cluster.
-    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The port is always `5439`.
+    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port**. Always use the port shown in your endpoint — `5439` is the AWS default, but it is not guaranteed.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
-    | Field | Location | Value Example |
+| &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :--- | :--- | :--- |
-    | **Host** | Cluster endpoint (without port) | `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
-    | **Port** | Always `5439` for Redshift | `5439` |
-    | **Database** | General information tab | `analytics` |
+| &nbsp; **Host** | &nbsp; Cluster endpoint (without port) | &nbsp; `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
+| &nbsp; **Port** | &nbsp; Cluster endpoint (after the colon) | &nbsp; `5439` |
+| &nbsp; **Database** | &nbsp; General information tab | &nbsp; `analytics` |
   </Step>
   <Step title="Create a read-only database user">
     Connect to your Redshift cluster using a SQL client (Redshift Query Editor, DBeaver, or psql) and run the following. Replace `YOUR_SCHEMA` with the schema Actioneer should query.
@@ -71,7 +74,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     1. In the AWS Console, open **Amazon Redshift** and select your cluster.
     2. On the **Properties** tab, under **Network and security**, click the linked **VPC security group**.
     3. Click **Inbound rules → Edit inbound rules**.
-    4. Add a rule: Type = **Redshift**, Port = **5439**, Source = **Custom** → `35.244.14.238/32`.
+    4. Add a rule: Type = **Custom TCP**, Port = **the port from Step 1**, Source = **Custom** → `35.244.14.238/32`.
     5. Click **Save rules**.
 
     <Warning>
@@ -85,15 +88,15 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production Redshift` |
-    | **Host** | From Step 1 — cluster endpoint without the port |
-    | **Port** | `5439` |
-    | **Database Name** | From Step 1 (e.g., `analytics`) |
-    | **Username** | `actioneer_readonly` |
-    | **Password** | The password set in Step 2 |
-    | **SSH Tunnel** | Optional — enable to connect through a bastion host if your cluster is not publicly accessible |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Redshift` |
+| &nbsp; **Host** | &nbsp; From Step 1 — cluster endpoint without the port |
+| &nbsp; **Port** | &nbsp; From Step 1 |
+| &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
+| &nbsp; **Username** | &nbsp; `actioneer_readonly` |
+| &nbsp; **Password** | &nbsp; The password set in Step 2 |
+| &nbsp; **SSH Tunnel** | &nbsp; Optional — enable to connect through a bastion host if your cluster is not publicly accessible |
 
     5. Click **Connect**.
   </Step>
@@ -109,10 +112,10 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" icon="sparkles" horizontal>
-  Stuck on a step or running into an error? Reach out to Actioneer support.
+<Card title="Need a hand?" horizontal>
+  Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>

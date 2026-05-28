@@ -1,19 +1,22 @@
 ---
+mode: "wide"
 title: "AppsFlyer"
 sidebarTitle: "AppsFlyer"
-icon: "plane"
 description: "Connect AppsFlyer to Actioneer as a data source."
+"og:title": "Connect AppsFlyer to Actioneer"
+"og:description": "Step-by-step guide to connect AppsFlyer to Actioneer. Requires Master API access and an Admin account. Retrieve your API V2 token and start querying attribution data."
+keywords: ["AppsFlyer integration", "AppsFlyer Master API", "Actioneer MMP", "mobile attribution data", "AppsFlyer API V2 token"]
 ---
 
 # Linking AppsFlyer as a Source
 
 This guide walks through connecting an AppsFlyer account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | AppsFlyer account with **Admin** role and **Master API** enabled, Actioneer account |
-| **Access granted** | Attribution data, campaign metrics, and install events via the AppsFlyer API |
-| **Estimated time** | ~10 minutes |
+| &nbsp; **Prerequisites** | &nbsp; AppsFlyer account with **Admin** role and **Master API** enabled, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Attribution data, campaign metrics, and install events via the AppsFlyer Pull API |
+| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Warning>
   Actioneer requires **Master API** access on your AppsFlyer account. Master API is a premium feature — if it is not enabled, contact your AppsFlyer account manager or email [partners@appsflyer.com](mailto:partners@appsflyer.com) to request access before proceeding.
@@ -26,26 +29,25 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
 ---
 
 <Steps>
-  <Step title="Generate an AppsFlyer API key">
-    AppsFlyer authenticates API access via a token tied to your account. You need the API key (also called the API Token V2) from your AppsFlyer dashboard.
-
-    <Warning>
-      The following steps must be completed from an account with the **Admin** role.
-    </Warning>
+  <Step title="Retrieve your AppsFlyer API V2 token">
+    AppsFlyer authenticates API access via an API V2 token (a bearer token) tied to your account. Only users with the **Admin** role can view and manage tokens.
 
     1. Sign in at [hq1.appsflyer.com](https://hq1.appsflyer.com).
-    2. Click your email in the top-right corner and select **Security Center**.
-    3. Under **API Tokens**, locate the **API Token V2**.
-    4. If no token exists, click **Generate**. If one exists, click **Reveal** to view it.
-    5. Copy the **API Key**.
+    2. Open the account menu (your email address in the top-right corner) and select **Security Center**.
+    3. In the **AppsFlyer API tokens** section, click **Manage your AppsFlyer API tokens** → locate **API V2.0**.
+    4. If no token exists, click **Create token**. If one exists, copy it. If the token was generated before **March 10, 2026**, it has been revoked — click **Create token** to generate a new one.
 
-    | Value | Location | Example |
+| &nbsp; Value | &nbsp; Location | &nbsp; Example |
     | :--- | :--- | :--- |
-    | **API Key** | Security Center → API Tokens → API Token V2 | `eyJhbGciOiJBMjU2S1ci...` |
+| &nbsp; **API V2 Token** | &nbsp; Security Center → Manage your AppsFlyer API tokens → API V2.0 | &nbsp; `eyJhbGciOiJBMjU2S1ci...` |
 
     <Warning>
-      The API key grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control.
+      The API V2 token grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control. AppsFlyer recommends rotating tokens every 180 days.
     </Warning>
+
+    <Note>
+      **IP allowlist:** If your AppsFlyer account has an API allowlist enabled (Security Center → API allowlist), only requests from whitelisted IP addresses can use V2 token APIs. Add Actioneer's IP address `35.244.14.238` to the allowlist before proceeding. Allowlist management is available to Admins only.
+    </Note>
   </Step>
 
   <Step title="Connect AppsFlyer in Actioneer">
@@ -54,16 +56,16 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production AppsFlyer` |
-    | **API Key** | From Step 1 |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production AppsFlyer` |
+| &nbsp; **API V2 Token** | &nbsp; From Step 1 |
 
     5. Click **Connect**.
   </Step>
 
-  <Step title="Verify and select games">
-    After connecting, Actioneer verifies your API key and retrieves the list of apps (games) available in your AppsFlyer account.
+  <Step title="Verify and select apps">
+    After connecting, Actioneer verifies your API V2 token and retrieves the list of apps available in your AppsFlyer account.
 
     1. Review the list of available apps.
     2. Select the apps whose data Actioneer should query.
@@ -81,14 +83,18 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
 
 <AccordionGroup>
   <Accordion title="What AppsFlyer data can Actioneer access?">
-    Actioneer can query attribution data, campaign performance, install events, in-app events, and cohort data accessible via the AppsFlyer API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+    Actioneer can query attribution data, campaign performance, install events, in-app events, and cohort data accessible via the AppsFlyer Pull API. It cannot modify partners, postbacks, attribution settings, or any account configuration.
+  </Accordion>
+
+  <Accordion title="What if my account has an API allowlist enabled?">
+    If your AppsFlyer account enforces an API allowlist, add `35.244.14.238` to the allowed IP addresses under Security Center → API allowlist. Without this, API calls from Actioneer will be rejected. The allowlist applies to all APIs that use the V2.0 token.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    MMP credentials are stored and managed by the tenant service layer, encrypted at rest with AES-256, and transmitted over TLS 1.3. They are isolated per tenant and never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. Each customer's credentials are stored in isolation and are never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" icon="sparkles" horizontal>
-  Stuck on a step or running into an error? Reach out to Actioneer support.
+<Card title="Need a hand?" horizontal>
+  Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>

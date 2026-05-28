@@ -1,19 +1,22 @@
 ---
+mode: "wide"
 title: "Google Sheets"
 sidebarTitle: "Google Sheets"
-icon: "file-spreadsheet"
 description: "Connect a Google Sheet to Actioneer as a read-only data source."
+"og:title": "Connect Google Sheets to Actioneer"
+"og:description": "Step-by-step guide to connect Google Sheets to Actioneer. Share a spreadsheet with Actioneer service account and start querying in under 5 minutes."
+keywords: ["Google Sheets integration", "Actioneer data source", "Google Sheets service account", "spreadsheet connection", "Sheets read-only access"]
 ---
 
 # Linking Google Sheets as a Source
 
 This guide walks through connecting a Google Sheet to Actioneer. The setup grants Actioneer's service account Viewer access to a specific spreadsheet — no broader Google Drive permissions are required.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | A Google Sheet you own or can share, Actioneer account |
-| **Access granted** | Read-only access via the Google Sheets API |
-| **Estimated time** | ~5 minutes |
+| &nbsp; **Prerequisites** | &nbsp; A Google Sheet you own or can share, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Read-only access via the Google Sheets API |
+| &nbsp; **Estimated time** | &nbsp; ~5 minutes |
 
 <Info>
   Actioneer cannot create, edit, or delete any cells, sheets, or files in your Google account.
@@ -28,10 +31,10 @@ This guide walks through connecting a Google Sheet to Actioneer. The setup grant
 
     Actioneer accepts either format — paste the full URL and it will extract the ID automatically.
 
-    | Format | Example |
+| &nbsp; Format | &nbsp; Example |
     | :--- | :--- |
-    | **Full URL** | `https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdhdE7vXHwBqv/edit` |
-    | **ID only** | `1BxiMVs0XRA5nFMdhdE7vXHwBqv` |
+| &nbsp; **Full URL** | &nbsp; `https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdhdE7vXHwBqv/edit` |
+| &nbsp; **ID only** | &nbsp; `1BxiMVs0XRA5nFMdhdE7vXHwBqv` |
 
     <Warning>
       Excel files (.xlsx) uploaded to Google Drive will not work with the Google Sheets API, even if they appear as a spreadsheet in your browser. To fix this, open the file in Google Sheets, then go to **File → Save as Google Sheets**.
@@ -55,10 +58,10 @@ This guide walks through connecting a Google Sheet to Actioneer. The setup grant
     1. In the same connection form from Step 2, when prompted, select **Direct Connection**.
     2. Complete the remaining fields:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `GA4 Data` or `Sales Tracker` |
-    | **Spreadsheet URL or ID** | From Step 1 — paste the full URL or just the ID |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `GA4 Data` or `Sales Tracker` |
+| &nbsp; **Spreadsheet URL or ID** | &nbsp; From Step 1 — paste the full URL or just the ID |
 
     3. Click **Connect**.
   </Step>
@@ -78,10 +81,10 @@ This guide walks through connecting a Google Sheet to Actioneer. The setup grant
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" icon="sparkles" horizontal>
-  Stuck on a step or running into an error? Reach out to Actioneer support.
+<Card title="Need a hand?" horizontal>
+  Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>

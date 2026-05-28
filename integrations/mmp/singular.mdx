@@ -1,19 +1,22 @@
 ---
+mode: "wide"
 title: "Singular"
 sidebarTitle: "Singular"
-icon: "locate"
 description: "Connect Singular to Actioneer as a data source."
+"og:title": "Connect Singular to Actioneer"
+"og:description": "Step-by-step guide to connect Singular to Actioneer. Generate an API key, link your account, and query attribution data and campaign metrics."
+keywords: ["Singular integration", "Singular API key", "Actioneer MMP", "mobile attribution data", "Singular campaign metrics"]
 ---
 
 # Linking Singular as a Source
 
 This guide walks through connecting a Singular account to Actioneer. By the end, Actioneer will be able to query your attribution data, campaign performance, and install events.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | Singular account with API access, Actioneer account |
-| **Access granted** | Attribution data, campaign metrics, and install events via the Singular API |
-| **Estimated time** | ~10 minutes |
+| &nbsp; **Prerequisites** | &nbsp; Singular account with API access, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Attribution data, campaign metrics, and install events via the Singular API |
+| &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Info>
   Actioneer cannot create, modify, or delete any apps, partners, postbacks, or attribution settings in your Singular account.
@@ -26,13 +29,13 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
     Singular authenticates API access via an API key tied to your account.
 
     1. Sign in at [app.singular.net](https://app.singular.net).
-    2. In the left sidebar, click **Settings** → **API Keys**.
+    2. In the left sidebar, click **Developer Tools** → **API Keys**.
     3. If no key exists, click **Generate API Key**. If one exists, copy it directly.
     4. Copy the **API Key**.
 
-    | Value | Location | Example |
+| &nbsp; Value | &nbsp; Location | &nbsp; Example |
     | :--- | :--- | :--- |
-    | **API Key** | Settings → API Keys | `a1b2c3d4e5f6a7b8c9d0...` |
+| &nbsp; **API Key** | &nbsp; Developer Tools → API Keys | &nbsp; `a1b2c3d4e5f6a7b8c9d0...` |
 
     <Warning>
       The API key grants read access to your Singular data. Treat it like a password — do not share it over unencrypted channels or commit it to version control. Store it in a password manager.
@@ -45,16 +48,16 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production Singular` |
-    | **API Key** | From Step 1 |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Singular` |
+| &nbsp; **API Key** | &nbsp; From Step 1 |
 
     5. Click **Connect**.
   </Step>
 
-  <Step title="Verify and select games">
-    After connecting, Actioneer verifies your API key and retrieves the list of apps (games) available in your Singular account.
+  <Step title="Verify and select apps">
+    After connecting, Actioneer verifies your API key and retrieves the list of apps available in your Singular account.
 
     1. Review the list of available apps.
     2. Select the apps whose data Actioneer should query.
@@ -76,10 +79,10 @@ This guide walks through connecting a Singular account to Actioneer. By the end,
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    MMP credentials are stored and managed by the tenant service layer, encrypted at rest with AES-256, and transmitted over TLS 1.3. They are isolated per tenant and never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. Each customer's credentials are stored in isolation and are never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" icon="sparkles" horizontal>
-  Stuck on a step or running into an error? Reach out to Actioneer support.
+<Card title="Need a hand?" horizontal>
+  Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>
