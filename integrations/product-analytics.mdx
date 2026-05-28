@@ -1,20 +1,27 @@
 ---
 mode: "wide"
-title: "Product Analytics"
+title: "Analytics Platforms"
 sidebarTitle: "Overview"
-description: "Connect a product analytics platform to Actioneer via BigQuery."
-"og:title": "Product Analytics Integrations — Actioneer"
-"og:description": "Connect Mixpanel or Amplitude to Actioneer. Both platforms export data to BigQuery on a schedule — Actioneer queries it in place."
-keywords: ["product analytics integration", "Mixpanel BigQuery export", "Amplitude BigQuery export", "Actioneer product analytics", "event data pipeline"]
+description: "Connect analytics and BI platforms to Actioneer."
+"og:title": "Analytics Platform Integrations — Actioneer"
+"og:description": "Connect Mixpanel, Amplitude, and BI tools like Power BI, Looker, and Tableau to Actioneer. Export pipelines and shared warehouse patterns."
+keywords: ["analytics integration", "Mixpanel BigQuery export", "Amplitude BigQuery export", "Power BI Actioneer", "Looker Actioneer", "Tableau Actioneer", "BI tool integration"]
 ---
 
-# Product Analytics
+# Analytics Platforms
 
-Event data, user profiles, and behavioral analytics — **exported to BigQuery on a schedule, then queried by Actioneer in place.**
+Actioneer works alongside your existing analytics and BI stack — not instead of it.
 
-Mixpanel and Amplitude both offer native data pipelines that write directly to a BigQuery dataset you control. Actioneer connects to that dataset and queries the exported tables — no additional ETL or data movement required.
+How you connect depends on the platform:
 
-Each guide below walks through the full setup: creating the BigQuery dataset, configuring the export on the analytics platform, and connecting the dataset to Actioneer.
+- **Platforms that export to a warehouse** (Mixpanel, Amplitude) — configure the platform's native export pipeline to write to a BigQuery dataset, then connect Actioneer to that dataset. Guides below.
+- **Platforms that read from a warehouse** (Power BI, Looker, Tableau, Metabase) — if the warehouse is one Actioneer supports, connect Actioneer to the same data source. No additional integration is needed.
+
+---
+
+## Export-based integrations
+
+These platforms write data to a BigQuery dataset you control. Actioneer reads from that dataset.
 
 <CardGroup cols={2}>
   <Card title="Mixpanel" href="/integrations/product-analytics/mixpanel">
@@ -29,6 +36,18 @@ Each guide below walks through the full setup: creating the BigQuery dataset, co
   These integrations use BigQuery as an intermediary. The analytics platform writes to your BigQuery dataset; Actioneer reads from it. Actioneer never connects to Mixpanel or Amplitude directly.
 </Tip>
 
+---
+
+## BI tools (Power BI, Looker, Tableau)
+
+BI platforms typically read from a data warehouse or database to power dashboards and reports. If that underlying data source is one Actioneer supports — such as BigQuery, Snowflake, Redshift, Databricks, PostgreSQL, or ClickHouse — you can connect Actioneer to the same source directly. No separate integration or data export is required.
+
+Actioneer queries the warehouse independently. It does not read from, write to, or interact with the BI tool itself.
+
 <Info>
-  You will need an existing Actioneer BigQuery connection or will set one up as part of this process. See the [Google BigQuery guide](/integrations/data-warehouses/google-big-query) for full details on connecting BigQuery to Actioneer.
+  Actioneer currently supports BigQuery, Snowflake, Amazon Redshift, Amazon Athena, Databricks, PostgreSQL, ClickHouse, Amazon S3, Google Cloud Storage, and Google Sheets as data sources. See the full list under [Data Sources](/integrations/data-warehouses).
 </Info>
+
+<Note>
+  If your BI tool connects to a data source Actioneer does not yet support (e.g., Azure SQL, Amazon QuickSight datasets, or SSAS), a direct shared-source connection is not available. Reach out at [connect@actioneer.com](mailto:connect@actioneer.com) to discuss your setup.
+</Note>

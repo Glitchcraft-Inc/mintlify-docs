@@ -58,7 +58,7 @@
             ]
           },
           {
-            "group": "Product Analytics",
+            "group": "Analytics Platforms",
             "pages": [
               "integrations/product-analytics",
               "integrations/product-analytics/mixpanel",
