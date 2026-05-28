@@ -5,7 +5,7 @@ sidebarTitle: "Amazon Redshift"
 description: "Connect Amazon Redshift to Actioneer as a read-only data source."
 "og:title": "Connect Amazon Redshift to Actioneer"
 "og:description": "Step-by-step guide to connect Amazon Redshift to Actioneer. Create a read-only database user, whitelist the IP, and start querying your cluster."
-keywords: ["Amazon Redshift integration", "Redshift read-only user", "Actioneer data warehouse", "Redshift IP whitelisting", "Redshift connection setup"]
+keywords: ["Amazon Redshift integration", "Redshift read-only user", "Actioneer data source", "Redshift IP whitelisting", "Redshift connection setup"]
 ---
 
 # Linking Redshift as a Source
@@ -31,13 +31,13 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
 
     1. Sign in at [console.aws.amazon.com](https://console.aws.amazon.com) and open the **Amazon Redshift** service.
     2. Click **Clusters** in the left sidebar and select your cluster.
-    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The port is always `5439`.
+    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port** (defaults to `5439`, but your cluster may use a different port).
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
 | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :--- | :--- | :--- |
 | &nbsp; **Host** | &nbsp; Cluster endpoint (without port) | &nbsp; `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
-| &nbsp; **Port** | &nbsp; Always `5439` for Redshift | &nbsp; `5439` |
+| &nbsp; **Port** | &nbsp; Cluster endpoint (after the colon) | &nbsp; `5439` (default) |
 | &nbsp; **Database** | &nbsp; General information tab | &nbsp; `analytics` |
   </Step>
   <Step title="Create a read-only database user">
@@ -74,7 +74,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     1. In the AWS Console, open **Amazon Redshift** and select your cluster.
     2. On the **Properties** tab, under **Network and security**, click the linked **VPC security group**.
     3. Click **Inbound rules → Edit inbound rules**.
-    4. Add a rule: Type = **Redshift**, Port = **5439**, Source = **Custom** → `35.244.14.238/32`.
+    4. Add a rule: Type = **Custom TCP**, Port = **your cluster's port** (from Step 1), Source = **Custom** → `35.244.14.238/32`.
     5. Click **Save rules**.
 
     <Warning>
@@ -92,7 +92,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     | :--- | :--- |
 | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Redshift` |
 | &nbsp; **Host** | &nbsp; From Step 1 — cluster endpoint without the port |
-| &nbsp; **Port** | &nbsp; `5439` |
+| &nbsp; **Port** | &nbsp; From Step 1 (default `5439`) |
 | &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
 | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
 | &nbsp; **Password** | &nbsp; The password set in Step 2 |
@@ -112,7 +112,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 

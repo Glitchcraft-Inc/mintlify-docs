@@ -5,7 +5,7 @@ sidebarTitle: "Google BigQuery"
 description: "Connect Google BigQuery to Actioneer as a read-only data source."
 "og:title": "Connect Google BigQuery to Actioneer"
 "og:description": "Step-by-step guide to connect Google BigQuery to Actioneer. Set up a GCP service account with read-only access and start querying in under 15 minutes."
-keywords: ["Google BigQuery integration", "BigQuery service account", "Actioneer data warehouse", "GCP read-only access", "BigQuery connection setup"]
+keywords: ["Google BigQuery integration", "BigQuery service account", "Actioneer data source", "GCP read-only access", "BigQuery connection setup"]
 ---
 
 # Linking BigQuery as a Source
@@ -45,14 +45,23 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
     1. Open [IAM & Admin → Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts).
     2. Click **Create Service Account**.
     3. Name it something clear (e.g., `actioneer-bigquery-reader`). Click **Create and Continue**.
-    4. Assign the following two roles:
+    4. Assign the following role at the **project** level:
 
-| &nbsp; Role | &nbsp; Role ID | &nbsp; Purpose |
-    | :--- | :--- | :--- |
-| &nbsp; BigQuery User | &nbsp; `roles/bigquery.user` | &nbsp; Run queries and access BigQuery resources |
-| &nbsp; BigQuery Data Viewer | &nbsp; `roles/bigquery.dataViewer` | &nbsp; Read datasets and tables |
+| &nbsp; Role | &nbsp; Role ID | &nbsp; Scope | &nbsp; Purpose |
+    | :--- | :--- | :--- | :--- |
+| &nbsp; BigQuery Job User | &nbsp; `roles/bigquery.jobUser` | &nbsp; Project | &nbsp; Run query jobs |
 
     5. Click **Continue**, then **Done**.
+
+    **Grant dataset-level read access**
+
+    After creating the service account, grant it read access on the specific dataset Actioneer should query. This follows the principle of least privilege — the service account can only read the datasets you explicitly authorize.
+
+    1. In the Google Cloud Console, open **BigQuery**.
+    2. In the Explorer panel, click your dataset name → **Sharing** → **Permissions**.
+    3. Click **Add Principal**. Enter the service account email (e.g., `actioneer-bigquery-reader@your-project.iam.gserviceaccount.com`).
+    4. Assign the role **BigQuery Data Viewer** (`roles/bigquery.dataViewer`).
+    5. Click **Save**.
 
     **Download the JSON key**
 
@@ -64,17 +73,25 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
       Store this JSON key file securely. It grants read access to your BigQuery data. Do not commit it to version control or share it over unencrypted channels.
     </Warning>
 
-    <Accordion title="Prefer the CLI? Grant both roles in one go">
+    <Accordion title="Prefer the CLI? Grant roles in one go">
       ```bash
       PROJECT=YOUR_PROJECT_ID
+      DATASET=YOUR_DATASET_ID
       SA=actioneer-bigquery-reader@$PROJECT.iam.gserviceaccount.com
-      
+
+      # Project-level: run query jobs
       gcloud projects add-iam-policy-binding $PROJECT \
-        --member="serviceAccount:$SA" --role="roles/bigquery.user"
-      
-      gcloud projects add-iam-policy-binding $PROJECT \
-        --member="serviceAccount:$SA" --role="roles/bigquery.dataViewer"
+        --member="serviceAccount:$SA" --role="roles/bigquery.jobUser"
+
+      # Dataset-level: read tables (least-privilege)
+      bq update --dataset \
+        --source $PROJECT:$DATASET \
+        --set_label="serviceAccount:$SA:roles/bigquery.dataViewer"
       ```
+
+      <Note>
+        For dataset-level IAM via CLI, you can also use `bq show --format=prettyjson` to export the dataset ACL, add the binding, and `bq update` to apply it. The Console method in the steps above is simpler for most teams.
+      </Note>
     </Accordion>
   </Step>
   <Step title="Connect BigQuery in Actioneer">
@@ -104,11 +121,11 @@ This guide walks through connecting a Google BigQuery project to Actioneer. By t
 
 <AccordionGroup>
   <Accordion title="Can Actioneer modify data in BigQuery?">
-    No. The two IAM roles granted in Step 2 are limited to viewing and querying. Neither permits inserting, updating, deleting, or altering tables, datasets, or schemas.
+    No. BigQuery Job User allows running queries but not modifying data. BigQuery Data Viewer is a read-only role scoped to the datasets you authorize. Neither role permits inserting, updating, deleting, or altering tables, datasets, or schemas.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 

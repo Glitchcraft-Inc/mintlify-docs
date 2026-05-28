@@ -1,21 +1,21 @@
 ---
 mode: "wide"
-title: "Data Warehouses"
+title: "Data Sources"
 sidebarTitle: "Overview"
-description: "Connect a data warehouse to give Actioneer read-only access to your business data."
-"og:title": "Data Warehouse Integrations — Actioneer"
-"og:description": "Connect your data warehouse to Actioneer for read-only access. Supported: Amazon Athena, Redshift, S3, ClickHouse, Databricks, BigQuery, GCS, Google Sheets, PostgreSQL, and Snowflake."
-keywords: ["Actioneer integrations", "data warehouse connection", "read-only data access", "BI tool integration", "cloud data warehouse"]
+description: "Connect a data source to give Actioneer access to your business data."
+"og:title": "Data Source Integrations — Actioneer"
+"og:description": "Connect your data sources to Actioneer. Supported: Amazon Athena, Redshift, S3, ClickHouse, Databricks, BigQuery, GCS, Google Sheets, PostgreSQL, and Snowflake."
+keywords: ["Actioneer integrations", "data source connection", "read-only data access", "BI tool integration", "cloud data warehouse", "data lake"]
 ---
 
-# Data Warehouses
+# Data Sources
 
-Your warehouse is the foundation. **Connect it once — Actioneer queries it in place, read-only, no data migration.**
+Your data source is the foundation. **Connect it once — Actioneer queries it in place, no data migration.**
 
 Each guide covers prerequisites, permissions, and the exact fields you need to complete the connection.
 
 <Tip>
-  All warehouse connections are **read-only** (`SELECT` only). Actioneer's IP for whitelisting: `35.244.14.238`.
+  All connections use **least-privilege permissions** scoped to query execution and data reads. Actioneer's IP for whitelisting: `35.244.14.238`.
 </Tip>
 
 <CardGroup cols={2}>
@@ -35,7 +35,7 @@ Each guide covers prerequisites, permissions, and the exact fields you need to c
     Connect a SQL Warehouse using a Personal Access Token and Unity Catalog permissions.
   </Card>
   <Card title="Google BigQuery" href="/integrations/data-warehouses/google-big-query">
-    Grant read-only access via a GCP service account and connect in under 15 minutes.
+    Grant least-privilege access via a GCP service account and connect in under 15 minutes.
   </Card>
   <Card title="Google Cloud Storage" href="/integrations/data-warehouses/google-cloud-storage">
     Grant Storage Object Viewer access via a service account and connect your bucket.
@@ -52,5 +52,5 @@ Each guide covers prerequisites, permissions, and the exact fields you need to c
 </CardGroup>
 
 <Info>
-  Actioneer connects in read-only mode across all integrations. It cannot write, delete, or modify any data in your warehouse.
+  Actioneer connects with the minimum permissions required for each source. It cannot create, modify, or delete any tables, schemas, or source data. Where a service requires write access for its own operations (e.g., Athena writes temporary query results to S3), permissions are scoped to that specific purpose only.
 </Info>

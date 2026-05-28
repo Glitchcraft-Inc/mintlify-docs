@@ -30,7 +30,7 @@
         "group": "Integrations",
         "pages": [
           {
-            "group": "Data Warehouses",
+            "group": "Data Sources",
             "pages": [
               "integrations/data-warehouses",
               "integrations/data-warehouses/amazon-athena",

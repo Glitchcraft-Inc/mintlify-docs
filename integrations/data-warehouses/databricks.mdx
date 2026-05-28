@@ -5,7 +5,7 @@ sidebarTitle: "Databricks"
 description: "Connect Databricks to Actioneer as a read-only data source."
 "og:title": "Connect Databricks to Actioneer"
 "og:description": "Step-by-step guide to connect Databricks to Actioneer. Use a Personal Access Token and Unity Catalog permissions for read-only SQL Warehouse access."
-keywords: ["Databricks integration", "Databricks SQL Warehouse", "Actioneer data warehouse", "Unity Catalog permissions", "Databricks PAT setup"]
+keywords: ["Databricks integration", "Databricks SQL Warehouse", "Actioneer data source", "Unity Catalog permissions", "Databricks PAT setup"]
 ---
 
 # Linking Databricks as a Source
@@ -61,24 +61,29 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     Replace `<your_catalog>`, `<your_schema>`, and `<username>` with your actual values.
 
     ```sql
-    GRANT USE CATALOG ON CATALOG <your_catalog> TO <username>;
-    GRANT USE SCHEMA ON SCHEMA <your_catalog>.<your_schema> TO <username>;
-    GRANT SELECT ON SCHEMA <your_catalog>.<your_schema> TO <username>;
+    -- Allow the user to access the catalog
+    GRANT USE CATALOG ON CATALOG <your_catalog> TO `<username>`;
+
+    -- Allow the user to access the schema
+    GRANT USE SCHEMA ON SCHEMA <your_catalog>.<your_schema> TO `<username>`;
+
+    -- Grant read access to all existing tables and views in the schema
+    GRANT SELECT ON ALL TABLES IN SCHEMA <your_catalog>.<your_schema> TO `<username>`;
     ```
 
-| &nbsp; Permission | &nbsp; Purpose |
-    | :--- | :--- |
-| &nbsp; `USE CATALOG` | &nbsp; Access the top-level catalog container |
-| &nbsp; `USE SCHEMA` | &nbsp; Access the specific schema within the catalog |
-| &nbsp; `SELECT` | &nbsp; Read tables within the schema |
+| &nbsp; Permission | &nbsp; Scope | &nbsp; Purpose |
+    | :--- | :--- | :--- |
+| &nbsp; `USE CATALOG` | &nbsp; Catalog | &nbsp; Navigate into the catalog |
+| &nbsp; `USE SCHEMA` | &nbsp; Schema | &nbsp; Navigate into the schema |
+| &nbsp; `SELECT ON ALL TABLES IN SCHEMA` | &nbsp; All tables and views in schema | &nbsp; Read data from tables and views |
 
     <Note>
-      These commands require Unity Catalog, which most modern Databricks workspaces use. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
+      These commands follow the Unity Catalog privilege model. `SELECT ON SCHEMA` is not a valid Unity Catalog grant — you must grant `SELECT` on individual tables, views, or use `ALL TABLES IN SCHEMA` as shown above. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
     </Note>
   </Step>
   <Step title="Connect Databricks in Actioneer">
     <Warning>
-      Your SQL Warehouse must be **running** (not paused or stopped) when you click Connect. A stopped warehouse will cause a silent timeout. You can start it from the SQL Warehouses page in your Databricks workspace.
+      Your SQL Warehouse must be in a **Running** state when you click Connect. If the warehouse is paused or stopped, the connection attempt will time out without returning an error. Start the warehouse from the **SQL Warehouses** page in your Databricks workspace before proceeding.
     </Warning>
 
     <Info>
@@ -117,7 +122,7 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 

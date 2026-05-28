@@ -5,7 +5,7 @@ sidebarTitle: "Google Cloud Storage"
 description: "Connect Google Cloud Storage to Actioneer as a read-only data source."
 "og:title": "Connect Google Cloud Storage to Actioneer"
 "og:description": "Step-by-step guide to connect Google Cloud Storage to Actioneer. Grant Storage Object Viewer access via a service account and connect your GCS bucket."
-keywords: ["Google Cloud Storage integration", "GCS service account", "Actioneer data warehouse", "Storage Object Viewer", "GCS bucket connection"]
+keywords: ["Google Cloud Storage integration", "GCS service account", "Actioneer data source", "Storage Object Viewer", "GCS bucket connection"]
 ---
 
 # Linking Google Cloud Storage as a Source
@@ -48,7 +48,7 @@ This guide walks through connecting a Google Cloud Storage (GCS) bucket to Actio
 | &nbsp; Storage Object Viewer | &nbsp; `roles/storage.objectViewer` | &nbsp; Read-only access to objects in the bucket |
 
     <Tip>
-      `Storage Object Viewer` is the least-privilege option and is recommended. Only use `Storage Object Admin` if Actioneer needs to access object metadata beyond standard reads.
+      `Storage Object Viewer` is the only role required. It grants read-only access to objects and their metadata. Do not use `Storage Object Admin` — it adds unnecessary write and delete permissions that Actioneer does not need.
     </Tip>
 
     5. Click **Continue**, then **Done**.
@@ -90,7 +90,7 @@ This guide walks through connecting a Google Cloud Storage (GCS) bucket to Actio
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted with AES-256 at rest and transmitted over TLS 1.3 protocol. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
