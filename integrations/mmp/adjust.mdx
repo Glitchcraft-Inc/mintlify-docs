@@ -4,8 +4,8 @@ title: "Adjust"
 sidebarTitle: "Adjust"
 description: "Connect Adjust to Actioneer as a data source."
 "og:title": "Connect Adjust to Actioneer"
-"og:description": "Step-by-step guide to connect Adjust to Actioneer. Generate an API key, link your account, and query attribution data and campaign metrics."
-keywords: ["Adjust integration", "Adjust API key", "Actioneer MMP", "mobile attribution data", "Adjust campaign metrics"]
+"og:description": "Step-by-step guide to connect Adjust to Actioneer. Retrieve your API token, link your account, and query attribution data and campaign metrics."
+keywords: ["Adjust integration", "Adjust API token", "Actioneer MMP", "mobile attribution data", "Adjust campaign metrics"]
 ---
 
 # Linking Adjust as a Source
@@ -14,8 +14,8 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 
 | &nbsp; | &nbsp; |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Adjust account with API access, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Attribution data, campaign metrics, and install events via the Adjust API |
+| &nbsp; **Prerequisites** | &nbsp; Adjust account with API access (non-SSO login), Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Attribution data, campaign metrics, and install events via the Adjust Reporting API |
 | &nbsp; **Estimated time** | &nbsp; ~10 minutes |
 
 <Info>
@@ -25,23 +25,26 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 ---
 
 <Steps>
-  <Step title="Generate an Adjust API key">
-    Adjust authenticates external integrations via API keys. You need a key scoped to the data Actioneer should access.
+  <Step title="Retrieve your Adjust API token">
+    Adjust authenticates API access via a single API token tied to your user account. You cannot create multiple named tokens — each account has one token that you can retrieve or reset.
 
     1. Sign in at [dash.adjust.com](https://dash.adjust.com).
     2. Click the **Settings** icon (gear) in the bottom-left corner.
-    3. Go to **Account settings → API tokens**.
-    4. Click **Generate new token** (or use an existing read-only token if one is available).
-    5. Name it `Actioneer Integration`.
-    6. Copy the **API Key** immediately.
+    3. Go to **Account settings** → **My profile**.
+    4. Under **User details**, locate your **API token**.
+    5. Copy the token.
 
 | &nbsp; Value | &nbsp; Location | &nbsp; Example |
     | :--- | :--- | :--- |
-| &nbsp; **API Key** | &nbsp; Account settings → API tokens | &nbsp; `a1b2c3d4e5f6g7h8i9j0...` |
+| &nbsp; **API Token** | &nbsp; Account settings → My profile → User details | &nbsp; `a1b2c3d4e5f6g7h8i9j0...` |
 
     <Warning>
-      Treat the API key like a password. Do not share it over unencrypted channels or commit it to version control. Store it in a password manager.
+      If you reset your API token, the previous token is permanently invalidated. Any existing integrations using the old token will stop working immediately. Store the token in a password manager.
     </Warning>
+
+    <Note>
+      **SSO users:** If your organization uses single sign-on, API tokens are not available in the Adjust dashboard. Contact your Adjust representative or email [support@adjust.com](mailto:support@adjust.com) to obtain your token.
+    </Note>
   </Step>
 
   <Step title="Connect Adjust in Actioneer">
@@ -53,12 +56,13 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
 | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Adjust` |
-| &nbsp; **API Key** | &nbsp; From Step 1 |
+| &nbsp; **API Token** | &nbsp; From Step 1 |
 
     5. Click **Connect**.
   </Step>
-  <Step title="Verify and select games">
-    After connecting, Actioneer verifies your API key and retrieves the list of apps (games) available in your Adjust account.
+
+  <Step title="Verify and select apps">
+    After connecting, Actioneer verifies your API token and retrieves the list of apps available in your Adjust account.
 
     1. Review the list of available apps.
     2. Select the apps whose data Actioneer should query.
@@ -76,11 +80,11 @@ This guide walks through connecting an Adjust account to Actioneer. By the end, 
 
 <AccordionGroup>
   <Accordion title="What Adjust data can Actioneer access?">
-    Actioneer can query attribution data, campaign performance metrics, install events, and in-app event data accessible via the Adjust API. It cannot modify trackers, callbacks, attribution settings, or any account configuration.
+    Actioneer can query attribution data, campaign performance metrics, install events, and in-app event data accessible via the Adjust Reporting API. It cannot modify trackers, callbacks, attribution settings, or any account configuration.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    MMP credentials are stored and managed by the tenant service layer, encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are isolated per tenant and never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. Each customer's credentials are stored in isolation and are never shared across accounts or logged in plain text. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
 </AccordionGroup>
 
