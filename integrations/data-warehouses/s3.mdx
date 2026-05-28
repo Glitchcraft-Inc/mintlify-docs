@@ -2,9 +2,9 @@
 mode: "frame"
 title: "Amazon S3"
 sidebarTitle: "Amazon S3"
-description: "Step-by-step guide to connect Amazon S3 to Actioneer. Attach a read-only IAM policy to a dedicated user and connect your S3 bucket."
+description: "Connect Amazon S3 to Actioneer as a read-only data source."
 "og:title": "Connect Amazon S3 to Actioneer"
-"og:description": "Set up read-only S3 access with a scoped IAM policy. Query your bucket data directly from Actioneer."
+"og:description": "Step-by-step guide to connect Amazon S3 to Actioneer. Attach a read-only IAM policy to a dedicated user and connect your S3 bucket."
 keywords: ["Amazon S3 integration", "S3 IAM policy", "Actioneer data warehouse", "S3 read-only access", "S3 bucket connection"]
 ---
 
@@ -12,11 +12,11 @@ keywords: ["Amazon S3 integration", "S3 IAM policy", "Actioneer data warehouse",
 
 This guide walks through connecting an S3 bucket to Actioneer. The setup creates a dedicated IAM user with a read-only policy scoped to your specific bucket.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | AWS account with an S3 bucket, Actioneer account |
-| **Access granted** | `ListBucket` and `GetObject` on specified bucket |
-| **Estimated time** | ~15–20 minutes |
+| &nbsp; **Prerequisites** | &nbsp; AWS account with an S3 bucket, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `ListBucket` and `GetObject` on specified bucket |
+| &nbsp; **Estimated time** | &nbsp; ~15–20 minutes |
 
 <Info>
   Actioneer cannot upload, overwrite, delete, or modify any files or bucket settings.
@@ -32,10 +32,10 @@ This guide walks through connecting an S3 bucket to Actioneer. The setup creates
     2. Locate your bucket in the list. Copy the exact **Bucket Name** — it is case-sensitive.
     3. Click the bucket name. The **AWS Region** is shown at the top of the overview page (e.g., `us-east-1`).
 
-    | Field | Location | Value Example |
+| &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :--- | :--- | :--- |
-    | **Bucket Name** | S3 bucket list | `my-company-data` |
-    | **AWS Region** | Bucket overview page | `us-east-1` |
+| &nbsp; **Bucket Name** | &nbsp; S3 bucket list | &nbsp; `my-company-data` |
+| &nbsp; **AWS Region** | &nbsp; Bucket overview page | &nbsp; `us-east-1` |
   </Step>
   <Step title="Create a read-only IAM policy">
     This policy grants Actioneer permission to list and read objects in your bucket. Nothing else.
@@ -89,13 +89,13 @@ This guide walks through connecting an S3 bucket to Actioneer. The setup creates
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Analytics Bucket` |
-    | **Bucket Name** | From Step 1 (e.g., `my-data-bucket`) |
-    | **AWS Region** | From Step 1 (e.g., `us-east-1`) |
-    | **AWS Access Key ID** | From Step 3 (starts with `AKIA`) |
-    | **AWS Secret Access Key** | From Step 3 |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Analytics Bucket` |
+| &nbsp; **Bucket Name** | &nbsp; From Step 1 (e.g., `my-data-bucket`) |
+| &nbsp; **AWS Region** | &nbsp; From Step 1 (e.g., `us-east-1`) |
+| &nbsp; **AWS Access Key ID** | &nbsp; From Step 3 (starts with `AKIA`) |
+| &nbsp; **AWS Secret Access Key** | &nbsp; From Step 3 |
 
     5. Click **Connect**.
   </Step>

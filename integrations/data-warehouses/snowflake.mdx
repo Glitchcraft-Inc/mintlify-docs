@@ -2,9 +2,9 @@
 mode: "frame"
 title: "Snowflake"
 sidebarTitle: "Snowflake"
-description: "Step-by-step guide to connect Snowflake to Actioneer. Create a least-privilege service user with a Programmatic Access Token for read-only warehouse access."
+description: "Connect Snowflake to Actioneer as a read-only data source."
 "og:title": "Connect Snowflake to Actioneer"
-"og:description": "Set up a read-only Snowflake connection with a dedicated service user and PAT. Query your warehouse directly from Actioneer."
+"og:description": "Step-by-step guide to connect Snowflake to Actioneer. Create a least-privilege service user with a Programmatic Access Token for read-only warehouse access."
 keywords: ["Snowflake integration", "Snowflake service user", "Actioneer data warehouse", "Snowflake PAT setup", "Snowflake read-only access"]
 ---
 
@@ -12,12 +12,12 @@ keywords: ["Snowflake integration", "Snowflake service user", "Actioneer data wa
 
 This guide walks through connecting a Snowflake account to Actioneer. The setup creates a dedicated, least-privilege service user with a Programmatic Access Token (PAT) and locks it to Actioneer's IP address.
 
-| | |
+| &nbsp; | &nbsp; |
 | :--- | :--- |
-| **Prerequisites** | Snowflake account with `ACCOUNTADMIN` access, Actioneer account |
-| **Access granted** | `SELECT` queries on specified tables and views |
-| **Estimated time** | ~20 minutes |
-| **Actioneer IP** | `35.244.14.238` |
+| &nbsp; **Prerequisites** | &nbsp; Snowflake account with `ACCOUNTADMIN` access, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables and views |
+| &nbsp; **Estimated time** | &nbsp; ~20 minutes |
+| &nbsp; **Actioneer IP** | &nbsp; `35.244.14.238` |
 
 <Info>
   The service user created below holds only `SELECT` and `USAGE` grants — no write, delete, or DDL permissions.
@@ -106,16 +106,16 @@ This guide walks through connecting a Snowflake account to Actioneer. The setup 
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-    | Field | Value |
+| &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
-    | **Connection Name** | A descriptive label, e.g. `Production Snowflake` |
-    | **Host** | Your Snowflake account URL (e.g., `myorg-prod123.snowflakecomputing.com`). Found under Account → Details → Account URL. |
-    | **Port** | `443` |
-    | **Database Name** | The `<<YOUR_DB>>` value from Step 1 |
-    | **Username** | `AI_ANALYST_USER` |
-    | **Password** | Leave blank — PAT replaces the password |
-    | **Personal Access Token** | The `token_secret` from Step 2 |
-    | **SSH Tunnel** | Not required — the network policy handles IP filtering |
+| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Snowflake` |
+| &nbsp; **Host** | &nbsp; Your Snowflake account URL (e.g., `myorg-prod123.snowflakecomputing.com`). Found under Account → Details → Account URL. |
+| &nbsp; **Port** | &nbsp; `443` |
+| &nbsp; **Database Name** | &nbsp; The `<<YOUR_DB>>` value from Step 1 |
+| &nbsp; **Username** | &nbsp; `AI_ANALYST_USER` |
+| &nbsp; **Password** | &nbsp; Leave blank — PAT replaces the password |
+| &nbsp; **Personal Access Token** | &nbsp; The `token_secret` from Step 2 |
+| &nbsp; **SSH Tunnel** | &nbsp; Not required — the network policy handles IP filtering |
 
     <Info>
       **Warehouse** is not entered here — Actioneer reads it from the `DEFAULT_WAREHOUSE` set on the Snowflake user in Step 1. If you need to change the warehouse later, update the user's `DEFAULT_WAREHOUSE` in Snowflake.
