@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="100%" height="100%">
+  <title>ClickHouse</title>
+  <!-- Left column block -->
+  <path fill="#FCAA40" d="M0 3h3v18H0V3zm4 0h3v18H4V3z"/>
+  <!-- Middle column block -->
+  <path fill="#F87523" d="M8 3h3v18H8V3zm4 0h3v18h-3V3z"/>
+  <!-- Right column block -->
+  <path fill="#F04E23" d="M16 3h3v18h-3V3zm4 0h3v18h-3V3z"/>
+</svg>

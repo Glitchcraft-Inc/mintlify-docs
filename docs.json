@@ -70,6 +70,17 @@
       "href": "https://sentinel.gameramp.com/auth"
     }
   },
+  "seo": {
+    "metatags": {
+      "og:site_name": "Actioneer Docs",
+      "og:type": "website",
+      "twitter:card": "summary_large_image",
+      "twitter:site": "@actioneerhq",
+      "robots": "index, follow",
+      "canonical": "https://docs.actioneer.com"
+    },
+    "indexing": "all"
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/actioneerhq",
