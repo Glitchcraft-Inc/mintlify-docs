@@ -1,0 +1,34 @@
+---
+mode: "wide"
+title: "Product Analytics"
+sidebarTitle: "Overview"
+description: "Connect a product analytics platform to Actioneer via BigQuery."
+"og:title": "Product Analytics Integrations — Actioneer"
+"og:description": "Connect Mixpanel or Amplitude to Actioneer. Both platforms export data to BigQuery on a schedule — Actioneer queries it in place."
+keywords: ["product analytics integration", "Mixpanel BigQuery export", "Amplitude BigQuery export", "Actioneer product analytics", "event data pipeline"]
+---
+
+# Product Analytics
+
+Event data, user profiles, and behavioral analytics — **exported to BigQuery on a schedule, then queried by Actioneer in place.**
+
+Mixpanel and Amplitude both offer native data pipelines that write directly to a BigQuery dataset you control. Actioneer connects to that dataset and queries the exported tables — no additional ETL or data movement required.
+
+Each guide below walks through the full setup: creating the BigQuery dataset, configuring the export on the analytics platform, and connecting the dataset to Actioneer.
+
+<CardGroup cols={2}>
+  <Card title="Mixpanel" href="/integrations/product-analytics/mixpanel">
+    Export events, user profiles, and identity data from Mixpanel to BigQuery via Data Pipelines.
+  </Card>
+  <Card title="Amplitude" href="/integrations/product-analytics/amplitude">
+    Export raw events and user properties from Amplitude to BigQuery via the BigQuery Destination.
+  </Card>
+</CardGroup>
+
+<Tip>
+  These integrations use BigQuery as an intermediary. The analytics platform writes to your BigQuery dataset; Actioneer reads from it. Actioneer never connects to Mixpanel or Amplitude directly.
+</Tip>
+
+<Info>
+  You will need an existing Actioneer BigQuery connection or will set one up as part of this process. See the [Google BigQuery guide](/integrations/data-warehouses/google-big-query) for full details on connecting BigQuery to Actioneer.
+</Info>

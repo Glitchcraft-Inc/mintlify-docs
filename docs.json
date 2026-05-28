@@ -56,6 +56,14 @@
               "integrations/mmp/appsflyer",
               "integrations/mmp/singular"
             ]
+          },
+          {
+            "group": "Product Analytics",
+            "pages": [
+              "integrations/product-analytics",
+              "integrations/product-analytics/mixpanel",
+              "integrations/product-analytics/amplitude"
+            ]
           }
         ]
       }
