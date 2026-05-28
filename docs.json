@@ -28,11 +28,9 @@
     "groups": [
       {
         "group": "Integrations",
-        "icon": "plug",
         "pages": [
           {
             "group": "Data Warehouses",
-            "icon": "database",
             "pages": [
               "integrations/data-warehouses",
               "integrations/data-warehouses/amazon-athena",
@@ -49,7 +47,6 @@
           },
           {
             "group": "MMP Connections",
-            "icon": "smartphone",
             "pages": [
               "integrations/mmp",
               "integrations/mmp/adjust",

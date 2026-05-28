@@ -2,7 +2,6 @@
 mode: "wide"
 title: "Amazon Athena"
 sidebarTitle: "Amazon Athena"
-icon: "search"
 description: "Connect Amazon Athena to Actioneer as a read-only data source."
 ---
 
@@ -49,7 +48,7 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
     A dedicated IAM user keeps Actioneer's credentials separate from personal accounts. The user needs permissions across three services: Athena, Glue, and S3.
 
     1. In the AWS Console, open **IAM** → **Policies** → **Create policy**.
-    2. Click the **JSON** tab and paste the following. Replace `YOUR-BUCKET-NAME` with the bucket used for query results and data.
+    2. Click the **JSON** tab and paste the following. Replace `YOUR-BUCKET-NAME` with the S3 bucket that holds your source data, and `YOUR-RESULTS-BUCKET` with the bucket from the **S3 Output Location** you noted in Step 1 (e.g., `my-bucket` from `s3://my-bucket/results/`). These may be the same bucket or different buckets depending on your setup.
 
     ```json expandable
     {
@@ -169,6 +168,6 @@ This guide walks through connecting an Amazon Athena database to Actioneer. The 
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" icon="sparkles" horizontal>
+<Card title="Need a hand?" horizontal>
   Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>
