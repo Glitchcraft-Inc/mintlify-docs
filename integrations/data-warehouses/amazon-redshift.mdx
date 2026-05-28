@@ -31,13 +31,13 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
 
     1. Sign in at [console.aws.amazon.com](https://console.aws.amazon.com) and open the **Amazon Redshift** service.
     2. Click **Clusters** in the left sidebar and select your cluster.
-    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port** (defaults to `5439`, but your cluster may use a different port).
+    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port**.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
 | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
     | :--- | :--- | :--- |
 | &nbsp; **Host** | &nbsp; Cluster endpoint (without port) | &nbsp; `my-cluster.abc123.us-east-1.redshift.amazonaws.com` |
-| &nbsp; **Port** | &nbsp; Cluster endpoint (after the colon) | &nbsp; `5439` (default) |
+| &nbsp; **Port** | &nbsp; Cluster endpoint (after the colon) | &nbsp; `5439` |
 | &nbsp; **Database** | &nbsp; General information tab | &nbsp; `analytics` |
   </Step>
   <Step title="Create a read-only database user">
@@ -74,7 +74,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     1. In the AWS Console, open **Amazon Redshift** and select your cluster.
     2. On the **Properties** tab, under **Network and security**, click the linked **VPC security group**.
     3. Click **Inbound rules → Edit inbound rules**.
-    4. Add a rule: Type = **Custom TCP**, Port = **your cluster's port** (from Step 1), Source = **Custom** → `35.244.14.238/32`.
+    4. Add a rule: Type = **Custom TCP**, Port = **the port from Step 1**, Source = **Custom** → `35.244.14.238/32`.
     5. Click **Save rules**.
 
     <Warning>
@@ -92,7 +92,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
     | :--- | :--- |
 | &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Redshift` |
 | &nbsp; **Host** | &nbsp; From Step 1 — cluster endpoint without the port |
-| &nbsp; **Port** | &nbsp; From Step 1 (default `5439`) |
+| &nbsp; **Port** | &nbsp; From Step 1 |
 | &nbsp; **Database Name** | &nbsp; From Step 1 (e.g., `analytics`) |
 | &nbsp; **Username** | &nbsp; `actioneer_readonly` |
 | &nbsp; **Password** | &nbsp; The password set in Step 2 |

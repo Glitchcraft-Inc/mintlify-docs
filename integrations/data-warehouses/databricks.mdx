@@ -78,7 +78,7 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
 | &nbsp; `SELECT ON ALL TABLES IN SCHEMA` | &nbsp; All tables and views in schema | &nbsp; Read data from tables and views |
 
     <Note>
-      These commands follow the Unity Catalog privilege model. `SELECT ON SCHEMA` is not a valid Unity Catalog grant — you must grant `SELECT` on individual tables, views, or use `ALL TABLES IN SCHEMA` as shown above. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
+      These commands follow the Unity Catalog privilege model, where `SELECT` must be granted on individual tables, views, or on `ALL TABLES IN SCHEMA` — not on the schema itself. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
     </Note>
   </Step>
   <Step title="Connect Databricks in Actioneer">
