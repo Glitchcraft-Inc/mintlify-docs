@@ -1,6 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
+  "appearance": "dark",
   "name": "Actioneer Docs",
   "description": "Enterprise AI that answers any data question and acts on it.",
   "colors": {
@@ -84,7 +85,7 @@
   "footer": {
     "socials": {
       "x": "https://x.com/actioneerhq",
-      "linkedin": "https://linkedin.com/company/gameramp"
+      "linkedin": "https://www.linkedin.com/company/actioneer-hq/"
     }
   }
 }
