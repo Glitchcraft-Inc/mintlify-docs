@@ -29,9 +29,13 @@ This guide walks through connecting a PostgreSQL database to Actioneer. The setu
   <Step title="Locate your PostgreSQL connection details">
     Three values are needed: the host address, port, and database name.
 
-    **Managed providers (RDS, Cloud SQL, Supabase, etc.):** Find the host and port on the instance overview page in your provider's console.
+    **AWS RDS / Aurora:** Open your RDS instance → **Connectivity & security** tab. The **Endpoint** is the host. Port is shown next to it (default `5432`). The database name is on the **Configuration** tab.
 
-    **Self-hosted:** Use the hostname or IP address of your PostgreSQL server. The default port is `5432`.
+    **Google Cloud SQL:** Open your Cloud SQL instance → **Overview** tab. The **Public IP address** is the host. Port defaults to `5432`. The database name is under **Databases** in the left sidebar.
+
+    **Supabase:** Go to **Settings → Database**. The host, port, and database name are listed under **Connection parameters**.
+
+    **Self-hosted:** Use the hostname or IP address of your PostgreSQL server. The default port is `5432`. List databases with `\l` in psql.
 
 | &nbsp; Value | &nbsp; Location | &nbsp; Example |
     | :--- | :--- | :--- |
