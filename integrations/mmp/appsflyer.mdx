@@ -34,12 +34,12 @@ This guide walks through connecting an AppsFlyer account to Actioneer. By the en
 
     1. Sign in at [hq1.appsflyer.com](https://hq1.appsflyer.com).
     2. Open the account menu (your email address in the top-right corner) and select **Security Center**.
-    3. In the **AppsFlyer API tokens** section, click **Manage your AppsFlyer API tokens**.
-    4. Locate the **API V2.0 token**. If no token exists, click **Create token**. If one exists, copy it.
+    3. In the **AppsFlyer API tokens** section, click **Manage your AppsFlyer API tokens** → locate **API V2.0**.
+    4. If no token exists, click **Create token**. If one exists, copy it. If the token was generated before **March 10, 2026**, it has been revoked — click **Create token** to generate a new one.
 
 | &nbsp; Value | &nbsp; Location | &nbsp; Example |
     | :--- | :--- | :--- |
-| &nbsp; **API V2 Token** | &nbsp; Security Center → Manage tokens → API V2.0 | &nbsp; `eyJhbGciOiJBMjU2S1ci...` |
+| &nbsp; **API V2 Token** | &nbsp; Security Center → Manage your AppsFlyer API tokens → API V2.0 | &nbsp; `eyJhbGciOiJBMjU2S1ci...` |
 
     <Warning>
       The API V2 token grants read access to your AppsFlyer data across all apps. Treat it like a password — do not share it over unencrypted channels or commit it to version control. AppsFlyer recommends rotating tokens every 180 days.

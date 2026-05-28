@@ -31,7 +31,7 @@ This guide walks through connecting a Redshift cluster to Actioneer. The setup c
 
     1. Sign in at [console.aws.amazon.com](https://console.aws.amazon.com) and open the **Amazon Redshift** service.
     2. Click **Clusters** in the left sidebar and select your cluster.
-    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port**.
+    3. On the **General information** tab, copy the **Endpoint**. It follows the format `my-cluster.abc123.us-east-1.redshift.amazonaws.com:5439`. The address before the colon is the **Host**. The number after the colon is the **Port**. Always use the port shown in your endpoint — `5439` is the AWS default, but it is not guaranteed.
     4. Note the **Database name** shown on the same page (e.g., `analytics`).
 
 | &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
