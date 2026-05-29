@@ -14,8 +14,8 @@ This guide walks through exporting Mixpanel data to a BigQuery dataset and conne
 
 | &nbsp; | &nbsp; |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Mixpanel account (Growth or Enterprise plan), Google Cloud project with BigQuery enabled, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; Events, user profiles, identity mappings, and group profiles via BigQuery |
+| &nbsp; **Prerequisites** | &nbsp; Mixpanel account on a **Growth** or **Enterprise** plan with the Data Pipelines add-on, Google Cloud project with BigQuery enabled, Actioneer account |
+| &nbsp; **Access granted** | &nbsp; Events, user profiles, and identity mappings via BigQuery |
 | &nbsp; **Estimated time** | &nbsp; ~20–30 minutes |
 
 <Info>
@@ -36,55 +36,59 @@ This guide walks through exporting Mixpanel data to a BigQuery dataset and conne
 | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
 | &nbsp; **Dataset ID** | &nbsp; A descriptive name, e.g. `mixpanel_export` |
-| &nbsp; **Location** | &nbsp; Choose the region closest to your Mixpanel data residency |
+| &nbsp; **Location** | &nbsp; Must match one of Mixpanel's [supported regions](https://docs.mixpanel.com/docs/data-pipelines/integrations/bigquery) |
 
     5. Click **Create dataset**.
+
+    <Note>
+      If your GCP organization uses domain restriction constraints, you must allowlist `mixpanel.com` and Google Workspace customer ID `C00m5wrjz` before proceeding.
+    </Note>
   </Step>
 
-  <Step title="Create a GCP service account for Mixpanel">
-    Mixpanel authenticates to BigQuery using a GCP service account. The account needs write access to your export dataset.
+  <Step title="Grant Mixpanel access to your dataset">
+    Mixpanel exports data using its own service account — you do not create one yourself. You grant this service account access to your dataset.
 
-    1. In the Google Cloud Console, go to **IAM & Admin** → **Service Accounts**.
-    2. Click **Create Service Account**.
-    3. Name it `mixpanel-export` (or similar) and click **Create and Continue**.
-    4. Grant two roles:
+    **Grant BigQuery Job User (project-level):**
+
+    1. In the Google Cloud Console, go to **IAM & Admin** → **IAM**.
+    2. Click **Grant Access**.
+    3. In the **New principals** field, enter: `export-upload@mixpanel-prod-1.iam.gserviceaccount.com`
+    4. Assign the role **BigQuery Job User**.
+    5. Click **Save**.
+
+    **Grant BigQuery Data Owner (dataset-level):**
+
+    1. In BigQuery, click your export dataset.
+    2. Click **Sharing** → **Permissions** → **Add Principal**.
+    3. Enter the same service account: `export-upload@mixpanel-prod-1.iam.gserviceaccount.com`
+    4. Assign the role **BigQuery Data Owner**.
+    5. Click **Save**.
 
 | &nbsp; Role | &nbsp; Scope | &nbsp; Purpose |
     | :--- | :--- | :--- |
-| &nbsp; **BigQuery Data Editor** | &nbsp; The export dataset | &nbsp; Write exported tables |
-| &nbsp; **BigQuery Job User** | &nbsp; Project-level | &nbsp; Run export jobs |
-
-    5. Click **Done**, then click into the new service account.
-    6. Go to the **Keys** tab → **Add Key** → **Create new key** → **JSON**.
-    7. Save the downloaded JSON key file securely.
+| &nbsp; **BigQuery Job User** | &nbsp; Project-level (IAM) | &nbsp; Run export jobs |
+| &nbsp; **BigQuery Data Owner** | &nbsp; Dataset-level (Sharing → Permissions) | &nbsp; Create and write tables in the export dataset |
 
     <Warning>
-      This JSON key grants write access to your BigQuery dataset. Store it in a password manager and do not commit it to version control.
+      Mixpanel requires **BigQuery Data Owner** on the dataset, not Data Editor. This is because Mixpanel manages table schemas and partitioning during export.
     </Warning>
   </Step>
 
-  <Step title="Configure Data Pipelines in Mixpanel">
+  <Step title="Create the pipeline in Mixpanel">
     1. Sign in to [mixpanel.com](https://mixpanel.com) and open your project.
-    2. Go to **Settings** → **Data Pipelines** (under Project Settings).
-    3. Click **Create Pipeline** and select **BigQuery** as the destination.
-    4. Complete the pipeline form:
+    2. Go to **Data Pipelines** → **Integrations** → **BigQuery**.
+    3. Complete the pipeline form:
 
 | &nbsp; Field | &nbsp; Value |
     | :--- | :--- |
 | &nbsp; **GCP Project ID** | &nbsp; Your Google Cloud project ID |
-| &nbsp; **Dataset ID** | &nbsp; The dataset from Step 1 (e.g. `mixpanel_export`) |
-| &nbsp; **Service Account Key** | &nbsp; Upload the JSON key from Step 2 |
-| &nbsp; **Data to export** | &nbsp; Select the data types you need (events, user profiles, identity mappings, group profiles) |
-| &nbsp; **Export frequency** | &nbsp; Hourly or daily (depending on your Mixpanel plan) |
+| &nbsp; **Dataset Name** | &nbsp; The dataset from Step 1 (e.g. `mixpanel_export`) |
+| &nbsp; **GCP Region** | &nbsp; The region you selected when creating the dataset |
 
-    5. Click **Create Pipeline**.
-
-    <Note>
-      Data Pipelines is available on Mixpanel's **Growth** and **Enterprise** plans. If you do not see it in your settings, contact your Mixpanel account manager.
-    </Note>
+    4. Click **Create Pipeline**.
 
     <Info>
-      The first export may take several hours to complete depending on your data volume. Subsequent exports run on the schedule you selected.
+      The first export may take several hours depending on your data volume. Subsequent exports run automatically on a recurring schedule.
     </Info>
   </Step>
 
@@ -99,10 +103,31 @@ This guide walks through exporting Mixpanel data to a BigQuery dataset and conne
     For full connection instructions, see the [Google BigQuery guide](/integrations/data-warehouses/google-big-query).
 
     <Warning>
-      The Actioneer service account only needs **read** access (`BigQuery Data Viewer` + `BigQuery Job User`) to the Mixpanel export dataset. Do not reuse the Mixpanel service account — create a separate one for Actioneer with read-only permissions.
+      The Actioneer service account only needs **read** access (`BigQuery Data Viewer` + `BigQuery Job User`) to the Mixpanel export dataset. Do not reuse Mixpanel's service account for Actioneer.
     </Warning>
   </Step>
 </Steps>
+
+---
+
+## Exported tables
+
+Mixpanel creates the following tables in your dataset:
+
+| &nbsp; Table | &nbsp; Contains |
+| :--- | :--- |
+| &nbsp; `mp_master_event` | &nbsp; All events, with properties stored as JSON |
+| &nbsp; `mp_people_data_view` | &nbsp; User profiles (use this view, not the underlying tables) |
+| &nbsp; `mp_identity_mappings_data_view` | &nbsp; Identity mappings (use this view, not the underlying tables) |
+| &nbsp; `mp_nessie_export_log` | &nbsp; Export audit log |
+
+<Warning>
+  Do not modify the schema of tables created by Mixpanel, and do not change the `TIMEPARTITIONING` settings on any table. Either change will cause the export pipeline to fail.
+</Warning>
+
+<Tip>
+  Always query the `_view` suffixed objects for user profiles and identity mappings — not the underlying partitioned tables. When querying identity mappings, use `resolved_distinct_id` rather than `distinct_id`.
+</Tip>
 
 ---
 
@@ -110,15 +135,15 @@ This guide walks through exporting Mixpanel data to a BigQuery dataset and conne
 
 <AccordionGroup>
   <Accordion title="What Mixpanel data can Actioneer access?">
-    Actioneer can query any tables Mixpanel writes to the BigQuery dataset — events, user profiles, identity mappings, and group profiles. The exact tables depend on which data types you selected when configuring the pipeline.
-  </Accordion>
-
-  <Accordion title="How often is the data updated?">
-    Mixpanel Data Pipelines export on the schedule you configure — hourly on Enterprise plans, daily on Growth plans. Actioneer queries the latest data available in BigQuery at the time of each query.
+    Actioneer can query any tables Mixpanel writes to the BigQuery dataset — events, user profiles, and identity mappings. The exact tables depend on your Mixpanel project configuration.
   </Accordion>
 
   <Accordion title="Does Actioneer connect to Mixpanel directly?">
     No. Actioneer only reads from BigQuery. Mixpanel handles the export independently. Actioneer cannot access, modify, or configure anything in your Mixpanel account.
+  </Accordion>
+
+  <Accordion title="What if my GCP organization uses VPC Service Controls?">
+    IP allowlists are not supported for Mixpanel's export pipeline. If your organization enforces VPC Service Controls, contact Mixpanel support for guidance on configuring access.
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
