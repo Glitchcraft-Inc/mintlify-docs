@@ -33,31 +33,6 @@
         "group": "Integrations",
         "pages": [
           {
-            "group": "Data Sources",
-            "pages": [
-              "integrations/data-warehouses",
-              "integrations/data-warehouses/amazon-athena",
-              "integrations/data-warehouses/amazon-redshift",
-              "integrations/data-warehouses/s3",
-              "integrations/data-warehouses/clickhouse",
-              "integrations/data-warehouses/databricks",
-              "integrations/data-warehouses/google-big-query",
-              "integrations/data-warehouses/google-cloud-storage",
-              "integrations/data-warehouses/google-sheets",
-              "integrations/data-warehouses/postgresql",
-              "integrations/data-warehouses/snowflake"
-            ]
-          },
-          {
-            "group": "MMP Connections",
-            "pages": [
-              "integrations/mmp",
-              "integrations/mmp/adjust",
-              "integrations/mmp/appsflyer",
-              "integrations/mmp/singular"
-            ]
-          },
-          {
             "group": "Analytics Platforms",
             "pages": [
               "integrations/product-analytics",
