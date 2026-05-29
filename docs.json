@@ -1,6 +1,9 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
+  "modeToggle": {
+    "default": "light"
+  },
   "name": "Actioneer Docs",
   "description": "Enterprise AI that answers any data question and acts on it.",
   "colors": {
