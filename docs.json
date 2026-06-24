@@ -58,6 +58,17 @@
             ]
           }
         ]
+      },
+      {
+        "group": "CDP Event Ingestion",
+        "pages": [
+          "ingestion",
+          "ingestion/api-reference",
+          "ingestion/identity",
+          "ingestion/properties",
+          "ingestion/reliability",
+          "ingestion/sending-events"
+        ]
       }
     ]
   },

@@ -1,0 +1,100 @@
+---
+mode: "wide"
+title: "Ingestion API Reference"
+sidebarTitle: "API Reference"
+description: "Endpoints, authentication, and the event envelope for the Actioneer Ingestion API."
+"og:title": "Ingestion API Reference — Actioneer"
+"og:description": "The Actioneer Ingestion API: /capture and /batch endpoints, X-API-Key authentication, the event envelope schema, and batch requests over JSON-over-HTTPS."
+keywords: ["Actioneer API", "capture endpoint", "batch endpoint", "event envelope", "X-API-Key", "ingestion API reference"]
+---
+
+# Ingestion API Reference
+
+The Ingestion API accepts analytics events, identity (`$identify`) calls, and profile mutations over a single JSON-over-HTTPS interface. **One event envelope carries event properties, profile operators, and session association at once** — there is no separate transport per concern.
+
+## Conventions
+
+- **Encoding:** UTF-8 JSON. `Content-Type: application/json` is required on every request.
+- **Timestamps:** ISO-8601 in UTC (`YYYY-MM-DDTHH:MM:SS.sssZ`). Do not send local-time offsets.
+- **Value types:** All property values must be JSON-serializable — `string`, `number`, `boolean`, `null`, `object`, or `array`.
+- **Field naming:** Reserved fields use the `$` prefix (`$identify`, `$set`, `$set_once`, `$unset`, `$session_id`, `$anon_distinct_id`). Client-defined property names must not begin with `$`.
+- **Base URL:** `https://api.actioneer.com`. Production and staging are distinct hosts, confirmed at onboarding.
+
+## Endpoints
+
+| Method | Path | Cardinality | Purpose |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/capture` | Single envelope | One event, `$identify` call, or profile mutation, delivered in real time. |
+| `POST` | `/batch` | Array of envelopes | Any mix of events, `$identify` calls, and profile mutations in one request. For grouped sends and high-throughput forwarding. |
+
+Both endpoints share the same envelope schema and the same authentication and idempotency rules.
+
+## Authentication
+
+Authentication is by API key, sent in the `X-API-Key` request header. For `/batch`, the single header authenticates every envelope in the request.
+
+```http
+POST /capture HTTP/1.1
+Host: api.actioneer.com
+Content-Type: application/json
+X-API-Key: <api-key>
+```
+
+<Warning>
+  The API key is a server-side secret. Issue requests from a backend or trusted server context; do not embed the key in distributable client binaries or web bundles. Never place secrets, credentials, tokens, or cardholder data inside event or profile properties.
+</Warning>
+
+## Event envelope
+
+| Field | Type | Requirement | Semantics |
+| :--- | :--- | :--- | :--- |
+| `event` | string | Required | Event name (e.g. `Order Completed`) or a reserved verb (`$identify`). |
+| `distinct_id` | string | Required | The identity this envelope is attributed to. See [Identity Model](/ingestion/identity). |
+| `event_id` | string | Recommended | Client-generated idempotency key. Stable across retries of the same logical event. |
+| `timestamp` | ISO-8601 | Recommended | Event occurrence time, UTC. Omission forfeits accurate event-time ordering. |
+| `sent_at` | ISO-8601 | Optional | Time the client transmitted the request; used for clock-skew correction. |
+| `properties` | object | Optional | Event properties, profile operators, and session association. See [Property Taxonomy](/ingestion/properties). |
+
+A minimal valid envelope carries only `event` and `distinct_id`. Production traffic should always include `event_id` and `timestamp` — see [Reliability](/ingestion/reliability).
+
+```json
+{
+  "event_id": "01JZ1T3J9XQY4E0P4E3WQJ9B7K",
+  "event": "Order Completed",
+  "distinct_id": "user_8a31f0c2",
+  "timestamp": "2026-06-04T06:30:00.000Z",
+  "sent_at": "2026-06-04T06:30:00.100Z",
+  "properties": {
+    "amount": 499,
+    "plan": "pro",
+    "currency": "INR",
+    "$session_id": "session-123",
+    "utm_source": "google"
+  }
+}
+```
+
+## Batch requests
+
+`/batch` accepts a `batch` array of envelopes of any mixed kind. Do not depend on cross-envelope ordering for correctness — attribute each envelope explicitly via `distinct_id` and order via `timestamp`.
+
+```json
+{
+  "batch": [
+    { "event_id": "evt-001", "event": "Application Opened", "distinct_id": "anon-9f2c",
+      "timestamp": "2026-06-04T06:30:00.000Z",
+      "properties": { "$session_id": "session-123" } },
+    { "event_id": "evt-002", "event": "Order Completed", "distinct_id": "user_8a31f0c2",
+      "timestamp": "2026-06-04T06:31:00.000Z",
+      "properties": { "amount": 499, "plan": "pro", "$session_id": "session-123",
+        "$set": { "isPremiumUser": true } } },
+    { "event_id": "evt-003", "event": "$identify", "distinct_id": "user_8a31f0c2",
+      "timestamp": "2026-06-04T06:31:01.000Z",
+      "properties": { "$anon_distinct_id": "anon-9f2c" } }
+  ]
+}
+```
+
+<Info>
+  A successful response is a small acceptance acknowledgement, `{ "status": 1 }`. See [Reliability](/ingestion/reliability) for validation, deduplication, and retries.
+</Info>

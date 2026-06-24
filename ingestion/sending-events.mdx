@@ -1,0 +1,68 @@
+---
+mode: "wide"
+title: "Sending from an Event SDK"
+sidebarTitle: "Sending from an SDK"
+description: "Forward events from Firebase, Jitsu, RudderStack, or Segment to Actioneer."
+"og:title": "Sending from an Event SDK — Actioneer Ingestion"
+"og:description": "Forward events from any event-generation SDK to Actioneer: integration patterns, a generic SDK-to-Actioneer field mapping, and a launch checklist."
+keywords: ["Firebase", "RudderStack", "Segment", "Jitsu", "event forwarding", "SDK mapping", "Actioneer ingestion"]
+---
+
+# Sending from an Event SDK
+
+Most clients already emit analytics through an event-generation SDK — Firebase, Jitsu, RudderStack, or Segment. **Those SDKs produce a stream of events; you forward each one to the Ingestion API.** Actioneer lands the events in the warehouse, which it consumes through a data connection.
+
+```text
+App / Event SDK ──▶ Actioneer Ingestion API ──▶ warehouse ──▶ data connection ──▶ Actioneer
+                    (this contract: /capture, /batch, $identify)
+```
+
+## Forwarding patterns
+
+Real-time events map to `/capture`; grouped or high-throughput sends (server-side forwarding, replays, backfills) map to `/batch`. Most SDKs expose a server-side webhook, destination, or transformation hook where you build the Actioneer envelope from the SDK's event payload.
+
+<Warning>
+  Identity continuity is the client's responsibility. Persist a stable anonymous identifier before login, and at login or signup emit `$identify` with `distinct_id` = the authenticated user ID and `$anon_distinct_id` = the prior anonymous ID. See [Identity Model](/ingestion/identity).
+</Warning>
+
+<Tip>
+  **Run in parallel during cutover.** If you already land events elsewhere, stand up direct ingestion alongside the existing path, reconcile event counts and key funnels (e.g. install → registered) between the two, and switch Actioneer's primary connection only once direct ingestion is verified complete.
+</Tip>
+
+## Mapping an SDK to Actioneer
+
+Most event SDKs share a common vocabulary (Segment-style `track` and `identify`, Firebase events plus user properties, RudderStack payloads). Map their concepts to the Actioneer contract as follows:
+
+| SDK concept | Actioneer field |
+| :--- | :--- |
+| Event name (`track`, `log_event`) | `event` |
+| Event properties / params | `properties` |
+| User traits / user properties | `properties.$set` / `properties.$set_once` |
+| Authenticated user ID | `distinct_id` (post-login) |
+| Anonymous / device ID | `distinct_id` (pre-login); carried as `$anon_distinct_id` on `$identify` |
+| Insert ID / message ID (dedup) | `event_id` |
+| Event time | `timestamp` |
+| Session ID | `properties.$session_id` |
+| `identify` call | `event: "$identify"` |
+| `alias` / merge prior ID → current | `$identify` with `properties.$anon_distinct_id` |
+
+The contract is intentionally analytics-shaped, so integration is mostly a change of transport and identity handling rather than a re-modeling of events.
+
+## Implementation checklist
+
+<Tip>
+  Work through this before sending production traffic.
+</Tip>
+
+- [ ] Emit UTC ISO-8601 timestamps; never local time.
+- [ ] Supply a stable, client-generated `event_id` on every envelope.
+- [ ] Persist a stable anonymous `distinct_id` pre-login; emit `$identify` at login.
+- [ ] Wrap all user-level attributes in `$set` / `$set_once`; keep context as event properties.
+- [ ] Maintain stable event and property names and consistent value types after launch.
+- [ ] Implement exponential backoff with jitter on 5xx / network errors; do not retry 4xx.
+- [ ] Keep the API key server-side; exclude secrets and PCI data from properties.
+- [ ] Tolerate eventual consistency — profile mutations may become visible after the originating event.
+
+## Defining your event set
+
+Before mapping instrumentation, confirm your canonical event list — the events your SDK emits and their property shapes. Common lifecycle events include `Application Installed`, `Application Opened`, `Registered`, and `Order Completed`. **Lock event names and value types early** — renaming or retyping after launch breaks historical continuity in the warehouse.

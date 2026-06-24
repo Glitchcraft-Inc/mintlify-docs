@@ -1,0 +1,47 @@
+---
+mode: "wide"
+title: "Reliability"
+sidebarTitle: "Reliability"
+description: "Validation, acceptance responses, deduplication, and retry policy."
+"og:title": "Reliability — Actioneer Ingestion"
+"og:description": "Reliability semantics for the Actioneer Ingestion API: required-field validation, the status:1 acceptance response, event_id deduplication, and safe retry policy with exponential backoff."
+keywords: ["idempotency", "deduplication", "event_id", "retry policy", "exponential backoff", "Actioneer ingestion"]
+---
+
+# Reliability
+
+The Ingestion API is built for safe retries and exactly-once-by-key processing. **Always send a client-generated `event_id` and a UTC `timestamp`** so retries can't double-count and event time stays correct.
+
+## Validation
+
+An envelope may be rejected when any required field is absent: `event_id`, `X-API-Key`, `distinct_id`, `event`, `timestamp`.
+
+<Note>
+  `event_id` and `timestamp` are nominally "recommended" at the schema level, but production clients should treat them as required — they are what guarantee safe retries and correct event time.
+</Note>
+
+## Acceptance response
+
+A successful response is a small acceptance acknowledgement:
+
+```json
+{ "status": 1 }
+```
+
+`status: 1` indicates the envelope was accepted for processing. Treat any successful HTTP response as accepted, and ignore unrecognized response fields for forward compatibility.
+
+## Idempotency and deduplication
+
+Deduplication is keyed on `event_id`.
+
+- Reuse the **same** `event_id` when retrying the same logical event — the server collapses duplicates.
+- Generate a **new** `event_id` only for a genuinely distinct event.
+- If `event_id` is omitted, the server may synthesize one. Under retries this is unsafe: each retry can receive a different synthesized ID and persist as a duplicate. Always supply a client-generated `event_id`.
+
+## Retry policy
+
+Retry on HTTP 5xx and network/transport failures using exponential backoff with jitter. Because retries reuse `event_id`, they are side-effect-free at the dedup layer. Do not retry on 4xx validation failures — correct the payload instead.
+
+<Tip>
+  Profile mutations are eventually consistent — a `$set` may become visible slightly after the event that carried it.
+</Tip>

@@ -1,0 +1,68 @@
+---
+mode: "wide"
+title: "Property Taxonomy"
+sidebarTitle: "Property Taxonomy"
+description: "Event properties, profile operators, and session association inside one envelope."
+"og:title": "Property Taxonomy — Actioneer Ingestion"
+"og:description": "How properties work in Actioneer: event properties that describe the action, profile operators ($set, $set_once, $unset) that describe the user, and $session_id for session association."
+keywords: ["event properties", "profile properties", "$set", "$set_once", "$unset", "$session_id", "Actioneer ingestion"]
+---
+
+# Property Taxonomy
+
+`properties` is a single object carrying three distinct kinds of value. **They are not separate event types and may coexist in one envelope.**
+
+```text
+Describes the action   → place directly in properties         (event property)
+Describes the user     → place under $set / $set_once / $unset (profile property)
+Identifies the session → send $session_id in properties        (session property)
+```
+
+## Event properties
+
+Values scoped to the single event — order, plan, screen, campaign, or experiment context; numeric measures (order value, quantity, discount); and request context (URL, referrer, source, medium). **Event properties are never persisted to the user profile.**
+
+Keep transaction figures (e.g. `amount`, `currency`) as event properties — they describe the transaction, not the user.
+
+## Profile properties
+
+Profile properties describe the person and persist against the `distinct_id` for later segmentation. They must be wrapped in an operator.
+
+| Operator | Semantics | Idempotent | Example |
+| :--- | :--- | :--- | :--- |
+| `$set` | Create or overwrite profile fields. | Yes (last-write-wins) | `{ "isPremiumUser": true }` |
+| `$set_once` | Write only if the field is absent. | Yes | `{ "first_seen_source": "google" }` |
+| `$unset` | Remove fields from the profile. | Yes | `["temporary_flag"]` |
+
+A user-level attribute placed only in event properties will **not** appear on the profile. If an attribute should be queryable per user (e.g. premium status via `isPremiumUser`), send it under `$set`. Pick the operator by whether the value can change:
+
+- `$set` for fields that change — plan, role, premium status, and feature flags. Last write wins, so the profile stays current.
+- `$set_once` for fixed fields that must never be overwritten — `first_seen_source`, signup date, referral code.
+
+<Note>
+  **Context is not profile data.** `$browser`, `$current_url`, `utm_source`, `gclid`, and similar context remain event properties unless you explicitly wrap them in `$set` or `$set_once`.
+</Note>
+
+## Session property
+
+`$session_id` groups events into a session. Reuse the same value across all events in a session; allocate a new value when a new session begins. The session identifier always travels inside `properties`.
+
+## Combined envelope
+
+This single event records what happened, updates the profile, and attaches the event to a session:
+
+```json
+{
+  "event_id": "evt-order-001",
+  "event": "Order Completed",
+  "distinct_id": "user_8a31f0c2",
+  "timestamp": "2026-06-04T06:31:00.000Z",
+  "properties": {
+    "amount": 499,
+    "plan": "pro",
+    "$session_id": "session-123",
+    "$set": { "isPremiumUser": true },
+    "$set_once": { "first_seen_source": "google" }
+  }
+}
+```

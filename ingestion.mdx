@@ -1,0 +1,48 @@
+---
+mode: "wide"
+title: "CDP Event Ingestion"
+sidebarTitle: "Overview"
+description: "Send events to Actioneer from any event-generation SDK."
+"og:title": "CDP Event Ingestion — Actioneer"
+"og:description": "Send analytics events, identity calls, and profile updates to Actioneer from any event-generation SDK — Firebase, Jitsu, RudderStack, Segment — over a single JSON-over-HTTPS API."
+keywords: ["Actioneer ingestion", "CDP event ingestion", "event API", "send events", "Firebase", "RudderStack", "Segment", "Jitsu", "identity resolution"]
+---
+
+# CDP Event Ingestion
+
+Send analytics events, identity calls, and profile updates to Actioneer **directly from any event-generation SDK — no warehouse round-trip.**
+
+Where data-source connectors let Actioneer *read* from your stack, the Ingestion API lets your app *push* events in real time. One JSON-over-HTTPS envelope carries event properties, profile updates, and session association together. If you already emit analytics through Firebase, Jitsu, RudderStack, or Segment, you forward those events straight to Actioneer.
+
+| &nbsp; | &nbsp; |
+| :--- | :--- |
+| &nbsp; **Transport** | &nbsp; HTTPS / JSON |
+| &nbsp; **Base URL** | &nbsp; `https://api.actioneer.com` |
+| &nbsp; **Audience** | &nbsp; Client / data engineering |
+| &nbsp; **Auth** | &nbsp; `X-API-Key` header (server-side secret) |
+
+<CardGroup cols={2}>
+  <Card title="API Reference" href="/ingestion/api-reference">
+    Endpoints, authentication, the event envelope, and batch requests.
+  </Card>
+  <Card title="Identity Model" href="/ingestion/identity">
+    Resolve anonymous and logged-in users with `distinct_id` and `$identify`.
+  </Card>
+  <Card title="Property Taxonomy" href="/ingestion/properties">
+    Event properties, profile operators, and session association.
+  </Card>
+  <Card title="Reliability" href="/ingestion/reliability">
+    Validation, idempotency, deduplication, and retry policy.
+  </Card>
+  <Card title="Sending from an SDK" href="/ingestion/sending-events">
+    Forward events from your SDK, map fields, and ship with the checklist.
+  </Card>
+</CardGroup>
+
+<Warning>
+  The API key is a server-side secret. Issue requests from a backend or trusted server context — do not embed it in distributable client binaries or web bundles. Never place secrets, credentials, tokens, or cardholder data inside event or profile properties.
+</Warning>
+
+<Info>
+  The contract is intentionally analytics-shaped (Segment-style events, identify calls, user properties), so wiring up an existing SDK is mostly a change of transport and identity handling rather than a re-modeling of your events.
+</Info>
