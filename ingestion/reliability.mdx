@@ -8,8 +8,6 @@ description: "Validation, acceptance responses, deduplication, and retry policy.
 keywords: ["idempotency", "deduplication", "event_id", "retry policy", "exponential backoff", "Actioneer ingestion"]
 ---
 
-# Reliability
-
 The Ingestion API is built for safe retries and exactly-once-by-key processing. **Always send a client-generated `event_id` and a UTC `timestamp`** so retries can't double-count and event time stays correct.
 
 ## Validation
