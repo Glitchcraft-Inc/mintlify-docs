@@ -7,7 +7,7 @@ description: "Resolve anonymous and logged-in users with distinct_id and $identi
 keywords: ["distinct_id", "$identify", "identity resolution", "anonymous id", "user merge", "Actioneer ingestion"]
 ---
 
-`distinct_id` is the resolution key for all attribution. **Getting identity right is the single most consequential part of the integration** — mismanaging it either fragments one user across many profiles (under-merged) or collides several users into one (over-merged).
+`distinct_id` is the resolution key for all attribution. Getting identity right is the most consequential part of the integration — mismanaging it either fragments one user across many profiles (under-merged) or collides several users into one (over-merged).
 
 A meaningful share of traffic is typically pre-login and carries no stable user ID. Persisting a stable anonymous identifier and emitting `$identify` at login is essential to keep those users from fragmenting.
 

@@ -31,8 +31,8 @@ A successful response is a small acceptance acknowledgement:
 
 Deduplication is keyed on `event_id`.
 
-- Reuse the **same** `event_id` when retrying the same logical event — the server collapses duplicates.
-- Generate a **new** `event_id` only for a genuinely distinct event.
+- Reuse the same `event_id` when retrying the same logical event — the server collapses duplicates.
+- Generate a new `event_id` only for a genuinely distinct event.
 - If `event_id` is omitted, the server may synthesize one. Under retries this is unsafe: each retry can receive a different synthesized ID and persist as a duplicate. Always supply a client-generated `event_id`.
 
 ## Retry policy

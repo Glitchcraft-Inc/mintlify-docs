@@ -7,7 +7,7 @@ description: "Forward events from Firebase, Jitsu, RudderStack, or Segment to Ac
 keywords: ["Firebase", "RudderStack", "Segment", "Jitsu", "event forwarding", "SDK mapping", "Actioneer ingestion"]
 ---
 
-Most clients already emit analytics through an event-generation SDK — Firebase, Jitsu, RudderStack, or Segment. **Those SDKs produce a stream of events; you forward each one to the Ingestion API.** Actioneer lands the events in the warehouse, which it consumes through a data connection.
+Most clients already emit analytics through an event-generation SDK — Firebase, Jitsu, RudderStack, or Segment. Those SDKs produce a stream of events; you forward each one to the Ingestion API. Actioneer lands the events in the warehouse, which it consumes through a data connection.
 
 ```text
 App / Event SDK ──▶ Actioneer Ingestion API ──▶ warehouse ──▶ data connection ──▶ Actioneer
@@ -121,7 +121,7 @@ send({
 
 ## Defining your event set
 
-Before mapping instrumentation, confirm your canonical event list — the events your SDK emits and their property shapes. Common lifecycle events include `Application Installed`, `Application Opened`, `Registered`, and `Order Completed`. **Lock event names and value types early** — renaming or retyping after launch breaks historical continuity in the warehouse.
+Before mapping instrumentation, confirm your canonical event list — the events your SDK emits and their property shapes. Common lifecycle events include `Application Installed`, `Application Opened`, `Registered`, and `Order Completed`. Lock event names and value types early; renaming or retyping after launch breaks historical continuity in the warehouse.
 
 ## Next steps
 

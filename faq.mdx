@@ -19,7 +19,7 @@ Answers to the questions we hear most. For anything not covered here, see [Suppo
     All credentials are encrypted at rest with AES-256 and in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
   </Accordion>
   <Accordion title="Is everything Actioneer does auditable?">
-    Yes. Questions resolve to queries, and those queries are logged. The audit trail lets you see exactly what Actioneer read and when — governance is a first-class part of the design, not an add-on.
+    Yes. Questions resolve to queries, and those queries are logged. The audit trail lets you see exactly what Actioneer read and when. Governance is built into the design.
   </Accordion>
   <Accordion title="What IP should we allowlist?">
     Actioneer connects from a single fixed egress IP: `35.244.14.238`. Allowlist it (or `35.244.14.238/32`) wherever a source supports IP restrictions.
@@ -44,7 +44,7 @@ Answers to the questions we hear most. For anything not covered here, see [Suppo
 
 <AccordionGroup>
   <Accordion title="When should I stream events instead of connecting a warehouse?">
-    Stream events when you want product activity the moment it happens; connect a warehouse when the data already lives there. Most teams use both. See [Ingestion vs. warehouse](/concepts/ingestion-vs-warehouse).
+    Stream events when you want product activity as it occurs; connect a warehouse when the data already lives there. Most teams use both. See [Ingestion vs. warehouse](/concepts/ingestion-vs-warehouse).
   </Accordion>
   <Accordion title="How do I avoid double-counting on retries?">
     Send a stable, client-generated `event_id` on every envelope and reuse it when retrying the same logical event — the server collapses duplicates. See [Reliability](/ingestion/reliability).
