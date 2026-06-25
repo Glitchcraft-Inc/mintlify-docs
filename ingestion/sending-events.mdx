@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "Sending from an Event SDK"
 sidebarTitle: "Sending from an SDK"
 description: "Forward events from Firebase, Jitsu, RudderStack, or Segment to Actioneer."
@@ -61,6 +60,76 @@ The contract is intentionally analytics-shaped, so integration is mostly a chang
 - [ ] Keep the API key server-side; exclude secrets and PCI data from properties.
 - [ ] Tolerate eventual consistency — profile mutations may become visible after the originating event.
 
+## A reference send
+
+A server-side send that operationalizes the checklist: a stable `event_id`, a UTC timestamp, and exponential backoff with jitter on `5xx` — never retrying `4xx`.
+
+<CodeGroup>
+```javascript Node
+async function send(envelope, attempt = 0) {
+  const res = await fetch("https://api.actioneer.com/capture", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-Key": process.env.ACTIONEER_API_KEY,
+    },
+    body: JSON.stringify(envelope),
+  });
+  if (res.status >= 500 && attempt < 5) {
+    const backoff = Math.min(1000 * 2 ** attempt, 30000) + Math.random() * 250;
+    await new Promise((r) => setTimeout(r, backoff));
+    return send(envelope, attempt + 1); // same event_id → safe to retry
+  }
+  return res; // do not retry 4xx — correct the payload instead
+}
+
+send({
+  event_id: "evt-order-001",
+  event: "Order Completed",
+  distinct_id: "user_8a31f0c2",
+  timestamp: new Date().toISOString(),
+  properties: { amount: 499, plan: "pro", $session_id: "session-123" },
+});
+```
+
+```python Python
+import os, time, random, requests
+
+def send(envelope, attempts=5):
+    res = None
+    for attempt in range(attempts):
+        res = requests.post(
+            "https://api.actioneer.com/capture",
+            headers={"X-API-Key": os.environ["ACTIONEER_API_KEY"]},
+            json=envelope,
+        )
+        if res.status_code < 500:
+            return res  # do not retry 4xx — correct the payload instead
+        backoff = min(2 ** attempt, 30) + random.uniform(0, 0.25)
+        time.sleep(backoff)  # same event_id → safe to retry
+    return res
+
+send({
+    "event_id": "evt-order-001",
+    "event": "Order Completed",
+    "distinct_id": "user_8a31f0c2",
+    "timestamp": "2026-06-04T06:31:00.000Z",
+    "properties": {"amount": 499, "plan": "pro", "$session_id": "session-123"},
+})
+```
+</CodeGroup>
+
 ## Defining your event set
 
 Before mapping instrumentation, confirm your canonical event list — the events your SDK emits and their property shapes. Common lifecycle events include `Application Installed`, `Application Opened`, `Registered`, and `Order Completed`. **Lock event names and value types early** — renaming or retyping after launch breaks historical continuity in the warehouse.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Errors & Troubleshooting" icon="circle-alert" href="/ingestion/errors">
+    Status codes, error shapes, and common-failure resolutions.
+  </Card>
+  <Card title="API Reference" icon="terminal" href="/ingestion/api-reference">
+    Endpoints, authentication, and the event envelope.
+  </Card>
+</CardGroup>

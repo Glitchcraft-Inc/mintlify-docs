@@ -1,0 +1,30 @@
+---
+title: "Glossary"
+sidebarTitle: "Glossary"
+description: "Plain definitions for the terms used across the Actioneer docs."
+"og:title": "Glossary — Actioneer"
+"og:description": "Definitions for the recurring terms in the Actioneer docs: context layer, distinct_id, $identify, profile property, event property, session, MMP, egress IP, least privilege, and more."
+keywords: ["Actioneer glossary", "context layer", "distinct_id", "$identify", "MMP", "least privilege", "definitions"]
+---
+
+Definitions for the terms used throughout these docs.
+
+| Term | Definition |
+| :--- | :--- |
+| **Context layer** | The governed set of definitions — tables, fields, and relationships — Actioneer uses to answer questions. Owned by your data team. |
+| **Query in place** | Actioneer reads from your source where it already lives, rather than migrating or duplicating the data. |
+| **Read-only** | A connection that holds only read grants. Actioneer cannot create, modify, or delete data. |
+| **Least privilege** | Access scoped to the minimum needed to read the data you select — nothing more. |
+| **Egress IP** | The single fixed IP (`35.244.14.238`) Actioneer connects from. Allowlist it where a source supports IP restrictions. |
+| **Audit trail** | The record of queries and actions Actioneer performed, so every action is traceable. |
+| **Data source** | A warehouse, lake, file store, or BI source Actioneer connects to and reads. |
+| **MMP** | Mobile Measurement Partner (e.g. Adjust, AppsFlyer, Singular) — a source of attribution and install data. |
+| **Ingestion API** | The JSON-over-HTTPS API your app uses to push events to Actioneer in real time. |
+| **Envelope** | One JSON object sent to the ingestion API carrying an event, an `$identify` call, or a profile mutation. |
+| **`distinct_id`** | The identity an event is attributed to — the resolution key for all attribution. |
+| **`$identify`** | The call that merges a prior (anonymous) identifier into the current `distinct_id`. |
+| **Event property** | A value describing a single event (e.g. `amount`, `plan`). Never persisted to the user profile. |
+| **Profile property** | A value describing the user, written with `$set` / `$set_once` / `$unset` and persisted against the `distinct_id`. |
+| **Session** | A group of events sharing a `$session_id`. |
+| **`event_id`** | A client-generated idempotency key that lets retries collapse to a single event. |
+| **PAT** | Programmatic Access Token — a scoped, non-interactive credential used by some sources (e.g. Snowflake). |

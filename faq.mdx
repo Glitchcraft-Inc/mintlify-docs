@@ -1,0 +1,66 @@
+---
+title: "Frequently Asked Questions"
+sidebarTitle: "FAQ"
+description: "Common questions about security, connections, ingestion, and onboarding."
+"og:title": "FAQ — Actioneer"
+"og:description": "Answers to common Actioneer questions: data security and governance, data-source connections, the event ingestion API, and getting started."
+keywords: ["Actioneer FAQ", "data security", "read-only access", "ingestion", "onboarding", "SOC 2"]
+---
+
+Answers to the questions we hear most. For anything not covered here, see [Support](/support).
+
+## Security & governance
+
+<AccordionGroup>
+  <Accordion title="Can Actioneer modify or delete my data?">
+    No. Every data-source connection holds read grants only — Actioneer cannot create, modify, or delete tables, schemas, or rows. Where a source requires write access for its own operation (e.g. Athena writing temporary query results to S3), permissions are scoped strictly to that purpose. See [Access & networking](/operations/access-and-networking).
+  </Accordion>
+  <Accordion title="How does Actioneer protect credentials?">
+    All credentials are encrypted at rest with AES-256 and in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+  </Accordion>
+  <Accordion title="Is everything Actioneer does auditable?">
+    Yes. Questions resolve to queries, and those queries are logged. The audit trail lets you see exactly what Actioneer read and when — governance is a first-class part of the design, not an add-on.
+  </Accordion>
+  <Accordion title="What IP should we allowlist?">
+    Actioneer connects from a single fixed egress IP: `35.244.14.238`. Allowlist it (or `35.244.14.238/32`) wherever a source supports IP restrictions.
+  </Accordion>
+</AccordionGroup>
+
+## Connections
+
+<AccordionGroup>
+  <Accordion title="Do I have to move my data to Actioneer?">
+    No. Actioneer queries your source in place — there is no migration, nightly copy, or shadow warehouse. See [How Actioneer reads your data](/concepts/how-actioneer-reads-your-data).
+  </Accordion>
+  <Accordion title="Which data sources are supported?">
+    Warehouses and query engines (Snowflake, BigQuery, Redshift, Athena, Databricks, ClickHouse, PostgreSQL), object storage and files (Amazon S3, Google Cloud Storage, Google Sheets), and Mobile Measurement Partners (Adjust, AppsFlyer, Singular). Browse them all under [Integrations](/integrations/data-warehouses).
+  </Accordion>
+  <Accordion title="How long does a connection take to set up?">
+    Most warehouse connections take 15–20 minutes; file and sheet sources and MMPs are often quicker. Each guide lists an estimated time in its "At a glance" table.
+  </Accordion>
+</AccordionGroup>
+
+## Ingestion
+
+<AccordionGroup>
+  <Accordion title="When should I stream events instead of connecting a warehouse?">
+    Stream events when you want product activity the moment it happens; connect a warehouse when the data already lives there. Most teams use both. See [Ingestion vs. warehouse](/concepts/ingestion-vs-warehouse).
+  </Accordion>
+  <Accordion title="How do I avoid double-counting on retries?">
+    Send a stable, client-generated `event_id` on every envelope and reuse it when retrying the same logical event — the server collapses duplicates. See [Reliability](/ingestion/reliability).
+  </Accordion>
+  <Accordion title="Do I need a new SDK to send events?">
+    No. The contract is analytics-shaped (Segment-style events, identify calls, user properties), so wiring up an existing SDK — Firebase, Jitsu, RudderStack, Segment — is mostly a change of transport and identity handling. See [Sending from an SDK](/ingestion/sending-events).
+  </Accordion>
+</AccordionGroup>
+
+## Onboarding
+
+<AccordionGroup>
+  <Accordion title="Where do I start?">
+    Run the [Quickstart](/quickstart) — it takes you from zero to a verified, read-only connection in about 20 minutes.
+  </Accordion>
+  <Accordion title="I don't have workspace access yet.">
+    Workspaces are provisioned during onboarding. Ask your workspace admin, or [reach out to us](/support).
+  </Accordion>
+</AccordionGroup>

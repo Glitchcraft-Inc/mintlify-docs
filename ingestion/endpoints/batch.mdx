@@ -1,0 +1,15 @@
+---
+title: "Capture a Batch"
+sidebarTitle: "Capture a Batch"
+description: "Deliver a mixed array of events, $identify calls, and profile mutations in one request."
+"og:title": "Capture a Batch — Actioneer Ingestion API"
+"og:description": "POST /batch — deliver an array of mixed envelopes (events, $identify calls, profile mutations) to Actioneer in a single authenticated request."
+keywords: ["batch endpoint", "POST /batch", "event envelope", "high-throughput ingestion", "Actioneer ingestion API"]
+openapi: "POST /batch"
+---
+
+Forward many envelopes at once for grouped sends and high-throughput pipelines. A single `X-API-Key` authenticates every envelope; attribute each one explicitly via `distinct_id` and order via `timestamp`.
+
+<Info>
+  Each envelope carries its own `event_id` for deduplication — reuse it across retries so the batch can't double-count. See [Reliability](/ingestion/reliability) and [Errors & Troubleshooting](/ingestion/errors).
+</Info>

@@ -1,0 +1,67 @@
+---
+title: "Errors & Troubleshooting"
+sidebarTitle: "Errors & Troubleshooting"
+description: "Status codes, error shapes, and how to resolve common ingestion failures."
+"og:title": "Errors & Troubleshooting — Actioneer Ingestion"
+"og:description": "The Actioneer Ingestion API error model: HTTP status codes and whether they're retryable, the error response shape, and resolutions for common validation, auth, and rate-limit failures."
+keywords: ["ingestion errors", "status codes", "validation_error", "unauthorized", "retryable", "troubleshooting", "Actioneer ingestion API"]
+---
+
+How the Ingestion API reports failures, and how to resolve the common ones. Pair this with [Reliability](/ingestion/reliability) for retry and deduplication semantics.
+
+## Error response shape
+
+Failed requests return a small JSON body with a machine-readable code and a human-readable message:
+
+```json
+{
+  "error": "validation_error",
+  "message": "Missing required field: distinct_id"
+}
+```
+
+## Status codes
+
+| Status | Meaning | Retryable? |
+| :--- | :--- | :--- |
+| `200 OK` | Accepted. The body is `{ "status": 1 }`. | — |
+| `400 Bad Request` | Validation error — a required field (`event`, `distinct_id`, `event_id`, `timestamp`) is missing or malformed, or the JSON is invalid. | **No** — correct the payload |
+| `401 Unauthorized` | Missing or invalid `X-API-Key`. | **No** — fix the credential |
+| `413 Payload Too Large` | A `/batch` request exceeds the accepted size. | **No** — split into smaller batches |
+| `429 Too Many Requests` | Rate limited. | **Yes** — back off and retry |
+| `5xx Server Error` | Transient server or transport failure. | **Yes** — exponential backoff with jitter |
+
+<Info>
+  Retries are safe because deduplication is keyed on `event_id`: a retried envelope that reuses its `event_id` collapses to a single event. Always send a stable, client-generated `event_id`. See [Reliability](/ingestion/reliability).
+</Info>
+
+## Common failures
+
+<AccordionGroup>
+  <Accordion title="validation_error — missing required field">
+    A required field is absent. The minimal valid envelope carries `event` and `distinct_id`; production traffic must also include `event_id` and `timestamp`. For `/batch`, the message identifies the offending envelope (e.g. `batch[2]: missing required field: event`). **Resolution:** add the named field and resend; do not retry the rejected payload unchanged.
+  </Accordion>
+  <Accordion title="validation_error — malformed value or reserved name">
+    A value isn't JSON-serializable, a timestamp isn't UTC ISO-8601, or a client-defined property name begins with the reserved `$` prefix. **Resolution:** correct the value or rename the property (only reserved verbs like `$set` and `$session_id` may use `$`). See [Property Taxonomy](/ingestion/properties).
+  </Accordion>
+  <Accordion title="unauthorized — invalid API key">
+    The `X-API-Key` header is missing, malformed, or wrong for the environment. Production and staging are distinct hosts with distinct keys. **Resolution:** confirm you're sending the server-side key for the correct environment. See [Access & networking](/operations/access-and-networking).
+  </Accordion>
+  <Accordion title="Duplicate events appearing">
+    Usually the `event_id` was omitted or regenerated per attempt, so retries persisted as separate events. **Resolution:** generate one stable `event_id` per logical event and reuse it across retries.
+  </Accordion>
+  <Accordion title="A $set didn't show up immediately">
+    Profile mutations are eventually consistent — a `$set` may become visible slightly after the event that carried it. This is expected, not an error. **Resolution:** tolerate eventual consistency; don't treat a brief delay as a failed write.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Reliability" icon="shield-check" href="/ingestion/reliability">
+    Validation, idempotency, deduplication, and retry policy.
+  </Card>
+  <Card title="API Reference" icon="terminal" href="/ingestion/api-reference">
+    Endpoints, authentication, and the event envelope.
+  </Card>
+</CardGroup>

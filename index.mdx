@@ -1,0 +1,51 @@
+---
+title: "Actioneer Documentation"
+sidebarTitle: "Introduction"
+description: "Connect your data to Actioneer, then ask any question and act on the answer."
+"og:title": "Actioneer Documentation"
+"og:description": "Actioneer is enterprise AI that answers any data question and acts on it. Connect a warehouse, stream events in real time, and query everything in natural language — governed, read-only, auditable."
+keywords: ["Actioneer", "Actioneer docs", "CDP", "data integration", "text-to-SQL", "enterprise AI", "data warehouse", "event ingestion"]
+---
+
+**Actioneer is enterprise AI that answers any data question and acts on it.** Connect your data once — your warehouse, your event streams, your attribution data — and query all of it in natural language, governed and read-only, with an audit trail on every action.
+
+These docs cover the two ways you bring data into Actioneer: **connecting a data source** Actioneer reads in place, and **streaming events** to the ingestion API in real time. Pick the path that matches your stack below.
+
+## Choose your path
+
+<CardGroup cols={2}>
+  <Card title="Connect a data source" icon="database" href="/integrations/data-warehouses">
+    Give Actioneer read-only access to a warehouse, lake, or BI source — Snowflake, BigQuery, Redshift, Databricks, and more. Actioneer queries it in place; no data migration.
+  </Card>
+  <Card title="Stream events in real time" icon="send" href="/ingestion">
+    Push analytics events, identity calls, and profile updates straight from your app or event SDK over one JSON-over-HTTPS API — no warehouse round-trip.
+  </Card>
+</CardGroup>
+
+## Why Actioneer
+
+<CardGroup cols={3}>
+  <Card title="Governance-first" icon="shield-check">
+    Your data team owns the definitions. Every connection is least-privilege and read-only, and every action Actioneer takes is auditable.
+  </Card>
+  <Card title="Operational continuity" icon="workflow">
+    Actioneer fits into your existing stack rather than replacing it — it reads your sources where they already live and leaves your pipelines untouched.
+  </Card>
+  <Card title="Proven accuracy" icon="award">
+    Actioneer leads public text-to-SQL benchmarks, including DABstep, DA-Bench, and KRAMAbench — accuracy you can put in front of a board.
+  </Card>
+</CardGroup>
+
+## Start building
+
+<CardGroup cols={3}>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Connect your first source and confirm a working, read-only connection in about 20 minutes.
+  </Card>
+  <Card title="Core concepts" icon="book-open" href="/concepts/how-actioneer-reads-your-data">
+    How Actioneer reads your data, resolves identity, and where ingestion fits versus a warehouse connection.
+  </Card>
+  <Card title="Connect your AI agent" icon="bot" href="/resources/ask-actioneer">
+    Add the Actioneer docs MCP server to your IDE or coding agent and work against these docs directly.
+  </Card>
+</CardGroup>

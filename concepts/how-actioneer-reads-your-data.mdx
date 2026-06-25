@@ -1,0 +1,65 @@
+---
+title: "How Actioneer Reads Your Data"
+sidebarTitle: "How Actioneer reads your data"
+description: "The context layer, the read-only model, and how Actioneer queries your sources in place."
+"og:title": "How Actioneer Reads Your Data"
+"og:description": "Actioneer queries your data sources in place over least-privilege, read-only connections and assembles a governed context layer — no data migration, no write access, full audit trail."
+keywords: ["context layer", "read-only data access", "data governance", "query in place", "least privilege", "Actioneer"]
+---
+
+Actioneer doesn't copy your data into a separate system. It connects to the sources you already run, queries them **in place** over a read-only connection, and assembles a governed **context layer** your team owns. This page explains that model before you wire anything up.
+
+## In one line
+
+> You grant a least-privilege, read-only connection. Actioneer reads — never writes — and every query it runs against your data is auditable.
+
+## How it works
+
+<Steps>
+  <Step title="You connect a source">
+    You create a dedicated service identity scoped to read access (e.g. a Snowflake service user with `SELECT`/`USAGE` only) and, where supported, restrict it to Actioneer's egress IP `35.244.14.238`. The [integration guides](/integrations/data-warehouses) walk through this per source.
+  </Step>
+  <Step title="Actioneer queries in place">
+    Actioneer issues read queries against the source on demand. Your data stays where it lives — there is no migration, no nightly copy, and no shadow warehouse.
+  </Step>
+  <Step title="The context layer assembles definitions">
+    Tables, columns, and the relationships between them form a context layer your data team governs. Definitions are owned by you, not buried in a black box.
+  </Step>
+  <Step title="Every action is recorded">
+    Questions resolve to queries, and those queries are logged. The audit trail is the point: you can always see what Actioneer read and when.
+  </Step>
+</Steps>
+
+## Core concepts
+
+| Term | What it means |
+| :--- | :--- |
+| **Context layer** | The governed set of definitions — tables, fields, relationships — Actioneer uses to answer questions. Owned by your data team. |
+| **Query in place** | Actioneer reads from your source where it already lives; it does not migrate or duplicate your data. |
+| **Read-only** | Connections hold only read grants. Actioneer cannot create, modify, or delete tables, schemas, or rows. |
+| **Least privilege** | Each connection is scoped to the minimum access needed to read the data you select — nothing more. |
+| **Audit trail** | A record of the queries Actioneer ran, so every action is traceable. |
+
+<Info>
+  Where a source requires write access for its own operation (for example, Athena writing temporary query results to S3), that permission is scoped strictly to that purpose. Actioneer never modifies your source data. See [Access & networking](/operations/access-and-networking).
+</Info>
+
+## Two ways data reaches Actioneer
+
+```text
+Warehouse / lake / BI source  ──(read-only connection)──▶  Actioneer reads in place
+App / event SDK               ──(ingestion API)─────────▶  warehouse  ──▶  read-only connection  ──▶  Actioneer
+```
+
+Connecting a source lets Actioneer *read* what you already store. The [ingestion API](/ingestion) lets your app *push* events in real time. Most teams use both.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Ingestion vs. warehouse" icon="git-compare" href="/concepts/ingestion-vs-warehouse">
+    Which path to use, and when to use both.
+  </Card>
+  <Card title="Connect a data source" icon="database" href="/integrations/data-warehouses">
+    Start with your warehouse, lake, or BI source.
+  </Card>
+</CardGroup>

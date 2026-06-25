@@ -1,0 +1,15 @@
+---
+title: "Capture Event"
+sidebarTitle: "Capture Event"
+description: "Deliver a single event, $identify call, or profile mutation in real time."
+"og:title": "Capture Event — Actioneer Ingestion API"
+"og:description": "POST /capture — deliver a single event envelope, $identify call, or profile mutation to Actioneer in real time over JSON-over-HTTPS."
+keywords: ["capture endpoint", "POST /capture", "event envelope", "Actioneer ingestion API"]
+openapi: "POST /capture"
+---
+
+Send one envelope per request. The same schema, authentication, and idempotency rules apply as `/batch` — reuse a stable `event_id` so retries collapse to a single event.
+
+<Info>
+  `event_id` is the deduplication key: reuse it across retries of the same logical event so they collapse to one. See [Reliability](/ingestion/reliability) and [Errors & Troubleshooting](/ingestion/errors).
+</Info>

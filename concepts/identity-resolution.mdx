@@ -1,0 +1,46 @@
+---
+title: "Identity Resolution"
+sidebarTitle: "Identity resolution"
+description: "How Actioneer keeps one user as one user across anonymous and logged-in activity."
+"og:title": "Identity Resolution — Actioneer"
+"og:description": "The identity model behind Actioneer ingestion: distinct_id as the attribution key, the anonymous-to-known lifecycle, and $identify to merge identifiers without fragmenting or colliding users."
+keywords: ["identity resolution", "distinct_id", "$identify", "anonymous to known", "user merge", "Actioneer concepts"]
+---
+
+Identity resolution is how Actioneer keeps **one real person as one profile** as they move from anonymous browsing to a logged-in account. Get it right and your funnels and conversion metrics hold together; get it wrong and one user fragments into many — or several users collide into one.
+
+This page is the conceptual model. For the exact fields and payloads, see the [Identity Model](/ingestion/identity) reference.
+
+## The model
+
+Every event is attributed to a `distinct_id` — the resolution key. A user typically passes through three phases:
+
+| Phase | What `distinct_id` is |
+| :--- | :--- |
+| **Anonymous** | A stable identifier the client generates and persists before login (e.g. a device or first-touch UUID). |
+| **At login / signup** | The client emits `$identify` to merge the prior anonymous identifier into the authenticated user ID. |
+| **Known** | The authenticated user ID, for every event afterward. |
+
+The pivotal moment is `$identify`: it links the anonymous history to the real account so pre-login and post-login activity belong to the same person.
+
+<Warning>
+  Identity continuity is the client's responsibility — no SDK performs Actioneer's merge for you. Skip the anonymous-to-login stitch and pre-login events fragment into separate users, undercounting every funnel that crosses the login boundary.
+</Warning>
+
+## Two failure modes to avoid
+
+- **Under-merging** — one person becomes many profiles because the anonymous ID wasn't persisted or `$identify` was never sent. Funnels undercount.
+- **Over-merging** — several people collapse into one profile because a shared or recycled identifier was used as `distinct_id`. Profiles become meaningless.
+
+The fix for both is the same: persist a stable anonymous identifier per user, and emit exactly one `$identify` at the login boundary.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Identity Model reference" icon="fingerprint" href="/ingestion/identity">
+    The exact `distinct_id` and `$identify` fields, with payloads.
+  </Card>
+  <Card title="Sending from an SDK" icon="plug" href="/ingestion/sending-events">
+    Map your SDK's identify call to the Actioneer contract.
+  </Card>
+</CardGroup>

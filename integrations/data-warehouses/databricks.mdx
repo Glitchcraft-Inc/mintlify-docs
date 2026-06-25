@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "Databricks"
 sidebarTitle: "Databricks"
 description: "Connect Databricks to Actioneer as a read-only data source."
@@ -8,15 +7,13 @@ description: "Connect Databricks to Actioneer as a read-only data source."
 keywords: ["Databricks integration", "Databricks SQL Warehouse", "Actioneer data source", "Unity Catalog permissions", "Databricks PAT setup"]
 ---
 
-# Linking Databricks as a Source
-
 This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By the end, Actioneer will be able to query tables in your specified catalog and schema.
 
-| &nbsp; | &nbsp; |
+| At a glance | |
 | :--- | :--- |
-| &nbsp; **Prerequisites** | &nbsp; Databricks workspace with a SQL Warehouse, Actioneer account |
-| &nbsp; **Access granted** | &nbsp; `SELECT` queries on specified tables |
-| &nbsp; **Estimated time** | &nbsp; ~15–20 minutes |
+| **Prerequisites** | Databricks workspace with a SQL Warehouse, Actioneer account |
+| **Access granted** | `SELECT` queries on specified tables |
+| **Estimated time** | ~15–20 minutes |
 
 <Info>
   Actioneer cannot insert, update, delete, or modify any data, tables, or settings in your Databricks workspace.
@@ -33,10 +30,10 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     3. Click the warehouse Actioneer should use.
     4. Open the **Connection Details** tab and copy both values below.
 
-| &nbsp; Field | &nbsp; Location | &nbsp; Value Example |
+| Field | Location | Value Example |
     | :--- | :--- | :--- |
-| &nbsp; **Server Hostname** | &nbsp; Connection Details tab | &nbsp; `adb-1234567890.5.azuredatabricks.net` |
-| &nbsp; **HTTP Path** | &nbsp; Connection Details tab | &nbsp; `/sql/1.0/warehouses/abc123def` |
+| **Server Hostname** | Connection Details tab | `adb-1234567890.5.azuredatabricks.net` |
+| **HTTP Path** | Connection Details tab | `/sql/1.0/warehouses/abc123def` |
   </Step>
   <Step title="Create a Personal Access Token">
     A Personal Access Token (PAT) is the credential Actioneer uses to authenticate with Databricks.
@@ -71,11 +68,11 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     GRANT SELECT ON ALL TABLES IN SCHEMA <your_catalog>.<your_schema> TO `<username>`;
     ```
 
-| &nbsp; Permission | &nbsp; Scope | &nbsp; Purpose |
+| Permission | Scope | Purpose |
     | :--- | :--- | :--- |
-| &nbsp; `USE CATALOG` | &nbsp; Catalog | &nbsp; Navigate into the catalog |
-| &nbsp; `USE SCHEMA` | &nbsp; Schema | &nbsp; Navigate into the schema |
-| &nbsp; `SELECT ON ALL TABLES IN SCHEMA` | &nbsp; All tables and views in schema | &nbsp; Read data from tables and views |
+| `USE CATALOG` | Catalog | Navigate into the catalog |
+| `USE SCHEMA` | Schema | Navigate into the schema |
+| `SELECT ON ALL TABLES IN SCHEMA` | All tables and views in schema | Read data from tables and views |
 
     <Note>
       These commands follow the Unity Catalog privilege model, where `SELECT` must be granted on individual tables, views, or on `ALL TABLES IN SCHEMA` — not on the schema itself. If you are unsure about your catalog or schema names, forward this page to your Databricks admin.
@@ -95,14 +92,14 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
     3. When prompted, select **Direct Connection**.
     4. Complete the connection form:
 
-| &nbsp; Field | &nbsp; Value |
+| Field | Value |
     | :--- | :--- |
-| &nbsp; **Connection Name** | &nbsp; A descriptive label, e.g. `Production Databricks` |
-| &nbsp; **Server Hostname** | &nbsp; From Step 1 (e.g., `adb-1234567890.5.azuredatabricks.net`) — **do not include `https://`** |
-| &nbsp; **Schema / Database** | &nbsp; The schema from Step 3 (e.g., `default`). Required — Actioneer scopes table discovery to this value. |
-| &nbsp; **HTTP Path** | &nbsp; From Step 1 (starts with `/sql/1.0/warehouses/`) |
-| &nbsp; **Catalog** | &nbsp; The catalog from Step 3 (e.g., `main`) |
-| &nbsp; **Personal Access Token** | &nbsp; From Step 2 (starts with `dapi`) |
+| **Connection Name** | A descriptive label, e.g. `Production Databricks` |
+| **Server Hostname** | From Step 1 (e.g., `adb-1234567890.5.azuredatabricks.net`) — **do not include `https://`** |
+| **Schema / Database** | The schema from Step 3 (e.g., `default`). Required — Actioneer scopes table discovery to this value. |
+| **HTTP Path** | From Step 1 (starts with `/sql/1.0/warehouses/`) |
+| **Catalog** | The catalog from Step 3 (e.g., `main`) |
+| **Personal Access Token** | From Step 2 (starts with `dapi`) |
 
     5. Click **Connect**.
   </Step>
@@ -122,10 +119,21 @@ This guide walks through connecting a Databricks SQL Warehouse to Actioneer. By 
   </Accordion>
 
   <Accordion title="How does Actioneer protect credentials?">
-    All credentials are encrypted at rest with AES-256 and encrypted in transit with TLS 1.3. They are never stored in plain text or logged. Actioneer is SOC 2 Type II certified, ISO 27001 certified (audited by Schellman), and GDPR compliant.
+    All credentials are encrypted at rest (AES-256) and in transit (TLS 1.3); Actioneer is SOC 2 Type II and ISO 27001 certified (audited by Schellman), and GDPR compliant. See [Access & networking](/operations/access-and-networking).
   </Accordion>
 </AccordionGroup>
 
-<Card title="Need a hand?" horizontal>
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Connect another source" icon="database" href="/integrations/data-warehouses">
+    Browse every warehouse, lake, and file source.
+  </Card>
+  <Card title="How Actioneer reads your data" icon="book-open" href="/concepts/how-actioneer-reads-your-data">
+    The read-only model and the governed context layer.
+  </Card>
+</CardGroup>
+
+<Card title="Need a hand?" icon="life-buoy" horizontal>
   Stuck on a step or running into an error? Reach out at [connect@actioneer.com](mailto:connect@actioneer.com).
 </Card>

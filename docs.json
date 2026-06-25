@@ -7,20 +7,27 @@
   "name": "Actioneer Docs",
   "description": "Enterprise AI that answers any data question and acts on it.",
   "colors": {
-    "primary": "#22C55E",
-    "light": "#4ADE80",
-    "dark": "#16A34A"
+    "primary": "#5F7A6A",
+    "light": "#8BA697",
+    "dark": "#4C6657"
+  },
+  "background": {
+    "color": {
+      "light": "#F7F5EF",
+      "dark": "#0E0F0F"
+    }
   },
   "font": {
     "headings": {
-      "family": "Inter",
-      "weight": 500
+      "family": "Geist",
+      "weight": 600
     },
     "body": {
-      "family": "Inter"
+      "family": "Geist",
+      "weight": 400
     }
   },
-  "favicon": "/favicon.ico",
+  "favicon": "/favicon.svg",
   "icons": {
     "library": "lucide"
   },
@@ -28,10 +35,30 @@
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Integrations",
-        "pages": [
+        "tab": "Get Started",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "index",
+              "quickstart"
+            ]
+          },
+          {
+            "group": "Concepts",
+            "pages": [
+              "concepts/how-actioneer-reads-your-data",
+              "concepts/identity-resolution",
+              "concepts/ingestion-vs-warehouse"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Integrations",
+        "groups": [
           {
             "group": "Data Sources",
             "pages": [
@@ -60,14 +87,54 @@
         ]
       },
       {
-        "group": "CDP Event Ingestion",
-        "pages": [
-          "ingestion",
-          "ingestion/api-reference",
-          "ingestion/identity",
-          "ingestion/properties",
-          "ingestion/reliability",
-          "ingestion/sending-events"
+        "tab": "Event Ingestion",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "ingestion"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "openapi": "api-reference/openapi.json",
+            "pages": [
+              "ingestion/api-reference",
+              "ingestion/endpoints/capture",
+              "ingestion/endpoints/batch",
+              "ingestion/errors"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "ingestion/identity",
+              "ingestion/properties",
+              "ingestion/reliability",
+              "ingestion/sending-events"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Resources",
+        "groups": [
+          {
+            "group": "Help",
+            "pages": [
+              "support",
+              "faq",
+              "changelog",
+              "resources/ask-actioneer"
+            ]
+          },
+          {
+            "group": "Operations",
+            "pages": [
+              "operations/access-and-networking",
+              "operations/glossary"
+            ]
+          }
         ]
       }
     ]
@@ -77,12 +144,12 @@
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://sentinel.gameramp.com/auth"
-    }
+    "links": []
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
   },
   "seo": {
     "metatags": {

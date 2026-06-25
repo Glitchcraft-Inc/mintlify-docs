@@ -1,7 +1,6 @@
 ---
-mode: "wide"
 title: "Ingestion API Reference"
-sidebarTitle: "API Reference"
+sidebarTitle: "Introduction"
 description: "Endpoints, authentication, and the event envelope for the Actioneer Ingestion API."
 "og:title": "Ingestion API Reference — Actioneer"
 "og:description": "The Actioneer Ingestion API: /capture and /batch endpoints, X-API-Key authentication, the event envelope schema, and batch requests over JSON-over-HTTPS."
@@ -16,16 +15,29 @@ The Ingestion API accepts analytics events, identity (`$identify`) calls, and pr
 - **Timestamps:** ISO-8601 in UTC (`YYYY-MM-DDTHH:MM:SS.sssZ`). Do not send local-time offsets.
 - **Value types:** All property values must be JSON-serializable — `string`, `number`, `boolean`, `null`, `object`, or `array`.
 - **Field naming:** Reserved fields use the `$` prefix (`$identify`, `$set`, `$set_once`, `$unset`, `$session_id`, `$anon_distinct_id`). Client-defined property names must not begin with `$`.
-- **Base URL:** `https://api.actioneer.com`. Production and staging are distinct hosts, confirmed at onboarding.
+- **Base URL:** `https://api.actioneer.com`. See [Environments](#environments) below.
+
+## Environments
+
+| Environment | Base URL |
+| :--- | :--- |
+| **Production** | `https://api.actioneer.com` |
+| **Staging** | A distinct host, provided during onboarding |
+
+Production and staging are separate hosts with separate API keys. Never point production traffic at staging, or vice versa.
 
 ## Endpoints
 
-| Method | Path | Cardinality | Purpose |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/capture` | Single envelope | One event, `$identify` call, or profile mutation, delivered in real time. |
-| `POST` | `/batch` | Array of envelopes | Any mix of events, `$identify` calls, and profile mutations in one request. For grouped sends and high-throughput forwarding. |
+Both endpoints share the same envelope schema and the same authentication and idempotency rules. Open either for the full schema, language samples, and an in-browser request builder.
 
-Both endpoints share the same envelope schema and the same authentication and idempotency rules.
+<CardGroup cols={2}>
+  <Card title="Capture event" icon="arrow-up" href="/ingestion/endpoints/capture">
+    `POST /capture` — one event, `$identify` call, or profile mutation, delivered in real time.
+  </Card>
+  <Card title="Capture a batch" icon="layers" href="/ingestion/endpoints/batch">
+    `POST /batch` — any mix of events, `$identify` calls, and profile mutations in one request.
+  </Card>
+</CardGroup>
 
 ## Authentication
 
@@ -42,6 +54,62 @@ X-API-Key: <api-key>
   The API key is a server-side secret. Issue requests from a backend or trusted server context; do not embed the key in distributable client binaries or web bundles. Never place secrets, credentials, tokens, or cardholder data inside event or profile properties.
 </Warning>
 
+## Make a request
+
+A complete `/capture` call, server-side, in three languages:
+
+<CodeGroup>
+```bash cURL
+curl -X POST https://api.actioneer.com/capture \
+  -H "Content-Type: application/json" \
+  -H "X-API-Key: $ACTIONEER_API_KEY" \
+  -d '{
+    "event_id": "evt-order-001",
+    "event": "Order Completed",
+    "distinct_id": "user_8a31f0c2",
+    "timestamp": "2026-06-04T06:31:00.000Z",
+    "properties": { "amount": 499, "plan": "pro" }
+  }'
+```
+
+```javascript Node
+const res = await fetch("https://api.actioneer.com/capture", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "X-API-Key": process.env.ACTIONEER_API_KEY,
+  },
+  body: JSON.stringify({
+    event_id: "evt-order-001",
+    event: "Order Completed",
+    distinct_id: "user_8a31f0c2",
+    timestamp: "2026-06-04T06:31:00.000Z",
+    properties: { amount: 499, plan: "pro" },
+  }),
+});
+```
+
+```python Python
+import os, requests
+
+requests.post(
+    "https://api.actioneer.com/capture",
+    headers={"X-API-Key": os.environ["ACTIONEER_API_KEY"]},
+    json={
+        "event_id": "evt-order-001",
+        "event": "Order Completed",
+        "distinct_id": "user_8a31f0c2",
+        "timestamp": "2026-06-04T06:31:00.000Z",
+        "properties": {"amount": 499, "plan": "pro"},
+    },
+)
+```
+</CodeGroup>
+
+## Rate limits
+
+The API applies rate limits to protect platform stability. If a request is rate limited, the API responds with `429 Too Many Requests` — back off and retry with exponential backoff and jitter, reusing the same `event_id` so retries can't double-count. Specific limits are confirmed during onboarding. See [Errors & Troubleshooting](/ingestion/errors).
+
 ## Event envelope
 
 | Field | Type | Requirement | Semantics |
@@ -54,6 +122,10 @@ X-API-Key: <api-key>
 | `properties` | object | Optional | Event properties, profile operators, and session association. See [Property Taxonomy](/ingestion/properties). |
 
 A minimal valid envelope carries only `event` and `distinct_id`. Production traffic should always include `event_id` and `timestamp` — see [Reliability](/ingestion/reliability).
+
+<Info>
+  `event_id` is the idempotency key. Reuse the same value when retrying a logical event and the server collapses duplicates; generate a new one only for a genuinely distinct event. Treat it as required in production.
+</Info>
 
 ```json
 {

@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "CDP Event Ingestion"
 sidebarTitle: "Overview"
 description: "Send events to Actioneer from any event-generation SDK."
@@ -8,34 +7,42 @@ description: "Send events to Actioneer from any event-generation SDK."
 keywords: ["Actioneer ingestion", "CDP event ingestion", "event API", "send events", "Firebase", "RudderStack", "Segment", "Jitsu", "identity resolution"]
 ---
 
+<Frame>
+  <img src="/images/hero-ingestion.jpg" alt="Events streaming into the Actioneer context layer" />
+</Frame>
+
 Send analytics events, identity calls, and profile updates to Actioneer **directly from any event-generation SDK — no warehouse round-trip.**
 
 Where data-source connectors let Actioneer *read* from your stack, the Ingestion API lets your app *push* events in real time. One JSON-over-HTTPS envelope carries event properties, profile updates, and session association together. If you already emit analytics through Firebase, Jitsu, RudderStack, or Segment, you forward those events straight to Actioneer.
 
-| &nbsp; | &nbsp; |
+| At a glance | |
 | :--- | :--- |
-| &nbsp; **Transport** | &nbsp; HTTPS / JSON |
-| &nbsp; **Base URL** | &nbsp; `https://api.actioneer.com` |
-| &nbsp; **Audience** | &nbsp; Client / data engineering |
-| &nbsp; **Auth** | &nbsp; `X-API-Key` header (server-side secret) |
+| **Transport** | HTTPS / JSON |
+| **Base URL** | `https://api.actioneer.com` |
+| **Audience** | Client / data engineering |
+| **Auth** | `X-API-Key` header (server-side secret) |
+
+## Explore the API
 
 <CardGroup cols={2}>
-  <Card title="API Reference" href="/ingestion/api-reference">
+  <Card title="API Reference" icon="terminal" href="/ingestion/api-reference">
     Endpoints, authentication, the event envelope, and batch requests.
   </Card>
-  <Card title="Identity Model" href="/ingestion/identity">
+  <Card title="Identity Model" icon="fingerprint" href="/ingestion/identity">
     Resolve anonymous and logged-in users with `distinct_id` and `$identify`.
   </Card>
-  <Card title="Property Taxonomy" href="/ingestion/properties">
+  <Card title="Property Taxonomy" icon="tags" href="/ingestion/properties">
     Event properties, profile operators, and session association.
   </Card>
-  <Card title="Reliability" href="/ingestion/reliability">
+  <Card title="Reliability" icon="shield-check" href="/ingestion/reliability">
     Validation, idempotency, deduplication, and retry policy.
   </Card>
-  <Card title="Sending from an SDK" href="/ingestion/sending-events">
+  <Card title="Sending from an SDK" icon="plug" href="/ingestion/sending-events">
     Forward events from your SDK, map fields, and ship with the checklist.
   </Card>
 </CardGroup>
+
+## Before you build
 
 <Warning>
   The API key is a server-side secret. Issue requests from a backend or trusted server context — do not embed it in distributable client binaries or web bundles. Never place secrets, credentials, tokens, or cardholder data inside event or profile properties.

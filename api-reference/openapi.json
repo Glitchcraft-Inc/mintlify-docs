@@ -1,0 +1,313 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Actioneer Ingestion API",
+    "description": "Push analytics events, identity ($identify) calls, and profile mutations to Actioneer over a single JSON-over-HTTPS interface. One envelope carries event properties, profile operators, and session association at once.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.actioneer.com",
+      "description": "Production"
+    }
+  ],
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/capture": {
+      "post": {
+        "operationId": "captureEvent",
+        "summary": "Capture event",
+        "description": "Deliver a single envelope — one event, `$identify` call, or profile mutation — in real time. A minimal valid envelope carries only `event` and `distinct_id`; production traffic should always include `event_id` and `timestamp` for safe retries and correct event-time ordering.",
+        "tags": ["Events"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EventEnvelope"
+              },
+              "example": {
+                "event_id": "evt-order-001",
+                "event": "Order Completed",
+                "distinct_id": "user_8a31f0c2",
+                "timestamp": "2026-06-04T06:31:00.000Z",
+                "sent_at": "2026-06-04T06:31:00.100Z",
+                "properties": {
+                  "amount": 499,
+                  "plan": "pro",
+                  "currency": "INR",
+                  "$session_id": "session-123",
+                  "$set": { "isPremiumUser": true },
+                  "$set_once": { "first_seen_source": "google" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Envelope accepted for processing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptanceResponse"
+                },
+                "example": { "status": 1 }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error — a required field (`event`, `distinct_id`, `event_id`, `timestamp`) is missing or malformed. Do not retry; correct the payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "validation_error",
+                  "message": "Missing required field: distinct_id"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid `X-API-Key`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "unauthorized",
+                  "message": "Invalid API key"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/batch": {
+      "post": {
+        "operationId": "batchEvents",
+        "summary": "Capture a batch",
+        "description": "Deliver an array of envelopes of any mixed kind — events, `$identify` calls, and profile mutations — in one request. The single `X-API-Key` header authenticates every envelope. Do not depend on cross-envelope ordering for correctness; attribute each envelope explicitly via `distinct_id` and order via `timestamp`.",
+        "tags": ["Events"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchRequest"
+              },
+              "example": {
+                "batch": [
+                  {
+                    "event_id": "evt-001",
+                    "event": "Application Opened",
+                    "distinct_id": "anon-9f2c",
+                    "timestamp": "2026-06-04T06:30:00.000Z",
+                    "properties": { "$session_id": "session-123" }
+                  },
+                  {
+                    "event_id": "evt-002",
+                    "event": "Order Completed",
+                    "distinct_id": "user_8a31f0c2",
+                    "timestamp": "2026-06-04T06:31:00.000Z",
+                    "properties": {
+                      "amount": 499,
+                      "plan": "pro",
+                      "$session_id": "session-123",
+                      "$set": { "isPremiumUser": true }
+                    }
+                  },
+                  {
+                    "event_id": "evt-003",
+                    "event": "$identify",
+                    "distinct_id": "user_8a31f0c2",
+                    "timestamp": "2026-06-04T06:31:01.000Z",
+                    "properties": { "$anon_distinct_id": "anon-9f2c" }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Batch accepted for processing.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AcceptanceResponse"
+                },
+                "example": { "status": 1 }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error in one or more envelopes. Do not retry; correct the payload.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "validation_error",
+                  "message": "batch[2]: missing required field: event"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid `X-API-Key`.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": "unauthorized",
+                  "message": "Invalid API key"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-Key",
+        "description": "Server-side secret. Issue requests from a backend or trusted server context; never embed the key in distributable client binaries or web bundles."
+      }
+    },
+    "schemas": {
+      "EventEnvelope": {
+        "type": "object",
+        "required": ["event", "distinct_id"],
+        "description": "A single envelope carrying an event, an `$identify` call, or a profile mutation.",
+        "properties": {
+          "event": {
+            "type": "string",
+            "description": "Event name (e.g. `Order Completed`) or a reserved verb (`$identify`).",
+            "example": "Order Completed"
+          },
+          "distinct_id": {
+            "type": "string",
+            "description": "The identity this envelope is attributed to. The resolution key for all attribution.",
+            "example": "user_8a31f0c2"
+          },
+          "event_id": {
+            "type": "string",
+            "description": "Client-generated idempotency key, stable across retries of the same logical event. Recommended at the schema level; treat as required in production.",
+            "example": "evt-order-001"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Event occurrence time, ISO-8601 in UTC. Recommended at the schema level; treat as required in production.",
+            "example": "2026-06-04T06:31:00.000Z"
+          },
+          "sent_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Time the client transmitted the request; used for clock-skew correction.",
+            "example": "2026-06-04T06:31:00.100Z"
+          },
+          "properties": {
+            "$ref": "#/components/schemas/Properties"
+          }
+        }
+      },
+      "Properties": {
+        "type": "object",
+        "description": "One object carrying three kinds of value: event properties (describe the action), profile operators (describe the user), and session association. They may coexist in one envelope. Client-defined property names must not begin with `$`.",
+        "properties": {
+          "$session_id": {
+            "type": "string",
+            "description": "Groups events into a session. Reuse across all events in a session; allocate a new value when a new session begins.",
+            "example": "session-123"
+          },
+          "$set": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Create or overwrite profile fields (last-write-wins).",
+            "example": { "isPremiumUser": true }
+          },
+          "$set_once": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Write profile fields only if currently absent. Use for fixed fields that must never be overwritten.",
+            "example": { "first_seen_source": "google" }
+          },
+          "$unset": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Remove fields from the profile.",
+            "example": ["temporary_flag"]
+          },
+          "$anon_distinct_id": {
+            "type": "string",
+            "description": "On `$identify`, the prior anonymous identity to merge into `distinct_id`.",
+            "example": "anon-9f2c"
+          }
+        },
+        "additionalProperties": true,
+        "example": {
+          "amount": 499,
+          "plan": "pro",
+          "$session_id": "session-123",
+          "$set": { "isPremiumUser": true }
+        }
+      },
+      "BatchRequest": {
+        "type": "object",
+        "required": ["batch"],
+        "properties": {
+          "batch": {
+            "type": "array",
+            "description": "An array of envelopes of any mixed kind.",
+            "items": {
+              "$ref": "#/components/schemas/EventEnvelope"
+            }
+          }
+        }
+      },
+      "AcceptanceResponse": {
+        "type": "object",
+        "description": "A small acceptance acknowledgement. Treat any successful HTTP response as accepted, and ignore unrecognized fields for forward compatibility.",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "description": "`1` indicates the envelope was accepted for processing.",
+            "example": 1
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Machine-readable error code.",
+            "example": "validation_error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Human-readable detail.",
+            "example": "Missing required field: distinct_id"
+          }
+        }
+      }
+    }
+  }
+}

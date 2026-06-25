@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "Reliability"
 sidebarTitle: "Reliability"
 description: "Validation, acceptance responses, deduplication, and retry policy."
@@ -43,3 +42,14 @@ Retry on HTTP 5xx and network/transport failures using exponential backoff with 
 <Tip>
   Profile mutations are eventually consistent — a `$set` may become visible slightly after the event that carried it.
 </Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Errors & Troubleshooting" icon="circle-alert" href="/ingestion/errors">
+    Status codes, error shapes, and common-failure resolutions.
+  </Card>
+  <Card title="Sending from an SDK" icon="plug" href="/ingestion/sending-events">
+    A reference send with backoff and a launch checklist.
+  </Card>
+</CardGroup>

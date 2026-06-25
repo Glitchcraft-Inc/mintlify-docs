@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "Identity Model"
 sidebarTitle: "Identity Model"
 description: "Resolve anonymous and logged-in users with distinct_id and $identify."
@@ -50,3 +49,14 @@ A meaningful share of traffic is typically pre-login and carries no stable user 
 - `distinct_id` — the surviving (current) identity.
 - `$anon_distinct_id` — the identity to be merged into it.
 - Profile operators may accompany the merge in the same call. See [Property Taxonomy](/ingestion/properties).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Property Taxonomy" icon="tags" href="/ingestion/properties">
+    Event properties, profile operators, and session association.
+  </Card>
+  <Card title="Sending from an SDK" icon="plug" href="/ingestion/sending-events">
+    Map your SDK's identify call to the Actioneer contract.
+  </Card>
+</CardGroup>

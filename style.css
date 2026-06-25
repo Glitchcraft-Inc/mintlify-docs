@@ -1,12 +1,32 @@
+/* ============================================================
+   Actioneer — "MINERAL TRUST" brand system
+   Carbon Black #0E0F0F · Porcelain #F7F5EF · Mineral Green #5F7A6A
+   Slate Gray #6C7370 · Deep Forest #16201B
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+
 :root {
+  --carbon-black: #0e0f0f;
+  --porcelain: #f7f5ef;
+  --mineral-green: #5f7a6a;
+  --mineral-green-bright: #8ba697; /* lifted for legibility on dark */
+  --slate-gray: #6c7370;
+  --deep-forest: #16201b;
+
   --default-border-color: var(--gray-200);
 }
 
 .dark {
-  --default-border-color: var(--gray-800);
+  --default-border-color: rgb(108 115 112 / 0.18); /* slate gray, low opacity */
 }
 
-/* Sidebar nav styling */
+/* Carbon-black canvas fallback (docs.json background.color sets this too) */
+.dark body {
+  background-color: var(--carbon-black);
+}
+
+/* ---------- Sidebar nav ---------- */
 #sidebar .nav-dropdown-trigger {
   border: none !important;
   background: transparent !important;
@@ -19,7 +39,7 @@
 }
 
 .dark #sidebar .nav-dropdown-trigger:hover {
-  background-color: rgb(255 255 255 / 0.06) !important;
+  background-color: rgb(95 122 106 / 0.12) !important; /* mineral green tint */
 }
 
 #sidebar .nav-dropdown-trigger .nav-dropdown-item-icon {
@@ -42,18 +62,31 @@
   display: none !important;
 }
 
-/* Typography — clean sans-serif, medium weight headings */
+/* ---------- Typography ----------
+   One family, end to end: Geist for all text, Geist Mono for code.
+   Tuned for clarity and on-screen legibility. */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
-  font-weight: 500 !important;
-  letter-spacing: -0.01em;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.014em;
+}
+
+h1 {
+  letter-spacing: -0.02em; /* tighten the display title a touch more */
 }
 
 body, p, li, td, th, span {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.005em;
 }
 
-/* Homepage styling */
+/* Code uses Geist Mono — same type family, monospaced for alignment + legibility */
+code, pre, kbd, samp, .font-mono,
+[class*="language-"], pre code {
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace !important;
+}
+
+/* ---------- Homepage styling ---------- */
 body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] {
   color: rgb(var(--primary)) !important;
   font-weight: 600 !important;
@@ -92,7 +125,7 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
 }
 
 .dark [data-product-guide-index] a:not(.product-guide-feature-card) {
-  background-color: #09090b !important;
+  background-color: var(--deep-forest) !important;
 }
 
 img.nav-logo {
@@ -100,24 +133,36 @@ img.nav-logo {
   height: auto;
 }
 
-/* Table styling — black headers, white text */
+/* ---------- Cards (CardGroup) — deep-forest surfaces ---------- */
+.dark .card {
+  background-color: var(--deep-forest) !important;
+  border-color: rgb(108 115 112 / 0.18) !important;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dark .card:hover {
+  border-color: var(--mineral-green) !important;
+  background-color: #1a2620 !important; /* deep forest, lifted */
+}
+
+/* ---------- Tables — deep-forest header, porcelain text ---------- */
 table thead tr {
-  background-color: #1a1a1a !important;
+  background-color: var(--deep-forest) !important;
 }
 
 table thead th {
-  color: #ffffff !important;
+  color: var(--porcelain) !important;
   font-weight: 600;
-  border-color: #1a1a1a !important;
+  border-color: var(--deep-forest) !important;
 }
 
 .dark table thead tr {
-  background-color: #1a1a1a !important;
+  background-color: var(--deep-forest) !important;
 }
 
 .dark table thead th {
-  color: #ffffff !important;
-  border-color: #1a1a1a !important;
+  color: var(--porcelain) !important;
+  border-color: var(--deep-forest) !important;
 }
 
 table tbody tr {
@@ -125,23 +170,35 @@ table tbody tr {
 }
 
 table tbody tr:hover {
-  background-color: rgba(34, 197, 94, 0.06);
+  background-color: rgb(95 122 106 / 0.06); /* mineral green */
 }
 
 .dark table tbody tr:hover {
-  background-color: rgba(34, 197, 94, 0.1);
+  background-color: rgb(95 122 106 / 0.12);
 }
 
-/* Right sidebar TOC — active item highlighted in green */
+/* ---------- Right TOC — active item in mineral green ---------- */
 #table-of-contents a[data-active="true"],
 #table-of-contents a.active,
 nav[aria-label="On this page"] a[data-active="true"],
 nav[aria-label="On this page"] a.active {
-  color: #22C55E !important;
+  color: var(--mineral-green) !important;
   font-weight: 500;
+}
+
+.dark #table-of-contents a[data-active="true"],
+.dark #table-of-contents a.active,
+.dark nav[aria-label="On this page"] a[data-active="true"],
+.dark nav[aria-label="On this page"] a.active {
+  color: var(--mineral-green-bright) !important;
 }
 
 #table-of-contents a[data-active="true"]::before,
 nav[aria-label="On this page"] a[data-active="true"]::before {
-  background-color: #22C55E !important;
+  background-color: var(--mineral-green) !important;
+}
+
+.dark #table-of-contents a[data-active="true"]::before,
+.dark nav[aria-label="On this page"] a[data-active="true"]::before {
+  background-color: var(--mineral-green-bright) !important;
 }

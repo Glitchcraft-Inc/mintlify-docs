@@ -1,0 +1,41 @@
+---
+title: "Ingestion vs. Warehouse Connections"
+sidebarTitle: "Ingestion vs. warehouse"
+description: "When to push events to the ingestion API, when to connect a warehouse, and when to use both."
+"og:title": "Ingestion vs. Warehouse Connections — Actioneer"
+"og:description": "A decision guide: connect a data source so Actioneer reads what you already store, or stream events to the ingestion API to push activity in real time — and when to use both together."
+keywords: ["ingestion vs warehouse", "data connection", "event ingestion", "which to use", "Actioneer concepts"]
+---
+
+Actioneer gets data two ways. **Connecting a data source** lets it *read* what you already store. **The ingestion API** lets your app *push* events as they happen. They aren't competing choices — most teams use both — but each fits a different need.
+
+## At a glance
+
+| | Connect a data source | Stream events (ingestion) |
+| :--- | :--- | :--- |
+| **Direction** | Actioneer reads from your source | Your app pushes to Actioneer |
+| **Latency** | As fresh as the source | Real time |
+| **You already have** | A warehouse, lake, or BI source | An app or event SDK emitting analytics |
+| **Setup** | Least-privilege read-only credentials | An `X-API-Key` and an HTTP client |
+| **Best for** | Existing modeled data, historical depth | Live product activity, identity, profile updates |
+
+## Which should I use?
+
+- **Your data already lives in a warehouse or lake.** Connect it. Actioneer queries it in place — no migration. Start with the [data source guides](/integrations/data-warehouses).
+- **You want product events the moment they happen.** Stream them. Forward events from your app or event SDK to the [ingestion API](/ingestion).
+- **Both are true.** Use both. Stream live events *and* connect the warehouse they ultimately land in — Actioneer reads them together in one context layer.
+
+<Info>
+  Ingestion and warehouse data converge: events you push are landed in the warehouse, which Actioneer then reads through a data connection. See [How Actioneer reads your data](/concepts/how-actioneer-reads-your-data).
+</Info>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Connect a data source" icon="database" href="/integrations/data-warehouses">
+    Snowflake, BigQuery, Redshift, Databricks, and more.
+  </Card>
+  <Card title="Event Ingestion" icon="send" href="/ingestion">
+    The real-time JSON-over-HTTPS event API.
+  </Card>
+</CardGroup>

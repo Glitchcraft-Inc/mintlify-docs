@@ -1,5 +1,4 @@
 ---
-mode: "wide"
 title: "Data Sources"
 sidebarTitle: "Overview"
 description: "Connect a data source to give Actioneer access to your business data."
@@ -8,7 +7,9 @@ description: "Connect a data source to give Actioneer access to your business da
 keywords: ["Actioneer integrations", "data source connection", "read-only data access", "BI tool integration", "cloud data warehouse", "data lake"]
 ---
 
-# Data Sources
+<Frame>
+  <img src="/images/hero-data-sources.jpg" alt="Layered data sources forming the Actioneer foundation" />
+</Frame>
 
 Your data source is the foundation. **Connect it once — Actioneer queries it in place, no data migration.**
 
@@ -18,36 +19,43 @@ Each guide covers prerequisites, permissions, and the exact fields you need to c
   All connections use **least-privilege permissions** scoped to query execution and data reads. Actioneer's IP for whitelisting: `35.244.14.238`.
 </Tip>
 
+## Warehouses & query engines
+
 <CardGroup cols={2}>
-  <Card title="Amazon Athena" href="/integrations/data-warehouses/amazon-athena">
-    Connect via IAM credentials and query your Glue catalog databases.
+  <Card title="Snowflake" icon="snowflake" href="/integrations/data-warehouses/snowflake">
+    Create a least-privilege service user with a Programmatic Access Token.
   </Card>
-  <Card title="Amazon Redshift" href="/integrations/data-warehouses/amazon-redshift">
-    Create a read-only database user and connect your Redshift cluster.
-  </Card>
-  <Card title="Amazon S3" href="/integrations/data-warehouses/s3">
-    Attach a read-only IAM policy to a dedicated user and connect your bucket.
-  </Card>
-  <Card title="ClickHouse" href="/integrations/data-warehouses/clickhouse">
-    Create a read-only user and connect your ClickHouse instance.
-  </Card>
-  <Card title="Databricks" href="/integrations/data-warehouses/databricks">
-    Connect a SQL Warehouse using a Personal Access Token and Unity Catalog permissions.
-  </Card>
-  <Card title="Google BigQuery" href="/integrations/data-warehouses/google-big-query">
+  <Card title="Google BigQuery" icon="database" href="/integrations/data-warehouses/google-big-query">
     Grant least-privilege access via a GCP service account and connect in under 15 minutes.
   </Card>
-  <Card title="Google Cloud Storage" href="/integrations/data-warehouses/google-cloud-storage">
-    Grant Storage Object Viewer access via a service account and connect your bucket.
+  <Card title="Amazon Redshift" icon="database" href="/integrations/data-warehouses/amazon-redshift">
+    Create a read-only database user and connect your Redshift cluster.
   </Card>
-  <Card title="Google Sheets" href="/integrations/data-warehouses/google-sheets">
-    Share a spreadsheet with Actioneer's service account and connect in under 5 minutes.
+  <Card title="Databricks" icon="layers" href="/integrations/data-warehouses/databricks">
+    Connect a SQL Warehouse using a Personal Access Token and Unity Catalog permissions.
   </Card>
-  <Card title="PostgreSQL" href="/integrations/data-warehouses/postgresql">
+  <Card title="ClickHouse" icon="database" href="/integrations/data-warehouses/clickhouse">
+    Create a read-only user and connect your ClickHouse instance.
+  </Card>
+  <Card title="PostgreSQL" icon="database" href="/integrations/data-warehouses/postgresql">
     Create a read-only database user and connect your PostgreSQL instance.
   </Card>
-  <Card title="Snowflake" href="/integrations/data-warehouses/snowflake">
-    Create a least-privilege service user with a Programmatic Access Token.
+  <Card title="Amazon Athena" icon="search" href="/integrations/data-warehouses/amazon-athena">
+    Connect via IAM credentials and query your Glue catalog databases.
+  </Card>
+</CardGroup>
+
+## Object storage & files
+
+<CardGroup cols={2}>
+  <Card title="Amazon S3" icon="package" href="/integrations/data-warehouses/s3">
+    Attach a read-only IAM policy to a dedicated user and connect your bucket.
+  </Card>
+  <Card title="Google Cloud Storage" icon="cloud" href="/integrations/data-warehouses/google-cloud-storage">
+    Grant Storage Object Viewer access via a service account and connect your bucket.
+  </Card>
+  <Card title="Google Sheets" icon="table" href="/integrations/data-warehouses/google-sheets">
+    Share a spreadsheet with Actioneer's service account and connect in under 5 minutes.
   </Card>
 </CardGroup>
 
