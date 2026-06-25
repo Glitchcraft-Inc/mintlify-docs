@@ -57,37 +57,7 @@
         ]
       },
       {
-        "tab": "Integrations",
-        "groups": [
-          {
-            "group": "Data Sources",
-            "pages": [
-              "integrations/data-warehouses",
-              "integrations/data-warehouses/amazon-athena",
-              "integrations/data-warehouses/amazon-redshift",
-              "integrations/data-warehouses/s3",
-              "integrations/data-warehouses/clickhouse",
-              "integrations/data-warehouses/databricks",
-              "integrations/data-warehouses/google-big-query",
-              "integrations/data-warehouses/google-cloud-storage",
-              "integrations/data-warehouses/google-sheets",
-              "integrations/data-warehouses/postgresql",
-              "integrations/data-warehouses/snowflake"
-            ]
-          },
-          {
-            "group": "MMP Connections",
-            "pages": [
-              "integrations/mmp",
-              "integrations/mmp/adjust",
-              "integrations/mmp/appsflyer",
-              "integrations/mmp/singular"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Event Ingestion",
+        "tab": "Actioneer CDP",
         "groups": [
           {
             "group": "Overview",
@@ -117,22 +87,31 @@
         ]
       },
       {
-        "tab": "Resources",
+        "tab": "Integrations",
         "groups": [
           {
-            "group": "Help",
+            "group": "Data Sources",
             "pages": [
-              "support",
-              "faq",
-              "changelog",
-              "resources/ask-actioneer"
+              "integrations/data-warehouses",
+              "integrations/data-warehouses/amazon-athena",
+              "integrations/data-warehouses/amazon-redshift",
+              "integrations/data-warehouses/s3",
+              "integrations/data-warehouses/clickhouse",
+              "integrations/data-warehouses/databricks",
+              "integrations/data-warehouses/google-big-query",
+              "integrations/data-warehouses/google-cloud-storage",
+              "integrations/data-warehouses/google-sheets",
+              "integrations/data-warehouses/postgresql",
+              "integrations/data-warehouses/snowflake"
             ]
           },
           {
-            "group": "Operations",
+            "group": "MMP Connections",
             "pages": [
-              "operations/access-and-networking",
-              "operations/glossary"
+              "integrations/mmp",
+              "integrations/mmp/adjust",
+              "integrations/mmp/appsflyer",
+              "integrations/mmp/singular"
             ]
           }
         ]

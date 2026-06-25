@@ -45,7 +45,7 @@ Failed requests return a small JSON body with a machine-readable code and a huma
     A value isn't JSON-serializable, a timestamp isn't UTC ISO-8601, or a client-defined property name begins with the reserved `$` prefix. **Resolution:** correct the value or rename the property (only reserved verbs like `$set` and `$session_id` may use `$`). See [Property Taxonomy](/ingestion/properties).
   </Accordion>
   <Accordion title="unauthorized — invalid API key">
-    The `X-API-Key` header is missing, malformed, or wrong for the environment. Production and staging are distinct hosts with distinct keys. **Resolution:** confirm you're sending the server-side key for the correct environment. See [Access & networking](/operations/access-and-networking).
+    The `X-API-Key` header is missing, malformed, or wrong for the environment. Production and staging are distinct hosts with distinct keys. **Resolution:** confirm you're sending the server-side key for the correct environment.
   </Accordion>
   <Accordion title="Duplicate events appearing">
     Usually the `event_id` was omitted or regenerated per attempt, so retries persisted as separate events. **Resolution:** generate one stable `event_id` per logical event and reuse it across retries.
