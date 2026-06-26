@@ -18,6 +18,25 @@ A meaningful share of traffic is typically pre-login and carries no stable user 
 
 ## Lifecycle
 
+```mermaid
+sequenceDiagram
+    participant App as App / SDK
+    participant API as Actioneer Ingestion
+    participant Profile as User Profile
+
+    Note over App,Profile: Pre-login — anonymous
+    App->>API: event · distinct_id = anon-9f2c
+    API->>Profile: attribute to anon-9f2c
+
+    Note over App,Profile: Login / signup
+    App->>API: $identify · distinct_id = user_8a31f0c2 · $anon_distinct_id = anon-9f2c
+    API->>Profile: merge anon-9f2c into user_8a31f0c2
+
+    Note over App,Profile: Post-login
+    App->>API: event · distinct_id = user_8a31f0c2
+    API->>Profile: attribute to user_8a31f0c2
+```
+
 | Phase | `distinct_id` |
 | :--- | :--- |
 | Pre-login (anonymous) | A stable anonymous identifier generated and persisted by the client. Must persist across the anonymous session. |
