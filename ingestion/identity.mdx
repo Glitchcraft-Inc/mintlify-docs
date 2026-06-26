@@ -19,22 +19,27 @@ A meaningful share of traffic is typically pre-login and carries no stable user 
 ## Lifecycle
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'actorBkg':'#14241b','actorBorder':'#22C55E','actorTextColor':'#ffffff','actorLineColor':'#4b5563','signalColor':'#cbd5e1','signalTextColor':'#e5e7eb','noteBkgColor':'#16A34A','noteTextColor':'#ffffff','noteBorderColor':'#4ADE80','sequenceNumberColor':'#06210f','lineColor':'#4ADE80'}}}%%
 sequenceDiagram
+    autonumber
     participant App as App / SDK
     participant API as Actioneer Ingestion
     participant Profile as User Profile
 
-    Note over App,Profile: Pre-login — anonymous
+    rect rgb(38, 32, 18)
+    Note over App,Profile: Pre-login · anonymous
     App->>API: event · distinct_id = anon-9f2c
     API->>Profile: attribute to anon-9f2c
+    end
 
-    Note over App,Profile: Login / signup
+    rect rgb(13, 38, 25)
+    Note over App,Profile: Login / signup · $identify
     App->>API: $identify · distinct_id = user_8a31f0c2 · $anon_distinct_id = anon-9f2c
     API->>Profile: merge anon-9f2c into user_8a31f0c2
-
-    Note over App,Profile: Post-login
+    Note over App,Profile: Post-login · identified
     App->>API: event · distinct_id = user_8a31f0c2
     API->>Profile: attribute to user_8a31f0c2
+    end
 ```
 
 | Phase | `distinct_id` |
