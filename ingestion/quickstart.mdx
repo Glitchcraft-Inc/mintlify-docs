@@ -1,0 +1,101 @@
+---
+mode: "wide"
+title: "Quickstart"
+sidebarTitle: "Quickstart"
+description: "Send your first event to Actioneer in five minutes."
+"og:title": "Quickstart — Actioneer CDP Ingestion"
+"og:description": "Send your first event to Actioneer in five minutes: get an API key, POST to /capture with curl, and confirm the status:1 acceptance."
+keywords: ["quickstart", "send first event", "curl", "capture", "Actioneer ingestion"]
+---
+
+Send your first event to Actioneer in about five minutes. **All you need is a backend or terminal that can make an authenticated HTTPS request.**
+
+<Note>
+  You'll need an Actioneer **API key** for the `X-API-Key` header. Generate one from the Actioneer dashboard at [sentinel.gameramp.com](https://sentinel.gameramp.com/auth) and keep it server-side — never ship it in a client binary or web bundle.
+</Note>
+
+<Steps>
+  <Step title="Send your first event">
+    POST a single envelope to `/capture`. Replace `<api-key>` with your key:
+
+    ```bash
+    curl -X POST https://api.actioneer.com/capture \
+      -H "Content-Type: application/json" \
+      -H "X-API-Key: <api-key>" \
+      -d '{
+        "event_id": "evt-quickstart-001",
+        "event": "Application Opened",
+        "distinct_id": "anon-9f2c",
+        "timestamp": "2026-06-26T10:00:00.000Z",
+        "properties": { "$session_id": "session-123" }
+      }'
+    ```
+  </Step>
+
+  <Step title="Confirm acceptance">
+    A successful request returns a small acknowledgement:
+
+    ```json
+    { "status": 1 }
+    ```
+
+    That's it — your first event is live. 🎉
+  </Step>
+
+  <Step title="Identify the user (at login)">
+    When the user authenticates, stitch their anonymous history to their real ID with `$identify`:
+
+    ```bash
+    curl -X POST https://api.actioneer.com/capture \
+      -H "Content-Type: application/json" \
+      -H "X-API-Key: <api-key>" \
+      -d '{
+        "event_id": "evt-identify-001",
+        "event": "$identify",
+        "distinct_id": "user_8a31f0c2",
+        "timestamp": "2026-06-26T10:05:00.000Z",
+        "properties": { "$anon_distinct_id": "anon-9f2c" }
+      }'
+    ```
+  </Step>
+
+  <Step title="Send a batch (optional)">
+    Forward many envelopes in one request via `/batch` — ideal for server-side forwarding and backfills:
+
+    ```bash
+    curl -X POST https://api.actioneer.com/batch \
+      -H "Content-Type: application/json" \
+      -H "X-API-Key: <api-key>" \
+      -d '{
+        "batch": [
+          { "event_id": "evt-001", "event": "Application Opened", "distinct_id": "anon-9f2c",
+            "timestamp": "2026-06-26T10:00:00.000Z" },
+          { "event_id": "evt-002", "event": "Order Completed", "distinct_id": "user_8a31f0c2",
+            "timestamp": "2026-06-26T10:06:00.000Z",
+            "properties": { "amount": 499, "plan": "pro" } }
+        ]
+      }'
+    ```
+  </Step>
+</Steps>
+
+<Tip>
+  Always send a stable, client-generated `event_id` so retries can't double-count. See [Reliability](/ingestion/reliability).
+</Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="API Reference" href="/ingestion/api-reference">
+    The full envelope schema, endpoints, and authentication.
+  </Card>
+  <Card title="Identity Model" href="/ingestion/identity">
+    Stitch anonymous and logged-in users without fragmenting them.
+  </Card>
+  <Card title="Property Taxonomy" href="/ingestion/properties">
+    Event properties, profile operators, and sessions.
+  </Card>
+  <Card title="Sending from an SDK" href="/ingestion/sending-events">
+    Forward from Segment, RudderStack, Jitsu, Firebase, or Snowplow.
+  </Card>
+</CardGroup>

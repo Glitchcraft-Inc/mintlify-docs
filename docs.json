@@ -63,11 +63,22 @@
         "group": "CDP Event Ingestion",
         "pages": [
           "ingestion",
+          "ingestion/quickstart",
           "ingestion/api-reference",
           "ingestion/identity",
           "ingestion/properties",
           "ingestion/reliability",
-          "ingestion/sending-events"
+          "ingestion/sending-events",
+          {
+            "group": "Integration recipes",
+            "pages": [
+              "ingestion/recipes/segment",
+              "ingestion/recipes/rudderstack",
+              "ingestion/recipes/jitsu",
+              "ingestion/recipes/firebase",
+              "ingestion/recipes/snowplow"
+            ]
+          }
         ]
       }
     ]

@@ -1,0 +1,73 @@
+---
+mode: "wide"
+title: "Forward RudderStack to Actioneer"
+sidebarTitle: "RudderStack"
+description: "Forward RudderStack events to Actioneer via a Webhook destination and transformation."
+"og:title": "RudderStack → Actioneer — Integration Recipe"
+"og:description": "Forward RudderStack events to the Actioneer Ingestion API using a Webhook destination plus a transformation. RudderStack uses the Segment spec, so the field mapping is identical."
+keywords: ["RudderStack integration", "RudderStack webhook destination", "RudderStack transformation", "RudderStack to Actioneer", "CDP ingestion"]
+---
+
+Forward RudderStack events to Actioneer. RudderStack follows the Segment tracking spec, so the envelope mapping is identical — the difference is RudderStack's **Transformations** let you reshape the payload in-pipeline.
+
+<Info>
+  Scaffold recipe — confirm the Webhook destination and transformation against your RudderStack workspace before production.
+</Info>
+
+## How it works
+
+Add a **Webhook** destination pointed at Actioneer, then attach a **Transformation** that maps each RudderStack event into an Actioneer envelope.
+
+## Steps
+
+<Steps>
+  <Step title="Add a Webhook destination">
+    Set the URL to `https://api.actioneer.com/capture` (or `/batch`) and add the header `X-API-Key: <api-key>`.
+  </Step>
+  <Step title="Attach a transformation">
+    Reshape each event into the Actioneer envelope per the mapping below.
+  </Step>
+  <Step title="Send a test event">
+    Fire a `track` event and confirm `{ "status": 1 }`.
+  </Step>
+</Steps>
+
+## What gets forwarded
+
+| RudderStack | Actioneer |
+| :--- | :--- |
+| `event` (from `track`) | `event` |
+| `properties` | `properties` |
+| `traits` / `context.traits` (from `identify`) | `properties.$set` |
+| `userId` | `distinct_id` (post-login) |
+| `anonymousId` | `distinct_id` (pre-login); `$anon_distinct_id` on `$identify` |
+| `messageId` | `event_id` (dedup) |
+| `originalTimestamp` / `timestamp` | `timestamp` |
+| `identify` call | `event: "$identify"` |
+
+```js
+// RudderStack transformation — illustrative
+export function transformEvent(event) {
+  return {
+    event_id: event.messageId,
+    event: event.type === "identify" ? "$identify" : event.event,
+    distinct_id: event.userId || event.anonymousId,
+    timestamp: event.originalTimestamp,
+    properties: {
+      ...event.properties,
+      ...(event.type === "identify" ? { $set: event.traits, $anon_distinct_id: event.anonymousId } : {})
+    }
+  };
+}
+```
+
+<Warning>
+  Forward `identify` calls as `$identify` with `$anon_distinct_id = anonymousId` to stitch pre-login events. See [Identity Model](/ingestion/identity).
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Identity Model" href="/ingestion/identity">How `$identify` stitches anonymous users.</Card>
+  <Card title="Reliability" href="/ingestion/reliability">Dedup on `event_id`, retries, and idempotency.</Card>
+</CardGroup>

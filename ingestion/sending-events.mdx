@@ -27,6 +27,20 @@ Real-time events map to `/capture`; grouped or high-throughput sends (server-sid
   **Run in parallel during cutover.** If you already land events elsewhere, stand up direct ingestion alongside the existing path, reconcile event counts and key funnels (e.g. install → registered) between the two, and switch Actioneer's primary connection only once direct ingestion is verified complete.
 </Tip>
 
+## Integration recipes
+
+Step-by-step recipes for the most common forwarders:
+
+<CardGroup cols={3}>
+  <Card title="Segment" href="/ingestion/recipes/segment">Webhook destination or function.</Card>
+  <Card title="RudderStack" href="/ingestion/recipes/rudderstack">Webhook destination + transformation.</Card>
+  <Card title="Jitsu" href="/ingestion/recipes/jitsu">Function or webhook destination.</Card>
+  <Card title="Firebase / GA4" href="/ingestion/recipes/firebase">Cloud Function or BigQuery export.</Card>
+  <Card title="Snowplow" href="/ingestion/recipes/snowplow">Enriched-stream consumer.</Card>
+</CardGroup>
+
+The generic mapping below applies to any SDK not listed above.
+
 ## Mapping an SDK to Actioneer
 
 Most event SDKs share a common vocabulary (Segment-style `track` and `identify`, Firebase events plus user properties, RudderStack payloads). Map their concepts to the Actioneer contract as follows:

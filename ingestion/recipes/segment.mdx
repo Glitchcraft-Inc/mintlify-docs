@@ -1,0 +1,74 @@
+---
+mode: "wide"
+title: "Forward Segment to Actioneer"
+sidebarTitle: "Segment"
+description: "Forward Segment events to Actioneer via a Webhook destination."
+"og:title": "Segment → Actioneer — Integration Recipe"
+"og:description": "Forward Segment track and identify calls to the Actioneer Ingestion API using a Webhook (Actions) destination or destination function. Includes the full field mapping."
+keywords: ["Segment integration", "Segment webhook destination", "Segment to Actioneer", "event forwarding", "CDP ingestion"]
+---
+
+Forward Segment events to Actioneer. Segment's tracking spec maps almost 1:1 to the Actioneer envelope, so this is mostly a transport change.
+
+<Info>
+  Scaffold recipe — the field mapping is stable; confirm the exact Segment destination setup against your Segment workspace before going to production.
+</Info>
+
+## How it works
+
+Segment emits `track`, `identify`, `page`, and `screen` calls. Point a **Webhook (Actions) destination** — or a **destination function** — at the Actioneer endpoint, transforming each call into an Actioneer envelope.
+
+## Steps
+
+<Steps>
+  <Step title="Add a destination">
+    In Segment, add a **Webhook** destination (or a destination function). Set the URL to `https://api.actioneer.com/capture` and add the header `X-API-Key: <api-key>`.
+  </Step>
+  <Step title="Map fields">
+    Transform each Segment call into an Actioneer envelope per the mapping below.
+  </Step>
+  <Step title="Send a test event">
+    Trigger a `track` call and confirm Actioneer returns `{ "status": 1 }`.
+  </Step>
+</Steps>
+
+## What gets forwarded
+
+| Segment | Actioneer |
+| :--- | :--- |
+| `event` (from `track`) | `event` |
+| `properties` | `properties` |
+| `traits` (from `identify`) | `properties.$set` |
+| `userId` | `distinct_id` (post-login) |
+| `anonymousId` | `distinct_id` (pre-login); `$anon_distinct_id` on `$identify` |
+| `messageId` | `event_id` (dedup) |
+| `timestamp` | `timestamp` |
+| `identify` call | `event: "$identify"` |
+
+```js
+// Segment destination function — illustrative
+async function onTrack(event, settings) {
+  await fetch("https://api.actioneer.com/capture", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-API-Key": settings.apiKey },
+    body: JSON.stringify({
+      event_id: event.messageId,
+      event: event.event,
+      distinct_id: event.userId || event.anonymousId,
+      timestamp: event.timestamp,
+      properties: event.properties
+    })
+  });
+}
+```
+
+<Warning>
+  Identity continuity is yours to manage. Forward `identify` calls as `$identify` with `$anon_distinct_id = anonymousId` so pre-login events stitch to the user. See [Identity Model](/ingestion/identity).
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Identity Model" href="/ingestion/identity">How `$identify` stitches anonymous users.</Card>
+  <Card title="Reliability" href="/ingestion/reliability">Dedup on `event_id`, retries, and idempotency.</Card>
+</CardGroup>

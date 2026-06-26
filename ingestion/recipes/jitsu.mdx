@@ -1,0 +1,74 @@
+---
+mode: "wide"
+title: "Forward Jitsu to Actioneer"
+sidebarTitle: "Jitsu"
+description: "Forward Jitsu events to Actioneer via a function or webhook destination."
+"og:title": "Jitsu → Actioneer — Integration Recipe"
+"og:description": "Forward Jitsu events to the Actioneer Ingestion API using a Jitsu Function or webhook destination. Includes the full field mapping."
+keywords: ["Jitsu integration", "Jitsu functions", "Jitsu webhook", "Jitsu to Actioneer", "open source CDP", "ingestion"]
+---
+
+Forward Jitsu events to Actioneer. Jitsu's event model is Segment-shaped, and its **Functions** (JavaScript) are the natural place to build the Actioneer envelope.
+
+<Info>
+  Scaffold recipe — confirm the function/destination wiring against your Jitsu version (Jitsu Classic vs Jitsu 2.0) before production.
+</Info>
+
+## How it works
+
+Attach a **Jitsu Function** (or a webhook/HTTP destination) that transforms each incoming event into an Actioneer envelope and POSTs it to the ingestion endpoint.
+
+## Steps
+
+<Steps>
+  <Step title="Create a function or destination">
+    Add a Jitsu Function bound to your stream, or a webhook destination pointed at `https://api.actioneer.com/capture` with the header `X-API-Key: <api-key>`.
+  </Step>
+  <Step title="Map fields">
+    Transform each event into the Actioneer envelope per the mapping below.
+  </Step>
+  <Step title="Send a test event">
+    Emit an event and confirm Actioneer returns `{ "status": 1 }`.
+  </Step>
+</Steps>
+
+## What gets forwarded
+
+| Jitsu | Actioneer |
+| :--- | :--- |
+| `event_type` / `event` | `event` |
+| `properties` | `properties` |
+| `traits` | `properties.$set` |
+| `user.id` (`userId`) | `distinct_id` (post-login) |
+| `user.anonymous_id` (`anonymousId`) | `distinct_id` (pre-login); `$anon_distinct_id` on `$identify` |
+| `messageId` / event id | `event_id` (dedup) |
+| `utc_time` / `timestamp` | `timestamp` |
+| `identify` call | `event: "$identify"` |
+
+```js
+// Jitsu function — illustrative
+export default async function (event, ctx) {
+  await ctx.fetch("https://api.actioneer.com/capture", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "X-API-Key": ctx.props.apiKey },
+    body: JSON.stringify({
+      event_id: event.messageId,
+      event: event.event_type === "identify" ? "$identify" : event.event,
+      distinct_id: event.user?.id || event.user?.anonymous_id,
+      timestamp: event.utc_time,
+      properties: event.properties
+    })
+  });
+}
+```
+
+<Warning>
+  Forward identify events as `$identify` with `$anon_distinct_id = anonymous_id` to stitch pre-login activity. See [Identity Model](/ingestion/identity).
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Identity Model" href="/ingestion/identity">How `$identify` stitches anonymous users.</Card>
+  <Card title="Reliability" href="/ingestion/reliability">Dedup on `event_id`, retries, and idempotency.</Card>
+</CardGroup>

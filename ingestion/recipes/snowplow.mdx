@@ -1,0 +1,68 @@
+---
+mode: "wide"
+title: "Forward Snowplow to Actioneer"
+sidebarTitle: "Snowplow"
+description: "Forward Snowplow enriched events to Actioneer."
+"og:title": "Snowplow → Actioneer — Integration Recipe"
+"og:description": "Forward Snowplow enriched events to the Actioneer Ingestion API from the enriched event stream. Includes the canonical-event field mapping."
+keywords: ["Snowplow integration", "Snowplow enriched events", "Snowplow to Actioneer", "behavioral data pipeline", "ingestion"]
+---
+
+Forward Snowplow events to Actioneer. Snowplow's rich canonical event model maps cleanly onto the Actioneer envelope; you forward from the **enriched event stream**.
+
+<Info>
+  Scaffold recipe — Snowplow forwarding is typically a small stream consumer. Confirm against your Snowplow topology (Kinesis / Pub/Sub / Kafka) before production.
+</Info>
+
+## How it works
+
+Attach a lightweight consumer to the **enriched stream** that maps each canonical Snowplow event to an Actioneer envelope and POSTs to `/batch` (batched for throughput) or `/capture`.
+
+## Steps
+
+<Steps>
+  <Step title="Subscribe to the enriched stream">
+    Read enriched events from your stream (Kinesis, Pub/Sub, or Kafka).
+  </Step>
+  <Step title="Map canonical fields">
+    Build the Actioneer envelope per the mapping below; batch for throughput.
+  </Step>
+  <Step title="Forward and confirm">
+    POST to `https://api.actioneer.com/batch` with `X-API-Key: <api-key>` and confirm `{ "status": 1 }`.
+  </Step>
+</Steps>
+
+## What gets forwarded
+
+| Snowplow (canonical) | Actioneer |
+| :--- | :--- |
+| `event_name` / `event` | `event` |
+| `unstruct_event`, `contexts`, atomic fields | `properties` |
+| `user_id` | `distinct_id` (post-login) |
+| `domain_userid` / `network_userid` | `distinct_id` (pre-login); `$anon_distinct_id` on `$identify` |
+| `event_id` (UUID) | `event_id` (dedup) |
+| `derived_tstamp` / `collector_tstamp` | `timestamp` |
+
+```js
+// Stream consumer — illustrative
+function toActioneer(sp) {
+  return {
+    event_id: sp.event_id,
+    event: sp.event_name,
+    distinct_id: sp.user_id || sp.domain_userid,
+    timestamp: sp.derived_tstamp,
+    properties: { ...sp.unstruct_event, ...sp.contexts }
+  };
+}
+```
+
+<Warning>
+  Use `domain_userid` (or `network_userid`) as the pre-login `distinct_id`, and emit `$identify` with `$anon_distinct_id` once `user_id` is set. See [Identity Model](/ingestion/identity).
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Sending from an SDK" href="/ingestion/sending-events">Forwarding patterns and the generic mapping.</Card>
+  <Card title="Reliability" href="/ingestion/reliability">Dedup on `event_id`, retries, and idempotency.</Card>
+</CardGroup>

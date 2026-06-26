@@ -12,6 +12,17 @@ Send analytics events, identity calls, and profile updates to Actioneer **direct
 
 Where data-source connectors let Actioneer *read* from your stack, the Ingestion API lets your app *push* events in real time. One JSON-over-HTTPS envelope carries event properties, profile updates, and session association together. If you already emit analytics through Firebase, Jitsu, RudderStack, or Segment, you forward those events straight to Actioneer.
 
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#242a1c','primaryBorderColor':'#6b7a4f','primaryTextColor':'#e8ebe0','lineColor':'#6b7a4f','fontSize':'13px'}}}%%
+flowchart LR
+    SDK["App / Event SDK"] --> EP["/capture · /batch"]
+    EP --> V["Validate"]
+    V --> D["Dedup · event_id"]
+    D --> ID["Identity resolve · $identify"]
+    ID --> W["Warehouse"]
+    W --> A["Actioneer"]
+```
+
 | &nbsp; | &nbsp; |
 | :--- | :--- |
 | &nbsp; **Transport** | &nbsp; HTTPS / JSON |
@@ -20,6 +31,9 @@ Where data-source connectors let Actioneer *read* from your stack, the Ingestion
 | &nbsp; **Auth** | &nbsp; `X-API-Key` header (server-side secret) |
 
 <CardGroup cols={2}>
+  <Card title="Quickstart" href="/ingestion/quickstart">
+    Send your first event in five minutes with curl.
+  </Card>
   <Card title="API Reference" href="/ingestion/api-reference">
     Endpoints, authentication, the event envelope, and batch requests.
   </Card>
