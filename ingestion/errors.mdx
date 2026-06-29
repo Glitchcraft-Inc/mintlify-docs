@@ -1,0 +1,61 @@
+---
+mode: "wide"
+title: "Errors & Status Codes"
+sidebarTitle: "Errors & Status Codes"
+description: "HTTP status codes and error responses from the Actioneer Ingestion API."
+"og:title": "Errors & Status Codes — Actioneer Ingestion"
+"og:description": "The Actioneer Ingestion API status codes and error bodies: 400 validation, 401 invalid api_key, and 503 temporary outages, with handling guidance for each."
+keywords: ["error codes", "status codes", "400", "401", "503", "Actioneer ingestion"]
+---
+
+Every request returns either an acceptance acknowledgement or a single error object. **Errors are a flat `{ "error": "<message>" }` — there is no per-record failure array.**
+
+## Success
+
+```json
+{ "status": 1 }
+```
+
+The envelope — or every envelope in a `/batch` — passed validation and was queued. Acceptance is not a delivery guarantee; see [Reliability](/ingestion/reliability).
+
+## Status codes
+
+| Code | Meaning | Body | Retry? |
+| :--- | :--- | :--- | :--- |
+| `200` | Accepted | `{ "status": 1 }` | — |
+| `400` | Validation error (e.g. missing `distinct_id`) | `{ "error": "<message>" }` | No — fix the payload |
+| `401` | Missing, invalid, unknown, revoked, or inactive API key | `{ "error": "Invalid or unknown api_key" }` | No — fix the key |
+| `503` | API-key resolution temporarily unavailable | `{ "error": "api_key resolution temporarily unavailable" }` | Yes — backoff |
+| `503` | `/batch` publish temporarily unavailable | `{ "error": "event publish temporarily unavailable" }` | Yes — backoff |
+
+<Note>
+  Codes `403`, `413`, `422`, and `429` are not part of the current contract. Validation failures come back as `400`, auth failures as `401`.
+</Note>
+
+## Common validation errors
+
+| Message | Cause |
+| :--- | :--- |
+| `distinct_id is required` | `distinct_id` missing, `null`, or blank |
+| `Invalid or unknown api_key` | `X-API-Key` missing or not recognized |
+
+## Handling errors
+
+- **`400`** — a client bug. Don't retry; correct the envelope.
+- **`401`** — fix or rotate the key; don't retry as-is.
+- **`503`** — transient. Retry with exponential backoff and jitter, reusing the same `event_id` so any already-queued records dedupe. See [Reliability](/ingestion/reliability).
+
+<Warning>
+  On a single-event request, `{ "status": 1 }` is returned **before** the asynchronous publish is confirmed — a rare publish failure after acceptance is logged server-side, not surfaced in the response. For critical pipelines, reconcile event counts downstream.
+</Warning>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Reliability" href="/ingestion/reliability">
+    Idempotency, the dedup window, and retry policy.
+  </Card>
+  <Card title="API Reference" href="/ingestion/api-reference">
+    The full envelope schema and endpoints.
+  </Card>
+</CardGroup>

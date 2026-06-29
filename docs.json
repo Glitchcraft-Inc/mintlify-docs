@@ -68,6 +68,7 @@
           "ingestion/identity",
           "ingestion/properties",
           "ingestion/reliability",
+          "ingestion/errors",
           "ingestion/sending-events",
           {
             "group": "Integration recipes",

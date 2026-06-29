@@ -12,33 +12,47 @@ The Ingestion API is built for safe retries and exactly-once-by-key processing. 
 
 ## Validation
 
-An envelope may be rejected when any required field is absent: `event_id`, `X-API-Key`, `distinct_id`, `event`, `timestamp`.
+Three fields are **required** on every envelope:
 
-<Note>
-  `event_id` and `timestamp` are nominally "recommended" at the schema level, but production clients should treat them as required — they are what guarantee safe retries and correct event time.
-</Note>
+- `X-API-Key` — the API key header. Missing or unrecognized returns `401`.
+- `distinct_id` — missing, `null`, or blank returns `400 { "error": "distinct_id is required" }`.
+- `event` — the event name.
+
+`event_id` and `timestamp` are **recommended, not required**. If `event_id` is omitted the server generates a random UUID; if `timestamp` is omitted the event falls back to its ingest time. Send both anyway — a stable `event_id` is what makes retries safe, and a real `timestamp` preserves event-time accuracy. See [Errors & Status Codes](/ingestion/errors) for the full catalog.
 
 ## Acceptance response
 
-A successful response is a small acceptance acknowledgement:
+A successful response is a small acknowledgement:
 
 ```json
 { "status": 1 }
 ```
 
-`status: 1` indicates the envelope was accepted for processing. Treat any successful HTTP response as accepted, and ignore unrecognized response fields for forward compatibility.
+`status: 1` means the envelope was accepted for processing — treat any successful HTTP response as accepted, and ignore unrecognized response fields for forward compatibility. Failures return a single error object, `{ "error": "<message>" }`.
+
+<Note>
+  Acceptance is not a delivery guarantee. `{ "status": 1 }` means the event passed validation and was queued, not that downstream processing has completed. On a single-event request the acknowledgement is returned before the asynchronous publish is confirmed.
+</Note>
 
 ## Idempotency and deduplication
 
-Deduplication is keyed on `event_id`.
+Deduplication is keyed on `event_id`, scoped per tenant.
 
-- Reuse the **same** `event_id` when retrying the same logical event — the server collapses duplicates.
+- Reuse the **same** `event_id` when retrying the same logical event — duplicates are silently dropped downstream.
 - Generate a **new** `event_id` only for a genuinely distinct event.
-- If `event_id` is omitted, the server may synthesize one. Under retries this is unsafe: each retry can receive a different synthesized ID and persist as a duplicate. Always supply a client-generated `event_id`.
+- If `event_id` is omitted, the server generates a random UUID. Under retries this is unsafe: each retry gets a different ID and persists as a separate event. Always supply a stable, client-generated `event_id`.
+
+<Warning>
+  The dedup window is short — around **one hour** in current deployments (configurable). A retry must reuse the same `event_id` within that window to be collapsed; a later retry lands as a new event. Deduplication happens after the event is queued, so the acceptance response never flags a duplicate.
+</Warning>
 
 ## Retry policy
 
-Retry on HTTP 5xx and network/transport failures using exponential backoff with jitter. Because retries reuse `event_id`, they are side-effect-free at the dedup layer. Do not retry on 4xx validation failures — correct the payload instead.
+Retry on `503` (and any `5xx`) and network/transport failures using exponential backoff with jitter. Because retries reuse `event_id`, they de-duplicate within the dedup window. Do **not** retry `400` (validation) or `401` (auth) — fix the payload or the key instead.
+
+<Note>
+  **Batches reject all-or-nothing at validation.** If any envelope in a `/batch` fails validation, the whole batch is rejected before anything is published. A `503` during the publish step can occur after some records were already queued — reuse the same `event_id`s on retry so those records dedupe.
+</Note>
 
 <Tip>
   Profile mutations are eventually consistent — a `$set` may become visible slightly after the event that carried it.

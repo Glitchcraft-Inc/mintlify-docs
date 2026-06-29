@@ -75,6 +75,34 @@ sequenceDiagram
 - `$anon_distinct_id` — the identity to be merged into it.
 - Profile operators may accompany the merge in the same call. See [Property Taxonomy](/ingestion/properties).
 
+## Anonymous vs identified
+
+Actioneer accepts events for both anonymous and identified `distinct_id` values and resolves a profile for either. `$identify` links an anonymous ID to a real user through `$anon_distinct_id` and marks the person identified.
+
+<Warning>
+  **A merge is a one-way door.** There is no unlink or reverse operation. When `$identify` merges an anonymous person into a real one, the anonymous record is deleted and its events move to the canonical person. Only call `$identify` when you are certain the two identifiers are the same user.
+</Warning>
+
+## Merge precedence
+
+When an anonymous person merges into an identified one:
+
+- The **identified (canonical) person survives** and keeps the earliest `created_at`.
+- Anonymous profile properties are copied **only where the canonical profile doesn't already have them** — existing identified values win.
+- Operators on the `$identify` call then apply in order: `$set_once` → `$set` → `$unset` → auto-sync.
+
+## Choosing a distinct_id
+
+`distinct_id` must be present and non-blank — missing, `null`, or empty is rejected with `400 { "error": "distinct_id is required" }`. A few other values are technically accepted but will corrupt your data:
+
+- **Avoid** placeholder or boolean-like values (`0`, `-1`, `true`, `false`) and shared catch-all IDs like `"system"` or `"backend"` — they collapse unrelated users into one profile.
+- **Keep casing consistent.** IDs are case-sensitive, so `user-456` and `USER-456` resolve to different people.
+- Use one stable ID per user across surfaces (web, app, server) so they aren't fragmented by device.
+
+<Note>
+  `$alias` is an additional identity-linking verb for attaching another identifier (e.g. a legacy ID) to an existing person. Like `$identify`, treat it as irreversible; confirm exact semantics with your Actioneer contact before relying on it.
+</Note>
+
 ## Next steps
 
 <CardGroup cols={2}>

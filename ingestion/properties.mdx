@@ -38,8 +38,29 @@ A user-level attribute placed only in event properties will **not** appear on th
 - `$set_once` for fixed fields that must never be overwritten — `first_seen_source`, signup date, referral code.
 
 <Note>
-  **Context is not profile data.** `$browser`, `$current_url`, `utm_source`, `gclid`, and similar context remain event properties unless you explicitly wrap them in `$set` or `$set_once`.
+  **Some context auto-syncs to the profile.** A defined set of context properties — `$browser`, `$os`, `$device_type`, `$current_url`, `$referring_domain`, the `utm_*` family, `gclid`, `fbclid`, and more (see [Reserved properties](#reserved-properties)) — is copied to the profile automatically when a mutation is processed, without wrapping them in `$set`. Everything else stays event-scoped unless you wrap it in an operator.
 </Note>
+
+## Reserved properties
+
+Actioneer reserves a set of names — don't use these for your own data.
+
+- **Operators** (wrap profile data): `$set`, `$set_once`, `$unset`, and `$anon_distinct_id` on `$identify`.
+- **Special event names:** `$identify` and `$alias` carry identity-merge behavior — see [Identity Model](/ingestion/identity).
+- **Auto-synced context** (copied to the profile during a mutation): `$browser`, `$browser_version`, `$os`, `$os_version`, `$device_type`, `$app_build`, `$app_name`, `$app_version`, `$app_namespace`, `$current_url`, `$referring_domain`, `$screen_height`, `$screen_width`, `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `fbclid`, `msclkid`.
+- **SDK / session metadata** (event context only, not profile operators): `$lib`, `$lib_version`, `$session_id`, `$device_id`.
+
+<Note>
+  Event and property names are **case-sensitive** — `Order Completed` and `order completed` are different events.
+</Note>
+
+## Ingestion order
+
+`$set`, `$set_once`, and `$unset` resolve in **processing order — not by event `timestamp`.** A late, retried, batched, or forwarded event can overwrite a newer `$set` or wrongly satisfy a `$set_once`, because the server stamps each profile update with its own processing time. Within a single event, operators apply as `$set_once` → `$set` → `$unset` → auto-sync.
+
+<Warning>
+  Watch this when backfilling history, draining offline mobile queues, or forwarding from a batched pipeline — out-of-order arrival can leave a profile holding a stale value. For fields that must never regress, prefer `$set_once`.
+</Warning>
 
 ## Session property
 

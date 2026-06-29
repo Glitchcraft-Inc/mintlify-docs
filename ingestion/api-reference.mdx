@@ -47,8 +47,8 @@ X-API-Key: <api-key>
 | Field | Type | Requirement | Semantics |
 | :--- | :--- | :--- | :--- |
 | `event` | string | Required | Event name (e.g. `Order Completed`) or a reserved verb (`$identify`). |
-| `distinct_id` | string | Required | The identity this envelope is attributed to. See [Identity Model](/ingestion/identity). |
-| `event_id` | string | Recommended | Client-generated idempotency key. Stable across retries of the same logical event. |
+| `distinct_id` | string | Required | The identity this envelope is attributed to. Missing, `null`, or blank is rejected with `400`. See [Identity Model](/ingestion/identity). |
+| `event_id` | string | Recommended | Client-generated idempotency key, stable across retries. If omitted, the server generates a UUID — unsafe for retries. |
 | `timestamp` | ISO-8601 | Recommended | Event occurrence time, UTC. Omission forfeits accurate event-time ordering. |
 | `sent_at` | ISO-8601 | Optional | Time the client transmitted the request; used for clock-skew correction. |
 | `properties` | object | Optional | Event properties, profile operators, and session association. See [Property Taxonomy](/ingestion/properties). |
@@ -94,7 +94,7 @@ A minimal valid envelope carries only `event` and `distinct_id`. Production traf
 ```
 
 <Info>
-  A successful response is a small acceptance acknowledgement, `{ "status": 1 }`. See [Reliability](/ingestion/reliability) for validation, deduplication, and retries.
+  A successful response is a small acceptance acknowledgement, `{ "status": 1 }`; failures return `{ "error": "<message>" }`. See [Errors & Status Codes](/ingestion/errors) and [Reliability](/ingestion/reliability).
 </Info>
 
 ## Next steps
